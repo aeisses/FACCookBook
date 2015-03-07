@@ -1,7 +1,10 @@
 # Xcode
 .DS_Store
 */build*/
-xcuserdata
+*xcuserdata*
+*xcshareddata*
 DerivedData
 .sw?
 
+#CocoaPods
+Pods
