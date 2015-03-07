@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Direction" syncable="YES">
+        <attribute name="direction" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="directions" inverseEntity="Recipe" syncable="YES"/>
+    </entity>
+    <entity name="Ingredient" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ingredient" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="ingredients" inverseEntity="Recipe" syncable="YES"/>
+    </entity>
+    <entity name="Note" syncable="YES">
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="notes" inverseEntity="Recipe" syncable="YES"/>
+    </entity>
+    <entity name="Recipe" syncable="YES">
+        <attribute name="addDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="recipeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="searchItems" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="directions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Direction" inverseName="recipe" inverseEntity="Direction" syncable="YES"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Ingredient" inverseName="recipe" inverseEntity="Ingredient" syncable="YES"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Note" inverseName="recipe" inverseEntity="Note" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Recipe" positionX="-63" positionY="-18" width="128" height="163"/>
+        <element name="Ingredient" positionX="-54" positionY="27" width="128" height="88"/>
+        <element name="Direction" positionX="-36" positionY="54" width="128" height="73"/>
+        <element name="Note" positionX="-18" positionY="72" width="128" height="73"/>
+    </elements>
+</model>
