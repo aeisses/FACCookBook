@@ -12,12 +12,17 @@
 
 @dynamic addDate;
 @dynamic recipeId;
-@dynamic searchElements;
+@dynamic searchItems;
 @dynamic title;
 @dynamic updateDate;
+@dynamic season;
+@dynamic type;
+@dynamic isFavourite;
 
 @dynamic directions;
 @dynamic ingredients;
 @dynamic notes;
+@dynamic popular;
+@dynamic featured;
 
 @end
