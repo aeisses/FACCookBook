@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043938711AF2FEB7004EA4D3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043938701AF2FEB7004EA4D3 /* MapKit.framework */; };
+		043938741AF30206004EA4D3 /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938731AF30206004EA4D3 /* HomeScreenViewController.m */; };
 		04CE74391ACCC13200624A7F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE74381ACCC13200624A7F /* Location.m */; };
 		04CE743C1ACCC81800624A7F /* Information.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743B1ACCC81800624A7F /* Information.m */; };
 		04CE74401ACCC88300624A7F /* Popular.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743F1ACCC88300624A7F /* Popular.m */; };
@@ -38,6 +40,9 @@
 
 /* Begin PBXFileReference section */
 		042EE73AA618551F25E72F71 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		043938701AF2FEB7004EA4D3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		043938731AF30206004EA4D3 /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
+		043938751AF3021F004EA4D3 /* HomeScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
 		04CE74381ACCC13200624A7F /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		04CE743A1ACCC14800624A7F /* Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		04CE743B1ACCC81800624A7F /* Information.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Information.m; sourceTree = "<group>"; };
@@ -77,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043938711AF2FEB7004EA4D3 /* MapKit.framework in Frameworks */,
 				DC3D88E0AC69975EE4B0D3F5 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		043938721AF301D2004EA4D3 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				043938731AF30206004EA4D3 /* HomeScreenViewController.m */,
+				043938751AF3021F004EA4D3 /* HomeScreenViewController.h */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		04F5CA321AA3B4FB002D1069 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +134,7 @@
 				04F5CA431AA3B4FB002D1069 /* AppDelegate.m */,
 				04F5CA771AABCBB9002D1069 /* DataService.h */,
 				04F5CA751AABCBA8002D1069 /* DataService.m */,
+				043938721AF301D2004EA4D3 /* ViewControllers */,
 				04F5CA481AA3B4FB002D1069 /* ViewController.h */,
 				04F5CA491AA3B4FB002D1069 /* ViewController.m */,
 				04F5CA4B1AA3B4FB002D1069 /* Main.storyboard */,
@@ -189,6 +205,7 @@
 		AC4096A98AE72115300EACFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				043938701AF2FEB7004EA4D3 /* MapKit.framework */,
 				DB285498520DC5955837AB35 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -334,6 +351,7 @@
 				04F5CA441AA3B4FB002D1069 /* AppDelegate.m in Sources */,
 				04F5CA721AAA64DF002D1069 /* Recipe.m in Sources */,
 				04F5CA471AA3B4FB002D1069 /* FACCookbook.xcdatamodeld in Sources */,
+				043938741AF30206004EA4D3 /* HomeScreenViewController.m in Sources */,
 				04F5CA4A1AA3B4FB002D1069 /* ViewController.m in Sources */,
 				04F5CA6B1AAA62FD002D1069 /* Direction.m in Sources */,
 				04F5CA701AAA64CD002D1069 /* Ingredient.m in Sources */,
@@ -469,6 +487,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FACCookbook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -483,6 +502,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FACCookbook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
