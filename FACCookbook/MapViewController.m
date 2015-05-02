@@ -1,16 +1,13 @@
 //
-//  RecipeCell.m
+//  MapViewController.m
 //  FACCookbook
 //
 //  Created by Aaron Eisses on 2015-05-02.
 //  Copyright (c) 2015 EAC. All rights reserved.
 //
 
-#import "RecipeCell.h"
+#import "MapViewController.h"
 
-@implementation RecipeCell
-
-- (void)prepareForReuse {
-}
+@implementation MapViewController
 
 @end

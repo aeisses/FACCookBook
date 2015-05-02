@@ -11,6 +11,14 @@
 		043938741AF30206004EA4D3 /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938731AF30206004EA4D3 /* HomeScreenViewController.m */; };
 		043938771AF53DA1004EA4D3 /* RecipeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043938761AF53DA1004EA4D3 /* RecipeCell.xib */; };
 		0439387A1AF53DEB004EA4D3 /* RecipeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938791AF53DEB004EA4D3 /* RecipeCell.m */; };
+		0439387D1AF5444F004EA4D3 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0439387C1AF5444F004EA4D3 /* InformationViewController.m */; };
+		043938811AF54486004EA4D3 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938801AF54486004EA4D3 /* LocationViewController.m */; };
+		043938841AF544A9004EA4D3 /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938831AF544A9004EA4D3 /* RecipeViewController.m */; };
+		043938871AF54BE0004EA4D3 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938861AF54BE0004EA4D3 /* MapViewController.m */; };
+		0439388A1AF54C00004EA4D3 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938891AF54C00004EA4D3 /* SearchViewController.m */; };
+		0439388D1AF54C23004EA4D3 /* FavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0439388C1AF54C23004EA4D3 /* FavouriteViewController.m */; };
+		043938901AF54C46004EA4D3 /* PopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0439388F1AF54C46004EA4D3 /* PopularViewController.m */; };
+		043938931AF54C68004EA4D3 /* SeasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938921AF54C68004EA4D3 /* SeasonViewController.m */; };
 		04CE74391ACCC13200624A7F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE74381ACCC13200624A7F /* Location.m */; };
 		04CE743C1ACCC81800624A7F /* Information.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743B1ACCC81800624A7F /* Information.m */; };
 		04CE74401ACCC88300624A7F /* Popular.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743F1ACCC88300624A7F /* Popular.m */; };
@@ -48,6 +56,22 @@
 		043938761AF53DA1004EA4D3 /* RecipeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeCell.xib; sourceTree = "<group>"; };
 		043938791AF53DEB004EA4D3 /* RecipeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeCell.m; sourceTree = "<group>"; };
 		0439387B1AF53DF6004EA4D3 /* RecipeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipeCell.h; sourceTree = "<group>"; };
+		0439387C1AF5444F004EA4D3 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
+		0439387E1AF5445D004EA4D3 /* InformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
+		0439387F1AF54478004EA4D3 /* LocationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationViewController.h; sourceTree = "<group>"; };
+		043938801AF54486004EA4D3 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
+		043938821AF54498004EA4D3 /* RecipeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipeViewController.h; sourceTree = "<group>"; };
+		043938831AF544A9004EA4D3 /* RecipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeViewController.m; sourceTree = "<group>"; };
+		043938851AF54BCF004EA4D3 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		043938861AF54BE0004EA4D3 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		043938881AF54BED004EA4D3 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		043938891AF54C00004EA4D3 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		0439388B1AF54C12004EA4D3 /* FavouriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteViewController.h; sourceTree = "<group>"; };
+		0439388C1AF54C23004EA4D3 /* FavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteViewController.m; sourceTree = "<group>"; };
+		0439388E1AF54C36004EA4D3 /* PopularViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularViewController.h; sourceTree = "<group>"; };
+		0439388F1AF54C46004EA4D3 /* PopularViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularViewController.m; sourceTree = "<group>"; };
+		043938911AF54C54004EA4D3 /* SeasonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeasonViewController.h; sourceTree = "<group>"; };
+		043938921AF54C68004EA4D3 /* SeasonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeasonViewController.m; sourceTree = "<group>"; };
 		04CE74381ACCC13200624A7F /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		04CE743A1ACCC14800624A7F /* Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		04CE743B1ACCC81800624A7F /* Information.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Information.m; sourceTree = "<group>"; };
@@ -105,8 +129,24 @@
 		043938721AF301D2004EA4D3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				043938731AF30206004EA4D3 /* HomeScreenViewController.m */,
 				043938751AF3021F004EA4D3 /* HomeScreenViewController.h */,
+				043938731AF30206004EA4D3 /* HomeScreenViewController.m */,
+				043938851AF54BCF004EA4D3 /* MapViewController.h */,
+				043938861AF54BE0004EA4D3 /* MapViewController.m */,
+				043938881AF54BED004EA4D3 /* SearchViewController.h */,
+				043938891AF54C00004EA4D3 /* SearchViewController.m */,
+				0439388B1AF54C12004EA4D3 /* FavouriteViewController.h */,
+				0439388C1AF54C23004EA4D3 /* FavouriteViewController.m */,
+				0439388E1AF54C36004EA4D3 /* PopularViewController.h */,
+				0439388F1AF54C46004EA4D3 /* PopularViewController.m */,
+				043938911AF54C54004EA4D3 /* SeasonViewController.h */,
+				043938921AF54C68004EA4D3 /* SeasonViewController.m */,
+				0439387E1AF5445D004EA4D3 /* InformationViewController.h */,
+				0439387C1AF5444F004EA4D3 /* InformationViewController.m */,
+				0439387F1AF54478004EA4D3 /* LocationViewController.h */,
+				043938801AF54486004EA4D3 /* LocationViewController.m */,
+				043938821AF54498004EA4D3 /* RecipeViewController.h */,
+				043938831AF544A9004EA4D3 /* RecipeViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -364,20 +404,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0439387D1AF5444F004EA4D3 /* InformationViewController.m in Sources */,
 				04CE743C1ACCC81800624A7F /* Information.m in Sources */,
 				04F5CA441AA3B4FB002D1069 /* AppDelegate.m in Sources */,
+				043938871AF54BE0004EA4D3 /* MapViewController.m in Sources */,
 				04F5CA721AAA64DF002D1069 /* Recipe.m in Sources */,
+				043938931AF54C68004EA4D3 /* SeasonViewController.m in Sources */,
 				04F5CA471AA3B4FB002D1069 /* FACCookbook.xcdatamodeld in Sources */,
+				0439388A1AF54C00004EA4D3 /* SearchViewController.m in Sources */,
 				043938741AF30206004EA4D3 /* HomeScreenViewController.m in Sources */,
 				04F5CA4A1AA3B4FB002D1069 /* ViewController.m in Sources */,
 				04F5CA6B1AAA62FD002D1069 /* Direction.m in Sources */,
 				04F5CA701AAA64CD002D1069 /* Ingredient.m in Sources */,
 				04CE74391ACCC13200624A7F /* Location.m in Sources */,
+				0439388D1AF54C23004EA4D3 /* FavouriteViewController.m in Sources */,
 				04F5CA761AABCBA8002D1069 /* DataService.m in Sources */,
+				043938811AF54486004EA4D3 /* LocationViewController.m in Sources */,
 				04CE74401ACCC88300624A7F /* Popular.m in Sources */,
 				04F5CA411AA3B4FB002D1069 /* main.m in Sources */,
 				04F5CA741AAA64ED002D1069 /* Note.m in Sources */,
+				043938901AF54C46004EA4D3 /* PopularViewController.m in Sources */,
 				0439387A1AF53DEB004EA4D3 /* RecipeCell.m in Sources */,
+				043938841AF544A9004EA4D3 /* RecipeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
