@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		043938711AF2FEB7004EA4D3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043938701AF2FEB7004EA4D3 /* MapKit.framework */; };
 		043938741AF30206004EA4D3 /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938731AF30206004EA4D3 /* HomeScreenViewController.m */; };
+		043938771AF53DA1004EA4D3 /* RecipeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043938761AF53DA1004EA4D3 /* RecipeCell.xib */; };
+		0439387A1AF53DEB004EA4D3 /* RecipeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938791AF53DEB004EA4D3 /* RecipeCell.m */; };
 		04CE74391ACCC13200624A7F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE74381ACCC13200624A7F /* Location.m */; };
 		04CE743C1ACCC81800624A7F /* Information.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743B1ACCC81800624A7F /* Information.m */; };
 		04CE74401ACCC88300624A7F /* Popular.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743F1ACCC88300624A7F /* Popular.m */; };
@@ -43,6 +45,9 @@
 		043938701AF2FEB7004EA4D3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		043938731AF30206004EA4D3 /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
 		043938751AF3021F004EA4D3 /* HomeScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
+		043938761AF53DA1004EA4D3 /* RecipeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeCell.xib; sourceTree = "<group>"; };
+		043938791AF53DEB004EA4D3 /* RecipeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeCell.m; sourceTree = "<group>"; };
+		0439387B1AF53DF6004EA4D3 /* RecipeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipeCell.h; sourceTree = "<group>"; };
 		04CE74381ACCC13200624A7F /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		04CE743A1ACCC14800624A7F /* Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		04CE743B1ACCC81800624A7F /* Information.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Information.m; sourceTree = "<group>"; };
@@ -106,6 +111,15 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		043938781AF53DD6004EA4D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0439387B1AF53DF6004EA4D3 /* RecipeCell.h */,
+				043938791AF53DEB004EA4D3 /* RecipeCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		04F5CA321AA3B4FB002D1069 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +143,7 @@
 		04F5CA3D1AA3B4FB002D1069 /* FACCookbook */ = {
 			isa = PBXGroup;
 			children = (
+				043938781AF53DD6004EA4D3 /* Views */,
 				04F5CA681AAA62C9002D1069 /* Objects */,
 				04F5CA421AA3B4FB002D1069 /* AppDelegate.h */,
 				04F5CA431AA3B4FB002D1069 /* AppDelegate.m */,
@@ -138,6 +153,7 @@
 				04F5CA481AA3B4FB002D1069 /* ViewController.h */,
 				04F5CA491AA3B4FB002D1069 /* ViewController.m */,
 				04F5CA4B1AA3B4FB002D1069 /* Main.storyboard */,
+				043938761AF53DA1004EA4D3 /* RecipeCell.xib */,
 				04F5CA4E1AA3B4FB002D1069 /* Images.xcassets */,
 				04F5CA501AA3B4FB002D1069 /* LaunchScreen.xib */,
 				04F5CA451AA3B4FB002D1069 /* FACCookbook.xcdatamodeld */,
@@ -297,6 +313,7 @@
 				04F5CA4D1AA3B4FB002D1069 /* Main.storyboard in Resources */,
 				04F5CA521AA3B4FB002D1069 /* LaunchScreen.xib in Resources */,
 				04F5CA4F1AA3B4FB002D1069 /* Images.xcassets in Resources */,
+				043938771AF53DA1004EA4D3 /* RecipeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +377,7 @@
 				04CE74401ACCC88300624A7F /* Popular.m in Sources */,
 				04F5CA411AA3B4FB002D1069 /* main.m in Sources */,
 				04F5CA741AAA64ED002D1069 /* Note.m in Sources */,
+				0439387A1AF53DEB004EA4D3 /* RecipeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

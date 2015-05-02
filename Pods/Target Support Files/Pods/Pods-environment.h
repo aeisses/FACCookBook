@@ -48,3 +48,9 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 3
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
+// FastImageCache
+#define COCOAPODS_POD_AVAILABLE_FastImageCache
+#define COCOAPODS_VERSION_MAJOR_FastImageCache 1
+#define COCOAPODS_VERSION_MINOR_FastImageCache 3
+#define COCOAPODS_VERSION_PATCH_FastImageCache 0
+
