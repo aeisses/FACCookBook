@@ -8,7 +8,7 @@
         <!--Favourites-->
         <scene sceneID="vth-gf-ECu">
             <objects>
-                <collectionViewController id="wxk-9m-zAl" sceneMemberID="viewController">
+                <collectionViewController id="wxk-9m-zAl" customClass="FavouriteViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="EUL-AH-hq7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,7 +19,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="LR2-aW-AAd" customClass="RecipeCell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipe" id="LR2-aW-AAd" customClass="RecipeCell">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -36,7 +36,7 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Favourites" id="lO4-dM-fVr"/>
                     <connections>
-                        <segue destination="TzS-GA-PMA" kind="custom" id="GFV-GA-dcg"/>
+                        <segue destination="TzS-GA-PMA" kind="show" identifier="recipe" id="GFV-GA-dcg"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="swS-Ux-ACO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -57,7 +57,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="qXQ-H4-lLH" customClass="RecipeCell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipe" id="qXQ-H4-lLH" customClass="RecipeCell">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -74,7 +74,7 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Home" id="Ogc-uT-CYk"/>
                     <connections>
-                        <segue destination="TzS-GA-PMA" kind="custom" id="UQe-C1-lVp"/>
+                        <segue destination="TzS-GA-PMA" kind="show" identifier="recipe" id="UQe-C1-lVp"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8B2-J5-Vto" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -84,7 +84,7 @@
         <!--Search-->
         <scene sceneID="cjF-ib-Ycy">
             <objects>
-                <collectionViewController id="4FO-2v-otC" customClass="HomeScreenViewController" sceneMemberID="viewController">
+                <collectionViewController id="4FO-2v-otC" customClass="SearchViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="OgH-ce-end">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -95,7 +95,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="avH-jQ-7ib" customClass="RecipeCell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipe" id="avH-jQ-7ib" customClass="RecipeCell">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -112,7 +112,7 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Search" id="EgT-66-n5b"/>
                     <connections>
-                        <segue destination="TzS-GA-PMA" kind="custom" id="hly-Wi-plr"/>
+                        <segue destination="TzS-GA-PMA" kind="show" identifier="recipe" id="hly-Wi-plr"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4x-ml-M2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -122,7 +122,7 @@
         <!--Popular-->
         <scene sceneID="gAb-xd-P9F">
             <objects>
-                <collectionViewController id="zSK-pL-RRH" userLabel="Popular" sceneMemberID="viewController">
+                <collectionViewController id="zSK-pL-RRH" userLabel="Popular" customClass="PopularViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="9VK-cY-7qm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -133,7 +133,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="44n-2w-Yzq" customClass="RecipeCell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="re3cipe" id="44n-2w-Yzq" customClass="RecipeCell">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -150,7 +150,7 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Popular" id="YaR-hL-m3x" userLabel="Popular"/>
                     <connections>
-                        <segue destination="TzS-GA-PMA" kind="custom" id="Ndg-Vz-ndr"/>
+                        <segue destination="TzS-GA-PMA" kind="show" identifier="recipe" id="Ndg-Vz-ndr"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oz4-1E-aUU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -160,7 +160,7 @@
         <!--Season-->
         <scene sceneID="Gs8-0W-AsK">
             <objects>
-                <collectionViewController id="tEQ-3B-eN3" sceneMemberID="viewController">
+                <collectionViewController id="tEQ-3B-eN3" customClass="SeasonViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="JqM-KA-BDn">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -171,7 +171,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="j9x-PC-O8h" customClass="RecipeCell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipe" id="j9x-PC-O8h" customClass="RecipeCell">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -188,7 +188,7 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Season" id="xSE-Lu-oAF"/>
                     <connections>
-                        <segue destination="TzS-GA-PMA" kind="custom" id="3ym-qK-RoI"/>
+                        <segue destination="TzS-GA-PMA" kind="show" identifier="recipe" id="3ym-qK-RoI"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BAR-VR-Zij" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -215,7 +215,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Location" id="cKI-qT-0rg"/>
                     <connections>
-                        <segue destination="u72-aU-rki" kind="custom" id="Rpd-eo-guv"/>
+                        <segue destination="u72-aU-rki" kind="show" identifier="location" id="Rpd-eo-guv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IRK-QN-yEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -285,6 +285,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UQe-C1-lVp"/>
+        <segue reference="GFV-GA-dcg"/>
     </inferredMetricsTieBreakers>
 </document>
