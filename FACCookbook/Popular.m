@@ -10,6 +10,6 @@
 
 @implementation Popular
 
-@dynamic popular;
+@dynamic recipes;
 
 @end

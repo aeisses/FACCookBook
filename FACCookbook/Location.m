@@ -10,6 +10,7 @@
 
 @implementation Location
 
+@dynamic name;
 @dynamic address;
 @dynamic email;
 @dynamic latitude;
@@ -17,5 +18,6 @@
 @dynamic phone;
 @dynamic story;
 @dynamic type;
+@dynamic locationId;
 
 @end

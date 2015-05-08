@@ -11,6 +11,7 @@
 
 @interface Location : NSManagedObject
 
+@property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *address;
 @property (nonatomic, retain) NSString *email;
 @property (nonatomic, retain) NSNumber *latitude;
@@ -18,5 +19,7 @@
 @property (nonatomic, retain) NSString *phone;
 @property (nonatomic, retain) NSString *story;
 @property (nonatomic, retain) NSNumber *type;
+@property (nonatomic, retain) NSNumber *locationId;
+@property (nonatomic, retain) NSDate *dateUpdated;
 
 @end

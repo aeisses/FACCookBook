@@ -19,6 +19,7 @@
 		0439388D1AF54C23004EA4D3 /* FavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0439388C1AF54C23004EA4D3 /* FavouriteViewController.m */; };
 		043938901AF54C46004EA4D3 /* PopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0439388F1AF54C46004EA4D3 /* PopularViewController.m */; };
 		043938931AF54C68004EA4D3 /* SeasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938921AF54C68004EA4D3 /* SeasonViewController.m */; };
+		04551AA41AFC384000DBEE9B /* Featured.m in Sources */ = {isa = PBXBuildFile; fileRef = 04551AA31AFC384000DBEE9B /* Featured.m */; };
 		04CE74391ACCC13200624A7F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE74381ACCC13200624A7F /* Location.m */; };
 		04CE743C1ACCC81800624A7F /* Information.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743B1ACCC81800624A7F /* Information.m */; };
 		04CE74401ACCC88300624A7F /* Popular.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743F1ACCC88300624A7F /* Popular.m */; };
@@ -72,6 +73,8 @@
 		0439388F1AF54C46004EA4D3 /* PopularViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularViewController.m; sourceTree = "<group>"; };
 		043938911AF54C54004EA4D3 /* SeasonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeasonViewController.h; sourceTree = "<group>"; };
 		043938921AF54C68004EA4D3 /* SeasonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeasonViewController.m; sourceTree = "<group>"; };
+		04551AA21AFC384000DBEE9B /* Featured.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Featured.h; sourceTree = "<group>"; };
+		04551AA31AFC384000DBEE9B /* Featured.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Featured.m; sourceTree = "<group>"; };
 		04CE74381ACCC13200624A7F /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		04CE743A1ACCC14800624A7F /* Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		04CE743B1ACCC81800624A7F /* Information.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Information.m; sourceTree = "<group>"; };
@@ -245,6 +248,8 @@
 				04CE743F1ACCC88300624A7F /* Popular.m */,
 				04F5CA6D1AAA63DC002D1069 /* Note.h */,
 				04F5CA731AAA64ED002D1069 /* Note.m */,
+				04551AA21AFC384000DBEE9B /* Featured.h */,
+				04551AA31AFC384000DBEE9B /* Featured.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -406,6 +411,7 @@
 			files = (
 				0439387D1AF5444F004EA4D3 /* InformationViewController.m in Sources */,
 				04CE743C1ACCC81800624A7F /* Information.m in Sources */,
+				04551AA41AFC384000DBEE9B /* Featured.m in Sources */,
 				04F5CA441AA3B4FB002D1069 /* AppDelegate.m in Sources */,
 				043938871AF54BE0004EA4D3 /* MapViewController.m in Sources */,
 				04F5CA721AAA64DF002D1069 /* Recipe.m in Sources */,

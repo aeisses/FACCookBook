@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Recipe.h"
 
 @interface Information : NSManagedObject
 
 @property (retain, nonatomic) NSNumber *season;
 @property (retain, nonatomic) NSString *version;
 
-@property (retain, nonatomic) NSManagedObject *featured;
+@property (retain, nonatomic) Recipe *recipe;
 
 @end

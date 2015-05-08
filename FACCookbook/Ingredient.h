@@ -14,6 +14,7 @@
 
 @property (nonatomic, retain) NSString *amount;
 @property (nonatomic, retain) NSString *ingredient;
+@property (nonatomic, retain) NSString *item;
 @property (nonatomic, retain) Recipe *recipe;
 
 @end

@@ -12,6 +12,7 @@
 
 @dynamic amount;
 @dynamic ingredient;
+@dynamic item;
 @dynamic recipe;
 
 @end

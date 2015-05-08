@@ -13,6 +13,6 @@
 @dynamic season;
 @dynamic version;
 
-@dynamic featured;
+@dynamic recipe;
 
 @end
