@@ -138,7 +138,7 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
         NSLog(@"error :%@",[error description]);
     }
     else{
-        [self loadRecipeFromCoreData:[NSNumber numberWithInt:1]];
+        [self loadLocationFromCoreData:[NSNumber numberWithInt:1]];
     }
     // TODO: Handle error
 }
@@ -315,14 +315,15 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     [[self httpManager] GET:[DataService purchasedEndPoint] parameters:nil success:success failure:failure];
 }
 
+/*
 - (Recipe*)loadRecipeFromCoreData:(NSNumber*)recipeId {
     // Fetch Request
     NSFetchRequest *recipeFetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *recipeEntity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:_managedObjectContext];
     [recipeFetchRequest setEntity:recipeEntity];
 
-    NSPredicate *recipeIdPredicate = [NSPredicate predicateWithFormat:@""];
-    [recipeFetchRequest setPredicate:recipeIdPredicate];
+//    NSPredicate *recipeIdPredicate = [NSPredicate predicateWithFormat:@""];
+//    [recipeFetchRequest setPredicate:recipeIdPredicate];
     NSError *error = nil;
 
     NSArray *results = [_managedObjectContext executeFetchRequest:recipeFetchRequest error:&error];
@@ -336,6 +337,7 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
 
     return nil;
 }
+ */
 
 - (NSArray*)loadRecipeFromCoreData {
     // Fetch Request
