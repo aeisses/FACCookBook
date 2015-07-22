@@ -17,19 +17,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+  
     // XXX: For Development only. Must be updated to only get latest for Location and Recipes
-    [[DataService sharedInstance] fetchRecipeData];
-    [[DataService sharedInstance] fetchLocationData];
-    [[DataService sharedInstance] fetchPopularData];
-    [[DataService sharedInstance] fetchPurchasedData];
-    [[DataService sharedInstance] fetchFeaturedData];
+    [[DataService sharedInstance] fetchData];
     // Override point for customization after application launch.
 
-    
-  
-  UIColor *themeColor = [UIColor colorWithRed:0.01f green:0.41f blue:0.22f alpha:1.0f];
-  self.window.tintColor = themeColor;
+    UIColor *themeColor = [UIColor colorWithRed:0.01f green:0.41f blue:0.22f alpha:1.0f];
+    self.window.tintColor = themeColor;
     return YES;
 }
 
@@ -48,15 +42,6 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // XXX: For Development only. Must be updated to only get latest for Location and Recipes
-    /*
-    [[DataService sharedInstance] fetchRecipeData];
-    [[DataService sharedInstance] fetchLocationData];
-    [[DataService sharedInstance] fetchPopularData];
-    [[DataService sharedInstance] fetchPurchasedData];
-    [[DataService sharedInstance] fetchFeaturedData];
-
-*/
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

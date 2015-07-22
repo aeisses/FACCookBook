@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "Recipe.h"
+
 @interface RecipeViewController : UIViewController
 
-@property(nonatomic) NSString *imgPath;
-@property(nonatomic) NSString *name;
-@property(nonatomic) NSArray *recipeImages;
-
-@property (weak, nonatomic) IBOutlet UILabel *recipeNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *recipeImage;
+@property(nonatomic) Recipe *recipe;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *category;
+@property (weak, nonatomic) IBOutlet UILabel *season;
+@property (weak, nonatomic) IBOutlet UILabel *instructions;
 
 @end
