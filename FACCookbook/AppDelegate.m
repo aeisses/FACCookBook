@@ -17,7 +17,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+  
     // XXX: For Development only. Must be updated to only get latest for Location and Recipes
     [[DataService sharedInstance] fetchRecipeData];
     [[DataService sharedInstance] fetchLocationData];
