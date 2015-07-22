@@ -82,10 +82,10 @@
         Recipe *myRecipe = [super.fetchedResultsController objectAtIndexPath:sender];
 
         RecipeViewController *recipeViewController = (RecipeViewController *) segue.destinationViewController;
-        recipeViewController.name = myRecipe.title;
+        //recipeViewController.name = myRecipe.title;
 
         NSIndexPath *path = (NSIndexPath *) sender;
-        recipeViewController.imgPath = [super.recipeImages objectAtIndex:path.row];
+        //recipeViewController.imgPath = [super.recipeImages objectAtIndex:path.row];
     }
 }
 
