@@ -286,10 +286,10 @@ static int kFeaturedId = 1002;
     // Add a predicate later.
     Popular *popular;
     if([results count]){
-        popular = [results lastObject];
+        popular = (Popular*)[results lastObject];
     }
     else{
-        popular = [NSEntityDescription insertNewObjectForEntityForName:@"Popular" inManagedObjectContext:_managedObjectContext];
+        popular = (Popular*)[NSEntityDescription insertNewObjectForEntityForName:@"Popular" inManagedObjectContext:_managedObjectContext];
     }
 
     NSMutableOrderedSet *popularSet = [NSMutableOrderedSet new];
