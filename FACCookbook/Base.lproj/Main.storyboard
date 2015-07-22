@@ -277,8 +277,34 @@
                     <view key="view" contentMode="scaleToFill" id="4Gr-1c-91N">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="110" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELLO WORLD!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ly-NA-UWV">
+                                <rect key="frame" x="36" y="64" width="347" height="76.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                <color key="textColor" red="0.88444996843434343" green="0.88444996843434343" blue="0.88444996843434343" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UD4-kW-OAP">
+                                <rect key="frame" x="36" y="132" width="528" height="190"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="190" id="pUr-77-Jv8"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UD4-kW-OAP" firstAttribute="leading" secondItem="4Gr-1c-91N" secondAttribute="leadingMargin" constant="20" id="1U7-IK-vCu"/>
+                            <constraint firstItem="UD4-kW-OAP" firstAttribute="top" secondItem="6ly-NA-UWV" secondAttribute="bottom" constant="-8.5" id="HqY-hH-P0C"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UD4-kW-OAP" secondAttribute="trailing" constant="20" id="Z8W-Kw-jGw"/>
+                            <constraint firstItem="UD4-kW-OAP" firstAttribute="leading" secondItem="6ly-NA-UWV" secondAttribute="leading" id="dV2-Oa-9nf"/>
+                            <constraint firstItem="6ly-NA-UWV" firstAttribute="top" secondItem="Rgf-HV-Rbi" secondAttribute="bottom" constant="20" id="tBI-fB-jA9"/>
+                            <constraint firstItem="snB-bJ-9Sn" firstAttribute="top" secondItem="UD4-kW-OAP" secondAttribute="bottom" constant="229" id="yHL-1Z-HWv"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="recipeImage" destination="UD4-kW-OAP" id="IIO-E5-hbC"/>
+                        <outlet property="recipeNameLabel" destination="6ly-NA-UWV" id="TtN-j2-BWT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecZ-xj-xe9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -91,10 +91,6 @@
     return self;
 }
 
-- (Recipe*)loadRecipeFromCoreData:(NSNumber*)recipeId {
-    // Fetch Request
-    return nil;
-}
 
 - (void)loadInformation:(NSDictionary*)information {
     // TODO: Check if information exists
@@ -132,6 +128,12 @@
     locationDataObject.type = (NSString*)[location objectForKey:@"type"];
     NSError *error = nil;
     [_managedObjectContext save:&error];
+    if(error){
+        NSLog(@"error :%@",[error description]);
+    }
+    else{
+        [self loadLocationFromCoreData:[NSNumber numberWithInt:1]];
+    }
     // TODO: Handle error
 }
 
@@ -199,6 +201,16 @@
     recipe.categories = recipeCategories;
 }
 
+- (void)processRecipesData:(NSDictionary*)jsonData {
+    NSArray *recipes = [jsonData objectForKey:@"recipes"];
+    // Temporary quick fix:
+    if([recipes count] != [[self loadRecipeFromCoreData] count]){
+        for (NSDictionary *recipe in recipes) {
+            [self processRecipeData:recipe];
+        }
+    }
+}
+
 - (void)processRecipeData:(NSDictionary*)recipe {
     // TODO: Check if recipe exists
     Recipe *recipeDataObject = [NSEntityDescription insertNewObjectForEntityForName:@"Recipe" inManagedObjectContext:_managedObjectContext];
@@ -247,15 +259,12 @@
     recipeDataObject.notes = noteSet;
     NSError *error = nil;
     [_managedObjectContext save:&error];
+    if(error){
+        NSLog(@"error description :%@",[error description]);
+    }
     // TODO: Handle error
 }
 
-- (void)processRecipesData:(NSDictionary*)jsonData {
-    NSArray *recipes = [jsonData objectForKey:@"recipes"];
-    for (NSDictionary *recipe in recipes) {
-        [self processRecipeData:recipe];
-    }
-}
 
 - (void)fetchRecipeData {
     void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
@@ -265,7 +274,7 @@
             NSLog(@"Error parsing JSON: %@",errorJson);
             return;
         }
-
+        NSLog(@"Recipe JSON :%@",responseDict);
         [self processRecipesData:responseDict];
     };
 
@@ -288,6 +297,8 @@
         }
 
         // Add data processer here!
+        NSLog(@"Location response :%@",responseDict);
+        [self processLocationData:responseDict];
     };
 
     void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
@@ -308,6 +319,7 @@
             NSLog(@"Error parsing JSON: %@",errorJson);
             return;
         }
+
         // Add data processer here!
 
     };
@@ -362,4 +374,65 @@
     [[self httpManager] GET:[DataService purchasedEndPoint] parameters:nil success:success failure:failure];
 }
 
+
+- (Recipe*)loadRecipeFromCoreData:(NSNumber*)recipeId {
+    // Fetch Request
+    NSFetchRequest *recipeFetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *recipeEntity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:_managedObjectContext];
+    [recipeFetchRequest setEntity:recipeEntity];
+
+//    NSPredicate *recipeIdPredicate = [NSPredicate predicateWithFormat:@""];
+//    [recipeFetchRequest setPredicate:recipeIdPredicate];
+    NSError *error = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:recipeFetchRequest error:&error];
+    if(error) {
+        NSLog(@"error description :%@",[error description]);
+    }
+    else {
+        return  (Recipe*)[results lastObject];
+    }
+
+    return nil;
+}
+
+
+- (NSArray*)loadRecipeFromCoreData {
+    // Fetch Request
+    NSFetchRequest *recipeFetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *recipeEntity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:_managedObjectContext];
+    [recipeFetchRequest setEntity:recipeEntity];
+
+    NSError *error = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:recipeFetchRequest error:&error];
+    if(error) {
+        NSLog(@"error description :%@",[error description]);
+    }
+    else {
+        NSLog(@"Recipe results :%@",results);
+
+        return  results;
+    }
+
+    return nil;
+}
+
+- (Location*)loadLocationFromCoreData:(NSNumber*)locationId{
+    NSFetchRequest *locationRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Location" inManagedObjectContext:_managedObjectContext];
+    [locationRequest setEntity:entity];
+
+    NSError *error = nil;
+    NSArray *results = [_managedObjectContext executeFetchRequest:locationRequest error:&error];
+    if(error){
+        NSLog(@"error :%@",[error description]);
+    }
+    else{
+        NSLog(@"Results :%@",results);
+        return (Location*)[results lastObject];
+    }
+
+    return nil;
+}
 @end
