@@ -36,6 +36,8 @@
 		04F5CA721AAA64DF002D1069 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA711AAA64DF002D1069 /* Recipe.m */; };
 		04F5CA741AAA64ED002D1069 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA731AAA64ED002D1069 /* Note.m */; };
 		04F5CA761AABCBA8002D1069 /* DataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA751AABCBA8002D1069 /* DataService.m */; };
+		5045CCC41B5FCB370039C2D9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5045CCC31B5FCB370039C2D9 /* CoreData.framework */; };
+		509D327E1B5FCE2800388374 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509D327D1B5FCE2800388374 /* HomeView.xib */; };
 		DC3D88E0AC69975EE4B0D3F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB285498520DC5955837AB35 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +107,8 @@
 		04F5CA731AAA64ED002D1069 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		04F5CA751AABCBA8002D1069 /* DataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataService.m; sourceTree = "<group>"; };
 		04F5CA771AABCBB9002D1069 /* DataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataService.h; sourceTree = "<group>"; };
+		5045CCC31B5FCB370039C2D9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		509D327D1B5FCE2800388374 /* HomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
 		C96C2504B1241A726A12F127 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DB285498520DC5955837AB35 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -114,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5045CCC41B5FCB370039C2D9 /* CoreData.framework in Frameworks */,
 				043938711AF2FEB7004EA4D3 /* MapKit.framework in Frameworks */,
 				DC3D88E0AC69975EE4B0D3F5 /* libPods.a in Frameworks */,
 			);
@@ -210,6 +215,7 @@
 			children = (
 				04F5CA3F1AA3B4FB002D1069 /* Info.plist */,
 				04F5CA401AA3B4FB002D1069 /* main.m */,
+				509D327D1B5FCE2800388374 /* HomeView.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -266,6 +272,7 @@
 		AC4096A98AE72115300EACFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5045CCC31B5FCB370039C2D9 /* CoreData.framework */,
 				043938701AF2FEB7004EA4D3 /* MapKit.framework */,
 				DB285498520DC5955837AB35 /* libPods.a */,
 			);
@@ -359,6 +366,7 @@
 				04F5CA521AA3B4FB002D1069 /* LaunchScreen.xib in Resources */,
 				04F5CA4F1AA3B4FB002D1069 /* Images.xcassets in Resources */,
 				043938771AF53DA1004EA4D3 /* RecipeCell.xib in Resources */,
+				509D327E1B5FCE2800388374 /* HomeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

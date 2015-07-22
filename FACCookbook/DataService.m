@@ -71,9 +71,6 @@ static NSString *kURL = @"https://dl.dropboxusercontent.com/u/19713116/recipes.j
     Information *informationDataObject = [NSEntityDescription insertNewObjectForEntityForName:@"Information" inManagedObjectContext:_managedObjectContext];
     informationDataObject.version = (NSString*)[information objectForKey:@"version"];
     informationDataObject.season = (NSNumber*)[information objectForKey:@"season"];
-    Recipe *recipe = [self loadRecipeFromCoreData:[information objectForKey:@"featured"]];
-    recipe.featured = (NSManagedObject*)information;
-    informationDataObject.featured = recipe;
     NSError *error = nil;
     [_managedObjectContext save:&error];
     // TODO: Handle error

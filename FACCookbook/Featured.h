@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class NSManagedObject;
-
 @interface Featured : NSManagedObject
 
 @property (nonatomic, retain) NSOrderedSet *recipes;

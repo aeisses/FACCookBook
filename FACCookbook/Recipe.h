@@ -11,6 +11,7 @@
 
 @interface Recipe : NSManagedObject
 
+@property (nonatomic, retain) NSDate *addDate;
 @property (nonatomic, retain) NSNumber *recipeId;
 @property (nonatomic, retain) NSNumber *season;
 @property (nonatomic, retain) NSNumber *type;

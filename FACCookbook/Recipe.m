@@ -24,5 +24,6 @@
 @dynamic notes;
 @dynamic popular;
 @dynamic featured;
+@dynamic information;
 
 @end

@@ -19,5 +19,6 @@
 @dynamic story;
 @dynamic type;
 @dynamic locationId;
+@dynamic dateUpdated;
 
 @end

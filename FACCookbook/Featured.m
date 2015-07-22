@@ -7,8 +7,6 @@
 //
 
 #import "Featured.h"
-#import "NSManagedObject.h"
-
 
 @implementation Featured
 
