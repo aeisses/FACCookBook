@@ -27,11 +27,6 @@ static int kFeaturedId = 1002;
 
 @property (retain, nonatomic) AFHTTPRequestOperationManager *httpManager;
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) NSArray *popularArray;
-@property (strong, nonatomic) NSArray *featuredArray;
-
-- (void)processRecipesData:(NSDictionary*)jsonData;
-- (void)processRecipeData:(NSDictionary*)recipe;
 
 @end
 
@@ -234,13 +229,13 @@ static int kFeaturedId = 1002;
 - (void)fetchFeaturedData {
     void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
         NSError *errorJson=nil;
-        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
+        NSArray* responseData = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
         if (errorJson) {
             NSLog(@"Error parsing JSON: %@",errorJson);
             return;
         }
 
-        // Add data processer here!
+        [self processFeaturedData:responseData];
 
     };
 
@@ -256,12 +251,12 @@ static int kFeaturedId = 1002;
 - (void)fetchPopularData {
     void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
         NSError *errorJson=nil;
-        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
+        NSArray* responseData = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
         if (errorJson) {
             NSLog(@"Error parsing JSON: %@",errorJson);
             return;
         }
-        // Add data processer here!
+        [self processPopularData:responseData];
 
     };
 
@@ -411,8 +406,6 @@ static int kFeaturedId = 1002;
             [self processRecipeData:recipe];
         }
     }
-    [self processPopularData];
-    [self processFeaturedData];
 }
 
 - (void)processRecipeData:(NSDictionary*)recipe {
@@ -424,7 +417,7 @@ static int kFeaturedId = 1002;
     recipeDataObject.updateDate = (NSDate*)[formatter dateFromString:(NSString*)[recipe objectForKey:@"updatedDate"]];
     recipeDataObject.title = (NSString*)[recipe objectForKey:@"title"];
     recipeDataObject.season = (NSString*)[recipe objectForKey:@"season"];
-    recipeDataObject.recipeId = (NSNumber*)[recipe objectForKey:@"recipeId"];
+    recipeDataObject.recipeId = (NSNumber*)[recipe objectForKey:@"id"];
     recipeDataObject.type = (NSString*)[recipe objectForKey:@"type"];
     recipeDataObject.isFavourite = 0;
 
@@ -469,7 +462,7 @@ static int kFeaturedId = 1002;
     // TODO: Handle error
 }
 
-- (void)processPopularData {
+- (void)processPopularData:(NSArray *)popularData {
 
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *popularEntity = [NSEntityDescription entityForName:@"Popular" inManagedObjectContext:_managedObjectContext];
@@ -488,7 +481,7 @@ static int kFeaturedId = 1002;
     }
 
     NSMutableOrderedSet *popularSet = [NSMutableOrderedSet new];
-    for(NSNumber *number in _popularArray){
+    for(NSNumber *number in popularData){
         Recipe *recipe = [self loadRecipeFromCoreData:number];
         recipe.popular = popular;
         [popularSet addObject:recipe];
@@ -504,7 +497,7 @@ static int kFeaturedId = 1002;
     }
 }
 
-- (void)processFeaturedData {
+- (void)processFeaturedData:(NSArray *)featuredData {
 
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *featuredEntity = [NSEntityDescription entityForName:@"Featured" inManagedObjectContext:_managedObjectContext];
@@ -523,7 +516,7 @@ static int kFeaturedId = 1002;
     }
 
     NSMutableOrderedSet *featuredSet = [NSMutableOrderedSet new];
-    for(NSNumber *number in _featuredArray){
+    for(NSNumber *number in featuredData){
         Recipe *recipe = [self loadRecipeFromCoreData:number];
         recipe.featured = featured;
         [featuredSet addObject:recipe];
