@@ -7,10 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Recipe.h"
 
 @interface DataService : NSObject
 
 + (instancetype)sharedInstance;
-- (void)loadRecipeData;
-
+- (void)fetchRecipeData;
+- (void)fetchLocationData;
+- (void)fetchFeaturedData;
+- (void)fetchPopularData;
+- (void)fetchPurchasedData;
+- (Recipe*) loadRecipeFromCoreData:(NSNumber*)recipeId;
+- (NSArray*)loadRecipeFromCoreData;
 @end

@@ -34,16 +34,6 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
 @property (retain, nonatomic) AFHTTPRequestOperationManager *httpManager;
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-// REST Interface Endpoint definitions.
-+ (NSString *)protocol;
-+ (NSString *)domain;
-+ (NSURLRequest *)allRecipiesEndpoint;
-+ (NSURLRequest *)newRecipiesEndpoint;
-+ (NSURLRequest *)featuredEndPoint;
-+ (NSURLRequest *)locationEndPoint;
-+ (NSURLRequest *)popularEndPoint;
-+ (NSURLRequest *)purchasedEndPoint;
-
 - (void)processRecipesData:(NSDictionary*)jsonData;
 - (void)processRecipeData:(NSDictionary*)recipe;
 
@@ -59,40 +49,28 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     return @"dl.dropboxusercontent.com";
 }
 
-+ (NSURLRequest *)allRecipiesEndpoint {
-    NSString *endpoint = [NSString stringWithFormat:@"%@://%@/u/19713116/recipes.json", [DataService protocol], [DataService domain]];
-    NSURL *url = [NSURL URLWithString:endpoint];
-    return [NSURLRequest requestWithURL:url];
++ (NSString *)allRecipiesEndpoint {
+    return [NSString stringWithFormat:@"%@://%@/u/19713116/recipes.json", [DataService protocol], [DataService domain]];
 }
 
-+ (NSURLRequest *)newRecipiesEndpoint {
-    NSString *endpoint = [NSString stringWithFormat:@"%@://%@/u/19713116/recipes.json", [DataService protocol], [DataService domain]];
-    NSURL *url = [NSURL URLWithString:endpoint];
-    return [NSURLRequest requestWithURL:url];
++ (NSString *)newRecipiesEndpoint {
+    return [NSString stringWithFormat:@"%@://%@/u/19713116/recipes.json", [DataService protocol], [DataService domain]];
 }
 
-+ (NSURLRequest *)featuredEndPoint {
-    NSString *endpoint = [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/featured.json", [DataService protocol], [DataService domain]];
-    NSURL *url = [NSURL URLWithString:endpoint];
-    return [NSURLRequest requestWithURL:url];
++ (NSString *)featuredEndPoint {
+    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/featured.json", [DataService protocol], [DataService domain]];
 }
 
-+ (NSURLRequest *)locationEndPoint {
-    NSString *endpoint = [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/location.json", [DataService protocol], [DataService domain]];
-    NSURL *url = [NSURL URLWithString:endpoint];
-    return [NSURLRequest requestWithURL:url];
++ (NSString *)locationEndPoint {
+    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/location.json", [DataService protocol], [DataService domain]];
 }
 
-+ (NSURLRequest *)popularEndPoint {
-    NSString *endpoint = [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/popular.json", [DataService protocol], [DataService domain]];
-    NSURL *url = [NSURL URLWithString:endpoint];
-    return [NSURLRequest requestWithURL:url];
++ (NSString *)popularEndPoint {
+    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/popular.json", [DataService protocol], [DataService domain]];
 }
 
-+ (NSURLRequest *)purchasedEndPoint {
-    NSString *endpoint = [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/purchased.json", [DataService protocol], [DataService domain]];
-    NSURL *url = [NSURL URLWithString:endpoint];
-    return [NSURLRequest requestWithURL:url];
++ (NSString *)purchasedEndPoint {
+    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/purchased.json", [DataService protocol], [DataService domain]];
 }
 
 @synthesize httpManager = _httpManager;
@@ -119,10 +97,6 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     return self;
 }
 
-- (Recipe*)loadRecipeFromCoreData:(NSNumber*)recipeId {
-    // Fetch Request
-    return nil;
-}
 
 - (void)loadInformation:(NSDictionary*)information {
     // TODO: Check if information exists
@@ -157,10 +131,23 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     locationDataObject.longitude = (NSNumber*)[location objectForKey:@"longitude"];
     locationDataObject.phone = (NSString*)[location objectForKey:@"phone"];
     locationDataObject.story = (NSString*)[location objectForKey:@"story"];
-    locationDataObject.type = (NSNumber*)[location objectForKey:@"type"];
+    locationDataObject.type = (NSString*)[location objectForKey:@"type"];
     NSError *error = nil;
     [_managedObjectContext save:&error];
+    if(error){
+        NSLog(@"error :%@",[error description]);
+    }
+    else{
+        [self loadLocationFromCoreData:[NSNumber numberWithInt:1]];
+    }
     // TODO: Handle error
+}
+
+- (void)processRecipesData:(NSDictionary*)jsonData {
+    NSArray *recipes = [jsonData objectForKey:@"recipes"];
+    for (NSDictionary *recipe in recipes) {
+        [self processRecipeData:recipe];
+    }
 }
 
 - (void)processRecipeData:(NSDictionary*)recipe {
@@ -209,31 +196,184 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     recipeDataObject.notes = noteSet;
     NSError *error = nil;
     [_managedObjectContext save:&error];
+    if(error){
+        NSLog(@"error description :%@",[error description]);
+    }
+    else{
+        NSLog(@"Recipe array :%@",[self loadRecipeFromCoreData]);
+
+    }
     // TODO: Handle error
 }
 
-- (void)processRecipesData:(NSDictionary*)jsonData {
-    NSArray *recipes = [jsonData objectForKey:@"recipes"];
-    for (NSDictionary *recipe in recipes) {
-        [self processRecipeData:recipe];
-    }
-}
 
-- (void)loadRecipeData {
-    AFHTTPRequestOperation *operation = [_httpManager HTTPRequestOperationWithRequest:[DataService allRecipiesEndpoint] success:^(AFHTTPRequestOperation *op, id res) {
+- (void)fetchRecipeData {
+    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
         NSError *errorJson=nil;
         NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
         if (errorJson) {
             NSLog(@"Error parsing JSON: %@",errorJson);
             return;
         }
+        NSLog(@"Recipe JSON :%@",responseDict);
         [self processRecipesData:responseDict];
-    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+    };
+
+    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
         if (error) {
             NSLog(@"Error making httpRequest: %@",error);
         }
-    }];
-    [operation start];
+    };
+
+    [[self httpManager] GET:[DataService allRecipiesEndpoint] parameters:nil success:success failure:failure];
 }
 
+- (void)fetchLocationData {
+    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
+        NSError *errorJson=nil;
+        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
+        if (errorJson) {
+            NSLog(@"Error parsing JSON: %@",errorJson);
+            return;
+        }
+
+        // Add data processer here!
+        NSLog(@"Location response :%@",responseDict);
+        [self processLocationData:responseDict];
+    };
+
+    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
+        if (error) {
+            NSLog(@"Error making httpRequest: %@",error);
+        }
+    };
+
+    [[self httpManager] GET:[DataService locationEndPoint] parameters:nil success:success failure:failure];
+}
+
+
+- (void)fetchFeaturedData {
+    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
+        NSError *errorJson=nil;
+        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
+        if (errorJson) {
+            NSLog(@"Error parsing JSON: %@",errorJson);
+            return;
+        }
+
+        // Add data processer here!
+
+    };
+
+    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
+        if (error) {
+            NSLog(@"Error making httpRequest: %@",error);
+        }
+    };
+
+    [[self httpManager] GET:[DataService featuredEndPoint] parameters:nil success:success failure:failure];
+}
+
+- (void)fetchPopularData {
+    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
+        NSError *errorJson=nil;
+        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
+        if (errorJson) {
+            NSLog(@"Error parsing JSON: %@",errorJson);
+            return;
+        }
+        // Add data processer here!
+
+    };
+
+    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
+        if (error) {
+            NSLog(@"Error making httpRequest: %@",error);
+        }
+    };
+
+    [[self httpManager] GET:[DataService popularEndPoint] parameters:nil success:success failure:failure];
+}
+
+- (void)fetchPurchasedData {
+    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
+        NSError *errorJson=nil;
+        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
+        if (errorJson) {
+            NSLog(@"Error parsing JSON: %@",errorJson);
+            return;
+        }
+        // Add data processer here!
+    };
+
+    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
+        if (error) {
+            NSLog(@"Error making httpRequest: %@",error);
+        }
+    };
+
+    [[self httpManager] GET:[DataService purchasedEndPoint] parameters:nil success:success failure:failure];
+}
+
+/*
+- (Recipe*)loadRecipeFromCoreData:(NSNumber*)recipeId {
+    // Fetch Request
+    NSFetchRequest *recipeFetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *recipeEntity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:_managedObjectContext];
+    [recipeFetchRequest setEntity:recipeEntity];
+
+//    NSPredicate *recipeIdPredicate = [NSPredicate predicateWithFormat:@""];
+//    [recipeFetchRequest setPredicate:recipeIdPredicate];
+    NSError *error = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:recipeFetchRequest error:&error];
+    if(error) {
+        NSLog(@"error description :%@",[error description]);
+    }
+    else {
+        NSLog(@"Results  :%@",results);
+        return  (Recipe*)[results lastObject];
+    }
+
+    return nil;
+}
+ */
+
+- (NSArray*)loadRecipeFromCoreData {
+    // Fetch Request
+    NSFetchRequest *recipeFetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *recipeEntity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:_managedObjectContext];
+    [recipeFetchRequest setEntity:recipeEntity];
+
+    NSError *error = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:recipeFetchRequest error:&error];
+    if(error) {
+        NSLog(@"error description :%@",[error description]);
+    }
+    else {
+        NSLog(@"Results  :%@",results);
+        return  results;
+    }
+
+    return nil;
+}
+
+- (Location*)loadLocationFromCoreData:(NSNumber*)locationId{
+    NSFetchRequest *locationRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Location" inManagedObjectContext:_managedObjectContext];
+    [locationRequest setEntity:entity];
+
+    NSError *error = nil;
+    NSArray *results = [_managedObjectContext executeFetchRequest:locationRequest error:&error];
+    if(error){
+        NSLog(@"error :%@",[error description]);
+    }
+    else{
+        NSLog(@"Results :%@",results);
+        return (Location*)[results lastObject];
+    }
+
+    return nil;
+}
 @end
