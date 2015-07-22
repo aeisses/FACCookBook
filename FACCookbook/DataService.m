@@ -215,7 +215,7 @@ static int kFeaturedId = 1002;
             [self processRecipeData:recipe];
         }
     }
-    [self processPopularData];
+//    [self processPopularData];
     [self processFeaturedData];
 }
 
@@ -376,7 +376,9 @@ static int kFeaturedId = 1002;
 
         // Add data processer here!
         NSLog(@"Location response :%@",responseDict);
-        [self processLocationData:responseDict];
+        for (NSDictionary *dic in responseDict) {
+            [self processLocationData:dic];
+        }
     };
 
     void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
