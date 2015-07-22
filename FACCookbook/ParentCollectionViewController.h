@@ -11,7 +11,7 @@
 
 
 
-@interface ParentContainerViewController : UICollectionViewController <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
+@interface ParentCollectionViewController : UICollectionViewController <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
