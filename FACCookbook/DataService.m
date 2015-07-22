@@ -376,4 +376,22 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
 
     return nil;
 }
+
+- (NSArray*)loadLocationsFromCoreData {
+    NSFetchRequest *locationRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Location" inManagedObjectContext:_managedObjectContext];
+    [locationRequest setEntity:entity];
+    
+    NSError *error = nil;
+    NSArray *results = [_managedObjectContext executeFetchRequest:locationRequest error:&error];
+    if(error){
+        NSLog(@"error :%@",[error description]);
+    }
+    else{
+        NSLog(@"Results :%@",results);
+        return results;
+    }
+    
+    return nil;
+}
 @end

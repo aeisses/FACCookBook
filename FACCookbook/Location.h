@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import <MapKit/MapKit.h>
 
-@interface Location : NSManagedObject
+@interface Location : NSManagedObject <MKAnnotation>
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *address;
@@ -21,5 +22,7 @@
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic, retain) NSNumber *locationId;
 @property (nonatomic, retain) NSDate *dateUpdated;
+
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
 @end

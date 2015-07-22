@@ -224,7 +224,7 @@
         <!--Location-->
         <scene sceneID="7kh-U7-SO7">
             <objects>
-                <viewController id="Q7E-60-5GO" sceneMemberID="viewController">
+                <viewController id="Q7E-60-5GO" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YtO-MD-gDa"/>
                         <viewControllerLayoutGuide type="bottom" id="ZZe-Pb-DXY"/>
@@ -233,14 +233,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IXr-xw-eG2">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IXr-xw-eG2">
+                                <rect key="frame" x="0.0" y="44" width="600" height="507"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZZe-Pb-DXY" firstAttribute="top" secondItem="IXr-xw-eG2" secondAttribute="bottom" id="6vF-dk-bKu"/>
+                            <constraint firstItem="IXr-xw-eG2" firstAttribute="top" secondItem="YtO-MD-gDa" secondAttribute="bottom" id="KFs-35-M8r"/>
+                            <constraint firstAttribute="trailing" secondItem="IXr-xw-eG2" secondAttribute="trailing" id="mzk-DM-aHk"/>
+                            <constraint firstItem="IXr-xw-eG2" firstAttribute="leading" secondItem="n8n-ii-tX3" secondAttribute="leading" id="vTc-Ed-2hA"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Location" id="cKI-qT-0rg"/>
                     <connections>
+                        <outlet property="mapView" destination="IXr-xw-eG2" id="wFf-YE-PNM"/>
                         <segue destination="u72-aU-rki" kind="show" identifier="location" id="Rpd-eo-guv"/>
                     </connections>
                 </viewController>
