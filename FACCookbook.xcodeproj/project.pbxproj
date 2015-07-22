@@ -26,7 +26,6 @@
 		04F5CA411AA3B4FB002D1069 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA401AA3B4FB002D1069 /* main.m */; };
 		04F5CA441AA3B4FB002D1069 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA431AA3B4FB002D1069 /* AppDelegate.m */; };
 		04F5CA471AA3B4FB002D1069 /* FACCookbook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA451AA3B4FB002D1069 /* FACCookbook.xcdatamodeld */; };
-		04F5CA4A1AA3B4FB002D1069 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA491AA3B4FB002D1069 /* ViewController.m */; };
 		04F5CA4D1AA3B4FB002D1069 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F5CA4B1AA3B4FB002D1069 /* Main.storyboard */; };
 		04F5CA4F1AA3B4FB002D1069 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04F5CA4E1AA3B4FB002D1069 /* Images.xcassets */; };
 		04F5CA521AA3B4FB002D1069 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F5CA501AA3B4FB002D1069 /* LaunchScreen.xib */; };
@@ -107,8 +106,6 @@
 		04F5CA421AA3B4FB002D1069 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04F5CA431AA3B4FB002D1069 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04F5CA461AA3B4FB002D1069 /* FACCookbook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FACCookbook.xcdatamodel; sourceTree = "<group>"; };
-		04F5CA481AA3B4FB002D1069 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		04F5CA491AA3B4FB002D1069 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		04F5CA4C1AA3B4FB002D1069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04F5CA4E1AA3B4FB002D1069 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		04F5CA511AA3B4FB002D1069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -239,8 +236,6 @@
 				04F5CA431AA3B4FB002D1069 /* AppDelegate.m */,
 				04F5CA771AABCBB9002D1069 /* DataService.h */,
 				04F5CA751AABCBA8002D1069 /* DataService.m */,
-				04F5CA481AA3B4FB002D1069 /* ViewController.h */,
-				04F5CA491AA3B4FB002D1069 /* ViewController.m */,
 				04F5CA4B1AA3B4FB002D1069 /* Main.storyboard */,
 				043938761AF53DA1004EA4D3 /* RecipeCell.xib */,
 				04F5CA4E1AA3B4FB002D1069 /* Images.xcassets */,
@@ -502,7 +497,6 @@
 				04F5CA471AA3B4FB002D1069 /* FACCookbook.xcdatamodeld in Sources */,
 				0439388A1AF54C00004EA4D3 /* SearchViewController.m in Sources */,
 				043938741AF30206004EA4D3 /* HomeScreenViewController.m in Sources */,
-				04F5CA4A1AA3B4FB002D1069 /* ViewController.m in Sources */,
 				04F5CA6B1AAA62FD002D1069 /* Direction.m in Sources */,
 				04F5CA701AAA64CD002D1069 /* Ingredient.m in Sources */,
 				04CE74391ACCC13200624A7F /* Location.m in Sources */,
