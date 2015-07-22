@@ -13,4 +13,13 @@
 - (void)prepareForReuse {
 }
 
+- (id) initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
+  if (self) {
+    self.backgroundColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
+  }
+  
+  return self;
+}
+
 @end

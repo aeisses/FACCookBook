@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Favourites-->
@@ -50,9 +51,10 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="l4f-QY-TQm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AXN-Xf-KYk">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="itemSize" width="134" height="140"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
@@ -61,12 +63,36 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="134" height="140"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pCs-Uo-YxS">
+                                            <rect key="frame" x="14" y="13" width="106" height="114"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w37-0f-9X9">
+                                            <rect key="frame" x="14" y="13" width="106" height="114"/>
+                                        </imageView>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="w37-0f-9X9" secondAttribute="centerY" id="1U7-u3-ZCI"/>
+                                    <constraint firstItem="w37-0f-9X9" firstAttribute="trailing" secondItem="pCs-Uo-YxS" secondAttribute="trailing" id="5kL-uD-kUa"/>
+                                    <constraint firstItem="w37-0f-9X9" firstAttribute="top" secondItem="pCs-Uo-YxS" secondAttribute="top" id="7CE-eX-fg3"/>
+                                    <constraint firstItem="w37-0f-9X9" firstAttribute="bottom" secondItem="pCs-Uo-YxS" secondAttribute="bottom" id="GWf-As-Y20"/>
+                                    <constraint firstAttribute="centerX" secondItem="w37-0f-9X9" secondAttribute="centerX" id="WFI-lI-9Ui"/>
+                                    <constraint firstItem="w37-0f-9X9" firstAttribute="leading" secondItem="pCs-Uo-YxS" secondAttribute="leading" id="lMb-Cz-HDe"/>
+                                    <constraint firstItem="w37-0f-9X9" firstAttribute="top" secondItem="qXQ-H4-lLH" secondAttribute="topMargin" constant="5" id="ltK-eb-FQQ"/>
+                                    <constraint firstItem="w37-0f-9X9" firstAttribute="leading" secondItem="qXQ-H4-lLH" secondAttribute="leadingMargin" constant="6" id="unl-ur-fPn"/>
+                                </constraints>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="uz5-Co-Ucz">
+                            <rect key="frame" x="0.0" y="44" width="600" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="gdZ-jP-QNt" id="JfF-Dq-Kmd"/>
                             <outlet property="delegate" destination="gdZ-jP-QNt" id="bFd-nT-MTh"/>
@@ -281,7 +307,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxe-Mc-c9Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-33" y="-216"/>
+            <point key="canvasLocation" x="-33" y="-340"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
