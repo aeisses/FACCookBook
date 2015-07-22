@@ -24,7 +24,7 @@ static NSString *kFeatured = @"https://dl.dropboxusercontent.com/u/95002502/foun
 static NSString *kLocation = @"https://dl.dropboxusercontent.com/u/95002502/foundation/location.json";
 static NSString *kPopular = @"https://dl.dropboxusercontent.com/u/95002502/foundation/popular.json";
 static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/foundation/purchased.json";
-
+static int kPopularId = 1001;
 
 // XXX: For querying testdata dropbox does not set the content-type header properly so we can't use
 // built-in json serialization.
@@ -33,6 +33,7 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
 
 @property (retain, nonatomic) AFHTTPRequestOperationManager *httpManager;
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSArray *popularArray;
 
 - (void)processRecipesData:(NSDictionary*)jsonData;
 - (void)processRecipeData:(NSDictionary*)recipe;
@@ -151,6 +152,7 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
             [self processRecipeData:recipe];
         }
     }
+    [self processPopularData];
 }
 
 - (void)processRecipeData:(NSDictionary*)recipe {
@@ -205,6 +207,36 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     // TODO: Handle error
 }
 
+
+-(void)processPopularData{
+
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *popularEntity = [NSEntityDescription entityForName:@"Popular" inManagedObjectContext:_managedObjectContext];
+    [fetchRequest setEntity:popularEntity];
+    NSError *err = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&err];
+
+    // Add a predicate later.
+    Popular *popular;
+    if([results count]){
+//
+        popular = [results lastObject];
+
+    }
+    else{
+        //Add the popular
+//        Popular *newPopular = [NSEntityDescription insertNewObjectForEntityForName:@"" inManagedObjectContext:<#(NSManagedObjectContext *)#>]
+
+    }
+    NSOrderedSet *poularSet = [NSOrderedSet new];
+    for(NSNumber *number in _popularArray){
+        Recipe *recipe = [self loadRecipeFromCoreData:number];
+        recipe.popular = popular;
+        
+    }
+
+}
 
 - (void)fetchRecipeData {
     void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
@@ -282,7 +314,7 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
             return;
         }
         // Add data processer here!
-
+        _popularArray = [NSArray arrayWithArray:(NSArray*)responseDict];
     };
 
     void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
@@ -321,8 +353,8 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     NSEntityDescription *recipeEntity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:_managedObjectContext];
     [recipeFetchRequest setEntity:recipeEntity];
 
-//    NSPredicate *recipeIdPredicate = [NSPredicate predicateWithFormat:@""];
-//    [recipeFetchRequest setPredicate:recipeIdPredicate];
+    NSPredicate *recipeIdPredicate = [NSPredicate predicateWithFormat:@"RecipeId = %@",recipeId];
+    [recipeFetchRequest setPredicate:recipeIdPredicate];
     NSError *error = nil;
 
     NSArray *results = [_managedObjectContext executeFetchRequest:recipeFetchRequest error:&error];
@@ -375,4 +407,6 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
 
     return nil;
 }
+
+
 @end
