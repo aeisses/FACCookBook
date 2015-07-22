@@ -56,6 +56,7 @@
 		509D32E91B5FF43600388374 /* vegetable_curry.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D81B5FF43600388374 /* vegetable_curry.jpg */; };
 		509D32EA1B5FF43600388374 /* white_chocolate_donut.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D91B5FF43600388374 /* white_chocolate_donut.jpg */; };
 		559C0E711B5FFD04002BF4E6 /* ParentCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559C0E701B5FFD04002BF4E6 /* ParentCollectionViewController.m */; };
+		A70F81B41B601FBD0023878C /* Purchased.m in Sources */ = {isa = PBXBuildFile; fileRef = A70F81B31B601FBD0023878C /* Purchased.m */; };
 		DC3D88E0AC69975EE4B0D3F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB285498520DC5955837AB35 /* libPods.a */; };
 		F2E2A9FA1B5FFE2E002C8E31 /* SearchItems.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E2A9F91B5FFE2E002C8E31 /* SearchItems.m */; };
 		F2E2AA001B6006F5002C8E31 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E2A9FF1B6006F5002C8E31 /* Categories.m */; };
@@ -149,6 +150,8 @@
 		509D32D91B5FF43600388374 /* white_chocolate_donut.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = white_chocolate_donut.jpg; sourceTree = "<group>"; };
 		559C0E6F1B5FFCD9002BF4E6 /* ParentCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentCollectionViewController.h; sourceTree = "<group>"; };
 		559C0E701B5FFD04002BF4E6 /* ParentCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentCollectionViewController.m; sourceTree = "<group>"; };
+		A70F81B21B601FBD0023878C /* Purchased.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchased.h; sourceTree = "<group>"; };
+		A70F81B31B601FBD0023878C /* Purchased.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Purchased.m; sourceTree = "<group>"; };
 		C96C2504B1241A726A12F127 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DB285498520DC5955837AB35 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2E2A9F81B5FFE2E002C8E31 /* SearchItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchItems.h; sourceTree = "<group>"; };
@@ -304,6 +307,8 @@
 		04F5CA681AAA62C9002D1069 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				A70F81B21B601FBD0023878C /* Purchased.h */,
+				A70F81B31B601FBD0023878C /* Purchased.m */,
 				04F5CA691AAA62DC002D1069 /* Direction.h */,
 				04F5CA6A1AAA62FD002D1069 /* Direction.m */,
 				04F5CA6C1AAA6379002D1069 /* Ingredient.h */,
@@ -513,6 +518,7 @@
 				F2E2A9FA1B5FFE2E002C8E31 /* SearchItems.m in Sources */,
 				0439388A1AF54C00004EA4D3 /* SearchViewController.m in Sources */,
 				043938741AF30206004EA4D3 /* HomeScreenViewController.m in Sources */,
+				A70F81B41B601FBD0023878C /* Purchased.m in Sources */,
 				04F5CA6B1AAA62FD002D1069 /* Direction.m in Sources */,
 				04F5CA701AAA64CD002D1069 /* Ingredient.m in Sources */,
 				F2E2AA001B6006F5002C8E31 /* Categories.m in Sources */,
