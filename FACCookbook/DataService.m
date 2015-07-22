@@ -325,8 +325,22 @@ static int kFeaturedId = 1002;
 }
 
 - (void)processLocationData:(NSDictionary*)location {
-    // TODO: Check if location exists
-    Location *locationDataObject = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:_managedObjectContext];
+    NSEntityDescription *lookupLocation = [NSEntityDescription entityForName:@"Location" inManagedObjectContext:_managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"locationId == %@", location[@"id"]];
+    fetchRequest.entity = lookupLocation;
+    NSArray *fetchedObject = [_managedObjectContext executeFetchRequest:fetchRequest error:nil];
+
+    BOOL new = [fetchedObject count] == 0;
+
+    Location *locationDataObject;
+
+    if(new) {
+        locationDataObject = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:_managedObjectContext];;
+    } else {
+        locationDataObject = fetchedObject[0];
+    }
+
     locationDataObject.email = (NSString*)[location objectForKey:@"email"];
     locationDataObject.address = (NSString*)[location objectForKey:@"address"];
     locationDataObject.latitude = (NSNumber*)[location objectForKey:@"latitude"];
