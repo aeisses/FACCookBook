@@ -19,9 +19,11 @@
 #import "SearchItems.h"
 #import "Categories.h"
 #import "Featured.h"
+#import "Purchased.h"
 
 static int kPopularId = 1001;
 static int kFeaturedId = 1002;
+static int kPurchasedId = 1003;
 
 @interface DataService()
 
@@ -70,6 +72,10 @@ static int kFeaturedId = 1002;
 
 + (NSString *)purchasedEndPoint {
     return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/purchased.json", [DataService protocol], [DataService domain]];
+}
+
++ (NSString *)informationEndPoint {
+    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/information.json", [DataService protocol], [DataService domain]];
 }
 
 @synthesize httpManager = _httpManager;
@@ -151,6 +157,8 @@ static int kFeaturedId = 1002;
     [self fetchFeaturedData];
     [self fetchPopularData];
     [self fetchPurchasedData];
+    // Uncomment when Information.json is uploaded.
+   // [self fetchInformationData];
 
     __weak DataService *wSelf = self;
 
@@ -288,6 +296,27 @@ static int kFeaturedId = 1002;
 
     [[self httpManager] GET:[DataService purchasedEndPoint] parameters:nil success:success failure:failure];
 }
+
+- (void)fetchInformationData {
+    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
+        NSError *errorJson=nil;
+        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
+        if (errorJson) {
+            NSLog(@"Error parsing JSON: %@",errorJson);
+            return;
+        }
+        // Add data processer here!
+    };
+
+    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
+        if (error) {
+            NSLog(@"Error making httpRequest: %@",error);
+        }
+    };
+
+    [[self httpManager] GET:[DataService informationEndPoint] parameters:nil success:success failure:failure];
+}
+
 
 #pragma mark - CoreData Process Methods
 
@@ -574,6 +603,40 @@ static int kFeaturedId = 1002;
     }
 }
 
+- (void)processPurchasedData:(NSArray *)purchasedData {
+
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *featuredEntity = [NSEntityDescription entityForName:@"Purchased" inManagedObjectContext:_managedObjectContext];
+    [fetchRequest setEntity:featuredEntity];
+    NSError *err = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&err];
+
+    // Add a predicate later.
+    Purchased *purchased;
+    if([results count]){
+        purchased = [results lastObject];
+    }
+    else{
+        purchased = [NSEntityDescription insertNewObjectForEntityForName:@"Purchased" inManagedObjectContext:_managedObjectContext];
+    }
+
+    NSMutableOrderedSet *purchasedSet = [NSMutableOrderedSet new];
+    for(NSNumber *number in purchasedData){
+        Recipe *recipe = [self loadRecipeFromCoreData:number];
+        recipe.purchased = purchased;
+        [purchasedSet addObject:recipe];
+    }
+
+    [purchased setRecipes:purchasedSet];
+    [purchased setPurchasedId:[NSNumber numberWithInt:kPurchasedId]];
+
+    NSError *error = nil;
+    [_managedObjectContext save:&error];
+    if(error){
+        NSLog(@"error description :%@",[error description]);
+    }
+}
 #pragma mark - CoreData Load Methods
 
 - (Recipe*)loadRecipeFromCoreData:(NSNumber*)recipeId {

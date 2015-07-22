@@ -26,5 +26,6 @@
 @dynamic popular;
 @dynamic featured;
 @dynamic information;
+@dynamic purchased;
 
 @end

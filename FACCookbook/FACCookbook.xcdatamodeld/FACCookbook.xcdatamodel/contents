@@ -43,6 +43,10 @@
         <attribute name="popularId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Recipe" inverseName="popular" inverseEntity="Recipe" syncable="YES"/>
     </entity>
+    <entity name="Purchased" syncable="YES">
+        <attribute name="purchasedId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="purchased" inverseEntity="Recipe" syncable="YES"/>
+    </entity>
     <entity name="Recipe" representedClassName="Recipe" syncable="YES">
         <attribute name="addDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="isFavourite" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -58,6 +62,7 @@
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Ingredient" inverseName="recipe" inverseEntity="Ingredient" syncable="YES"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Note" inverseName="recipe" inverseEntity="Note" syncable="YES"/>
         <relationship name="popular" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Popular" inverseName="recipes" inverseEntity="Popular" syncable="YES"/>
+        <relationship name="purchased" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Purchased" inverseName="recipe" inverseEntity="Purchased" syncable="YES"/>
         <relationship name="searchItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SearchItems" inverseName="recipes" inverseEntity="SearchItems" syncable="YES"/>
     </entity>
     <entity name="SearchItems" representedClassName="SearchItems" syncable="YES">
@@ -73,7 +78,8 @@
         <element name="Location" positionX="160" positionY="45" width="128" height="195"/>
         <element name="Note" positionX="-83" positionY="279" width="128" height="75"/>
         <element name="Popular" positionX="-225" positionY="-168" width="128" height="75"/>
-        <element name="Recipe" positionX="-308" positionY="6" width="128" height="270"/>
+        <element name="Recipe" positionX="-308" positionY="6" width="128" height="285"/>
         <element name="SearchItems" positionX="-524" positionY="-72" width="128" height="75"/>
+        <element name="Purchased" positionX="-315" positionY="-18" width="128" height="75"/>
     </elements>
 </model>
