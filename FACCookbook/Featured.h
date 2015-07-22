@@ -12,5 +12,6 @@
 @interface Featured : NSManagedObject
 
 @property (nonatomic, retain) NSOrderedSet *recipes;
+@property (nonatomic, retain) NSNumber *featuredId;
 
 @end

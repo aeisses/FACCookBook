@@ -13,9 +13,10 @@
 
 @property (nonatomic, retain) NSDate *addDate;
 @property (nonatomic, retain) NSNumber *recipeId;
-@property (nonatomic, retain) NSNumber *season;
-@property (nonatomic, retain) NSNumber *type;
-@property (nonatomic, retain) NSString *searchItems;
+@property (nonatomic, retain) NSString *season;
+@property (nonatomic, retain) NSString *type;
+@property (nonatomic, retain) NSSet *searchItems;
+@property (nonatomic, retain) NSSet *categories;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSDate *updateDate;
 @property (nonatomic, retain) NSNumber *isFavourite;
