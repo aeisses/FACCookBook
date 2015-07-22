@@ -460,7 +460,7 @@ static int kFeaturedId = 1002;
     NSEntityDescription *recipeEntity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:_managedObjectContext];
     [recipeFetchRequest setEntity:recipeEntity];
 
-    NSPredicate *recipeIdPredicate = [NSPredicate predicateWithFormat:@"RecipeId = %@",recipeId];
+    NSPredicate *recipeIdPredicate = [NSPredicate predicateWithFormat:@"recipeId = %@",recipeId];
     [recipeFetchRequest setPredicate:recipeIdPredicate];
     NSError *error = nil;
 
@@ -520,7 +520,7 @@ static int kFeaturedId = 1002;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Popular" inManagedObjectContext:_managedObjectContext];
     [fetchRequest setEntity:entity];
 
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"PopularId = %@",popularId];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"popularId = %@",popularId];
     [fetchRequest setPredicate:predicate];
     NSError *error = nil;
 
@@ -540,7 +540,7 @@ static int kFeaturedId = 1002;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Featured" inManagedObjectContext:_managedObjectContext];
     [fetchRequest setEntity:entity];
 
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"FeaturedId = %@",featuredId];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"featuredId = %@",featuredId];
     [fetchRequest setPredicate:predicate];
     NSError *error = nil;
 
