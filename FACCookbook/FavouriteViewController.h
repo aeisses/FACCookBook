@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "ParentContainerViewController.h"
+#import "ParentCollectionViewController.h"
 
-@interface FavouriteViewController : ParentContainerViewController <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
+@interface FavouriteViewController : ParentCollectionViewController <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
 
 @end
