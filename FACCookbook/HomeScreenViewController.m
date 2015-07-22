@@ -8,6 +8,8 @@
 
 #import "HomeScreenViewController.h"
 
+#import "RecipeViewController.h"
+
 @interface HomeScreenViewController () {
   NSArray *recipeImages;
 }
@@ -53,7 +55,17 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+  //RecipeViewController *recipeViewController = [[RecipeViewController alloc] init];
+  //recipeViewController.imgPath = [recipeImages objectAtIndex:indexPath.row];
+  
+  // RecipeViewController *recipeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"recipeViewController"];
+  // TODO -- real name
+  //recipeViewController.name = @"Cool Recipe";
+  //[self.navigationController pushViewController:recipeViewController animated:YES];
+  
+  [self performSegueWithIdentifier:@"recipe" sender:indexPath];
+  
+  NSLog(@"Pushed new View Controller");
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -75,6 +87,14 @@
   }
   
   return retval;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  RecipeViewController *recipeViewController = (RecipeViewController *) segue.destinationViewController;
+  recipeViewController.name = @"HELLO";
+  
+  NSIndexPath *path = (NSIndexPath *) sender;
+  recipeViewController.imgPath = [recipeImages objectAtIndex:path.row];
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section

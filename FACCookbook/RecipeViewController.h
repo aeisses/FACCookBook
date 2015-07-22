@@ -11,4 +11,11 @@
 
 @interface RecipeViewController : UIViewController
 
+@property(nonatomic) NSString *imgPath;
+@property(nonatomic) NSString *name;
+@property(nonatomic) NSArray *recipeImages;
+
+@property (weak, nonatomic) IBOutlet UILabel *recipeNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *recipeImage;
+
 @end
