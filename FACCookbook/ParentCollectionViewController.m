@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 EAC. All rights reserved.
 //
 
-#import "ParentContainerViewController.h"
+#import "ParentCollectionViewController.h"
 #import "AppDelegate.h"
 #import "Recipe.h"
 
 
-@implementation ParentContainerViewController
+@implementation ParentCollectionViewController
 
 @synthesize fetchedResultsController = _fetchedResultsController;
 @synthesize managedObjectContext = _managedObjectContext;
@@ -51,38 +51,6 @@
     return 1;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-
-    UICollectionViewCell *cell =
-    [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-
-    Recipe *info = [_fetchedResultsController objectAtIndexPath:indexPath];
-    //cell.
-
-    //cell.textLabel.text = info.title;
-
-    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, cell.bounds.size.width, 40)];
-    title.tag = 200;
-    [cell.contentView addSubview:title];
-
-    title.text = info.title;
-
-    UIImage *image = [UIImage imageNamed:[_recipeImages objectAtIndex:indexPath.row]];
-
-    UIImageView *imageView =  [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
-    imageView.image = image;
-
-    [[cell contentView] addSubview:imageView];
-   // cell.imgPath = [super.recipeImages objectAtIndex:path.row];
-
-    // Set up the cell...
-//    [self configureCell:cell atIndexPath:indexPath];
-
-    return cell;
-
-}
-
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
@@ -104,6 +72,25 @@
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // TODO: Deselect item
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+
+    NSLog(@"Screen Size %f %f", screenRect.size.width, screenRect.size.height);
+
+    CGSize retval;
+    if (indexPath.row == 0) {
+        retval = CGSizeMake(screenRect.size.width - 50, 150);
+    } else {
+        retval = CGSizeMake((screenRect.size.width - 50) / 2, 150);
+    }
+
+    return retval;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
 @end
