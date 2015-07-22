@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Categories" representedClassName="Categories" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipe" inverseName="categories" inverseEntity="Recipe" syncable="YES"/>
+    </entity>
     <entity name="Direction" syncable="YES">
         <attribute name="direction" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="directions" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="Featured" representedClassName="Featured" syncable="YES">
+        <attribute name="featuredId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Recipe" inverseName="featured" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="Information" syncable="YES">
@@ -35,32 +40,40 @@
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="notes" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="Popular" syncable="YES">
-        <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Recipe" inverseName="popular" inverseEntity="Recipe" syncable="YES"/>
+        <attribute name="popularId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="recipies" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Recipe" inverseName="popular" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="Recipe" syncable="YES">
         <attribute name="addDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="isFavourite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="recipeId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="searchItems" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="season" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="season" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updateDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Categories" inverseName="recipes" inverseEntity="Categories" syncable="YES"/>
         <relationship name="directions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Direction" inverseName="recipe" inverseEntity="Direction" syncable="YES"/>
         <relationship name="featured" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Featured" inverseName="recipes" inverseEntity="Featured" syncable="YES"/>
         <relationship name="information" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Information" inverseName="informantion" inverseEntity="Information" syncable="YES"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Ingredient" inverseName="recipe" inverseEntity="Ingredient" syncable="YES"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Note" inverseName="recipe" inverseEntity="Note" syncable="YES"/>
-        <relationship name="popular" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Popular" inverseName="recipes" inverseEntity="Popular" syncable="YES"/>
+        <relationship name="popular" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Popular" inverseName="recipies" inverseEntity="Popular" syncable="YES"/>
+        <relationship name="searchItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SearchItems" inverseName="recipes" inverseEntity="SearchItems" syncable="YES"/>
+    </entity>
+    <entity name="SearchItems" representedClassName="SearchItems" syncable="YES">
+        <attribute name="item" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipe" inverseName="searchItems" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <elements>
         <element name="Direction" positionX="43" positionY="-48" width="128" height="75"/>
-        <element name="Featured" positionX="-101" positionY="-99" width="128" height="58"/>
+        <element name="Featured" positionX="-101" positionY="-99" width="128" height="75"/>
         <element name="Information" positionX="-11" positionY="45" width="128" height="90"/>
         <element name="Ingredient" positionX="7" positionY="171" width="128" height="103"/>
         <element name="Location" positionX="160" positionY="45" width="128" height="195"/>
         <element name="Note" positionX="-83" positionY="279" width="128" height="75"/>
-        <element name="Popular" positionX="-135" positionY="-168" width="128" height="60"/>
-        <element name="Recipe" positionX="-308" positionY="6" width="128" height="255"/>
+        <element name="Popular" positionX="-135" positionY="-168" width="128" height="75"/>
+        <element name="Recipe" positionX="-308" positionY="6" width="128" height="270"/>
+        <element name="SearchItems" positionX="-99" positionY="-18" width="128" height="75"/>
+        <element name="Categories" positionX="-81" positionY="0" width="128" height="75"/>
     </elements>
 </model>

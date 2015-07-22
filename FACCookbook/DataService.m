@@ -16,19 +16,9 @@
 #import "Note.h"
 #import "Popular.h"
 #import "Information.h"
+#import "SearchItems.h"
+#import "Categories.h"
 
-
-// XXX: Temporary static test data. Will be replaced with server
-static NSString *kRecipies = @"https://dl.dropboxusercontent.com/u/19713116/recipes.json";
-static NSString *kFeatured = @"https://dl.dropboxusercontent.com/u/95002502/foundation/featured.json";
-static NSString *kLocation = @"https://dl.dropboxusercontent.com/u/95002502/foundation/location.json";
-static NSString *kPopular = @"https://dl.dropboxusercontent.com/u/95002502/foundation/popular.json";
-static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/foundation/purchased.json";
-
-
-// XXX: For querying testdata dropbox does not set the content-type header properly so we can't use
-// built-in json serialization.
-// Once the server is up and gtg it should be sending valid content-types and we can cut out manual serialization.
 @interface DataService()
 
 @property (retain, nonatomic) AFHTTPRequestOperationManager *httpManager;
@@ -49,12 +39,16 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     return @"dl.dropboxusercontent.com";
 }
 
+// XXX: For querying testdata dropbox does not set the content-type header properly so we can't use
+// built-in json serialization.
+// Once the server is up and gtg it should be sending valid content-types and we can cut out manual serialization.
+
 + (NSString *)allRecipiesEndpoint {
-    return [NSString stringWithFormat:@"%@://%@/u/19713116/recipes.json", [DataService protocol], [DataService domain]];
+    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/recipies.json", [DataService protocol], [DataService domain]];
 }
 
 + (NSString *)newRecipiesEndpoint {
-    return [NSString stringWithFormat:@"%@://%@/u/19713116/recipes.json", [DataService protocol], [DataService domain]];
+    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/recipies.json", [DataService protocol], [DataService domain]];
 }
 
 + (NSString *)featuredEndPoint {
@@ -143,6 +137,70 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     // TODO: Handle error
 }
 
+- (void)processSearchItems:(NSArray *)items recipe:(Recipe *)recipe {
+    NSMutableSet *recipeSearchItems = [NSMutableSet setWithSet:recipe.searchItems];
+    NSEntityDescription *searchItems = [NSEntityDescription entityForName:@"SearchItems" inManagedObjectContext:_managedObjectContext];
+    
+    for (NSString *item in items) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"item == %@", item];
+        fetchRequest.entity = searchItems;
+        NSArray *fetchedObject = [_managedObjectContext executeFetchRequest:fetchRequest error:nil];
+
+        if(![fetchedObject count]) {
+            SearchItems *newSearchItem = [NSEntityDescription insertNewObjectForEntityForName:@"SearchItems" inManagedObjectContext:_managedObjectContext];
+            newSearchItem.item = item;
+            newSearchItem.recipes = [NSSet setWithObject:recipe];
+
+            [recipeSearchItems addObject:newSearchItem];
+        } else {
+            SearchItems *foundSearchItem = fetchedObject[0];
+            [recipeSearchItems addObject:foundSearchItem];
+
+            NSMutableSet *recipes = [NSMutableSet setWithSet:foundSearchItem.recipes];
+            [recipes addObject:recipe];
+
+            foundSearchItem.recipes = recipes;
+        }
+    }
+
+    recipe.searchItems = recipeSearchItems;
+}
+
+- (void)processCategories:(NSArray *)categories recipe:(Recipe *)recipe {
+    if ([categories isKindOfClass:[NSNull class]]) {
+        return;
+    }
+
+    NSMutableSet *recipeCategories = [NSMutableSet setWithSet:recipe.categories];
+    NSEntityDescription *lookupCategories = [NSEntityDescription entityForName:@"Categories" inManagedObjectContext:_managedObjectContext];
+
+    for (NSString *category in categories) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"category == %@", category];
+        fetchRequest.entity = lookupCategories;
+        NSArray *fetchedObject = [_managedObjectContext executeFetchRequest:fetchRequest error:nil];
+
+        if(![fetchedObject count]) {
+            Categories *newCategory = [NSEntityDescription insertNewObjectForEntityForName:@"Categories" inManagedObjectContext:_managedObjectContext];
+            newCategory.category = category;
+            newCategory.recipes = [NSSet setWithObject:recipe];
+
+            [recipeCategories addObject:newCategory];
+        } else {
+            SearchItems *foundCategory = fetchedObject[0];
+            [recipeCategories addObject:foundCategory];
+
+            NSMutableSet *recipes = [NSMutableSet setWithSet:foundCategory.recipes];
+            [recipes addObject:recipe];
+
+            foundCategory.recipes = recipes;
+        }
+    }
+
+    recipe.categories = recipeCategories;
+}
+
 - (void)processRecipesData:(NSDictionary*)jsonData {
     NSArray *recipes = [jsonData objectForKey:@"recipes"];
     // Temporary quick fix:
@@ -161,11 +219,13 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     recipeDataObject.addDate = (NSDate*)[formatter dateFromString:(NSString*)[recipe objectForKey:@"addedDate"]];
     recipeDataObject.updateDate = (NSDate*)[formatter dateFromString:(NSString*)[recipe objectForKey:@"updatedDate"]];
     recipeDataObject.title = (NSString*)[recipe objectForKey:@"title"];
-    recipeDataObject.searchItems = (NSString*)[recipe objectForKey:@"searchItems"];
-    recipeDataObject.season = (NSNumber*)[recipe objectForKey:@"season"];
+    recipeDataObject.season = (NSString*)[recipe objectForKey:@"season"];
     recipeDataObject.recipeId = (NSNumber*)[recipe objectForKey:@"recipeId"];
-    recipeDataObject.type = (NSNumber*)[recipe objectForKey:@"type"];
+    recipeDataObject.type = (NSString*)[recipe objectForKey:@"type"];
     recipeDataObject.isFavourite = 0;
+
+    [self processSearchItems:[recipe objectForKey:@"searchItems"] recipe:recipeDataObject];
+    [self processCategories:[recipe objectForKey:@"category"] recipe:recipeDataObject];
 
     NSArray *directions = (NSArray*)[recipe objectForKey:@"directions"];
     NSMutableOrderedSet *directionSet = [NSMutableOrderedSet new];

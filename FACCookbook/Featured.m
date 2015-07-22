@@ -11,5 +11,6 @@
 @implementation Featured
 
 @dynamic recipes;
+@dynamic featuredId;
 
 @end

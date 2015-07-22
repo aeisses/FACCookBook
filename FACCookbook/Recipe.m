@@ -13,6 +13,7 @@
 @dynamic addDate;
 @dynamic recipeId;
 @dynamic searchItems;
+@dynamic categories;
 @dynamic title;
 @dynamic updateDate;
 @dynamic season;
