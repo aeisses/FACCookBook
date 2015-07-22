@@ -208,7 +208,7 @@ static int kFeaturedId = 1002;
 
         // Add data processer here!
         NSLog(@"Location response :%@",responseDict);
-        [self processLocationData:responseDict];
+        [self processLocationsData:responseDict];
     };
 
     void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
@@ -314,6 +314,16 @@ static int kFeaturedId = 1002;
     // TODO: Handle error
 }
 
+- (void)processLocationsData:(NSDictionary*)jsonData {
+    NSArray *locations = [jsonData objectForKey:@"locations"];
+    // Temporary quick fix:
+    if([locations count] != [[self loadLocationFromCoreData] count]){
+        for (NSDictionary *location in locations) {
+            [self processLocationData:location];
+        }
+    }
+}
+
 - (void)processLocationData:(NSDictionary*)location {
     // TODO: Check if location exists
     Location *locationDataObject = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:_managedObjectContext];
@@ -324,6 +334,8 @@ static int kFeaturedId = 1002;
     locationDataObject.phone = (NSString*)[location objectForKey:@"phone"];
     locationDataObject.story = (NSString*)[location objectForKey:@"story"];
     locationDataObject.type = (NSString*)[location objectForKey:@"type"];
+    locationDataObject.locationId = (NSNumber *)[location objectForKey:@"id"];
+
     NSError *error = nil;
     if(error){
         NSLog(@"error :%@",[error description]);
@@ -409,8 +421,22 @@ static int kFeaturedId = 1002;
 }
 
 - (void)processRecipeData:(NSDictionary*)recipe {
-    // TODO: Check if recipe exists
-    Recipe *recipeDataObject = [NSEntityDescription insertNewObjectForEntityForName:@"Recipe" inManagedObjectContext:_managedObjectContext];
+    NSEntityDescription *lookupRecipe = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:_managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"recipeId == %@", recipe[@"id"]];
+    fetchRequest.entity = lookupRecipe;
+    NSArray *fetchedObject = [_managedObjectContext executeFetchRequest:fetchRequest error:nil];
+
+    BOOL new = [fetchedObject count] == 0;
+
+    Recipe *recipeDataObject;
+
+    if(new) {
+        recipeDataObject = [NSEntityDescription insertNewObjectForEntityForName:@"Recipe" inManagedObjectContext:_managedObjectContext];
+    } else {
+        recipeDataObject = fetchedObject[0];
+    }
+
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM:dd:YYYY"];
     recipeDataObject.addDate = (NSDate*)[formatter dateFromString:(NSString*)[recipe objectForKey:@"addedDate"]];
@@ -565,6 +591,27 @@ static int kFeaturedId = 1002;
     NSError *error = nil;
 
     NSArray *results = [_managedObjectContext executeFetchRequest:recipeFetchRequest error:&error];
+    if(error) {
+        NSLog(@"error description :%@",[error description]);
+    }
+    else {
+        NSLog(@"Recipe results :%@",results);
+
+        return  results;
+    }
+
+    return nil;
+}
+
+- (NSArray*)loadLocationFromCoreData {
+    // Fetch Request
+    NSFetchRequest *locationFetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *locationEntity = [NSEntityDescription entityForName:@"Location" inManagedObjectContext:_managedObjectContext];
+    [locationFetchRequest setEntity:locationEntity];
+
+    NSError *error = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:locationFetchRequest error:&error];
     if(error) {
         NSLog(@"error description :%@",[error description]);
     }
