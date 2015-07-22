@@ -55,6 +55,7 @@
 		509D32E81B5FF43600388374 /* thai_shrimp_cake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D71B5FF43600388374 /* thai_shrimp_cake.jpg */; };
 		509D32E91B5FF43600388374 /* vegetable_curry.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D81B5FF43600388374 /* vegetable_curry.jpg */; };
 		509D32EA1B5FF43600388374 /* white_chocolate_donut.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D91B5FF43600388374 /* white_chocolate_donut.jpg */; };
+		559C0E711B5FFD04002BF4E6 /* ParentContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559C0E701B5FFD04002BF4E6 /* ParentContainerViewController.m */; };
 		DC3D88E0AC69975EE4B0D3F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB285498520DC5955837AB35 /* libPods.a */; };
 		F2E2A9FA1B5FFE2E002C8E31 /* SearchItems.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E2A9F91B5FFE2E002C8E31 /* SearchItems.m */; };
 		F2E2AA001B6006F5002C8E31 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E2A9FF1B6006F5002C8E31 /* Categories.m */; };
@@ -146,6 +147,8 @@
 		509D32D71B5FF43600388374 /* thai_shrimp_cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thai_shrimp_cake.jpg; sourceTree = "<group>"; };
 		509D32D81B5FF43600388374 /* vegetable_curry.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vegetable_curry.jpg; sourceTree = "<group>"; };
 		509D32D91B5FF43600388374 /* white_chocolate_donut.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = white_chocolate_donut.jpg; sourceTree = "<group>"; };
+		559C0E6F1B5FFCD9002BF4E6 /* ParentContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentContainerViewController.h; sourceTree = "<group>"; };
+		559C0E701B5FFD04002BF4E6 /* ParentContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentContainerViewController.m; sourceTree = "<group>"; };
 		C96C2504B1241A726A12F127 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DB285498520DC5955837AB35 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2E2A9F81B5FFE2E002C8E31 /* SearchItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchItems.h; sourceTree = "<group>"; };
@@ -186,6 +189,8 @@
 				043938891AF54C00004EA4D3 /* SearchViewController.m */,
 				0439388B1AF54C12004EA4D3 /* FavouriteViewController.h */,
 				0439388C1AF54C23004EA4D3 /* FavouriteViewController.m */,
+				559C0E6F1B5FFCD9002BF4E6 /* ParentContainerViewController.h */,
+				559C0E701B5FFD04002BF4E6 /* ParentContainerViewController.m */,
 				0439388E1AF54C36004EA4D3 /* PopularViewController.h */,
 				0439388F1AF54C46004EA4D3 /* PopularViewController.m */,
 				043938911AF54C54004EA4D3 /* SeasonViewController.h */,
@@ -521,6 +526,7 @@
 				04F5CA741AAA64ED002D1069 /* Note.m in Sources */,
 				043938901AF54C46004EA4D3 /* PopularViewController.m in Sources */,
 				0439387A1AF53DEB004EA4D3 /* RecipeCell.m in Sources */,
+				559C0E711B5FFD04002BF4E6 /* ParentContainerViewController.m in Sources */,
 				043938841AF544A9004EA4D3 /* RecipeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
