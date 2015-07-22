@@ -16,4 +16,5 @@
 
 - (Recipe*) loadRecipeFromCoreData:(NSNumber*)recipeId;
 - (NSArray*)loadRecipeFromCoreData;
+- (NSArray *)loadLocationsFromCoreData;
 @end

@@ -7,7 +7,21 @@
 //
 
 #import "MapViewController.h"
+#import "DataService.h"
+#import "Location.h"
 
 @implementation MapViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+
+    NSArray *array = [[DataService sharedInstance] loadLocationsFromCoreData];
+    Location *location = (Location *)[array firstObject];
+    
+    [self.mapView addAnnotation:location];
+//    NSLog(@"Lat: %@", location.latitude);
+//    NSLog(@"Long: %@", location.longitude);
+}
 
 @end

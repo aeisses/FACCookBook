@@ -78,11 +78,11 @@ static int kFeaturedId = 1002;
 + (instancetype)sharedInstance {
     static id instance;
     static dispatch_once_t once;
-    
+
     dispatch_once(&once, ^{
         instance = [[self alloc] init];
     });
-    
+
     return instance;
 }
 
@@ -363,7 +363,7 @@ static int kFeaturedId = 1002;
 - (void)processSearchItems:(NSArray *)items recipe:(Recipe *)recipe {
     NSMutableSet *recipeSearchItems = [NSMutableSet setWithSet:recipe.searchItems];
     NSEntityDescription *searchItems = [NSEntityDescription entityForName:@"SearchItems" inManagedObjectContext:_managedObjectContext];
-    
+
     for (NSString *item in items) {
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         fetchRequest.predicate = [NSPredicate predicateWithFormat:@"item == %@", item];
@@ -432,7 +432,7 @@ static int kFeaturedId = 1002;
             [self processRecipeData:recipe];
         }
     }
-    
+
     // [self processFeaturedData];
 }
 
@@ -475,7 +475,7 @@ static int kFeaturedId = 1002;
         [directionSet addObject:directionDataObject];
     }
     recipeDataObject.directions = directionSet;
-    
+
     NSArray *ingredients = (NSArray*)[recipe objectForKey:@"ingredients"];
     NSMutableOrderedSet *ingredientSet = [NSMutableOrderedSet new];
     for (NSDictionary *ingredient in ingredients) {
@@ -486,7 +486,7 @@ static int kFeaturedId = 1002;
         [ingredientSet addObject:ingredientDataObject];
     }
     recipeDataObject.ingredients = ingredientSet;
-    
+
     NSArray *notes = (NSArray*)[recipe objectForKey:@"notes"];
     NSMutableOrderedSet *noteSet = [NSMutableOrderedSet new];
     for (NSDictionary *note in notes) {
@@ -563,7 +563,7 @@ static int kFeaturedId = 1002;
         recipe.featured = featured;
         [featuredSet addObject:recipe];
     }
-    
+
     [featured setRecipes:featuredSet];
     [featured setFeaturedId:[NSNumber numberWithInt:kFeaturedId]];
 
@@ -573,117 +573,6 @@ static int kFeaturedId = 1002;
         NSLog(@"error description :%@",[error description]);
     }
 }
-
-//- (void)fetchRecipeData {
-//    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
-//        NSError *errorJson=nil;
-//        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
-//        if (errorJson) {
-//            NSLog(@"Error parsing JSON: %@",errorJson);
-//            return;
-//        }
-//        NSLog(@"Recipe JSON :%@",responseDict);
-//        [self processRecipesData:responseDict];
-//    };
-//
-//    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error making httpRequest: %@",error);
-//        }
-//    };
-//
-//    [[self httpManager] GET:[DataService allRecipiesEndpoint] parameters:nil success:success failure:failure];
-//}
-//
-//- (void)fetchLocationData {
-//    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
-//        NSError *errorJson=nil;
-//        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
-//        if (errorJson) {
-//            NSLog(@"Error parsing JSON: %@",errorJson);
-//            return;
-//        }
-//
-//        // Add data processer here!
-//        NSLog(@"Location response :%@",responseDict);
-//        for (NSDictionary *dic in responseDict) {
-//            [self processLocationData:dic];
-//        }
-//    };
-//
-//    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error making httpRequest: %@",error);
-//        }
-//    };
-//
-//    [[self httpManager] GET:[DataService locationEndPoint] parameters:nil success:success failure:failure];
-//}
-//
-//
-//- (void)fetchFeaturedData {
-//    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
-//        NSError *errorJson=nil;
-//        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
-//        if (errorJson) {
-//            NSLog(@"Error parsing JSON: %@",errorJson);
-//            return;
-//        }
-//
-//        // Add data processer here!
-//        _featuredArray = [NSArray arrayWithArray:(NSArray*)responseDict];
-//
-//    };
-//
-//    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error making httpRequest: %@",error);
-//        }
-//    };
-//
-//    [[self httpManager] GET:[DataService featuredEndPoint] parameters:nil success:success failure:failure];
-//}
-//
-//- (void)fetchPopularData {
-//    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
-//        NSError *errorJson=nil;
-//        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
-//        if (errorJson) {
-//            NSLog(@"Error parsing JSON: %@",errorJson);
-//            return;
-//        }
-//        // Add data processer here!
-//        _popularArray = [NSArray arrayWithArray:(NSArray*)responseDict];
-//    };
-//
-//    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error making httpRequest: %@",error);
-//        }
-//    };
-//
-//    [[self httpManager] GET:[DataService popularEndPoint] parameters:nil success:success failure:failure];
-//}
-//
-//- (void)fetchPurchasedData {
-//    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
-//        NSError *errorJson=nil;
-//        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
-//        if (errorJson) {
-//            NSLog(@"Error parsing JSON: %@",errorJson);
-//            return;
-//        }
-//        // Add data processer here!
-//    };
-//
-//    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error making httpRequest: %@",error);
-//        }
-//    };
-//
-//    [[self httpManager] GET:[DataService purchasedEndPoint] parameters:nil success:success failure:failure];
-//}
 
 #pragma mark - CoreData Load Methods
 
@@ -764,6 +653,24 @@ static int kFeaturedId = 1002;
     else{
         NSLog(@"Results :%@",results);
         return (Location*)[results lastObject];
+    }
+
+    return nil;
+}
+
+- (NSArray*)loadLocationsFromCoreData {
+    NSFetchRequest *locationRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Location" inManagedObjectContext:_managedObjectContext];
+    [locationRequest setEntity:entity];
+
+    NSError *error = nil;
+    NSArray *results = [_managedObjectContext executeFetchRequest:locationRequest error:&error];
+    if(error){
+        NSLog(@"error :%@",[error description]);
+    }
+    else{
+        NSLog(@"Results :%@",results);
+        return results;
     }
 
     return nil;

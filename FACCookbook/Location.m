@@ -21,4 +21,12 @@
 @dynamic locationId;
 @dynamic dateUpdated;
 
+- (CLLocationCoordinate2D)coordinate {
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([self.latitude doubleValue], [self.longitude doubleValue]);
+    return coord;
+}
+
+- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate {
+
+}
 @end
