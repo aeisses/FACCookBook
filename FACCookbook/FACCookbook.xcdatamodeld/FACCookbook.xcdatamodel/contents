@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Direction" syncable="YES">
         <attribute name="direction" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="directions" inverseEntity="Recipe" syncable="YES"/>
@@ -28,7 +28,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="story" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Note" syncable="YES">
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
@@ -58,7 +58,7 @@
         <element name="Featured" positionX="-101" positionY="-99" width="128" height="58"/>
         <element name="Information" positionX="-11" positionY="45" width="128" height="90"/>
         <element name="Ingredient" positionX="7" positionY="171" width="128" height="103"/>
-        <element name="Location" positionX="160" positionY="45" width="128" height="193"/>
+        <element name="Location" positionX="160" positionY="45" width="128" height="195"/>
         <element name="Note" positionX="-83" positionY="279" width="128" height="75"/>
         <element name="Popular" positionX="-135" positionY="-168" width="128" height="60"/>
         <element name="Recipe" positionX="-308" positionY="6" width="128" height="255"/>
