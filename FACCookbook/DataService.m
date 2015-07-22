@@ -47,16 +47,20 @@
     return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/recipies.json", [DataService protocol], [DataService domain]];
 }
 
-+ (NSString *)newRecipiesEndpoint {
++ (NSString *)newRecipiesEndpointSince:(NSDate *)date {
     return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/recipies.json", [DataService protocol], [DataService domain]];
+}
+
++ (NSString *)allLocationsEndPoint {
+    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/location.json", [DataService protocol], [DataService domain]];
+}
+
++ (NSString *)newLocationsEndPointSince:(NSDate *)date {
+    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/location.json", [DataService protocol], [DataService domain]];
 }
 
 + (NSString *)featuredEndPoint {
     return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/featured.json", [DataService protocol], [DataService domain]];
-}
-
-+ (NSString *)locationEndPoint {
-    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/location.json", [DataService protocol], [DataService domain]];
 }
 
 + (NSString *)popularEndPoint {
@@ -91,6 +95,200 @@
     return self;
 }
 
+#pragma mark - Data Integrity Helpers
+
+- (void)setLastUpdated:(NSDate *)date {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:date forKey:@"currentDate"];
+}
+
+- (NSDate *)lastUpdated {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults objectForKey:@"currentDate"];
+}
+
+- (void)setFirstLaunch:(BOOL)isFirstLaunch {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@(isFirstLaunch) forKey:@"firstLaunch"];
+}
+
+- (BOOL)firstLaunch {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *firstLaunch = [defaults objectForKey:@"firstLaunch"];
+
+    return firstLaunch && [firstLaunch boolValue];
+}
+
+- (void)updateUserDefaults {
+    [self setFirstLaunch:NO];
+    [self setLastUpdated:[NSDate date]];
+}
+
+#pragma mark - External Source Fetch Methods
+
+- (void)fetchData {
+    static BOOL fetchingData = NO;
+
+    // Do not allow concurrent fetches.
+    if(fetchingData) {
+        return;
+    }
+
+    fetchingData = YES;
+
+    // Suspend the operation queue so that we can queue up all data requests before any are executed.
+    // We want to do this because to avoid a race-condition where we are checking the lastUpdated and firstLaunch
+    // user default properties.
+    //
+    // Once all requests are queued, we allow all requests to be made, and on completion of all requests we will
+    // update the last response.
+    [[[self httpManager] operationQueue] setSuspended:YES];
+    [[[self httpManager] operationQueue] setMaxConcurrentOperationCount:1];
+
+    [self fetchRecipeData];
+    [self fetchLocationData];
+    [self fetchFeaturedData];
+    [self fetchPopularData];
+    [self fetchPurchasedData];
+
+    __weak DataService *wSelf = self;
+
+    // Final `drain` operation.
+    [[[self httpManager] operationQueue] addOperationWithBlock:^{
+        DataService *sSelf = wSelf;
+
+        // Final commit to coredata.
+        NSError *error = nil;
+        [sSelf.managedObjectContext save:&error];
+
+        // Update the userdefaults.
+        [sSelf updateUserDefaults];
+
+        fetchingData = NO;
+    }];
+
+    [[[self httpManager] operationQueue] setSuspended:NO];
+}
+
+- (void)fetchRecipeData {
+    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
+        NSError *errorJson=nil;
+        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
+        if (errorJson) {
+            NSLog(@"Error parsing JSON: %@",errorJson);
+            return;
+        }
+        NSLog(@"Recipe JSON :%@",responseDict);
+        [self processRecipesData:responseDict];
+    };
+
+    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
+        if (error) {
+            NSLog(@"Error making httpRequest: %@",error);
+        }
+    };
+
+    if([self firstLaunch]) {
+        [[self httpManager] GET:[DataService allRecipiesEndpoint] parameters:nil success:success failure:failure];
+
+    } else {
+        [[self httpManager] GET:[DataService newRecipiesEndpointSince:[self lastUpdated]] parameters:nil success:success failure:failure];
+    }
+}
+
+- (void)fetchLocationData {
+    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
+        NSError *errorJson=nil;
+        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
+        if (errorJson) {
+            NSLog(@"Error parsing JSON: %@",errorJson);
+            return;
+        }
+
+        // Add data processer here!
+        NSLog(@"Location response :%@",responseDict);
+        [self processLocationData:responseDict];
+    };
+
+    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
+        if (error) {
+            NSLog(@"Error making httpRequest: %@",error);
+        }
+    };
+
+    if([self firstLaunch]) {
+        [[self httpManager] GET:[DataService allLocationsEndPoint] parameters:nil success:success failure:failure];
+
+    } else {
+        [[self httpManager] GET:[DataService newLocationsEndPointSince:[self lastUpdated]] parameters:nil success:success failure:failure];
+    }
+}
+
+
+- (void)fetchFeaturedData {
+    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
+        NSError *errorJson=nil;
+        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
+        if (errorJson) {
+            NSLog(@"Error parsing JSON: %@",errorJson);
+            return;
+        }
+
+        // Add data processer here!
+
+    };
+
+    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
+        if (error) {
+            NSLog(@"Error making httpRequest: %@",error);
+        }
+    };
+
+    [[self httpManager] GET:[DataService featuredEndPoint] parameters:nil success:success failure:failure];
+}
+
+- (void)fetchPopularData {
+    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
+        NSError *errorJson=nil;
+        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
+        if (errorJson) {
+            NSLog(@"Error parsing JSON: %@",errorJson);
+            return;
+        }
+        // Add data processer here!
+
+    };
+
+    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
+        if (error) {
+            NSLog(@"Error making httpRequest: %@",error);
+        }
+    };
+
+    [[self httpManager] GET:[DataService popularEndPoint] parameters:nil success:success failure:failure];
+}
+
+- (void)fetchPurchasedData {
+    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
+        NSError *errorJson=nil;
+        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
+        if (errorJson) {
+            NSLog(@"Error parsing JSON: %@",errorJson);
+            return;
+        }
+        // Add data processer here!
+    };
+
+    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
+        if (error) {
+            NSLog(@"Error making httpRequest: %@",error);
+        }
+    };
+
+    [[self httpManager] GET:[DataService purchasedEndPoint] parameters:nil success:success failure:failure];
+}
+
+#pragma mark - CoreData Process Methods
 
 - (void)loadInformation:(NSDictionary*)information {
     // TODO: Check if information exists
@@ -98,7 +296,6 @@
     informationDataObject.version = (NSString*)[information objectForKey:@"version"];
     informationDataObject.season = (NSNumber*)[information objectForKey:@"season"];
     NSError *error = nil;
-    [_managedObjectContext save:&error];
     // TODO: Handle error
 }
 
@@ -112,7 +309,7 @@
         [popularSet addObject:recipe];
     }
     NSError *error = nil;
-    [_managedObjectContext save:&error];
+
     // TODO: Handle error
 }
 
@@ -127,7 +324,6 @@
     locationDataObject.story = (NSString*)[location objectForKey:@"story"];
     locationDataObject.type = (NSString*)[location objectForKey:@"type"];
     NSError *error = nil;
-    [_managedObjectContext save:&error];
     if(error){
         NSLog(@"error :%@",[error description]);
     }
@@ -265,114 +461,7 @@
     // TODO: Handle error
 }
 
-
-- (void)fetchRecipeData {
-    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
-        NSError *errorJson=nil;
-        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
-        if (errorJson) {
-            NSLog(@"Error parsing JSON: %@",errorJson);
-            return;
-        }
-        NSLog(@"Recipe JSON :%@",responseDict);
-        [self processRecipesData:responseDict];
-    };
-
-    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
-        if (error) {
-            NSLog(@"Error making httpRequest: %@",error);
-        }
-    };
-
-    [[self httpManager] GET:[DataService allRecipiesEndpoint] parameters:nil success:success failure:failure];
-}
-
-- (void)fetchLocationData {
-    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
-        NSError *errorJson=nil;
-        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
-        if (errorJson) {
-            NSLog(@"Error parsing JSON: %@",errorJson);
-            return;
-        }
-
-        // Add data processer here!
-        NSLog(@"Location response :%@",responseDict);
-        [self processLocationData:responseDict];
-    };
-
-    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
-        if (error) {
-            NSLog(@"Error making httpRequest: %@",error);
-        }
-    };
-
-    [[self httpManager] GET:[DataService locationEndPoint] parameters:nil success:success failure:failure];
-}
-
-
-- (void)fetchFeaturedData {
-    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
-        NSError *errorJson=nil;
-        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
-        if (errorJson) {
-            NSLog(@"Error parsing JSON: %@",errorJson);
-            return;
-        }
-
-        // Add data processer here!
-
-    };
-
-    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
-        if (error) {
-            NSLog(@"Error making httpRequest: %@",error);
-        }
-    };
-
-    [[self httpManager] GET:[DataService featuredEndPoint] parameters:nil success:success failure:failure];
-}
-
-- (void)fetchPopularData {
-    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
-        NSError *errorJson=nil;
-        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
-        if (errorJson) {
-            NSLog(@"Error parsing JSON: %@",errorJson);
-            return;
-        }
-        // Add data processer here!
-
-    };
-
-    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
-        if (error) {
-            NSLog(@"Error making httpRequest: %@",error);
-        }
-    };
-
-    [[self httpManager] GET:[DataService popularEndPoint] parameters:nil success:success failure:failure];
-}
-
-- (void)fetchPurchasedData {
-    void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
-        NSError *errorJson=nil;
-        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
-        if (errorJson) {
-            NSLog(@"Error parsing JSON: %@",errorJson);
-            return;
-        }
-        // Add data processer here!
-    };
-
-    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
-        if (error) {
-            NSLog(@"Error making httpRequest: %@",error);
-        }
-    };
-
-    [[self httpManager] GET:[DataService purchasedEndPoint] parameters:nil success:success failure:failure];
-}
+#pragma mark - CoreData Load Methods
 
 
 - (Recipe*)loadRecipeFromCoreData:(NSNumber*)recipeId {
