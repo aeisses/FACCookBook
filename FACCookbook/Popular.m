@@ -11,5 +11,6 @@
 @implementation Popular
 
 @dynamic recipes;
+@dynamic popularId;
 
 @end
