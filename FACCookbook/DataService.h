@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "Recipe.h"
+#import "FICImageCache.h"
 
-@interface DataService : NSObject
+@interface DataService : NSObject <FICImageCacheDelegate>
 
 + (instancetype)sharedInstance;
 - (void)fetchData;
@@ -17,4 +18,5 @@
 - (Recipe*) loadRecipeFromCoreData:(NSNumber*)recipeId;
 - (NSArray*)loadRecipeFromCoreData;
 - (NSArray *)loadLocationsFromCoreData;
+
 @end

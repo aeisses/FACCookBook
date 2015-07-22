@@ -20,6 +20,7 @@
 		043938901AF54C46004EA4D3 /* PopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0439388F1AF54C46004EA4D3 /* PopularViewController.m */; };
 		043938931AF54C68004EA4D3 /* SeasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938921AF54C68004EA4D3 /* SeasonViewController.m */; };
 		04551AA41AFC384000DBEE9B /* Featured.m in Sources */ = {isa = PBXBuildFile; fileRef = 04551AA31AFC384000DBEE9B /* Featured.m */; };
+		0478C1001B658A6900AE4ED2 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478C0FF1B658A6900AE4ED2 /* Utils.m */; };
 		04CE74391ACCC13200624A7F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE74381ACCC13200624A7F /* Location.m */; };
 		04CE743C1ACCC81800624A7F /* Information.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743B1ACCC81800624A7F /* Information.m */; };
 		04CE74401ACCC88300624A7F /* Popular.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743F1ACCC88300624A7F /* Popular.m */; };
@@ -98,6 +99,8 @@
 		043938921AF54C68004EA4D3 /* SeasonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeasonViewController.m; sourceTree = "<group>"; };
 		04551AA21AFC384000DBEE9B /* Featured.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Featured.h; sourceTree = "<group>"; };
 		04551AA31AFC384000DBEE9B /* Featured.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Featured.m; sourceTree = "<group>"; };
+		0478C0FF1B658A6900AE4ED2 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		0478C1011B658AC000AE4ED2 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		04CE74381ACCC13200624A7F /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		04CE743A1ACCC14800624A7F /* Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		04CE743B1ACCC81800624A7F /* Information.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Information.m; sourceTree = "<group>"; };
@@ -250,6 +253,8 @@
 				04F5CA431AA3B4FB002D1069 /* AppDelegate.m */,
 				04F5CA771AABCBB9002D1069 /* DataService.h */,
 				04F5CA751AABCBA8002D1069 /* DataService.m */,
+				0478C1011B658AC000AE4ED2 /* Utils.h */,
+				0478C0FF1B658A6900AE4ED2 /* Utils.m */,
 				04F5CA4B1AA3B4FB002D1069 /* Main.storyboard */,
 				043938761AF53DA1004EA4D3 /* RecipeCell.xib */,
 				04F5CA4E1AA3B4FB002D1069 /* Images.xcassets */,
@@ -526,6 +531,7 @@
 				0439388D1AF54C23004EA4D3 /* FavouriteViewController.m in Sources */,
 				04F5CA761AABCBA8002D1069 /* DataService.m in Sources */,
 				043938811AF54486004EA4D3 /* LocationViewController.m in Sources */,
+				0478C1001B658A6900AE4ED2 /* Utils.m in Sources */,
 				04CE74401ACCC88300624A7F /* Popular.m in Sources */,
 				04F5CA411AA3B4FB002D1069 /* main.m in Sources */,
 				509D32811B5FD20400388374 /* HomeScreenViewLayout.m in Sources */,

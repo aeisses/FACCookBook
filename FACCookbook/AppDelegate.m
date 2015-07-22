@@ -21,9 +21,10 @@
     // XXX: For Development only. Must be updated to only get latest for Location and Recipes
     [[DataService sharedInstance] fetchData];
     // Override point for customization after application launch.
-
+  
     UIColor *themeColor = [UIColor colorWithRed:0.01f green:0.41f blue:0.22f alpha:1.0f];
     self.window.tintColor = themeColor;
+    
     return YES;
 }
 

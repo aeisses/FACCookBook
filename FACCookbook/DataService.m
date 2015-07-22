@@ -8,6 +8,7 @@
 #import <AFNetworking/AFNetworking.h>
 
 #import "DataService.h"
+#import "Utils.h"
 #import "AppDelegate.h"
 #import "Direction.h"
 #import "Ingredient.h"
@@ -24,6 +25,16 @@
 static int kPopularId = 1001;
 static int kFeaturedId = 1002;
 static int kPurchasedId = 1003;
+
+static NSString *FCBFormaCellSmall = @"";
+static NSString *FCBFormatCellMedium = @"";
+static NSString *FCBFormatCellLarge = @"";
+static NSString *FCBFormatStandardSmall = @"";
+static NSString *FCBFormatStandardMedium = @"";
+static NSString *FCBFormatStandardLarge = @"";
+
+static NSString *FCBFormatFamilyCell = @"";
+static NSString *FCBFormatFamilyStandard = @"";
 
 @interface DataService()
 
@@ -98,8 +109,44 @@ static int kPurchasedId = 1003;
         [[self httpManager] setRequestSerializer:[AFJSONRequestSerializer serializer]];
         [[self httpManager] setResponseSerializer:[AFHTTPResponseSerializer serializer]];
         _managedObjectContext = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).managedObjectContext;
+        
+        [self setupImageCache];
     }
     return self;
+}
+
+#pragma mark - Setup Image Cache
+- (void)setupImageCache {
+    FICImageFormatDevices device;
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        device = FICImageFormatDevicePad;
+    } else {
+        device = FICImageFormatDevicePhone;
+    }
+    
+    NSMutableArray *mutableImageFormats = [NSMutableArray array];
+    FICImageFormat *imageCellSmall = [FICImageFormat formatWithName:FCBFormaCellSmall family:FCBFormatFamilyCell imageSize:[Utils getSmallCellSize] style:FICImageFormatStyle32BitBGR maximumCount:250 devices:device protectionMode:FICImageFormatProtectionModeNone];
+    [mutableImageFormats addObject:imageCellSmall];
+    
+    FICImageFormat *imageCellMedium = [FICImageFormat formatWithName:FCBFormatCellMedium family:FCBFormatFamilyCell imageSize:[Utils getMediumCellSize] style:FICImageFormatStyle32BitBGR maximumCount:250 devices:device protectionMode:FICImageFormatProtectionModeNone];
+    [mutableImageFormats addObject:imageCellMedium];
+    
+    FICImageFormat *imageCellLarge = [FICImageFormat formatWithName:FCBFormatCellLarge family:FCBFormatFamilyCell imageSize:[Utils getLargeCellSize] style:FICImageFormatStyle32BitBGR maximumCount:250 devices:device protectionMode:FICImageFormatProtectionModeNone];
+    [mutableImageFormats addObject:imageCellLarge];
+
+    FICImageFormat *imageStandardSmall = [FICImageFormat formatWithName:FCBFormatStandardSmall family:FCBFormatFamilyStandard imageSize:[Utils getSmallStandardSize] style:FICImageFormatStyle32BitBGR maximumCount:50 devices:device protectionMode:FICImageFormatProtectionModeNone];
+    [mutableImageFormats addObject:imageStandardSmall];
+    
+    FICImageFormat *imageStandardMedium = [FICImageFormat formatWithName:FCBFormatStandardSmall family:FCBFormatFamilyStandard imageSize:[Utils getMediumStandardSize] style:FICImageFormatStyle32BitBGR maximumCount:250 devices:device protectionMode:FICImageFormatProtectionModeNone];
+    [mutableImageFormats addObject:imageStandardMedium];
+    
+    FICImageFormat *imageStandardLarge = [FICImageFormat formatWithName:FCBFormatStandardSmall family:FCBFormatFamilyStandard imageSize:[Utils getSmallStandardSize] style:FICImageFormatStyle32BitBGR maximumCount:250 devices:device protectionMode:FICImageFormatProtectionModeNone];
+    [mutableImageFormats addObject:imageStandardLarge];
+    
+    FICImageCache *sharedImageCache = [FICImageCache sharedImageCache];
+    sharedImageCache.delegate = self;
+    sharedImageCache.formats = (NSArray*)mutableImageFormats;
 }
 
 #pragma mark - Data Integrity Helpers
