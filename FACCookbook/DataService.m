@@ -134,6 +134,12 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     locationDataObject.type = (NSString*)[location objectForKey:@"type"];
     NSError *error = nil;
     [_managedObjectContext save:&error];
+    if(error){
+        NSLog(@"error :%@",[error description]);
+    }
+    else{
+        [self loadRecipeFromCoreData:[NSNumber numberWithInt:1]];
+    }
     // TODO: Handle error
 }
 
@@ -190,31 +196,26 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     recipeDataObject.notes = noteSet;
     NSError *error = nil;
     [_managedObjectContext save:&error];
+    if(error){
+        NSLog(@"error description :%@",[error description]);
+    }
+    else{
+        NSLog(@"Recipe array :%@",[self loadRecipeFromCoreData]);
+
+    }
     // TODO: Handle error
 }
 
-<<<<<<< HEAD
-- (void)processRecipesData:(NSDictionary*)jsonData {
-    NSArray *recipes = [jsonData objectForKey:@"recipes"];
-    for (NSDictionary *recipe in recipes) {
-        [self processRecipeData:recipe];
-    }
-}
 
 - (void)fetchRecipeData {
     void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
-=======
- // to be replaced by fetch
-- (void)loadRecipeData {
-    AFHTTPRequestOperation *operation = [_httpManager HTTPRequestOperationWithRequest:[DataService allRecipiesEndpoint] success:^(AFHTTPRequestOperation *op, id res) {
->>>>>>> e9aace4... Add loadfromCoreData for recipe.
         NSError *errorJson=nil;
         NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
         if (errorJson) {
             NSLog(@"Error parsing JSON: %@",errorJson);
             return;
         }
-
+        NSLog(@"Recipe JSON :%@",responseDict);
         [self processRecipesData:responseDict];
     };
 
@@ -237,6 +238,8 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
         }
 
         // Add data processer here!
+        NSLog(@"Location response :%@",responseDict);
+        [self processLocationData:responseDict];
     };
 
     void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
@@ -257,6 +260,7 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
             NSLog(@"Error parsing JSON: %@",errorJson);
             return;
         }
+
         // Add data processer here!
 
     };
@@ -333,5 +337,41 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     return nil;
 }
 
+- (NSArray*)loadRecipeFromCoreData {
+    // Fetch Request
+    NSFetchRequest *recipeFetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *recipeEntity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:_managedObjectContext];
+    [recipeFetchRequest setEntity:recipeEntity];
 
+    NSError *error = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:recipeFetchRequest error:&error];
+    if(error) {
+        NSLog(@"error description :%@",[error description]);
+    }
+    else {
+        NSLog(@"Results  :%@",results);
+        return  results;
+    }
+
+    return nil;
+}
+
+- (Location*)loadLocationFromCoreData:(NSNumber*)locationId{
+    NSFetchRequest *locationRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Location" inManagedObjectContext:_managedObjectContext];
+    [locationRequest setEntity:entity];
+
+    NSError *error = nil;
+    NSArray *results = [_managedObjectContext executeFetchRequest:locationRequest error:&error];
+    if(error){
+        NSLog(@"error :%@",[error description]);
+    }
+    else{
+        NSLog(@"Results :%@",results);
+        return (Location*)[results lastObject];
+    }
+
+    return nil;
+}
 @end

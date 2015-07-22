@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Recipe.h"
 
 @interface DataService : NSObject
 
@@ -16,5 +17,6 @@
 - (void)fetchFeaturedData;
 - (void)fetchPopularData;
 - (void)fetchPurchasedData;
-
+- (Recipe*) loadRecipeFromCoreData:(NSNumber*)recipeId;
+- (NSArray*)loadRecipeFromCoreData;
 @end
