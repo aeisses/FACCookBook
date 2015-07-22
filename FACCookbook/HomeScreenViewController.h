@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import "HomeScreenViewLayout.h"
 
 @interface HomeScreenViewController : UICollectionViewController <UICollectionViewDataSource>
+
+@property(nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+@property(nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 @end

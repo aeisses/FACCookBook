@@ -18,11 +18,17 @@
 #import "Information.h"
 #import "SearchItems.h"
 #import "Categories.h"
+#import "Featured.h"
+
+static int kPopularId = 1001;
+static int kFeaturedId = 1002;
 
 @interface DataService()
 
 @property (retain, nonatomic) AFHTTPRequestOperationManager *httpManager;
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSArray *popularArray;
+@property (strong, nonatomic) NSArray *featuredArray;
 
 - (void)processRecipesData:(NSDictionary*)jsonData;
 - (void)processRecipeData:(NSDictionary*)recipe;
@@ -405,6 +411,8 @@
             [self processRecipeData:recipe];
         }
     }
+    [self processPopularData];
+    [self processFeaturedData];
 }
 
 - (void)processRecipeData:(NSDictionary*)recipe {
@@ -461,8 +469,77 @@
     // TODO: Handle error
 }
 
-#pragma mark - CoreData Load Methods
+- (void)processPopularData {
 
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *popularEntity = [NSEntityDescription entityForName:@"Popular" inManagedObjectContext:_managedObjectContext];
+    [fetchRequest setEntity:popularEntity];
+    NSError *err = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&err];
+
+    // Add a predicate later.
+    Popular *popular;
+    if([results count]){
+        popular = (Popular*)[results lastObject];
+    }
+    else{
+        popular = (Popular*)[NSEntityDescription insertNewObjectForEntityForName:@"Popular" inManagedObjectContext:_managedObjectContext];
+    }
+
+    NSMutableOrderedSet *popularSet = [NSMutableOrderedSet new];
+    for(NSNumber *number in _popularArray){
+        Recipe *recipe = [self loadRecipeFromCoreData:number];
+        recipe.popular = popular;
+        [popularSet addObject:recipe];
+    }
+
+    [popular setRecipes:popularSet];
+    [popular setPopularId:[NSNumber numberWithInt:kPopularId]];
+
+    NSError *error = nil;
+    [_managedObjectContext save:&error];
+    if(error){
+        NSLog(@"error description :%@",[error description]);
+    }
+}
+
+- (void)processFeaturedData {
+
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *featuredEntity = [NSEntityDescription entityForName:@"Featured" inManagedObjectContext:_managedObjectContext];
+    [fetchRequest setEntity:featuredEntity];
+    NSError *err = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&err];
+
+    // Add a predicate later.
+     Featured *featured;
+    if([results count]){
+        featured = [results lastObject];
+    }
+    else{
+        featured = [NSEntityDescription insertNewObjectForEntityForName:@"Featured" inManagedObjectContext:_managedObjectContext];
+    }
+
+    NSMutableOrderedSet *featuredSet = [NSMutableOrderedSet new];
+    for(NSNumber *number in _featuredArray){
+        Recipe *recipe = [self loadRecipeFromCoreData:number];
+        recipe.featured = featured;
+        [featuredSet addObject:recipe];
+    }
+    
+    [featured setRecipes:featuredSet];
+    [featured setFeaturedId:[NSNumber numberWithInt:kFeaturedId]];
+
+    NSError *error = nil;
+    [_managedObjectContext save:&error];
+    if(error){
+        NSLog(@"error description :%@",[error description]);
+    }
+}
+
+#pragma mark - CoreData Load Methods
 
 - (Recipe*)loadRecipeFromCoreData:(NSNumber*)recipeId {
     // Fetch Request
@@ -470,8 +547,8 @@
     NSEntityDescription *recipeEntity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:_managedObjectContext];
     [recipeFetchRequest setEntity:recipeEntity];
 
-//    NSPredicate *recipeIdPredicate = [NSPredicate predicateWithFormat:@""];
-//    [recipeFetchRequest setPredicate:recipeIdPredicate];
+    NSPredicate *recipeIdPredicate = [NSPredicate predicateWithFormat:@"recipeId = %@",recipeId];
+    [recipeFetchRequest setPredicate:recipeIdPredicate];
     NSError *error = nil;
 
     NSArray *results = [_managedObjectContext executeFetchRequest:recipeFetchRequest error:&error];
@@ -524,4 +601,45 @@
 
     return nil;
 }
+
+- (Popular*)loadPopularDataFromCoreData:(NSNumber*)popularId{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Popular" inManagedObjectContext:_managedObjectContext];
+    [fetchRequest setEntity:entity];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"popularId = %@",popularId];
+    [fetchRequest setPredicate:predicate];
+    NSError *error = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if(error) {
+        NSLog(@"error description :%@",[error description]);
+    }
+    else {
+        return  (Popular*)[results lastObject];
+    }
+
+    return nil;
+}
+
+- (Featured*)loadFeaturedDataFromCoreData:(NSNumber*)featuredId{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Featured" inManagedObjectContext:_managedObjectContext];
+    [fetchRequest setEntity:entity];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"featuredId = %@",featuredId];
+    [fetchRequest setPredicate:predicate];
+    NSError *error = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if(error) {
+        NSLog(@"error description :%@",[error description]);
+    }
+    else {
+        return  (Featured*)[results lastObject];
+    }
+
+    return nil;
+}
+
 @end
