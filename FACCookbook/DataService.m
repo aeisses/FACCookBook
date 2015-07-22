@@ -145,8 +145,11 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
 
 - (void)processRecipesData:(NSDictionary*)jsonData {
     NSArray *recipes = [jsonData objectForKey:@"recipes"];
-    for (NSDictionary *recipe in recipes) {
-        [self processRecipeData:recipe];
+    // Temporary quick fix:
+    if([recipes count] != [[self loadRecipeFromCoreData] count]){
+        for (NSDictionary *recipe in recipes) {
+            [self processRecipeData:recipe];
+        }
     }
 }
 
@@ -198,10 +201,6 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     [_managedObjectContext save:&error];
     if(error){
         NSLog(@"error description :%@",[error description]);
-    }
-    else{
-        NSLog(@"Recipe array :%@",[self loadRecipeFromCoreData]);
-
     }
     // TODO: Handle error
 }
@@ -315,7 +314,7 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     [[self httpManager] GET:[DataService purchasedEndPoint] parameters:nil success:success failure:failure];
 }
 
-/*
+
 - (Recipe*)loadRecipeFromCoreData:(NSNumber*)recipeId {
     // Fetch Request
     NSFetchRequest *recipeFetchRequest = [[NSFetchRequest alloc] init];
@@ -331,13 +330,12 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
         NSLog(@"error description :%@",[error description]);
     }
     else {
-        NSLog(@"Results  :%@",results);
         return  (Recipe*)[results lastObject];
     }
 
     return nil;
 }
- */
+
 
 - (NSArray*)loadRecipeFromCoreData {
     // Fetch Request
@@ -352,7 +350,8 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
         NSLog(@"error description :%@",[error description]);
     }
     else {
-        NSLog(@"Results  :%@",results);
+        NSLog(@"Recipe results :%@",results);
+
         return  results;
     }
 
