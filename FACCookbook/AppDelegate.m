@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DataService.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[DataService sharedInstance] loadRecipeData];
     // Override point for customization after application launch.
   
   UIColor *themeColor = [UIColor colorWithRed:0.01f green:0.41f blue:0.22f alpha:1.0f];
@@ -38,6 +40,9 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    // Update this to use an 'updateRecipeData' method
+    [[DataService sharedInstance] loadRecipeData];
+
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

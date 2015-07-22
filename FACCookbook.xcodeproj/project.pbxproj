@@ -234,11 +234,11 @@
 			children = (
 				043938781AF53DD6004EA4D3 /* Views */,
 				04F5CA681AAA62C9002D1069 /* Objects */,
+				043938721AF301D2004EA4D3 /* ViewControllers */,
 				04F5CA421AA3B4FB002D1069 /* AppDelegate.h */,
 				04F5CA431AA3B4FB002D1069 /* AppDelegate.m */,
 				04F5CA771AABCBB9002D1069 /* DataService.h */,
 				04F5CA751AABCBA8002D1069 /* DataService.m */,
-				043938721AF301D2004EA4D3 /* ViewControllers */,
 				04F5CA481AA3B4FB002D1069 /* ViewController.h */,
 				04F5CA491AA3B4FB002D1069 /* ViewController.m */,
 				04F5CA4B1AA3B4FB002D1069 /* Main.storyboard */,

@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSNumber *longitude;
 @property (nonatomic, retain) NSString *phone;
 @property (nonatomic, retain) NSString *story;
-@property (nonatomic, retain) NSNumber *type;
+@property (nonatomic, retain) NSString *type;
 @property (nonatomic, retain) NSNumber *locationId;
 @property (nonatomic, retain) NSDate *dateUpdated;
 
