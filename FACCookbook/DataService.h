@@ -12,11 +12,8 @@
 @interface DataService : NSObject
 
 + (instancetype)sharedInstance;
-- (void)fetchRecipeData;
-- (void)fetchLocationData;
-- (void)fetchFeaturedData;
-- (void)fetchPopularData;
-- (void)fetchPurchasedData;
+- (void)fetchData;
+
 - (Recipe*) loadRecipeFromCoreData:(NSNumber*)recipeId;
 - (NSArray*)loadRecipeFromCoreData;
 @end
