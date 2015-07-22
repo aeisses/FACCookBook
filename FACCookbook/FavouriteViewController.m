@@ -8,6 +8,8 @@
 
 #import "FavouriteViewController.h"
 #import "AppDelegate.h"
+#import "Recipe.h"
+#import "RecipeViewController.h"
 
 @implementation FavouriteViewController
 
@@ -61,6 +63,9 @@
 
     [fetchRequest setFetchBatchSize:20];
 
+    // nothing has been favourited yet
+    //[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"isFavourite == 0"]];
+
     NSFetchedResultsController *theFetchedResultsController =
     [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                         managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil
@@ -71,6 +76,19 @@
     return super.fetchedResultsController;
     
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if (self.fetchedResultsController != nil) {
+        Recipe *myRecipe = [super.fetchedResultsController objectAtIndexPath:sender];
+
+        RecipeViewController *recipeViewController = (RecipeViewController *) segue.destinationViewController;
+        recipeViewController.name = myRecipe.title;
+
+        NSIndexPath *path = (NSIndexPath *) sender;
+        recipeViewController.imgPath = [super.recipeImages objectAtIndex:path.row];
+    }
+}
+
 //
 //- (void)didReceiveMemoryWarning {
 //    [super didReceiveMemoryWarning];
