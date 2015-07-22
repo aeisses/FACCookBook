@@ -614,14 +614,16 @@ static int kPurchasedId = 1003;
 
     // Add a predicate later.
     Purchased *purchased;
+    NSMutableOrderedSet *purchasedSet;
     if([results count]){
         purchased = [results lastObject];
+        purchasedSet = (NSMutableOrderedSet*)[purchased recipes];
     }
     else{
         purchased = [NSEntityDescription insertNewObjectForEntityForName:@"Purchased" inManagedObjectContext:_managedObjectContext];
+        purchasedSet = [NSMutableOrderedSet new];
     }
 
-    NSMutableOrderedSet *purchasedSet = [NSMutableOrderedSet new];
     for(NSNumber *number in purchasedData){
         Recipe *recipe = [self loadRecipeFromCoreData:number];
         recipe.purchased = purchased;
@@ -637,6 +639,35 @@ static int kPurchasedId = 1003;
         NSLog(@"error description :%@",[error description]);
     }
 }
+
+- (void)processInformation:(NSDictionary*)informationData{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *featuredEntity = [NSEntityDescription entityForName:@"Information" inManagedObjectContext:_managedObjectContext];
+    [fetchRequest setEntity:featuredEntity];
+    NSError *err = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&err];
+
+    // Add a predicate later.
+    Information *info;
+    if([results count]){
+        info = [results lastObject];
+    }
+    else{
+        info = [NSEntityDescription insertNewObjectForEntityForName:@"Information" inManagedObjectContext:_managedObjectContext];
+    }
+
+    [info setVersion:[informationData valueForKey:@"version"]];
+    [info setSeason:[informationData valueForKey:@"season"]];
+
+    NSError *error = nil;
+    [_managedObjectContext save:&error];
+    if(error){
+        NSLog(@"error description :%@",[error description]);
+    }
+
+}
+
 #pragma mark - CoreData Load Methods
 
 - (Recipe*)loadRecipeFromCoreData:(NSNumber*)recipeId {
@@ -799,4 +830,20 @@ static int kPurchasedId = 1003;
     return nil;
 }
 
+- (Information*)loadInformationDataFromCoreData{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Information" inManagedObjectContext:_managedObjectContext];
+    [fetchRequest setEntity:entity];
+
+    NSError *error = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if(error) {
+        NSLog(@"error description :%@",[error description]);
+    }
+    else {
+        return  (Information*)[results lastObject];
+    }
+    return nil;
+}
 @end
