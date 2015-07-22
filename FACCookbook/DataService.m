@@ -779,4 +779,24 @@ static int kPurchasedId = 1003;
     return nil;
 }
 
+- (Purchased*)loadPurchasedDataFromCoreData:(NSNumber*)purchasedId{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Purchased" inManagedObjectContext:_managedObjectContext];
+    [fetchRequest setEntity:entity];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"purchasedId = %@",purchasedId];
+    [fetchRequest setPredicate:predicate];
+    NSError *error = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if(error) {
+        NSLog(@"error description :%@",[error description]);
+    }
+    else {
+        return  (Purchased*)[results lastObject];
+    }
+
+    return nil;
+}
+
 @end
