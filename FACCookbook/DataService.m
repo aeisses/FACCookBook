@@ -5,10 +5,10 @@
 //  Created by Aaron Eisses on 2015-03-07.
 //  Copyright (c) 2015 EAC. All rights reserved.
 //
+#import <AFNetworking/AFNetworking.h>
 
 #import "DataService.h"
 #import "AppDelegate.h"
-#import <AFNetworking/AFNetworking.h>
 #import "Direction.h"
 #import "Ingredient.h"
 #import "Recipe.h"
@@ -17,20 +17,83 @@
 #import "Popular.h"
 #import "Information.h"
 
-static NSString *kURL = @"https://dl.dropboxusercontent.com/u/19713116/recipes.json";
 
+// XXX: Temporary static test data. Will be replaced with server
+static NSString *kRecipies = @"https://dl.dropboxusercontent.com/u/19713116/recipes.json";
+static NSString *kFeatured = @"https://dl.dropboxusercontent.com/u/95002502/foundation/featured.json";
+static NSString *kLocation = @"https://dl.dropboxusercontent.com/u/95002502/foundation/location.json";
+static NSString *kPopular = @"https://dl.dropboxusercontent.com/u/95002502/foundation/popular.json";
+static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/foundation/purchased.json";
+
+
+// XXX: For querying testdata dropbox does not set the content-type header properly so we can't use
+// built-in json serialization.
+// Once the server is up and gtg it should be sending valid content-types and we can cut out manual serialization.
 @interface DataService()
 
 @property (retain, nonatomic) AFHTTPRequestOperationManager *httpManager;
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-- (NSURLRequest*)getRequestUrl;
+// REST Interface Endpoint definitions.
++ (NSString *)protocol;
++ (NSString *)domain;
++ (NSURLRequest *)allRecipiesEndpoint;
++ (NSURLRequest *)newRecipiesEndpoint;
++ (NSURLRequest *)featuredEndPoint;
++ (NSURLRequest *)locationEndPoint;
++ (NSURLRequest *)popularEndPoint;
++ (NSURLRequest *)purchasedEndPoint;
+
 - (void)processRecipesData:(NSDictionary*)jsonData;
 - (void)processRecipeData:(NSDictionary*)recipe;
 
 @end
 
 @implementation DataService
+
++ (NSString *)protocol {
+    return @"https";
+}
+
++ (NSString *)domain {
+    return @"dl.dropboxusercontent.com";
+}
+
++ (NSURLRequest *)allRecipiesEndpoint {
+    NSString *endpoint = [NSString stringWithFormat:@"%@://%@/u/19713116/recipes.json", [DataService protocol], [DataService domain]];
+    NSURL *url = [NSURL URLWithString:endpoint];
+    return [NSURLRequest requestWithURL:url];
+}
+
++ (NSURLRequest *)newRecipiesEndpoint {
+    NSString *endpoint = [NSString stringWithFormat:@"%@://%@/u/19713116/recipes.json", [DataService protocol], [DataService domain]];
+    NSURL *url = [NSURL URLWithString:endpoint];
+    return [NSURLRequest requestWithURL:url];
+}
+
++ (NSURLRequest *)featuredEndPoint {
+    NSString *endpoint = [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/featured.json", [DataService protocol], [DataService domain]];
+    NSURL *url = [NSURL URLWithString:endpoint];
+    return [NSURLRequest requestWithURL:url];
+}
+
++ (NSURLRequest *)locationEndPoint {
+    NSString *endpoint = [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/location.json", [DataService protocol], [DataService domain]];
+    NSURL *url = [NSURL URLWithString:endpoint];
+    return [NSURLRequest requestWithURL:url];
+}
+
++ (NSURLRequest *)popularEndPoint {
+    NSString *endpoint = [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/popular.json", [DataService protocol], [DataService domain]];
+    NSURL *url = [NSURL URLWithString:endpoint];
+    return [NSURLRequest requestWithURL:url];
+}
+
++ (NSURLRequest *)purchasedEndPoint {
+    NSString *endpoint = [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/purchased.json", [DataService protocol], [DataService domain]];
+    NSURL *url = [NSURL URLWithString:endpoint];
+    return [NSURLRequest requestWithURL:url];
+}
 
 @synthesize httpManager = _httpManager;
 @synthesize managedObjectContext = _managedObjectContext;
@@ -54,11 +117,6 @@ static NSString *kURL = @"https://dl.dropboxusercontent.com/u/19713116/recipes.j
         _managedObjectContext = ((AppDelegate*)[[UIApplication sharedApplication] delegate]).managedObjectContext;
     }
     return self;
-}
-
-- (NSURLRequest*)getRequestUrl {
-    NSURL *url = [[NSURL alloc] initWithString:kURL];
-    return [[NSURLRequest alloc] initWithURL:url];
 }
 
 - (Recipe*)loadRecipeFromCoreData:(NSNumber*)recipeId {
@@ -162,7 +220,7 @@ static NSString *kURL = @"https://dl.dropboxusercontent.com/u/19713116/recipes.j
 }
 
 - (void)loadRecipeData {
-    AFHTTPRequestOperation *operation = [_httpManager HTTPRequestOperationWithRequest:[self getRequestUrl] success:^(AFHTTPRequestOperation *op, id res) {
+    AFHTTPRequestOperation *operation = [_httpManager HTTPRequestOperationWithRequest:[DataService allRecipiesEndpoint] success:^(AFHTTPRequestOperation *op, id res) {
         NSError *errorJson=nil;
         NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
         if (errorJson) {
