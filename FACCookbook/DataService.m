@@ -97,10 +97,6 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     return self;
 }
 
-- (Recipe*)loadRecipeFromCoreData:(NSNumber*)recipeId {
-    // Fetch Request
-    return nil;
-}
 
 - (void)loadInformation:(NSDictionary*)information {
     // TODO: Check if information exists
@@ -139,6 +135,13 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     NSError *error = nil;
     [_managedObjectContext save:&error];
     // TODO: Handle error
+}
+
+- (void)processRecipesData:(NSDictionary*)jsonData {
+    NSArray *recipes = [jsonData objectForKey:@"recipes"];
+    for (NSDictionary *recipe in recipes) {
+        [self processRecipeData:recipe];
+    }
 }
 
 - (void)processRecipeData:(NSDictionary*)recipe {
@@ -190,6 +193,7 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
     // TODO: Handle error
 }
 
+<<<<<<< HEAD
 - (void)processRecipesData:(NSDictionary*)jsonData {
     NSArray *recipes = [jsonData objectForKey:@"recipes"];
     for (NSDictionary *recipe in recipes) {
@@ -199,6 +203,11 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
 
 - (void)fetchRecipeData {
     void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
+=======
+ // to be replaced by fetch
+- (void)loadRecipeData {
+    AFHTTPRequestOperation *operation = [_httpManager HTTPRequestOperationWithRequest:[DataService allRecipiesEndpoint] success:^(AFHTTPRequestOperation *op, id res) {
+>>>>>>> e9aace4... Add loadfromCoreData for recipe.
         NSError *errorJson=nil;
         NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
         if (errorJson) {
@@ -301,5 +310,28 @@ static NSString *kPurchased = @"https://dl.dropboxusercontent.com/u/95002502/fou
 
     [[self httpManager] GET:[DataService purchasedEndPoint] parameters:nil success:success failure:failure];
 }
+
+- (Recipe*)loadRecipeFromCoreData:(NSNumber*)recipeId {
+    // Fetch Request
+    NSFetchRequest *recipeFetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *recipeEntity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:_managedObjectContext];
+    [recipeFetchRequest setEntity:recipeEntity];
+
+    NSPredicate *recipeIdPredicate = [NSPredicate predicateWithFormat:@""];
+    [recipeFetchRequest setPredicate:recipeIdPredicate];
+    NSError *error = nil;
+
+    NSArray *results = [_managedObjectContext executeFetchRequest:recipeFetchRequest error:&error];
+    if(error) {
+        NSLog(@"error description :%@",[error description]);
+    }
+    else {
+        NSLog(@"Results  :%@",results);
+        return  (Recipe*)[results lastObject];
+    }
+
+    return nil;
+}
+
 
 @end
