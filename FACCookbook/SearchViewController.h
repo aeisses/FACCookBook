@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import "ParentCollectionViewController.h"
 
-@interface SearchViewController : UICollectionViewController <UICollectionViewDataSource>
+@interface SearchViewController : ParentCollectionViewController
 
 @end

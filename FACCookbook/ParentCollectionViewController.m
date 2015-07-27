@@ -9,7 +9,10 @@
 #import "ParentCollectionViewController.h"
 #import "AppDelegate.h"
 #import "Recipe.h"
+#import "Utils.h"
+#import "RecipeCell.h"
 
+static NSString *cellResueIdentifier = @"Cell";
 
 @implementation ParentCollectionViewController
 
@@ -25,11 +28,9 @@
     [super viewDidLoad];
 
     _managedObjectContext = [(AppDelegate*)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"RecipeCell"];
-    UINib *cellNib = [UINib nibWithNibName:@"RecipeCell" bundle:nil];
-    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:@"Cell"];
 
-    _recipeImages = [NSArray arrayWithObjects:@"angry_birds_cake.jpg", @"creme_brelee.jpg", @"egg_benedict.jpg", @"full_breakfast.jpg", @"green_tea.jpg", @"ham_and_cheese_panini.jpg", @"ham_and_egg_sandwich.jpg", @"hamburger.jpg", @"instant_noodle_with_egg.jpg", @"japanese_noodle_with_pork.jpg", @"mushroom_risotto.jpg", @"noodle_with_bbq_pork.jpg", @"starbucks_coffee.jpg", @"thai_shrimp_cake.jpg", @"vegetable_curry.jpg", @"white_chocolate_donut.jpg", nil];
+    UINib *cellNib = [UINib nibWithNibName:@"RecipeCell" bundle:nil];
+    [self.collectionView registerNib:cellNib forCellWithReuseIdentifier:cellResueIdentifier];
 }
 
 - (void)viewDidUnload {
@@ -41,32 +42,21 @@
 }
 
 #pragma UICollectioView Data Source
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    id  sectionInfo =
-    [[_fetchedResultsController sections] objectAtIndex:section];
-    return [sectionInfo numberOfObjects];
-}
-
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
     return 1;
 }
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"recipe" sender:indexPath];
+}
 
-
-        //cell.textLabel.text = info.title;
-        [self performSegueWithIdentifier:@"recipe" sender:indexPath];
-    NSLog(@"info ");
-
-
-
-
-    /*
-     cell.textLabel.text = info.name;
-     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@",
-     info.city, info.state];
-     */
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    RecipeCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
+    
+    [cell addRecipeImage:nil forCell:YES];
+    
+    return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -75,23 +65,11 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-
-    NSLog(@"Screen Size %f %f", screenRect.size.width, screenRect.size.height);
-
-    CGSize retval;
-    if (indexPath.row == 0) {
-        retval = CGSizeMake(screenRect.size.width - 50, 150);
-    } else {
-        retval = CGSizeMake((screenRect.size.width - 50) / 2, 150);
-    }
-
-    return retval;
+    return [Utils getSmallCellSize];
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    return UIEdgeInsetsMake(5, 5, 5, 5);
 }
 
 @end
-#import <Foundation/Foundation.h>

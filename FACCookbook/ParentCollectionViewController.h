@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-
-
 @interface ParentCollectionViewController : UICollectionViewController <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;

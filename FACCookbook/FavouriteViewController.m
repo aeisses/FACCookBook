@@ -73,55 +73,11 @@
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if (self.fetchedResultsController != nil) {
-        Recipe *myRecipe = [super.fetchedResultsController objectAtIndexPath:sender];
-
-        RecipeViewController *recipeViewController = (RecipeViewController *) segue.destinationViewController;
-        //recipeViewController.name = myRecipe.title;
-
-//        NSIndexPath *path = (NSIndexPath *) sender;
-//        //recipeViewController.image = UIImage [super.recipeImages objectAtIndex:path.row];
-//
-//        UIImage *image = [UIImage imageNamed:[super.recipeImages objectAtIndex:path.row]];
-//
-//        UIImageView *imageView =  [[UIImageView alloc] initWithFrame:];
-//        recipeViewController.image = imageView;
-    }
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
-
-    UICollectionViewCell *cell =
-    [cv dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-
-    Recipe *info = [super.fetchedResultsController objectAtIndexPath:indexPath];
-    //cell.
-
-    //cell.textLabel.text = info.title;
-
-    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, cell.bounds.size.width, 40)];
-    title.tag = 200;
-    [cell.contentView addSubview:title];
-
-    title.text = info.title;
-
-    UIImage *image = [UIImage imageNamed:[super.recipeImages objectAtIndex:indexPath.row]];
-
-    UIImageView *imageView =  [[UIImageView alloc] initWithFrame:cell.contentView.bounds];
-    imageView.image = image;
-
-    [[cell contentView] addSubview:imageView];
-    // cell.imgPath = [super.recipeImages objectAtIndex:path.row];
-
-    // Set up the cell...
-    //    [self configureCell:cell atIndexPath:indexPath];
-    
-    return cell;
-    
+#pragma UICollectioView Data Source
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
+    //    id sectionInfo = [[_fetchedResultsController sections] objectAtIndex:section];
+    //    return [sectionInfo numberOfObjects];
+    return 10;
 }
 
 @end

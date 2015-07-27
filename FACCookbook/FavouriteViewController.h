@@ -11,7 +11,7 @@
 #import <CoreData/CoreData.h>
 #import "ParentCollectionViewController.h"
 
-@interface FavouriteViewController : ParentCollectionViewController <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
+@interface FavouriteViewController : ParentCollectionViewController
 
 
 @end

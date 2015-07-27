@@ -120,10 +120,6 @@ static NSString *cellResueIdentifier = @"Cell";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    
-    NSLog(@"Screen Size %f %f", screenRect.size.width, screenRect.size.height);
-    
     CGSize retval;
     if (indexPath.row == 0) {
         retval = [Utils getSmallStandardSize];
