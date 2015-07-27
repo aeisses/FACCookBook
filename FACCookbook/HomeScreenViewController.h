@@ -11,8 +11,9 @@
 #import <CoreData/CoreData.h>
 #import "HomeScreenViewLayout.h"
 
-@interface HomeScreenViewController : UICollectionViewController <UICollectionViewDataSource>
+@interface HomeScreenViewController : UICollectionViewController <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property(nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 @property(nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 

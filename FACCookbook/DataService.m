@@ -26,12 +26,12 @@ static int kPopularId = 1001;
 static int kFeaturedId = 1002;
 static int kPurchasedId = 1003;
 
-static NSString *FCBFormaCellSmall = @"";
-static NSString *FCBFormatCellMedium = @"";
-static NSString *FCBFormatCellLarge = @"";
-static NSString *FCBFormatStandardSmall = @"";
-static NSString *FCBFormatStandardMedium = @"";
-static NSString *FCBFormatStandardLarge = @"";
+static NSString *FCBFormaCellSmall = @"FCBCellSmall";
+static NSString *FCBFormatCellMedium = @"FCBCellMedium";
+static NSString *FCBFormatCellLarge = @"FCBCellLarge";
+static NSString *FCBFormatStandardSmall = @"FCBStandardSmall";
+static NSString *FCBFormatStandardMedium = @"FCBStandardMedium";
+static NSString *FCBFormatStandardLarge = @"FCBStandardLarge";
 
 static NSString *FCBFormatFamilyCell = @"";
 static NSString *FCBFormatFamilyStandard = @"";

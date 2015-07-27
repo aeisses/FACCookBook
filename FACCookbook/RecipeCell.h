@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "Recipe.h"
 
 @interface RecipeCell : UICollectionViewCell
+
+@property (weak, nonatomic) IBOutlet UIImageView *recipeImage;
+
+- (void)addRecipeImage:(Recipe*)recipe forCell:(BOOL)forCell;
 
 @end

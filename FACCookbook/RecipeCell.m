@@ -10,6 +10,8 @@
 
 @implementation RecipeCell
 
+@synthesize recipeImage = _recipeImage;
+
 - (void)prepareForReuse {
 }
 
@@ -20,6 +22,22 @@
   }
   
   return self;
+}
+
+- (void)addRecipeImage:(Recipe*)recipe forCell:(BOOL)forCell {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        if (forCell) {
+            _recipeImage.image = [UIImage imageNamed:@"iPadCell"];
+        } else {
+            _recipeImage.image = [UIImage imageNamed:@"iPadStandard"];
+        }
+    } else {
+        if (forCell) {
+            _recipeImage.image = [UIImage imageNamed:@"iPhoneCell"];
+        } else {
+            _recipeImage.image = [UIImage imageNamed:@"iPhoneStandard"];
+        }
+    }
 }
 
 @end

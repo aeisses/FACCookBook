@@ -10,6 +10,10 @@
 #import "AppDelegate.h"
 #import "RecipeViewController.h"
 #import "Recipe.h"
+#import "RecipeCell.h"
+#import "Utils.h"
+
+static NSString *cellResueIdentifier = @"Cell";
 
 @interface HomeScreenViewController () {
     NSArray *recipeImages;
@@ -18,6 +22,7 @@
 
 @implementation HomeScreenViewController
 
+@synthesize collectionView = _collectionView;
 @synthesize fetchedResultsController = _fetchedResultsController;
 @synthesize managedObjectContext = _managedObjectContext;
 
@@ -38,18 +43,12 @@
         exit(-1);
     }
     
-    
-    /*
-     old yo
-     recipeImages = [NSArray arrayWithObjects:@"angry_birds_cake.jpg", @"creme_brelee.jpg", @"egg_benedict.jpg", @"full_breakfast.jpg", @"green_tea.jpg", @"ham_and_cheese_panini.jpg", @"ham_and_egg_sandwich.jpg", @"hamburger.jpg", @"instant_noodle_with_egg.jpg", @"japanese_noodle_with_pork.jpg", @"mushroom_risotto.jpg", @"noodle_with_bbq_pork.jpg", @"starbucks_coffee.jpg", @"thai_shrimp_cake.jpg", @"vegetable_curry.jpg", @"white_chocolate_donut.jpg", nil];
-     */
+    [_collectionView registerNib:[UINib nibWithNibName:@"RecipeCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellResueIdentifier];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
-
 
 - (NSFetchedResultsController *) fetchedResultsController {
     if (_fetchedResultsController != nil) {
@@ -71,11 +70,10 @@
     [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
     
     self.fetchedResultsController = theFetchedResultsController;
-    _fetchedResultsController.delegate = self;
+    __weak typeof(self) wSelf = self;
+    _fetchedResultsController.delegate = wSelf;
     return _fetchedResultsController;
 }
-
-
 
 #pragma UICollectioView Data Source
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
@@ -83,29 +81,21 @@
     return [sectionInfo numberOfObjects];
 }
 
-
-
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
     return 1;
 }
 
-
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *identifier = @"recipe";
-    UICollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    
-    UIImageView *recipeImageView = (UIImageView *)[cell viewWithTag:100];
-    recipeImageView.image = [UIImage imageNamed:[recipeImages objectAtIndex:indexPath.row]];
-    
-    UILabel *recipeName = (UILabel *)[cell viewWithTag:101];
-    Recipe *recipe = [_fetchedResultsController objectAtIndexPath:indexPath];
-    recipeName.text = recipe.title;
+    RecipeCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
+
+    if (indexPath.row == 0) {
+        [cell addRecipeImage:nil forCell:NO];
+    } else {
+        [cell addRecipeImage:nil forCell:YES];
+    }
     
     return cell;
 }
-
-
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -123,14 +113,10 @@
     NSLog(@"Pushed new View Controller");
 }
 
-
-
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // TODO: Deselect item
 }
-
-
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -140,15 +126,13 @@
     
     CGSize retval;
     if (indexPath.row == 0) {
-        retval = CGSizeMake(screenRect.size.width - 50, 150);
+        retval = [Utils getSmallStandardSize];
     } else {
-        retval = CGSizeMake((screenRect.size.width - 50) / 2, 150);
+        retval = [Utils getSmallCellSize];
     }
     
     return retval;
 }
-
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     RecipeViewController *recipeViewController = (RecipeViewController *) segue.destinationViewController;
@@ -157,13 +141,10 @@
     recipeViewController.recipe = [_fetchedResultsController objectAtIndexPath:path];
 }
 
-
-
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    return UIEdgeInsetsMake(5, 5, 5, 5);
 }
-
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
     // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
@@ -171,12 +152,11 @@
     NSLog(@"CONTROLLER WILL CHANGE CONTENT!!");
 }
 
-
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     
     NSLog(@"Did change object");
     
-    UICollectionView *collectionView = self.collectionView;
+//    UICollectionView *collectionView = self.collectionView;
     
     switch(type) {
             
@@ -203,7 +183,6 @@
     }
 }
 
-
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
     NSLog(@"did change section");
     /*
@@ -219,7 +198,6 @@
      }
      */
 }
-
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
