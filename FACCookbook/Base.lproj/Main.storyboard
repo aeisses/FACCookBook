@@ -37,6 +37,7 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Favourites" id="lO4-dM-fVr"/>
                     <connections>
+                        <outlet property="collectionView" destination="EUL-AH-hq7" id="orp-Oi-ZUJ"/>
                         <segue destination="TzS-GA-PMA" kind="show" identifier="recipe" id="GFV-GA-dcg"/>
                     </connections>
                 </collectionViewController>
@@ -121,6 +122,7 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Search" id="EgT-66-n5b"/>
                     <connections>
+                        <outlet property="collectionView" destination="OgH-ce-end" id="G1Z-y6-Uxc"/>
                         <segue destination="TzS-GA-PMA" kind="show" identifier="recipe" id="hly-Wi-plr"/>
                     </connections>
                 </collectionViewController>
@@ -159,6 +161,7 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Popular" id="YaR-hL-m3x" userLabel="Popular"/>
                     <connections>
+                        <outlet property="collectionView" destination="9VK-cY-7qm" id="sm7-ET-bpR"/>
                         <segue destination="TzS-GA-PMA" kind="show" identifier="recipe" id="Ndg-Vz-ndr"/>
                     </connections>
                 </collectionViewController>
@@ -197,6 +200,7 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Season" id="xSE-Lu-oAF"/>
                     <connections>
+                        <outlet property="collectionView" destination="JqM-KA-BDn" id="2Vg-ko-69S"/>
                         <segue destination="TzS-GA-PMA" kind="show" identifier="recipe" id="3ym-qK-RoI"/>
                     </connections>
                 </collectionViewController>
@@ -373,6 +377,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hly-Wi-plr"/>
+        <segue reference="3ym-qK-RoI"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,8 +12,9 @@
 @interface ParentCollectionViewController : UICollectionViewController <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) NSFetchedResultsController *recipes;
 @property (nonatomic, strong) NSArray *recipeImages;
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 

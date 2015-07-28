@@ -14,7 +14,8 @@
 @interface HomeScreenViewController : UICollectionViewController <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
-@property(nonatomic,strong) NSManagedObjectContext* managedObjectContext;
-@property(nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+@property (nonatomic, retain) NSFetchedResultsController *recipes;
+@property (nonatomic, retain) NSArray *featuredRecipes;
 
 @end

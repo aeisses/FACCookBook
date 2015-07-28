@@ -10,6 +10,8 @@
 
 @implementation SearchViewController
 
+@synthesize recipes = _recipes;
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 }
@@ -22,11 +24,28 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma UICollectioView Data Source
-- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    //    id sectionInfo = [[_fetchedResultsController sections] objectAtIndex:section];
-    //    return [sectionInfo numberOfObjects];
-    return 10;
+- (NSFetchedResultsController *)recipes {
+    if (_recipes != nil) {
+        return _recipes;
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:self.managedObjectContext];
+    
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"recipeId" ascending:NO];
+    
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setFetchBatchSize:20];
+    
+    NSFetchedResultsController *theFetchedResultsController =
+    [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                        managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil
+                                                   cacheName:@"Root"];
+    _recipes = theFetchedResultsController;
+    _recipes.delegate = self;
+    
+    return _recipes;
 }
 
 @end
