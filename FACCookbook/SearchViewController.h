@@ -6,9 +6,6 @@
 //  Copyright (c) 2015 EAC. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
 #import "ParentCollectionViewController.h"
 
 @interface SearchViewController : ParentCollectionViewController

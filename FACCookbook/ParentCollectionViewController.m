@@ -14,6 +14,7 @@
 #import "RecipeCell.h"
 
 static NSString *cellResueIdentifier = @"Cell";
+static NSString *nibName = @"RecipeCell";
 
 @interface ParentCollectionViewController()
 @property (retain, nonatomic) Recipe *selectedRecipe;
@@ -42,7 +43,7 @@ static NSString *cellResueIdentifier = @"Cell";
         exit(-1);
     }
     
-    [_collectionView registerNib:[UINib nibWithNibName:@"RecipeCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellResueIdentifier];
+    [_collectionView registerNib:[UINib nibWithNibName:nibName bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellResueIdentifier];
 }
 
 - (void)viewDidUnload {
@@ -86,7 +87,7 @@ static NSString *cellResueIdentifier = @"Cell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    // TODO: Deselect item
+
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,6 +96,66 @@ static NSString *cellResueIdentifier = @"Cell";
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(5, 5, 5, 5);
+}
+
+#pragma mark FetchResultsController Delegate Methods
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+    // [self.collectionView beginUpdates];
+    NSLog(@"CONTROLLER WILL CHANGE CONTENT!!");
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    NSLog(@"Did change object");
+    
+    //    UICollectionView *collectionView = self.collectionView;
+    
+    switch(type) {
+            
+        case NSFetchedResultsChangeInsert:
+            // [collectionView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            // [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            // [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            /*
+             [tableView deleteRowsAtIndexPaths:[NSArray
+             arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+             [tableView insertRowsAtIndexPaths:[NSArray
+             arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+             */
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    NSLog(@"did change section");
+    /*
+     switch(type) {
+     
+     case NSFetchedResultsChangeInsert:
+     [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+     break;
+     
+     case NSFetchedResultsChangeDelete:
+     [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+     break;
+     }
+     */
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
+    // [self.tableView endUpdates];
+    NSLog(@"The content has finished changing");
 }
 
 @end

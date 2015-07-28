@@ -7,8 +7,6 @@
 //
 
 #import "HomeScreenViewController.h"
-#import "AppDelegate.h"
-#import "RecipeViewController.h"
 #import "Recipe.h"
 #import "RecipeCell.h"
 #import "Utils.h"
@@ -16,9 +14,7 @@
 
 static NSString *cellResueIdentifier = @"Cell";
 
-@interface HomeScreenViewController () {
-    NSArray *recipeImages;
-}
+@interface HomeScreenViewController ()
 
 @property (retain, nonatomic) Recipe *selectedRecipe;
 
@@ -26,34 +22,8 @@ static NSString *cellResueIdentifier = @"Cell";
 
 @implementation HomeScreenViewController
 
-@synthesize collectionView = _collectionView;
 @synthesize recipes = _recipes;
-@synthesize managedObjectContext = _managedObjectContext;
 @synthesize featuredRecipes = _featuredRecipes;
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.collectionView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
-    
-    AppDelegate *delegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    self.managedObjectContext = delegate.managedObjectContext;
-    
-    NSError *error;
-    if (![[self recipes] performFetch:&error]) {
-        NSLog(@"Unresolved error %@", error);
-        exit(-1);
-    }
-    
-    [_collectionView registerNib:[UINib nibWithNibName:@"RecipeCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellResueIdentifier];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
 
 - (NSFetchedResultsController *)recipes {
     if (_recipes != nil) {
@@ -103,10 +73,6 @@ static NSString *cellResueIdentifier = @"Cell";
     return [self.featuredRecipes count];
 }
 
-- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
-    return 1;
-}
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     RecipeCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
 
@@ -120,23 +86,6 @@ static NSString *cellResueIdentifier = @"Cell";
     return cell;
 }
 
-//#pragma mark - Segue protocol methods
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    RecipeViewController* vc = (RecipeViewController*)segue.destinationViewController;
-    [vc setRecipe:_selectedRecipe];
-    [vc setRecipes:[_recipes fetchedObjects]];
-}
-
-//#pragma mark - UICollectionViewDelegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    _selectedRecipe =  [_featuredRecipes objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"recipe" sender:self];
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-
-}
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGSize retval;
     if (indexPath.row == 0) {
@@ -146,69 +95,6 @@ static NSString *cellResueIdentifier = @"Cell";
     }
     
     return retval;
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(5, 5, 5, 5);
-}
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
-    // [self.collectionView beginUpdates];
-    NSLog(@"CONTROLLER WILL CHANGE CONTENT!!");
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    
-    NSLog(@"Did change object");
-    
-//    UICollectionView *collectionView = self.collectionView;
-    
-    switch(type) {
-            
-        case NSFetchedResultsChangeInsert:
-            // [collectionView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeDelete:
-            // [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-            
-        case NSFetchedResultsChangeUpdate:
-            // [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            break;
-            
-        case NSFetchedResultsChangeMove:
-            /*
-             [tableView deleteRowsAtIndexPaths:[NSArray
-             arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-             [tableView insertRowsAtIndexPaths:[NSArray
-             arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-             */
-            break;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    NSLog(@"did change section");
-    /*
-     switch(type) {
-     
-     case NSFetchedResultsChangeInsert:
-     [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-     break;
-     
-     case NSFetchedResultsChangeDelete:
-     [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-     break;
-     }
-     */
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-    // [self.tableView endUpdates];
-    NSLog(@"The content has finished changing");
 }
 
 @end

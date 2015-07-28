@@ -6,15 +6,11 @@
 //  Copyright (c) 2015 EAC. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
 #import "HomeScreenViewLayout.h"
+#import "ParentCollectionViewController.h"
 
-@interface HomeScreenViewController : UICollectionViewController <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
+@interface HomeScreenViewController : ParentCollectionViewController
 
-@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *recipes;
 @property (nonatomic, retain) NSArray *featuredRecipes;
 
