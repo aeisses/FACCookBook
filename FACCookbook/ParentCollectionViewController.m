@@ -18,6 +18,8 @@ static NSString *nibName = @"RecipeCell";
 
 @interface ParentCollectionViewController()
 @property (retain, nonatomic) Recipe *selectedRecipe;
+@property NSMutableArray *sectionChanges;
+@property NSMutableArray *itemChanges;
 @end
 
 @implementation ParentCollectionViewController
@@ -100,62 +102,78 @@ static NSString *nibName = @"RecipeCell";
 
 #pragma mark FetchResultsController Delegate Methods
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
-    // [self.collectionView beginUpdates];
-    NSLog(@"CONTROLLER WILL CHANGE CONTENT!!");
+    _sectionChanges = [[NSMutableArray alloc] init];
+    _itemChanges = [[NSMutableArray alloc] init];
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-    
-    NSLog(@"Did change object");
-    
-    //    UICollectionView *collectionView = self.collectionView;
-    
+- (void)controller:(NSFetchedResultsController *)controller
+   didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath
+     forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath {
+    NSMutableDictionary *change = [[NSMutableDictionary alloc] init];
     switch(type) {
-            
         case NSFetchedResultsChangeInsert:
-            // [collectionView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            change[@(type)] = newIndexPath;
             break;
-            
         case NSFetchedResultsChangeDelete:
-            // [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            change[@(type)] = indexPath;
             break;
-            
         case NSFetchedResultsChangeUpdate:
-            // [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            change[@(type)] = indexPath;
             break;
-            
         case NSFetchedResultsChangeMove:
-            /*
-             [tableView deleteRowsAtIndexPaths:[NSArray
-             arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-             [tableView insertRowsAtIndexPaths:[NSArray
-             arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-             */
+            change[@(type)] = @[indexPath, newIndexPath];
             break;
     }
+    [_itemChanges addObject:change];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id )sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-    NSLog(@"did change section");
-    /*
-     switch(type) {
-     
-     case NSFetchedResultsChangeInsert:
-     [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-     break;
-     
-     case NSFetchedResultsChangeDelete:
-     [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-     break;
-     }
-     */
+    NSMutableDictionary *change = [[NSMutableDictionary alloc] init];
+    change[@(type)] = @(sectionIndex);
+    [_sectionChanges addObject:change];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-    // [self.tableView endUpdates];
-    NSLog(@"The content has finished changing");
+    [self.collectionView performBatchUpdates:^{
+        for (NSDictionary *change in _sectionChanges) {
+            [change enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+                switch(type) {
+                    case NSFetchedResultsChangeInsert:
+                        [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                        break;
+                    case NSFetchedResultsChangeDelete:
+                        [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                        break;
+                }
+            }];
+        }
+        for (NSDictionary *change in _itemChanges) {
+            [change enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+                switch(type) {
+                    case NSFetchedResultsChangeInsert:
+                        [self.collectionView insertItemsAtIndexPaths:@[obj]];
+                        break;
+                    case NSFetchedResultsChangeDelete:
+                        [self.collectionView deleteItemsAtIndexPaths:@[obj]];
+                        break;
+                    case NSFetchedResultsChangeUpdate:
+                        [self.collectionView reloadItemsAtIndexPaths:@[obj]];
+                        break;
+                    case NSFetchedResultsChangeMove:
+                        [self.collectionView moveItemAtIndexPath:obj[0] toIndexPath:obj[1]];
+                        break;
+                }
+            }];
+        }
+    } completion:^(BOOL finished) {
+        [_collectionView reloadData];
+        _sectionChanges = nil;
+        _itemChanges = nil;
+    }];
 }
 
 @end

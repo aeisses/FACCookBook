@@ -10,7 +10,8 @@
 
 @implementation Featured
 
-@dynamic recipes;
+@dynamic recipe;
 @dynamic featuredId;
+@dynamic order;
 
 @end

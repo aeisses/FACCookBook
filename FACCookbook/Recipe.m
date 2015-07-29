@@ -24,7 +24,7 @@
 @dynamic ingredients;
 @dynamic notes;
 @dynamic popular;
-@dynamic featured;
+//@dynamic featured;
 @dynamic information;
 @dynamic purchased;
 

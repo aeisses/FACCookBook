@@ -7,6 +7,7 @@
 //
 
 #import "HomeScreenViewController.h"
+#import "RecipeViewController.h"
 #import "Recipe.h"
 #import "RecipeCell.h"
 #import "Utils.h"
@@ -23,7 +24,7 @@ static NSString *cellResueIdentifier = @"Cell";
 @implementation HomeScreenViewController
 
 @synthesize recipes = _recipes;
-@synthesize featuredRecipes = _featuredRecipes;
+//@synthesize featuredRecipes = _featuredRecipes;
 
 - (NSFetchedResultsController *)recipes {
     if (_recipes != nil) {
@@ -31,10 +32,11 @@ static NSString *cellResueIdentifier = @"Cell";
     }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Featured" inManagedObjectContext:self.managedObjectContext];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"addDate" ascending:NO];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"order" ascending:YES];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     
     [fetchRequest setFetchBatchSize:20];
@@ -48,35 +50,50 @@ static NSString *cellResueIdentifier = @"Cell";
     return _recipes;
 }
 
-- (NSArray*)featuredRecipes {
-    if (_featuredRecipes) {
-        return _featuredRecipes;
-    }
-    
-    _featuredRecipes = nil;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Featured" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    NSArray *fetchedFeaturedArea = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    
-    if (fetchedFeaturedArea && [fetchedFeaturedArea count] == 1)
-    {
-        Featured *featured = [fetchedFeaturedArea firstObject];
-        _featuredRecipes = [featured.recipes array];
-    }
-    return _featuredRecipes;
+//- (NSArray*)featuredRecipes {
+//    if (_featuredRecipes) {
+//        return _featuredRecipes;
+//    }
+//    
+//    _featuredRecipes = nil;
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Featured" inManagedObjectContext:self.managedObjectContext];
+//    [fetchRequest setEntity:entity];
+//    
+//    NSArray *fetchedFeaturedArea = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+//    
+//    if (fetchedFeaturedArea && [fetchedFeaturedArea count] == 1)
+//    {
+//        Featured *featured = [fetchedFeaturedArea firstObject];
+////        _featuredRecipes = [featured.recipes array];
+//    }
+//    return _featuredRecipes;
+//}
+
+// See if I can find a way to move these two methods into the parent class
+#pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    _selectedRecipe = (Recipe*)((Featured*)[self.recipes objectAtIndexPath:indexPath]).recipe;
+    [self performSegueWithIdentifier:@"recipe" sender:self];
+}
+
+#pragma mark - Segue protocol methods
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    RecipeViewController* vc = (RecipeViewController*)segue.destinationViewController;
+    [vc setRecipe:_selectedRecipe];
+    [vc setRecipes:[_recipes fetchedObjects]];
 }
 
 #pragma UICollectioView Data Source
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return [self.featuredRecipes count];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.recipes sections][section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     RecipeCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
 
-    Recipe *recipe = [_featuredRecipes objectAtIndex:indexPath.row];
+    Recipe *recipe = [[_recipes fetchedObjects] objectAtIndex:indexPath.row];
     if (indexPath.row == 0) {
         [cell addRecipeImage:recipe forCell:NO];
     } else {

@@ -23,7 +23,6 @@
 #import "Purchased.h"
 
 static int kPopularId = 1001;
-static int kFeaturedId = 1002;
 static int kPurchasedId = 1003;
 
 static NSString *FCBFormaCellSmall = @"FCBCellSmall";
@@ -624,24 +623,20 @@ static NSString *FCBFormatFamilyStandard = @"";
 
     NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&err];
 
-    // Add a predicate later.
-     Featured *featured;
-    if([results count]){
-        featured = [results lastObject];
+    // Delete all the featured objects
+    for (Featured *featured in results) {
+        [_managedObjectContext deleteObject:featured];
     }
-    else{
-        featured = [NSEntityDescription insertNewObjectForEntityForName:@"Featured" inManagedObjectContext:_managedObjectContext];
-    }
-
-    NSMutableOrderedSet *featuredSet = [NSMutableOrderedSet new];
+    
+    int counter = 0;
     for(NSNumber *number in featuredData){
-        Recipe *recipe = [self loadRecipeFromCoreData:number];
-        recipe.featured = featured;
-        [featuredSet addObject:recipe];
+        Featured *featured = (Featured*)[NSEntityDescription insertNewObjectForEntityForName:@"Featured" inManagedObjectContext:_managedObjectContext];
+        featured.featuredId = number;
+        featured.order = [NSNumber numberWithInt:counter];
+        Recipe *recipe = (Recipe*)[self loadRecipeFromCoreData:number];
+        featured.recipe = recipe;
+        counter++;
     }
-
-    [featured setRecipes:featuredSet];
-    [featured setFeaturedId:[NSNumber numberWithInt:kFeaturedId]];
 
     NSError *error = nil;
     [_managedObjectContext save:&error];
@@ -687,7 +682,7 @@ static NSString *FCBFormatFamilyStandard = @"";
     }
 }
 
-- (void)processInformation:(NSDictionary*)informationData{
+- (void)processInformation:(NSDictionary*)informationData {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *featuredEntity = [NSEntityDescription entityForName:@"Information" inManagedObjectContext:_managedObjectContext];
     [fetchRequest setEntity:featuredEntity];
@@ -732,7 +727,7 @@ static NSString *FCBFormatFamilyStandard = @"";
         NSLog(@"error description :%@",[error description]);
     }
     else {
-        return  (Recipe*)[results lastObject];
+        return (Recipe*)[results firstObject];
     }
 
     return nil;
@@ -817,7 +812,7 @@ static NSString *FCBFormatFamilyStandard = @"";
     return nil;
 }
 
-- (Popular*)loadPopularDataFromCoreData:(NSNumber*)popularId{
+- (Popular*)loadPopularDataFromCoreData:(NSNumber*)popularId {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Popular" inManagedObjectContext:_managedObjectContext];
     [fetchRequest setEntity:entity];
@@ -837,7 +832,7 @@ static NSString *FCBFormatFamilyStandard = @"";
     return nil;
 }
 
-- (Featured*)loadFeaturedDataFromCoreData:(NSNumber*)featuredId{
+- (Featured*)loadFeaturedDataFromCoreData:(NSNumber*)featuredId {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Featured" inManagedObjectContext:_managedObjectContext];
     [fetchRequest setEntity:entity];
@@ -851,13 +846,13 @@ static NSString *FCBFormatFamilyStandard = @"";
         NSLog(@"error description :%@",[error description]);
     }
     else {
-        return  (Featured*)[results lastObject];
+        return (Featured*)[results lastObject];
     }
 
     return nil;
 }
 
-- (Purchased*)loadPurchasedDataFromCoreData:(NSNumber*)purchasedId{
+- (Purchased*)loadPurchasedDataFromCoreData:(NSNumber*)purchasedId {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Purchased" inManagedObjectContext:_managedObjectContext];
     [fetchRequest setEntity:entity];
