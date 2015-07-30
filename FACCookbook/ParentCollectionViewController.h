@@ -8,6 +8,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "Recipe.h"
+
+extern NSString *cellResueIdentifier;
 
 @interface ParentCollectionViewController : UICollectionViewController <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 
@@ -15,6 +18,9 @@
 @property (nonatomic, retain) NSFetchedResultsController *recipes;
 @property (nonatomic, strong) NSArray *recipeImages;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+
+
+@property (retain, nonatomic) Recipe *selectedRecipe;
 
 @end
 

@@ -12,12 +12,13 @@
 #import "Recipe.h"
 #import "Utils.h"
 #import "RecipeCell.h"
+#import "Featured.h"
 
-static NSString *cellResueIdentifier = @"Cell";
+NSString *cellResueIdentifier = @"Cell";
 static NSString *nibName = @"RecipeCell";
+static NSString *segueIdentifier = @"recipe";
 
 @interface ParentCollectionViewController()
-@property (retain, nonatomic) Recipe *selectedRecipe;
 @property NSMutableArray *sectionChanges;
 @property NSMutableArray *itemChanges;
 @end
@@ -75,8 +76,13 @@ static NSString *nibName = @"RecipeCell";
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    _selectedRecipe =  [self.recipes objectAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:@"recipe" sender:self];
+    NSManagedObject *object = [self.recipes objectAtIndexPath:indexPath];
+    if ([object isKindOfClass:[Featured class]]) {
+        _selectedRecipe = (Recipe*)((Featured*)object).recipe;
+    } else {
+        _selectedRecipe = (Recipe*)object;
+    }
+    [self performSegueWithIdentifier:segueIdentifier sender:self];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -146,6 +152,8 @@ static NSString *nibName = @"RecipeCell";
                         break;
                     case NSFetchedResultsChangeDelete:
                         [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                        break;
+                    default:
                         break;
                 }
             }];
