@@ -11,7 +11,7 @@
 
 #import "Recipe.h"
 
-@interface RecipeViewController : UIViewController
+@interface RecipeViewController : UIViewController <UIScrollViewDelegate>
 
 @property (retain, nonatomic) Recipe *recipe;
 @property (retain, nonatomic) NSArray *recipes;
@@ -19,5 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *category;
 @property (weak, nonatomic) IBOutlet UILabel *season;
 @property (weak, nonatomic) IBOutlet UILabel *instructions;
+
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeRightGuesture;
+@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeLeftGesture;
 
 @end
