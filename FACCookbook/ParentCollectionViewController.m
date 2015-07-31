@@ -61,7 +61,7 @@ static NSString *segueIdentifier = @"recipe";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     RecipeViewController* vc = (RecipeViewController*)segue.destinationViewController;
     [vc setRecipe:_selectedRecipe];
-    [vc setRecipes:[_recipes fetchedObjects]];
+    [vc setRecipes:[self.recipes fetchedObjects]];
 }
 
 #pragma UICollectioView Data Source

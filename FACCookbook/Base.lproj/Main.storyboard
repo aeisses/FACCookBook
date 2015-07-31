@@ -268,8 +268,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DGd-72-8KD">
-                                <rect key="frame" x="16" y="52" width="568" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DGd-72-8KD">
+                                <rect key="frame" x="16" y="52" width="568" height="69"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="c2F-Pb-xyw"/>
                                 </constraints>
@@ -312,28 +312,12 @@
                                 <include reference="WZW-tj-xja"/>
                             </mask>
                         </variation>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="f6a-4R-Iqj" appends="YES" id="A5k-tU-bpG"/>
-                            <outletCollection property="gestureRecognizers" destination="f6a-4R-Iqj" appends="YES" id="reu-hl-pbK"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="name" destination="DGd-72-8KD" id="0t8-hn-awr"/>
-                        <outlet property="swipeLeftGesture" destination="Kzq-fp-1zb" id="6yM-j2-7Nk"/>
-                        <outlet property="swipeRightGuesture" destination="f6a-4R-Iqj" id="v9G-5t-64M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecZ-xj-xe9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="Kzq-fp-1zb">
-                    <connections>
-                        <action selector="handleLeftSwipe:" destination="TzS-GA-PMA" id="1g9-0o-BY9"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="f6a-4R-Iqj">
-                    <connections>
-                        <action selector="handleRightSwipe:" destination="TzS-GA-PMA" id="N7b-al-PhA"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="448" y="1806"/>
         </scene>

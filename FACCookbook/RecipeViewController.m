@@ -8,11 +8,23 @@
 
 #import "RecipeViewController.h"
 
+@interface RecipeViewController()
+@property (strong, nonatomic) UISwipeGestureRecognizer *swipeRightGuesture;
+@property (strong, nonatomic) UISwipeGestureRecognizer *swipeLeftGesture;
+
+- (void)swipeRight;
+- (void)swipeLeft;
+- (void)swipeHandler:(id)sender;
+
+@end
+
 @implementation RecipeViewController
 
 @synthesize recipe = _recipe;
 @synthesize recipes = _recipes;
 @synthesize name = _name;
+@synthesize swipeLeftGesture = _swipeLeftGesture;
+@synthesize swipeRightGuesture = _swipeRightGuesture;
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
@@ -28,6 +40,16 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self loadRecipe];
+    
+    __weak RecipeViewController *wSelf = self;
+    RecipeViewController *sSelf = wSelf;
+    _swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:sSelf action:@selector(swipeHandler:)];
+    _swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:_swipeLeftGesture];
+    
+    _swipeRightGuesture = [[UISwipeGestureRecognizer alloc] initWithTarget:sSelf action:@selector(swipeHandler:)];
+    _swipeRightGuesture.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:_swipeRightGuesture];
 }
 
 - (void)viewDidAppear:(BOOL) animated {
@@ -36,21 +58,17 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    _recipe = nil;
-    _recipes = nil;
+    [self.view removeGestureRecognizer:_swipeRightGuesture];
+    [self.view removeGestureRecognizer:_swipeLeftGesture];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    UIScrollView *scrollView = (UIScrollView *) self.view;
-//    [scrollView setContentOffset:CGPointMake(0, scrollView.contentOffset.y)];
-
-//    self.instructions.text = @"";
-  
 }
 
-- (IBAction)handleRightSwipe:(id)sender {
+#pragma mark local methods
+- (void)swipeRight {
     NSUInteger index = [_recipes indexOfObject:_recipe];
     if (index > 0) {
         self.recipe = [_recipes objectAtIndex:--index];
@@ -58,11 +76,20 @@
     }
 }
 
-- (IBAction)handleLeftSwipe:(id)sender {
+- (void)swipeLeft {
     NSUInteger index = [_recipes indexOfObject:_recipe];
-    if (index < [_recipes count]) {
+    if (index < [_recipes count]-1) {
         self.recipe = [_recipes objectAtIndex:++index];
         [self loadRecipe];
+    }
+}
+
+- (void)swipeHandler:(id)sender {
+    UISwipeGestureRecognizer *gestureRecognizer = (UISwipeGestureRecognizer*)sender;
+    if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        [self swipeRight];
+    } if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        [self swipeLeft];
     }
 }
 

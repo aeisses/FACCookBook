@@ -20,7 +20,4 @@
 @property (weak, nonatomic) IBOutlet UILabel *season;
 @property (weak, nonatomic) IBOutlet UILabel *instructions;
 
-@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeRightGuesture;
-@property (strong, nonatomic) IBOutlet UISwipeGestureRecognizer *swipeLeftGesture;
-
 @end
