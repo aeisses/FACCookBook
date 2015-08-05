@@ -277,14 +277,60 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xXo-Uu-2Lq">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="DX8-Ur-lwb"/>
+                                    <constraint firstAttribute="height" constant="200" id="HNY-oC-gCM"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="DX8-Ur-lwb"/>
+                                        <exclude reference="HNY-oC-gCM"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="DX8-Ur-lwb"/>
+                                        <include reference="HNY-oC-gCM"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xcf-3t-5MS">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="gnj-A4-IX6"/>
+                                    <constraint firstAttribute="width" constant="300" id="nni-AL-auH"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="gnj-A4-IX6"/>
+                                        <exclude reference="nni-AL-auH"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="gnj-A4-IX6"/>
+                                        <include reference="nni-AL-auH"/>
+                                    </mask>
+                                </variation>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="DGd-72-8KD" firstAttribute="trailing" secondItem="r91-Ex-x5N" secondAttribute="trailingMargin" id="3v1-OB-f6Z"/>
+                            <constraint firstItem="xcf-3t-5MS" firstAttribute="top" secondItem="xXo-Uu-2Lq" secondAttribute="bottom" constant="43" id="80v-q1-Tqp"/>
+                            <constraint firstAttribute="centerX" secondItem="xcf-3t-5MS" secondAttribute="centerX" id="HEo-2r-8gt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BNy-WQ-6i0" secondAttribute="trailing" constant="398" id="TAv-4c-fHw"/>
                             <constraint firstItem="KtA-7L-yZo" firstAttribute="top" secondItem="BNy-WQ-6i0" secondAttribute="bottom" constant="618" id="WZW-tj-xja"/>
                             <constraint firstItem="DGd-72-8KD" firstAttribute="top" secondItem="hkd-cC-vA5" secondAttribute="bottom" constant="8" id="gac-eO-ssM"/>
+                            <constraint firstItem="xXo-Uu-2Lq" firstAttribute="top" secondItem="DGd-72-8KD" secondAttribute="bottom" constant="15" id="nY2-Sp-sPv"/>
+                            <constraint firstAttribute="centerX" secondItem="xXo-Uu-2Lq" secondAttribute="centerX" id="pjv-pK-1TE"/>
                             <constraint firstItem="BNy-WQ-6i0" firstAttribute="leading" secondItem="r91-Ex-x5N" secondAttribute="leadingMargin" constant="8" id="s1C-AW-S1q"/>
                             <constraint firstItem="DGd-72-8KD" firstAttribute="leading" secondItem="r91-Ex-x5N" secondAttribute="leadingMargin" id="twW-xZ-XGg"/>
                             <constraint firstItem="BNy-WQ-6i0" firstAttribute="top" secondItem="hkd-cC-vA5" secondAttribute="bottom" constant="68" id="xea-mR-DNv"/>
@@ -292,12 +338,30 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="BNy-WQ-6i0"/>
+                                <exclude reference="xXo-Uu-2Lq"/>
+                                <exclude reference="xcf-3t-5MS"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="TAv-4c-fHw"/>
                                 <exclude reference="s1C-AW-S1q"/>
                                 <exclude reference="xea-mR-DNv"/>
+                                <exclude reference="nY2-Sp-sPv"/>
+                                <exclude reference="pjv-pK-1TE"/>
+                                <exclude reference="80v-q1-Tqp"/>
+                                <exclude reference="HEo-2r-8gt"/>
                                 <exclude reference="WZW-tj-xja"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="xXo-Uu-2Lq"/>
+                                <include reference="xcf-3t-5MS"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="nY2-Sp-sPv"/>
+                                <include reference="pjv-pK-1TE"/>
+                                <include reference="80v-q1-Tqp"/>
+                                <include reference="HEo-2r-8gt"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -314,7 +378,9 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="instructions" destination="xcf-3t-5MS" id="mAj-pR-7UX"/>
                         <outlet property="name" destination="DGd-72-8KD" id="0t8-hn-awr"/>
+                        <outlet property="recipeImage" destination="xXo-Uu-2Lq" id="CK9-m9-9fo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecZ-xj-xe9" userLabel="First Responder" sceneMemberID="firstResponder"/>

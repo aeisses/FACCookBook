@@ -7,6 +7,7 @@
 //
 
 #import "RecipeViewController.h"
+#import "Direction.h"
 
 @interface RecipeViewController()
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeRightGuesture;
@@ -23,6 +24,7 @@
 @synthesize recipe = _recipe;
 @synthesize recipes = _recipes;
 @synthesize name = _name;
+@synthesize recipeImage = _recipeImage;
 @synthesize swipeLeftGesture = _swipeLeftGesture;
 @synthesize swipeRightGuesture = _swipeRightGuesture;
 
@@ -35,6 +37,22 @@
 
 - (void)loadRecipe {
     _name.text = _recipe.title;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        _recipeImage.image = [UIImage imageNamed:@"iPadStandard"];
+    } else {
+        _recipeImage.image = [UIImage imageNamed:@"iPhoneStandard"];
+    }
+    
+    _instructions.text = @"";
+    int counter = 1;
+    for (Direction *direction in _recipe.directions) {
+        NSString *directionString = [direction.direction stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if ([_instructions.text isEqualToString:@""]) {
+            _instructions.text =  [NSString stringWithFormat:@"%i. %@",counter++,directionString];
+        } else {
+            _instructions.text = [NSString stringWithFormat:@"%@\r%i. %@",_instructions.text,counter++,directionString];
+        }
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

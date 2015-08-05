@@ -16,8 +16,9 @@
 @property (retain, nonatomic) Recipe *recipe;
 @property (retain, nonatomic) NSArray *recipes;
 @property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UIImageView *recipeImage;
 @property (weak, nonatomic) IBOutlet UILabel *category;
 @property (weak, nonatomic) IBOutlet UILabel *season;
-@property (weak, nonatomic) IBOutlet UILabel *instructions;
+@property (weak, nonatomic) IBOutlet UITextView *instructions;
 
 @end

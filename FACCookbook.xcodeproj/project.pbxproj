@@ -24,6 +24,7 @@
 		04CE74391ACCC13200624A7F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE74381ACCC13200624A7F /* Location.m */; };
 		04CE743C1ACCC81800624A7F /* Information.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743B1ACCC81800624A7F /* Information.m */; };
 		04CE74401ACCC88300624A7F /* Popular.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743F1ACCC88300624A7F /* Popular.m */; };
+		04F0A0371B7187CD0041CB33 /* Titlescreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F0A0361B7187CD0041CB33 /* Titlescreen@2x.png */; };
 		04F5CA411AA3B4FB002D1069 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA401AA3B4FB002D1069 /* main.m */; };
 		04F5CA441AA3B4FB002D1069 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA431AA3B4FB002D1069 /* AppDelegate.m */; };
 		04F5CA471AA3B4FB002D1069 /* FACCookbook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA451AA3B4FB002D1069 /* FACCookbook.xcdatamodeld */; };
@@ -107,6 +108,7 @@
 		04CE743D1ACCC82600624A7F /* Information.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Information.h; sourceTree = "<group>"; };
 		04CE743E1ACCC87500624A7F /* Popular.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Popular.h; sourceTree = "<group>"; };
 		04CE743F1ACCC88300624A7F /* Popular.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Popular.m; sourceTree = "<group>"; };
+		04F0A0361B7187CD0041CB33 /* Titlescreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Titlescreen@2x.png"; sourceTree = "<group>"; };
 		04F5CA3B1AA3B4FB002D1069 /* FACCookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FACCookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F5CA3F1AA3B4FB002D1069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04F5CA401AA3B4FB002D1069 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				043938761AF53DA1004EA4D3 /* RecipeCell.xib */,
 				04F5CA4E1AA3B4FB002D1069 /* Images.xcassets */,
 				04F5CA501AA3B4FB002D1069 /* LaunchScreen.xib */,
+				04F0A0361B7187CD0041CB33 /* Titlescreen@2x.png */,
 				04F5CA451AA3B4FB002D1069 /* FACCookbook.xcdatamodeld */,
 				04F5CA3E1AA3B4FB002D1069 /* Supporting Files */,
 			);
@@ -452,6 +455,7 @@
 				509D32E11B5FF43600388374 /* hamburger.jpg in Resources */,
 				509D32DA1B5FF43600388374 /* angry_birds_cake.jpg in Resources */,
 				509D32DE1B5FF43600388374 /* green_tea.jpg in Resources */,
+				04F0A0371B7187CD0041CB33 /* Titlescreen@2x.png in Resources */,
 				509D32E51B5FF43600388374 /* noodle_with_bbq_pork.jpg in Resources */,
 				509D32DB1B5FF43600388374 /* creme_brelee.jpg in Resources */,
 				509D32E61B5FF43600388374 /* photo-frame.png in Resources */,
@@ -668,7 +672,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FACCookbook/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -686,7 +690,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FACCookbook/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
