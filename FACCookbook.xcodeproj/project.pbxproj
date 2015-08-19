@@ -19,6 +19,7 @@
 		0439388D1AF54C23004EA4D3 /* FavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0439388C1AF54C23004EA4D3 /* FavouriteViewController.m */; };
 		043938901AF54C46004EA4D3 /* PopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0439388F1AF54C46004EA4D3 /* PopularViewController.m */; };
 		043938931AF54C68004EA4D3 /* SeasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938921AF54C68004EA4D3 /* SeasonViewController.m */; };
+		045057631B83FA7C0032C8FF /* UITextView+AdjustSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 045057621B83FA7C0032C8FF /* UITextView+AdjustSize.m */; };
 		04551AA41AFC384000DBEE9B /* Featured.m in Sources */ = {isa = PBXBuildFile; fileRef = 04551AA31AFC384000DBEE9B /* Featured.m */; };
 		0478C1001B658A6900AE4ED2 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478C0FF1B658A6900AE4ED2 /* Utils.m */; };
 		04CE74391ACCC13200624A7F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE74381ACCC13200624A7F /* Location.m */; };
@@ -40,23 +41,6 @@
 		5045CCC41B5FCB370039C2D9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5045CCC31B5FCB370039C2D9 /* CoreData.framework */; };
 		509D327E1B5FCE2800388374 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509D327D1B5FCE2800388374 /* HomeView.xib */; };
 		509D32811B5FD20400388374 /* HomeScreenViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 509D32801B5FD20400388374 /* HomeScreenViewLayout.m */; };
-		509D32DA1B5FF43600388374 /* angry_birds_cake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32C91B5FF43600388374 /* angry_birds_cake.jpg */; };
-		509D32DB1B5FF43600388374 /* creme_brelee.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32CA1B5FF43600388374 /* creme_brelee.jpg */; };
-		509D32DC1B5FF43600388374 /* egg_benedict.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32CB1B5FF43600388374 /* egg_benedict.jpg */; };
-		509D32DD1B5FF43600388374 /* full_breakfast.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32CC1B5FF43600388374 /* full_breakfast.jpg */; };
-		509D32DE1B5FF43600388374 /* green_tea.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32CD1B5FF43600388374 /* green_tea.jpg */; };
-		509D32DF1B5FF43600388374 /* ham_and_cheese_panini.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32CE1B5FF43600388374 /* ham_and_cheese_panini.jpg */; };
-		509D32E01B5FF43600388374 /* ham_and_egg_sandwich.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32CF1B5FF43600388374 /* ham_and_egg_sandwich.jpg */; };
-		509D32E11B5FF43600388374 /* hamburger.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D01B5FF43600388374 /* hamburger.jpg */; };
-		509D32E21B5FF43600388374 /* instant_noodle_with_egg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D11B5FF43600388374 /* instant_noodle_with_egg.jpg */; };
-		509D32E31B5FF43600388374 /* japanese_noodle_with_pork.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D21B5FF43600388374 /* japanese_noodle_with_pork.jpg */; };
-		509D32E41B5FF43600388374 /* mushroom_risotto.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D31B5FF43600388374 /* mushroom_risotto.jpg */; };
-		509D32E51B5FF43600388374 /* noodle_with_bbq_pork.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D41B5FF43600388374 /* noodle_with_bbq_pork.jpg */; };
-		509D32E61B5FF43600388374 /* photo-frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D51B5FF43600388374 /* photo-frame.png */; };
-		509D32E71B5FF43600388374 /* starbucks_coffee.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D61B5FF43600388374 /* starbucks_coffee.jpg */; };
-		509D32E81B5FF43600388374 /* thai_shrimp_cake.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D71B5FF43600388374 /* thai_shrimp_cake.jpg */; };
-		509D32E91B5FF43600388374 /* vegetable_curry.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D81B5FF43600388374 /* vegetable_curry.jpg */; };
-		509D32EA1B5FF43600388374 /* white_chocolate_donut.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 509D32D91B5FF43600388374 /* white_chocolate_donut.jpg */; };
 		559C0E711B5FFD04002BF4E6 /* ParentCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559C0E701B5FFD04002BF4E6 /* ParentCollectionViewController.m */; };
 		A78ED9121B60373300C4DEC5 /* Purchased.m in Sources */ = {isa = PBXBuildFile; fileRef = A78ED9111B60373300C4DEC5 /* Purchased.m */; };
 		DC3D88E0AC69975EE4B0D3F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB285498520DC5955837AB35 /* libPods.a */; };
@@ -98,6 +82,8 @@
 		0439388F1AF54C46004EA4D3 /* PopularViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularViewController.m; sourceTree = "<group>"; };
 		043938911AF54C54004EA4D3 /* SeasonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeasonViewController.h; sourceTree = "<group>"; };
 		043938921AF54C68004EA4D3 /* SeasonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeasonViewController.m; sourceTree = "<group>"; };
+		045057611B83FA7C0032C8FF /* UITextView+AdjustSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+AdjustSize.h"; sourceTree = "<group>"; };
+		045057621B83FA7C0032C8FF /* UITextView+AdjustSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+AdjustSize.m"; sourceTree = "<group>"; };
 		04551AA21AFC384000DBEE9B /* Featured.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Featured.h; sourceTree = "<group>"; };
 		04551AA31AFC384000DBEE9B /* Featured.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Featured.m; sourceTree = "<group>"; };
 		0478C0FF1B658A6900AE4ED2 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
@@ -136,23 +122,6 @@
 		509D327F1B5FD20400388374 /* HomeScreenViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewLayout.h; sourceTree = "<group>"; };
 		509D32801B5FD20400388374 /* HomeScreenViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewLayout.m; sourceTree = "<group>"; };
 		509D32821B5FD82A00388374 /* FACCookbook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FACCookbook-Bridging-Header.h"; sourceTree = "<group>"; };
-		509D32C91B5FF43600388374 /* angry_birds_cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = angry_birds_cake.jpg; sourceTree = "<group>"; };
-		509D32CA1B5FF43600388374 /* creme_brelee.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = creme_brelee.jpg; sourceTree = "<group>"; };
-		509D32CB1B5FF43600388374 /* egg_benedict.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = egg_benedict.jpg; sourceTree = "<group>"; };
-		509D32CC1B5FF43600388374 /* full_breakfast.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = full_breakfast.jpg; sourceTree = "<group>"; };
-		509D32CD1B5FF43600388374 /* green_tea.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = green_tea.jpg; sourceTree = "<group>"; };
-		509D32CE1B5FF43600388374 /* ham_and_cheese_panini.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ham_and_cheese_panini.jpg; sourceTree = "<group>"; };
-		509D32CF1B5FF43600388374 /* ham_and_egg_sandwich.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ham_and_egg_sandwich.jpg; sourceTree = "<group>"; };
-		509D32D01B5FF43600388374 /* hamburger.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hamburger.jpg; sourceTree = "<group>"; };
-		509D32D11B5FF43600388374 /* instant_noodle_with_egg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = instant_noodle_with_egg.jpg; sourceTree = "<group>"; };
-		509D32D21B5FF43600388374 /* japanese_noodle_with_pork.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = japanese_noodle_with_pork.jpg; sourceTree = "<group>"; };
-		509D32D31B5FF43600388374 /* mushroom_risotto.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mushroom_risotto.jpg; sourceTree = "<group>"; };
-		509D32D41B5FF43600388374 /* noodle_with_bbq_pork.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = noodle_with_bbq_pork.jpg; sourceTree = "<group>"; };
-		509D32D51B5FF43600388374 /* photo-frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo-frame.png"; sourceTree = "<group>"; };
-		509D32D61B5FF43600388374 /* starbucks_coffee.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = starbucks_coffee.jpg; sourceTree = "<group>"; };
-		509D32D71B5FF43600388374 /* thai_shrimp_cake.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thai_shrimp_cake.jpg; sourceTree = "<group>"; };
-		509D32D81B5FF43600388374 /* vegetable_curry.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vegetable_curry.jpg; sourceTree = "<group>"; };
-		509D32D91B5FF43600388374 /* white_chocolate_donut.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = white_chocolate_donut.jpg; sourceTree = "<group>"; };
 		559C0E6F1B5FFCD9002BF4E6 /* ParentCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentCollectionViewController.h; sourceTree = "<group>"; };
 		559C0E701B5FFD04002BF4E6 /* ParentCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentCollectionViewController.m; sourceTree = "<group>"; };
 		A78ED9111B60373300C4DEC5 /* Purchased.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Purchased.m; sourceTree = "<group>"; };
@@ -225,6 +194,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		045057601B83FA3F0032C8FF /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				045057611B83FA7C0032C8FF /* UITextView+AdjustSize.h */,
+				045057621B83FA7C0032C8FF /* UITextView+AdjustSize.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		04F5CA321AA3B4FB002D1069 = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +226,7 @@
 		04F5CA3D1AA3B4FB002D1069 /* FACCookbook */ = {
 			isa = PBXGroup;
 			children = (
+				045057601B83FA3F0032C8FF /* Categories */,
 				043938781AF53DD6004EA4D3 /* Views */,
 				04F5CA681AAA62C9002D1069 /* Objects */,
 				043938721AF301D2004EA4D3 /* ViewControllers */,
@@ -271,23 +250,6 @@
 		04F5CA3E1AA3B4FB002D1069 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				509D32C91B5FF43600388374 /* angry_birds_cake.jpg */,
-				509D32CA1B5FF43600388374 /* creme_brelee.jpg */,
-				509D32CB1B5FF43600388374 /* egg_benedict.jpg */,
-				509D32CC1B5FF43600388374 /* full_breakfast.jpg */,
-				509D32CD1B5FF43600388374 /* green_tea.jpg */,
-				509D32CE1B5FF43600388374 /* ham_and_cheese_panini.jpg */,
-				509D32CF1B5FF43600388374 /* ham_and_egg_sandwich.jpg */,
-				509D32D01B5FF43600388374 /* hamburger.jpg */,
-				509D32D11B5FF43600388374 /* instant_noodle_with_egg.jpg */,
-				509D32D21B5FF43600388374 /* japanese_noodle_with_pork.jpg */,
-				509D32D31B5FF43600388374 /* mushroom_risotto.jpg */,
-				509D32D41B5FF43600388374 /* noodle_with_bbq_pork.jpg */,
-				509D32D51B5FF43600388374 /* photo-frame.png */,
-				509D32D61B5FF43600388374 /* starbucks_coffee.jpg */,
-				509D32D71B5FF43600388374 /* thai_shrimp_cake.jpg */,
-				509D32D81B5FF43600388374 /* vegetable_curry.jpg */,
-				509D32D91B5FF43600388374 /* white_chocolate_donut.jpg */,
 				04F5CA3F1AA3B4FB002D1069 /* Info.plist */,
 				04F5CA401AA3B4FB002D1069 /* main.m */,
 				509D327D1B5FCE2800388374 /* HomeView.xib */,
@@ -443,29 +405,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				509D32E91B5FF43600388374 /* vegetable_curry.jpg in Resources */,
-				509D32E71B5FF43600388374 /* starbucks_coffee.jpg in Resources */,
-				509D32E41B5FF43600388374 /* mushroom_risotto.jpg in Resources */,
-				509D32E31B5FF43600388374 /* japanese_noodle_with_pork.jpg in Resources */,
 				04F5CA4D1AA3B4FB002D1069 /* Main.storyboard in Resources */,
-				509D32E01B5FF43600388374 /* ham_and_egg_sandwich.jpg in Resources */,
 				04F5CA521AA3B4FB002D1069 /* LaunchScreen.xib in Resources */,
-				509D32DD1B5FF43600388374 /* full_breakfast.jpg in Resources */,
-				509D32E21B5FF43600388374 /* instant_noodle_with_egg.jpg in Resources */,
-				509D32E11B5FF43600388374 /* hamburger.jpg in Resources */,
-				509D32DA1B5FF43600388374 /* angry_birds_cake.jpg in Resources */,
-				509D32DE1B5FF43600388374 /* green_tea.jpg in Resources */,
 				04F0A0371B7187CD0041CB33 /* Titlescreen@2x.png in Resources */,
-				509D32E51B5FF43600388374 /* noodle_with_bbq_pork.jpg in Resources */,
-				509D32DB1B5FF43600388374 /* creme_brelee.jpg in Resources */,
-				509D32E61B5FF43600388374 /* photo-frame.png in Resources */,
 				04F5CA4F1AA3B4FB002D1069 /* Images.xcassets in Resources */,
 				043938771AF53DA1004EA4D3 /* RecipeCell.xib in Resources */,
 				509D327E1B5FCE2800388374 /* HomeView.xib in Resources */,
-				509D32DC1B5FF43600388374 /* egg_benedict.jpg in Resources */,
-				509D32EA1B5FF43600388374 /* white_chocolate_donut.jpg in Resources */,
-				509D32E81B5FF43600388374 /* thai_shrimp_cake.jpg in Resources */,
-				509D32DF1B5FF43600388374 /* ham_and_cheese_panini.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +479,7 @@
 				04CE74391ACCC13200624A7F /* Location.m in Sources */,
 				0439388D1AF54C23004EA4D3 /* FavouriteViewController.m in Sources */,
 				04F5CA761AABCBA8002D1069 /* DataService.m in Sources */,
+				045057631B83FA7C0032C8FF /* UITextView+AdjustSize.m in Sources */,
 				043938811AF54486004EA4D3 /* LocationViewController.m in Sources */,
 				0478C1001B658A6900AE4ED2 /* Utils.m in Sources */,
 				04CE74401ACCC88300624A7F /* Popular.m in Sources */,

@@ -8,14 +8,21 @@
 
 #import "RecipeViewController.h"
 #import "Direction.h"
+#import "Note.h"
+#import "UITextView+AdjustSize.h"
 
 @interface RecipeViewController()
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeRightGuesture;
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeLeftGesture;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *instructionHeightContraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *notesHeightContraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *instructionToNotesContraint;
 
 - (void)swipeRight;
 - (void)swipeLeft;
 - (void)swipeHandler:(id)sender;
+- (void)loadRecipes;
+- (void)alignRecipeViews;
 
 @end
 
@@ -30,7 +37,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
-    [aScrollView setContentOffset: CGPointMake(0, aScrollView.contentOffset.y)];
+//    [aScrollView setContentOffset: CGPointMake(0, aScrollView.contentOffset.y)];
     // or if you are sure you wanna it always on left:
     // [aScrollView setContentOffset: CGPointMake(0, aScrollView.contentOffset.y)];
 }
@@ -53,12 +60,31 @@
             _instructions.text = [NSString stringWithFormat:@"%@\r%i. %@",_instructions.text,counter++,directionString];
         }
     }
+
+    [_instructions adjustHeightAndConstraintToTextSize:_instructionHeightContraint];
+
+    _notes.text = @"";
+    for (Note *note in _recipe.notes) {
+        NSString *noteString = [note.note stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if ([_notes.text isEqualToString:@""]) {
+            _notes.text =  [NSString stringWithFormat:@"%@",noteString];
+        } else {
+            _notes.text = [NSString stringWithFormat:@"%@\r%@",_notes.text,noteString];
+        }
+    }
+    
+    [_notes adjustHeightAndConstraintToTextSize:_notesHeightContraint];
+}
+
+- (void)alignRecipeViews {
+    float newHeight = _instructions.frame.origin.y+_instructions.frame.size.height+_instructionToNotesContraint.constant+_notesHeightContraint.constant+10;
+    [_backGroundView setContentSize:(CGSize){[UIScreen mainScreen].bounds.size.width,newHeight}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self loadRecipe];
-    
+
     __weak RecipeViewController *wSelf = self;
     RecipeViewController *sSelf = wSelf;
     _swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:sSelf action:@selector(swipeHandler:)];
@@ -72,6 +98,7 @@
 
 - (void)viewDidAppear:(BOOL) animated {
     [super viewDidAppear:animated];
+    [self alignRecipeViews];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -82,7 +109,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 }
 
 #pragma mark local methods
@@ -91,6 +117,7 @@
     if (index > 0) {
         self.recipe = [_recipes objectAtIndex:--index];
         [self loadRecipe];
+        [self alignRecipeViews];
     }
 }
 
@@ -99,6 +126,7 @@
     if (index < [_recipes count]-1) {
         self.recipe = [_recipes objectAtIndex:++index];
         [self loadRecipe];
+        [self alignRecipeViews];
     }
 }
 
