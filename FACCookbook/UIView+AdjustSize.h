@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UITextView (AdjustSize)
+@interface UIView (AdjustSize)
 
 - (void)adjustHeightAndConstraintToTextSize:(NSLayoutConstraint*)constraint;
 

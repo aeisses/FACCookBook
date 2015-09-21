@@ -9,7 +9,22 @@
 #import "RecipeViewController.h"
 #import "Direction.h"
 #import "Note.h"
-#import "UITextView+AdjustSize.h"
+#import "Ingredient.h"
+#import "UIView+AdjustSize.h"
+#import "IngredientsTableCell.h"
+
+static NSString *ingredientCellIdentifier = @"IngredientCell";
+
+@interface LocalIngredient : NSObject
+@property (retain, nonatomic) NSString *amount;
+@property (retain, nonatomic) NSString *ingredient;
+@end
+
+@implementation LocalIngredient
+@synthesize amount;
+@synthesize ingredient;
+
+@end
 
 @interface RecipeViewController()
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeRightGuesture;
@@ -17,11 +32,12 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *instructionHeightContraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *notesHeightContraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *instructionToNotesContraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ingredientsHeightContraint;
+@property (strong, nonatomic) NSMutableDictionary *ingredientsDictionary;
 
 - (void)swipeRight;
 - (void)swipeLeft;
 - (void)swipeHandler:(id)sender;
-- (void)loadRecipes;
 - (void)alignRecipeViews;
 
 @end
@@ -34,6 +50,8 @@
 @synthesize recipeImage = _recipeImage;
 @synthesize swipeLeftGesture = _swipeLeftGesture;
 @synthesize swipeRightGuesture = _swipeRightGuesture;
+@synthesize ingredients = _ingredients;
+@synthesize ingredientsDictionary = _ingredientsDictionary;
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
@@ -49,6 +67,49 @@
     } else {
         _recipeImage.image = [UIImage imageNamed:@"iPhoneStandard"];
     }
+
+    _ingredientsDictionary = [NSMutableDictionary new];
+    for (Ingredient *ingredient in _recipe.ingredients) {
+        NSString *item = ingredient.item;
+        LocalIngredient *lIngred = [LocalIngredient new];
+        lIngred.amount = ingredient.amount;
+        lIngred.ingredient = ingredient.ingredient;
+        
+        NSMutableArray *ingredArray;
+        if (item) {
+            if ([_ingredientsDictionary objectForKey:item]) {
+                ingredArray = [_ingredientsDictionary objectForKey:item];
+            } else {
+                ingredArray = [NSMutableArray new];
+            }
+            [ingredArray addObject:lIngred];
+            [_ingredientsDictionary setObject:ingredArray forKey:item];
+        } else {
+            if (![_ingredientsDictionary objectForKey:@"One_Item"]) {
+                ingredArray = [NSMutableArray new];
+            } else {
+                ingredArray = [_ingredientsDictionary objectForKey:@"One_Item"];
+            }
+            [ingredArray addObject:lIngred];
+            [_ingredientsDictionary setObject:ingredArray forKey:@"One_Item"];
+        }
+    }
+    
+    NSArray *keys = [_ingredientsDictionary allKeys];
+    NSInteger sectionCount = [keys count];
+    if (sectionCount == 1) {
+        sectionCount = 0;
+    }
+    NSInteger rowCount = 0;
+    for (NSString *key in keys) {
+        NSArray *array = [_ingredientsDictionary objectForKey:key];
+        rowCount += [array count];
+    }
+    
+    _ingredientsHeightContraint.constant = (rowCount+sectionCount)*20;
+    _ingredients.frame = (CGRect){_ingredients.frame.origin,_ingredients.frame.size.width,(rowCount+sectionCount)*20};
+    [_ingredients layoutIfNeeded];
+    [_ingredients reloadData];
     
     _instructions.text = @"";
     int counter = 1;
@@ -77,7 +138,7 @@
 }
 
 - (void)alignRecipeViews {
-    float newHeight = _instructions.frame.origin.y+_instructions.frame.size.height+_instructionToNotesContraint.constant+_notesHeightContraint.constant+10;
+    float newHeight = _ingredients.frame.origin.y+_ingredients.frame.size.height+_instructions.frame.size.height+_instructionToNotesContraint.constant+_notesHeightContraint.constant+20;
     [_backGroundView setContentSize:(CGSize){[UIScreen mainScreen].bounds.size.width,newHeight}];
 }
 
@@ -98,7 +159,10 @@
 
 - (void)viewDidAppear:(BOOL) animated {
     [super viewDidAppear:animated];
+    [_ingredients registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:nil] forCellReuseIdentifier:ingredientCellIdentifier];
     [self alignRecipeViews];
+//    [_instructions setNeedsDisplay];
+    [_ingredients setNeedsLayout];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -138,5 +202,58 @@
         [self swipeLeft];
     }
 }
+
+#pragma mark UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 20.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if ([[_ingredientsDictionary allKeys] count] > 1) {
+        return 20.0f;
+    }
+    return 0.0f;
+}
+
+#pragma mark UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[_ingredientsDictionary objectForKey:[[_ingredientsDictionary allKeys] objectAtIndex:section]] count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    IngredientsTableCell *cell = [tableView dequeueReusableCellWithIdentifier:ingredientCellIdentifier];
+    
+    if (!cell) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TableViewCell" owner:self options:nil];
+        cell = (IngredientsTableCell *)[nib objectAtIndex:0];
+    }
+    
+    NSString *item = [[_ingredientsDictionary allKeys] objectAtIndex:indexPath.section];
+    NSArray *cellItems = [_ingredientsDictionary objectForKey:item];
+    LocalIngredient *lIngred = [cellItems objectAtIndex:indexPath.row];
+    
+    cell.ingredient.text = lIngred.ingredient;
+    cell.amount.text = lIngred.amount;
+
+    return cell;
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [[_ingredientsDictionary allKeys] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSArray *keys = [_ingredientsDictionary allKeys];
+    if ([keys count] <= 1) {
+        return @"";
+    } else {
+        return [keys objectAtIndex:section];
+    }
+}
+
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView;                                                    // return list of section titles to display in section index view (e.g. "ABCD...Z#")
+//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index;  // tell table which section corresponds to section title/index (e.g. "B",1))
+
 
 @end

@@ -19,9 +19,11 @@
 		0439388D1AF54C23004EA4D3 /* FavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0439388C1AF54C23004EA4D3 /* FavouriteViewController.m */; };
 		043938901AF54C46004EA4D3 /* PopularViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0439388F1AF54C46004EA4D3 /* PopularViewController.m */; };
 		043938931AF54C68004EA4D3 /* SeasonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938921AF54C68004EA4D3 /* SeasonViewController.m */; };
-		045057631B83FA7C0032C8FF /* UITextView+AdjustSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 045057621B83FA7C0032C8FF /* UITextView+AdjustSize.m */; };
+		045057631B83FA7C0032C8FF /* UIView+AdjustSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 045057621B83FA7C0032C8FF /* UIView+AdjustSize.m */; };
 		04551AA41AFC384000DBEE9B /* Featured.m in Sources */ = {isa = PBXBuildFile; fileRef = 04551AA31AFC384000DBEE9B /* Featured.m */; };
 		0478C1001B658A6900AE4ED2 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478C0FF1B658A6900AE4ED2 /* Utils.m */; };
+		04A16D5A1B8BF00C00C41E95 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A16D591B8BF00C00C41E95 /* TableViewCell.xib */; };
+		04A16D5D1B8BF20400C41E95 /* IngredientsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A16D5C1B8BF20400C41E95 /* IngredientsTableCell.m */; };
 		04CE74391ACCC13200624A7F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE74381ACCC13200624A7F /* Location.m */; };
 		04CE743C1ACCC81800624A7F /* Information.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743B1ACCC81800624A7F /* Information.m */; };
 		04CE74401ACCC88300624A7F /* Popular.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743F1ACCC88300624A7F /* Popular.m */; };
@@ -82,12 +84,15 @@
 		0439388F1AF54C46004EA4D3 /* PopularViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularViewController.m; sourceTree = "<group>"; };
 		043938911AF54C54004EA4D3 /* SeasonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeasonViewController.h; sourceTree = "<group>"; };
 		043938921AF54C68004EA4D3 /* SeasonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeasonViewController.m; sourceTree = "<group>"; };
-		045057611B83FA7C0032C8FF /* UITextView+AdjustSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+AdjustSize.h"; sourceTree = "<group>"; };
-		045057621B83FA7C0032C8FF /* UITextView+AdjustSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+AdjustSize.m"; sourceTree = "<group>"; };
+		045057611B83FA7C0032C8FF /* UIView+AdjustSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AdjustSize.h"; sourceTree = "<group>"; };
+		045057621B83FA7C0032C8FF /* UIView+AdjustSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AdjustSize.m"; sourceTree = "<group>"; };
 		04551AA21AFC384000DBEE9B /* Featured.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Featured.h; sourceTree = "<group>"; };
 		04551AA31AFC384000DBEE9B /* Featured.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Featured.m; sourceTree = "<group>"; };
 		0478C0FF1B658A6900AE4ED2 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		0478C1011B658AC000AE4ED2 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		04A16D591B8BF00C00C41E95 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		04A16D5B1B8BF20400C41E95 /* IngredientsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IngredientsTableCell.h; sourceTree = "<group>"; };
+		04A16D5C1B8BF20400C41E95 /* IngredientsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngredientsTableCell.m; sourceTree = "<group>"; };
 		04CE74381ACCC13200624A7F /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		04CE743A1ACCC14800624A7F /* Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		04CE743B1ACCC81800624A7F /* Information.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Information.m; sourceTree = "<group>"; };
@@ -190,6 +195,8 @@
 			children = (
 				0439387B1AF53DF6004EA4D3 /* RecipeCell.h */,
 				043938791AF53DEB004EA4D3 /* RecipeCell.m */,
+				04A16D5B1B8BF20400C41E95 /* IngredientsTableCell.h */,
+				04A16D5C1B8BF20400C41E95 /* IngredientsTableCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -197,8 +204,8 @@
 		045057601B83FA3F0032C8FF /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				045057611B83FA7C0032C8FF /* UITextView+AdjustSize.h */,
-				045057621B83FA7C0032C8FF /* UITextView+AdjustSize.m */,
+				045057611B83FA7C0032C8FF /* UIView+AdjustSize.h */,
+				045057621B83FA7C0032C8FF /* UIView+AdjustSize.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -236,6 +243,7 @@
 				04F5CA751AABCBA8002D1069 /* DataService.m */,
 				0478C1011B658AC000AE4ED2 /* Utils.h */,
 				0478C0FF1B658A6900AE4ED2 /* Utils.m */,
+				04A16D591B8BF00C00C41E95 /* TableViewCell.xib */,
 				04F5CA4B1AA3B4FB002D1069 /* Main.storyboard */,
 				043938761AF53DA1004EA4D3 /* RecipeCell.xib */,
 				04F5CA4E1AA3B4FB002D1069 /* Images.xcassets */,
@@ -407,6 +415,7 @@
 			files = (
 				04F5CA4D1AA3B4FB002D1069 /* Main.storyboard in Resources */,
 				04F5CA521AA3B4FB002D1069 /* LaunchScreen.xib in Resources */,
+				04A16D5A1B8BF00C00C41E95 /* TableViewCell.xib in Resources */,
 				04F0A0371B7187CD0041CB33 /* Titlescreen@2x.png in Resources */,
 				04F5CA4F1AA3B4FB002D1069 /* Images.xcassets in Resources */,
 				043938771AF53DA1004EA4D3 /* RecipeCell.xib in Resources */,
@@ -474,12 +483,13 @@
 				043938741AF30206004EA4D3 /* HomeScreenViewController.m in Sources */,
 				04F5CA6B1AAA62FD002D1069 /* Direction.m in Sources */,
 				04F5CA701AAA64CD002D1069 /* Ingredient.m in Sources */,
+				04A16D5D1B8BF20400C41E95 /* IngredientsTableCell.m in Sources */,
 				A78ED9121B60373300C4DEC5 /* Purchased.m in Sources */,
 				F2E2AA001B6006F5002C8E31 /* Categories.m in Sources */,
 				04CE74391ACCC13200624A7F /* Location.m in Sources */,
 				0439388D1AF54C23004EA4D3 /* FavouriteViewController.m in Sources */,
 				04F5CA761AABCBA8002D1069 /* DataService.m in Sources */,
-				045057631B83FA7C0032C8FF /* UITextView+AdjustSize.m in Sources */,
+				045057631B83FA7C0032C8FF /* UIView+AdjustSize.m in Sources */,
 				043938811AF54486004EA4D3 /* LocationViewController.m in Sources */,
 				0478C1001B658A6900AE4ED2 /* Utils.m in Sources */,
 				04CE74401ACCC88300624A7F /* Popular.m in Sources */,

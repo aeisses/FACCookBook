@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "Recipe.h"
 
-@interface RecipeViewController : UIViewController <UIScrollViewDelegate>
+@interface RecipeViewController : UIViewController <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *backGroundView;
 @property (retain, nonatomic) Recipe *recipe;
@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *season;
 @property (weak, nonatomic) IBOutlet UITextView *instructions;
 @property (weak, nonatomic) IBOutlet UITextView *notes;
+@property (weak, nonatomic) IBOutlet UITableView *ingredients;
 
 @end

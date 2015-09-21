@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PEz-vB-l6j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PEz-vB-l6j">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -21,7 +22,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipe" id="LR2-aW-AAd" customClass="RecipeCell">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="44" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -95,7 +96,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipe" id="avH-jQ-7ib" customClass="RecipeCell">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="44" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -134,7 +135,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="re3cipe" id="44n-2w-Yzq" userLabel="recipe" customClass="RecipeCell">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="44" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -173,7 +174,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipe" id="j9x-PC-O8h" customClass="RecipeCell">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="44" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -267,7 +268,7 @@
                                     <constraint firstAttribute="height" constant="50" id="HmL-Vr-zKx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hcO-Fa-z63">
@@ -334,23 +335,57 @@
                                     </mask>
                                 </variation>
                             </textView>
+                            <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xny-tV-rUY">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="97" id="ceH-dA-YHs">
+                                        <variation key="heightClass=regular" constant="115"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="300" id="xsH-4J-Boh"/>
+                                </constraints>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ceH-dA-YHs"/>
+                                        <exclude reference="xsH-4J-Boh"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="ceH-dA-YHs"/>
+                                        <include reference="xsH-4J-Boh"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="TzS-GA-PMA" id="Qhg-98-uBN"/>
+                                    <outlet property="delegate" destination="TzS-GA-PMA" id="q4L-uX-Zci"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.81241605220000002" green="1" blue="0.55401501559999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="16H-us-TYn" secondAttribute="centerX" id="C7V-ac-3Ca"/>
+                            <constraint firstItem="xny-tV-rUY" firstAttribute="top" secondItem="hcO-Fa-z63" secondAttribute="bottom" constant="27" id="DXQ-OF-nDf">
+                                <variation key="heightClass=regular" constant="21"/>
+                            </constraint>
                             <constraint firstItem="yJA-G2-I8a" firstAttribute="top" secondItem="hcO-Fa-z63" secondAttribute="bottom" constant="43" id="DhR-RX-Htf">
-                                <variation key="heightClass=regular" constant="39"/>
+                                <variation key="heightClass=regular" constant="156"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="hcO-Fa-z63" secondAttribute="centerX" id="JIa-v4-ESp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="16H-us-TYn" secondAttribute="trailing" constant="15" id="JSz-4b-Ibg"/>
                             <constraint firstAttribute="centerX" secondItem="yJA-G2-I8a" secondAttribute="centerX" id="MvZ-1b-LDl"/>
+                            <constraint firstAttribute="centerX" secondItem="xny-tV-rUY" secondAttribute="centerX" id="Oxu-Gb-NEk"/>
                             <constraint firstItem="16H-us-TYn" firstAttribute="top" secondItem="hkd-cC-vA5" secondAttribute="bottom" constant="15" id="c2f-U4-U0U"/>
                             <constraint firstAttribute="centerY" secondItem="16H-us-TYn" secondAttribute="centerY" id="dJZ-i5-d7V"/>
                             <constraint firstItem="hcO-Fa-z63" firstAttribute="top" secondItem="16H-us-TYn" secondAttribute="bottom" constant="15" id="lbk-96-NTS">
-                                <variation key="heightClass=regular" constant="30"/>
+                                <variation key="heightClass=regular" constant="18"/>
                             </constraint>
+                            <constraint firstItem="yJA-G2-I8a" firstAttribute="top" secondItem="xny-tV-rUY" secondAttribute="bottom" constant="20" id="t1D-Nt-3z7"/>
                             <constraint firstAttribute="centerX" secondItem="X9v-TC-EKL" secondAttribute="centerX" id="wMN-IS-6Va"/>
-                            <constraint firstItem="X9v-TC-EKL" firstAttribute="top" secondItem="yJA-G2-I8a" secondAttribute="bottom" constant="59" id="wg3-jw-77U"/>
+                            <constraint firstItem="X9v-TC-EKL" firstAttribute="top" secondItem="yJA-G2-I8a" secondAttribute="bottom" constant="59" id="wg3-jw-77U">
+                                <variation key="heightClass=regular" constant="4"/>
+                            </constraint>
                             <constraint firstItem="16H-us-TYn" firstAttribute="leading" secondItem="Xf3-iE-MuI" secondAttribute="leadingMargin" constant="15" id="xla-Nt-sGJ"/>
                         </constraints>
                         <variation key="default">
@@ -359,6 +394,7 @@
                                 <exclude reference="hcO-Fa-z63"/>
                                 <exclude reference="X9v-TC-EKL"/>
                                 <exclude reference="yJA-G2-I8a"/>
+                                <exclude reference="xny-tV-rUY"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="C7V-ac-3Ca"/>
@@ -372,6 +408,9 @@
                                 <exclude reference="lbk-96-NTS"/>
                                 <exclude reference="DhR-RX-Htf"/>
                                 <exclude reference="MvZ-1b-LDl"/>
+                                <exclude reference="t1D-Nt-3z7"/>
+                                <exclude reference="DXQ-OF-nDf"/>
+                                <exclude reference="Oxu-Gb-NEk"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular" ambiguous="YES">
@@ -381,6 +420,7 @@
                                 <include reference="hcO-Fa-z63"/>
                                 <include reference="X9v-TC-EKL"/>
                                 <include reference="yJA-G2-I8a"/>
+                                <include reference="xny-tV-rUY"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="C7V-ac-3Ca"/>
@@ -392,13 +432,18 @@
                                 <include reference="wg3-jw-77U"/>
                                 <include reference="JIa-v4-ESp"/>
                                 <include reference="lbk-96-NTS"/>
-                                <include reference="DhR-RX-Htf"/>
+                                <exclude reference="DhR-RX-Htf"/>
                                 <include reference="MvZ-1b-LDl"/>
+                                <include reference="t1D-Nt-3z7"/>
+                                <include reference="DXQ-OF-nDf"/>
+                                <include reference="Oxu-Gb-NEk"/>
                             </mask>
                         </variation>
                     </scrollView>
                     <connections>
                         <outlet property="backGroundView" destination="Xf3-iE-MuI" id="ftJ-rR-Bsj"/>
+                        <outlet property="ingredients" destination="xny-tV-rUY" id="qhQ-C8-teA"/>
+                        <outlet property="ingredientsHeightContraint" destination="ceH-dA-YHs" id="e3d-Rs-JJ7"/>
                         <outlet property="instructionHeightContraint" destination="dVm-nr-TUJ" id="DQc-PI-S0o"/>
                         <outlet property="instructionToNotesContraint" destination="wg3-jw-77U" id="1UJ-Tf-wIQ"/>
                         <outlet property="instructions" destination="yJA-G2-I8a" id="XcE-Mm-b8E"/>

@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 EAC. All rights reserved.
 //
 
-#import "UITextView+AdjustSize.h"
+#import "UIView+AdjustSize.h"
 
-@implementation UITextView (AdjustSize)
+@implementation UIView (AdjustSize)
 
 - (void)adjustHeightAndConstraintToTextSize:(NSLayoutConstraint*)constraint {
     CGFloat fixedWidth = self.frame.size.width;
