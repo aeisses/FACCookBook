@@ -12,4 +12,5 @@
 
 @interface LocationViewController : InformationViewController
 
+
 @end

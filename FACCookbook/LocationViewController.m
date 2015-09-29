@@ -10,5 +10,9 @@
 
 @implementation LocationViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+}
 
 @end

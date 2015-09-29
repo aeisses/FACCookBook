@@ -22,11 +22,12 @@
 @dynamic dateUpdated;
 
 - (CLLocationCoordinate2D)coordinate {
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([self.latitude doubleValue], [self.longitude doubleValue]);
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([self.latitude doubleValue], -1*[self.longitude doubleValue]);
     return coord;
 }
 
-- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate {
-
+- (NSString*)title {
+    return self.name;
 }
+
 @end

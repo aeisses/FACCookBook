@@ -54,7 +54,8 @@
     for (Featured *featured in [_recipes fetchedObjects]) {
         [recipes addObject:featured.recipe];
     }
-    [vc setRecipes:recipes];}
+    [vc setRecipes:recipes];
+}
 
 #pragma UICollectioView Data Source
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
