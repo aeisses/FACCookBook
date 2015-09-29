@@ -12,6 +12,8 @@
 #import "Ingredient.h"
 #import "UIView+AdjustSize.h"
 #import "IngredientsTableCell.h"
+#import "FICImageCache.h"
+#import "DataService.h"
 
 static NSString *ingredientCellIdentifier = @"IngredientCell";
 
@@ -60,13 +62,26 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
     // [aScrollView setContentOffset: CGPointMake(0, aScrollView.contentOffset.y)];
 }
 
+- (void)loadImageforRecipe {
+    [[FICImageCache sharedImageCache] retrieveImageForEntity:_recipe withFormatName:[DataService imageFormat:NO] completionBlock:^(id<FICEntity> entity, NSString *formatName, UIImage *image) {
+        @autoreleasepool {
+            if (image) {
+                [_recipeImage setImage:image];
+            } else {
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                    _recipeImage.image = [UIImage imageNamed:@"iPadStandard"];
+                } else {
+                    _recipeImage.image = [UIImage imageNamed:@"iPhoneStandard"];
+                }
+            }
+        }
+    }];
+
+}
+
 - (void)loadRecipe {
     _name.text = _recipe.title;
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        _recipeImage.image = [UIImage imageNamed:@"iPadStandard"];
-    } else {
-        _recipeImage.image = [UIImage imageNamed:@"iPhoneStandard"];
-    }
+    [self loadImageforRecipe];
 
     _ingredientsDictionary = [NSMutableDictionary new];
     for (Ingredient *ingredient in _recipe.ingredients) {

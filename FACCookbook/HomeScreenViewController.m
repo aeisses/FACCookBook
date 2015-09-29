@@ -65,11 +65,11 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     RecipeCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
 
-    Recipe *recipe = [[_recipes fetchedObjects] objectAtIndex:indexPath.row];
+    Featured *featured = [[_recipes fetchedObjects] objectAtIndex:indexPath.row];
     if (indexPath.row == 0) {
-        [cell addRecipeImage:recipe forCell:NO];
+        [cell addRecipeImage:(Recipe*)featured.recipe forCell:NO];
     } else {
-        [cell addRecipeImage:recipe forCell:YES];
+        [cell addRecipeImage:(Recipe*)featured.recipe forCell:YES];
     }
     
     return cell;

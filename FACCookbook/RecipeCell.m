@@ -7,12 +7,27 @@
 //
 
 #import "RecipeCell.h"
+#import "FICImageCache.h"
+#import "DataService.h"
 
 @implementation RecipeCell
 
 @synthesize recipeImage = _recipeImage;
 
 - (void)prepareForReuse {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        if (YES) {
+            _recipeImage.image = [UIImage imageNamed:@"iPadCell"];
+        } else {
+//            _recipeImage.image = [UIImage imageNamed:@"iPadStandard"];
+        }
+    } else {
+        if (YES) {
+            _recipeImage.image = [UIImage imageNamed:@"iPhoneCell"];
+        } else {
+//            _recipeImage.image = [UIImage imageNamed:@"iPhoneStandard"];
+        }
+    }
 }
 
 - (id) initWithFrame:(CGRect)frame {
@@ -25,19 +40,27 @@
 }
 
 - (void)addRecipeImage:(Recipe*)recipe forCell:(BOOL)forCell {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        if (forCell) {
-            _recipeImage.image = [UIImage imageNamed:@"iPadCell"];
-        } else {
-            _recipeImage.image = [UIImage imageNamed:@"iPadStandard"];
+    [[FICImageCache sharedImageCache] retrieveImageForEntity:recipe withFormatName:[DataService imageFormat:forCell] completionBlock:^(id<FICEntity> entity, NSString *formatName, UIImage *image) {
+        @autoreleasepool {
+            if (image) {
+                [_recipeImage setImage:image];
+            } else {
+                if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                    if (forCell) {
+                        _recipeImage.image = [UIImage imageNamed:@"iPadCell"];
+                    } else {
+                        _recipeImage.image = [UIImage imageNamed:@"iPadStandard"];
+                    }
+                } else {
+                    if (forCell) {
+                        _recipeImage.image = [UIImage imageNamed:@"iPhoneCell"];
+                    } else {
+                        _recipeImage.image = [UIImage imageNamed:@"iPhoneStandard"];
+                    }
+                }
+            }
         }
-    } else {
-        if (forCell) {
-            _recipeImage.image = [UIImage imageNamed:@"iPhoneCell"];
-        } else {
-            _recipeImage.image = [UIImage imageNamed:@"iPhoneStandard"];
-        }
-    }
+    }];
 }
 
 @end

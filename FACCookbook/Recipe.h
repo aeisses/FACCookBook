@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "FICEntity.h"
 
-@interface Recipe : NSManagedObject
+@interface Recipe : NSManagedObject <FICEntity>
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSDate *addDate;

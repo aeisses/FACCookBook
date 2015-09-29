@@ -88,7 +88,7 @@ static NSString *segueIdentifier = @"recipe";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     RecipeCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
     
-    Recipe *recipe = [[_recipes fetchedObjects] objectAtIndex:indexPath.row];
+    Recipe *recipe = [[self.recipes fetchedObjects] objectAtIndex:indexPath.row];
     [cell addRecipeImage:recipe forCell:YES];
     
     return cell;

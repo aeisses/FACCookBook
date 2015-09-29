@@ -7,6 +7,8 @@
 //
 
 #import "Recipe.h"
+#import "DataService.h"
+#import "FICUtilities.h"
 
 @implementation Recipe
 
@@ -27,5 +29,62 @@
 //@dynamic featured;
 @dynamic information;
 @dynamic purchased;
+
+- (NSString *)UUID {
+    CFUUIDBytes UUIDBytes = FICUUIDBytesFromMD5HashOfString([self.objectID.URIRepresentation absoluteString]);
+    NSString *UUID = FICStringWithUUIDBytes(UUIDBytes);
+    
+    return UUID;
+}
+
+- (NSString *)sourceImageUUID {
+    CFUUIDBytes sourceImageUUIDBytes = FICUUIDBytesFromMD5HashOfString([self.objectID.URIRepresentation absoluteString]);
+    NSString *sourceImageUUID = FICStringWithUUIDBytes(sourceImageUUIDBytes);
+    
+    return sourceImageUUID;
+}
+
+- (NSURL *)sourceImageURLWithFormatName:(NSString *)formatName {
+    NSString *type = @"";
+    NSString *size = @"";
+    NSString *device = @"";
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        device = @"Tablet";
+    } else {
+        device = @"Phone";
+    }
+    
+    float scale = [[UIScreen mainScreen] scale];
+    if (scale == 1.0f) {
+        size = @"Small";
+    } else if (scale == 2.0f) {
+        size = @"Medium";
+    } else if (scale == 3.0f) {
+        size = @"Large";
+    }
+    
+    if ([formatName containsString:@"Standard"]) {
+        type = @"Standard";
+    } else {
+        type = @"Cell";
+    }
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/%i-%@-%@-%@.png",[DataService urlForResources],size,[self.recipeId intValue],type,device,size];
+    return [NSURL URLWithString:urlString];
+}
+
+- (FICEntityImageDrawingBlock)drawingBlockForImage:(UIImage *)image withFormatName:(NSString *)formatName {
+    FICEntityImageDrawingBlock drawingBlock = ^(CGContextRef context, CGSize contextSize) {
+        CGRect contextBounds = CGRectZero;
+        contextBounds.size = contextSize;
+        CGContextClearRect(context, contextBounds);
+        UIGraphicsPushContext(context);
+        [image drawInRect:contextBounds];
+        UIGraphicsPopContext();
+    };
+    
+    return drawingBlock;
+}
 
 @end

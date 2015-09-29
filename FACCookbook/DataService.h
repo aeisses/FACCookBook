@@ -13,6 +13,9 @@
 @interface DataService : NSObject <FICImageCacheDelegate>
 
 + (instancetype)sharedInstance;
++ (NSString*)imageFormat:(BOOL)isCell;
++ (NSString*)urlForResources;
+
 - (void)fetchData;
 
 - (Recipe*) loadRecipeFromCoreData:(NSNumber*)recipeId;

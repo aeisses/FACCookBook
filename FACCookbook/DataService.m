@@ -32,8 +32,8 @@ static NSString *FCBFormatStandardSmall = @"FCBStandardSmall";
 static NSString *FCBFormatStandardMedium = @"FCBStandardMedium";
 static NSString *FCBFormatStandardLarge = @"FCBStandardLarge";
 
-static NSString *FCBFormatFamilyCell = @"";
-static NSString *FCBFormatFamilyStandard = @"";
+static NSString *FCBFormatFamilyCell = @"FCBFamilyCell";
+static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 
 @interface DataService()
 
@@ -43,6 +43,27 @@ static NSString *FCBFormatFamilyStandard = @"";
 @end
 
 @implementation DataService
+
+
+#pragma mark FastImageCache delegate methods
+- (void)imageCache:(FICImageCache *)imageCache wantsSourceImageForEntity:(id<FICEntity>)entity withFormatName:(NSString *)formatName completionBlock:(FICImageRequestCompletionBlock)completionBlock {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        UIImage *sourceImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[entity sourceImageURLWithFormatName:formatName]]];
+        completionBlock(sourceImage);
+    });
+}
+
+- (BOOL)imageCache:(FICImageCache *)imageCache shouldProcessAllFormatsInFamily:(NSString *)formatFamily forEntity:(id<FICEntity>)entity {
+    return NO;
+}
+
+- (void)imageCache:(FICImageCache *)imageCache errorDidOccurWithMessage:(NSString *)errorMessage {
+    NSLog(@"%@", errorMessage);
+}
+
+- (void)imageCache:(FICImageCache *)imageCache cancelImageLoadingForEntity:(id <FICEntity>)entity withFormatName:(NSString *)formatName {
+    NSLog(@"Something is breaking");
+}
 
 + (NSString *)protocol {
     return @"https";
@@ -91,6 +112,23 @@ static NSString *FCBFormatFamilyStandard = @"";
 @synthesize httpManager = _httpManager;
 @synthesize managedObjectContext = _managedObjectContext;
 
++ (NSString*)urlForResources {
+    return [NSString stringWithFormat:@"%@://%@/u/19713116/FACApp/Images/",[DataService protocol], [DataService domain]];
+}
+
++ (NSString*)imageFormat:(BOOL)isCell {
+    float scale = [[UIScreen mainScreen] scale];
+    NSString *scaleString = @"";
+    if (scale == 1.0f) {
+        scaleString = @"Small";
+    } else if (scale == 2.0f) {
+        scaleString = @"Medium";
+    } else if (scale == 3.0f) {
+        scaleString = @"Large";
+    }
+    return [NSString stringWithFormat:@"FCB%@%@",isCell ? @"Cell" : @"Standard" ,scaleString];
+}
+
 + (instancetype)sharedInstance {
     static id instance;
     static dispatch_once_t once;
@@ -128,19 +166,19 @@ static NSString *FCBFormatFamilyStandard = @"";
     FICImageFormat *imageCellSmall = [FICImageFormat formatWithName:FCBFormaCellSmall family:FCBFormatFamilyCell imageSize:[Utils getSmallCellSize] style:FICImageFormatStyle32BitBGR maximumCount:250 devices:device protectionMode:FICImageFormatProtectionModeNone];
     [mutableImageFormats addObject:imageCellSmall];
     
-    FICImageFormat *imageCellMedium = [FICImageFormat formatWithName:FCBFormatCellMedium family:FCBFormatFamilyCell imageSize:[Utils getMediumCellSize] style:FICImageFormatStyle32BitBGR maximumCount:250 devices:device protectionMode:FICImageFormatProtectionModeNone];
+    FICImageFormat *imageCellMedium = [FICImageFormat formatWithName:FCBFormatCellMedium family:FCBFormatFamilyCell imageSize:[Utils getSmallCellSize] style:FICImageFormatStyle32BitBGR maximumCount:250 devices:device protectionMode:FICImageFormatProtectionModeNone];
     [mutableImageFormats addObject:imageCellMedium];
     
-    FICImageFormat *imageCellLarge = [FICImageFormat formatWithName:FCBFormatCellLarge family:FCBFormatFamilyCell imageSize:[Utils getLargeCellSize] style:FICImageFormatStyle32BitBGR maximumCount:250 devices:device protectionMode:FICImageFormatProtectionModeNone];
+    FICImageFormat *imageCellLarge = [FICImageFormat formatWithName:FCBFormatCellLarge family:FCBFormatFamilyCell imageSize:[Utils getSmallCellSize] style:FICImageFormatStyle32BitBGR maximumCount:250 devices:device protectionMode:FICImageFormatProtectionModeNone];
     [mutableImageFormats addObject:imageCellLarge];
 
     FICImageFormat *imageStandardSmall = [FICImageFormat formatWithName:FCBFormatStandardSmall family:FCBFormatFamilyStandard imageSize:[Utils getSmallStandardSize] style:FICImageFormatStyle32BitBGR maximumCount:50 devices:device protectionMode:FICImageFormatProtectionModeNone];
     [mutableImageFormats addObject:imageStandardSmall];
     
-    FICImageFormat *imageStandardMedium = [FICImageFormat formatWithName:FCBFormatStandardSmall family:FCBFormatFamilyStandard imageSize:[Utils getMediumStandardSize] style:FICImageFormatStyle32BitBGR maximumCount:250 devices:device protectionMode:FICImageFormatProtectionModeNone];
+    FICImageFormat *imageStandardMedium = [FICImageFormat formatWithName:FCBFormatStandardMedium family:FCBFormatFamilyStandard imageSize:[Utils getSmallStandardSize] style:FICImageFormatStyle32BitBGR maximumCount:250 devices:device protectionMode:FICImageFormatProtectionModeNone];
     [mutableImageFormats addObject:imageStandardMedium];
     
-    FICImageFormat *imageStandardLarge = [FICImageFormat formatWithName:FCBFormatStandardSmall family:FCBFormatFamilyStandard imageSize:[Utils getSmallStandardSize] style:FICImageFormatStyle32BitBGR maximumCount:250 devices:device protectionMode:FICImageFormatProtectionModeNone];
+    FICImageFormat *imageStandardLarge = [FICImageFormat formatWithName:FCBFormatStandardLarge family:FCBFormatFamilyStandard imageSize:[Utils getSmallStandardSize] style:FICImageFormatStyle32BitBGR maximumCount:250 devices:device protectionMode:FICImageFormatProtectionModeNone];
     [mutableImageFormats addObject:imageStandardLarge];
     
     FICImageCache *sharedImageCache = [FICImageCache sharedImageCache];
