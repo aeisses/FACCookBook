@@ -76,7 +76,6 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
             }
         }
     }];
-
 }
 
 - (void)loadRecipe {

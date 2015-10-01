@@ -9,12 +9,15 @@
 #import "MapViewController.h"
 #import "DataService.h"
 #import "Location.h"
+#import "LocationViewController.h"
 
-@interface MapViewController(Private)
+@interface MapViewController()
 @property (retain, nonatomic) Location *currentLocation;
 @end
 
 @implementation MapViewController
+
+@synthesize currentLocation = _currentLocation;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,10 +26,8 @@
     MKCoordinateSpan span = MKCoordinateSpanMake(6.755762, 6.786120);
     [self.mapView setRegion:MKCoordinateRegionMake(centre, span)];
     
-    NSArray *array = [[DataService sharedInstance] loadLocationsFromCoreData];
-    Location *location = (Location *)[array firstObject];
-    
-    [self.mapView addAnnotation:location];
+    NSArray *locations = [[DataService sharedInstance] loadLocationsFromCoreData];
+    [self.mapView addAnnotations:locations];
 }
 
 #pragma mark MKMapViewDelegate Methods
@@ -36,12 +37,15 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    _currentLocation = (Location*)view.annotation;
     [self performSegueWithIdentifier:@"location" sender:self];
 }
 
 
 #pragma mark - Segue protocol methods
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
+    LocationViewController* vc = (LocationViewController*)segue.destinationViewController;
+    vc.location = _currentLocation;
 }
+
 @end

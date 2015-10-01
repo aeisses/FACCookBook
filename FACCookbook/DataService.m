@@ -462,6 +462,10 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     locationDataObject.story = (NSString*)[location objectForKey:@"story"];
     locationDataObject.type = (NSString*)[location objectForKey:@"type"];
     locationDataObject.locationId = (NSNumber *)[location objectForKey:@"id"];
+    locationDataObject.name = (NSString*)[location objectForKey:@"title"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MM:dd:YYYY";
+    locationDataObject.dateUpdated = [formatter dateFromString:(NSString*)[location objectForKey:@"updatedDate"]];
 
     NSError *error = nil;
     if(error){

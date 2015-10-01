@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import <MapKit/MapKit.h>
+#import "FICEntity.h"
 
-@interface Location : NSManagedObject <MKAnnotation>
+@interface Location : NSManagedObject <MKAnnotation,FICEntity>
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *address;
