@@ -49,7 +49,8 @@ static NSString *segueIdentifier = @"recipe";
     [_collectionView registerNib:[UINib nibWithNibName:nibName bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellResueIdentifier];
 }
 
-- (void)viewDidUnload {
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
     self.recipes = nil;
 }
 

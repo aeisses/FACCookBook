@@ -24,10 +24,6 @@
     self.title = @"Favorites";
 }
 
-- (void)viewDidUnload {
-    _recipes = nil;
-}
-
 - (NSFetchedResultsController *)recipes {
     if (_recipes != nil) {
         return _recipes;
@@ -40,12 +36,13 @@
 
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     [fetchRequest setEntity:entity];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"isFavourite == YES"];
     [fetchRequest setFetchBatchSize:20];
 
     NSFetchedResultsController *theFetchedResultsController =
     [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                         managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil
-                                                   cacheName:@"Root"];
+                                                   cacheName:@"Favourite"];
     _recipes = theFetchedResultsController;
     _recipes.delegate = self;
     

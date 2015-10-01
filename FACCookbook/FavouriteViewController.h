@@ -10,5 +10,4 @@
 
 @interface FavouriteViewController : ParentCollectionViewController
 
-
 @end
