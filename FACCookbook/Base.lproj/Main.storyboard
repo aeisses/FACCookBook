@@ -468,11 +468,21 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="16H-us-TYn">
                                 <rect key="frame" x="16" y="52" width="568" height="69"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="HmL-Vr-zKx"/>
+                                    <constraint firstAttribute="height" constant="50" id="MNi-Os-Juf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="MNi-Os-Juf"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="MNi-Os-Juf"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iPhoneStandard" translatesAutoresizingMaskIntoConstraints="NO" id="hcO-Fa-z63">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>

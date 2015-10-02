@@ -410,7 +410,9 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     informationDataObject.version = (NSString*)[information objectForKey:@"version"];
     informationDataObject.season = (NSNumber*)[information objectForKey:@"season"];
     NSError *error = nil;
-    // TODO: Handle error
+    if (error) {
+        NSLog(@"Error loading information: %@",error);
+    }
 }
 
 - (void)loadPopular:(NSArray*)popular {
@@ -423,8 +425,9 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
         [popularSet addObject:recipe];
     }
     NSError *error = nil;
-
-    // TODO: Handle error
+    if (error) {
+        NSLog(@"Error loading popular: %@",error);
+    }
 }
 
 - (void)processLocationsData:(NSDictionary*)jsonData {
