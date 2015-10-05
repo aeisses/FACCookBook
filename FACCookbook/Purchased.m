@@ -11,7 +11,7 @@
 
 @implementation Purchased
 
-@dynamic recipes;
+@dynamic recipe;
 @dynamic purchasedId;
 
 @end

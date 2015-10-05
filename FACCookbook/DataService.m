@@ -23,7 +23,6 @@
 #import "Purchased.h"
 
 static int kPopularId = 1001;
-static int kPurchasedId = 1003;
 
 static NSString *FCBFormaCellSmall = @"FCBCellSmall";
 static NSString *FCBFormatCellMedium = @"FCBCellMedium";
@@ -364,12 +363,12 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 - (void)fetchPurchasedData {
     void (^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op, id res) {
         NSError *errorJson=nil;
-        NSDictionary* responseDict = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
+        NSArray* responseData = [NSJSONSerialization JSONObjectWithData:res options:kNilOptions error:&errorJson];
         if (errorJson) {
             NSLog(@"Error parsing JSON: %@",errorJson);
             return;
         }
-        // Add data processer here!
+        [self processPurchasedData:responseData];
     };
 
     void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
@@ -692,38 +691,28 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 
 - (void)processPurchasedData:(NSArray *)purchasedData {
 
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *featuredEntity = [NSEntityDescription entityForName:@"Purchased" inManagedObjectContext:_managedObjectContext];
-    [fetchRequest setEntity:featuredEntity];
-    NSError *err = nil;
+    for (NSString *purchaseId in purchasedData) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *purchasedEntity = [NSEntityDescription entityForName:@"Purchased" inManagedObjectContext:_managedObjectContext];
+        [fetchRequest setEntity:purchasedEntity];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"purchasedId == %@",purchaseId];
 
-    NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&err];
+        NSError *err = nil;
+        NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&err];
 
-    // Add a predicate later.
-    Purchased *purchased;
-    NSMutableOrderedSet *purchasedSet;
-    if([results count]){
-        purchased = [results lastObject];
-        purchasedSet = (NSMutableOrderedSet*)[purchased recipes];
-    }
-    else{
-        purchased = [NSEntityDescription insertNewObjectForEntityForName:@"Purchased" inManagedObjectContext:_managedObjectContext];
-        purchasedSet = [NSMutableOrderedSet new];
-    }
-
-    for(NSNumber *number in purchasedData){
-        Recipe *recipe = [self loadRecipeFromCoreData:number];
-        recipe.purchased = purchased;
-        [purchasedSet addObject:recipe];
-    }
-
-    [purchased setRecipes:purchasedSet];
-    [purchased setPurchasedId:[NSNumber numberWithInt:kPurchasedId]];
-
-    NSError *error = nil;
-    [_managedObjectContext save:&error];
-    if(error){
-        NSLog(@"error description :%@",[error description]);
+        if([results count] == 0){
+            Purchased *purchased = [NSEntityDescription insertNewObjectForEntityForName:@"Purchased" inManagedObjectContext:_managedObjectContext];
+            purchased.purchasedId = [NSNumber numberWithInt:[purchaseId intValue]];
+            Recipe *recipe = [self loadRecipeFromCoreData:purchased.purchasedId];
+            recipe.purchased = purchased;
+            purchased.recipe = recipe;
+            
+            NSError *error = nil;
+            [_managedObjectContext save:&error];
+            if(error){
+                NSLog(@"error description :%@",[error description]);
+            }
+        }
     }
 }
 
