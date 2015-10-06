@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0436AE6F1BC355ED00510928 /* PurchasedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0436AE6E1BC355ED00510928 /* PurchasedTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		0436AE721BC356B000510928 /* PurchasedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436AE711BC356B000510928 /* PurchasedTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		0436AE771BC3590800510928 /* PurchasedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436AE761BC3588300510928 /* PurchasedViewController.m */; };
 		043938711AF2FEB7004EA4D3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043938701AF2FEB7004EA4D3 /* MapKit.framework */; };
 		043938741AF30206004EA4D3 /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938731AF30206004EA4D3 /* HomeScreenViewController.m */; };
 		043938771AF53DA1004EA4D3 /* RecipeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043938761AF53DA1004EA4D3 /* RecipeCell.xib */; };
@@ -62,6 +65,11 @@
 
 /* Begin PBXFileReference section */
 		042EE73AA618551F25E72F71 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		0436AE6E1BC355ED00510928 /* PurchasedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PurchasedTableViewCell.xib; sourceTree = "<group>"; };
+		0436AE701BC356B000510928 /* PurchasedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchasedTableViewCell.h; sourceTree = "<group>"; };
+		0436AE711BC356B000510928 /* PurchasedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchasedTableViewCell.m; sourceTree = "<group>"; };
+		0436AE751BC3585300510928 /* PurchasedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchasedViewController.h; sourceTree = "<group>"; };
+		0436AE761BC3588300510928 /* PurchasedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchasedViewController.m; sourceTree = "<group>"; };
 		043938701AF2FEB7004EA4D3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		043938731AF30206004EA4D3 /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
 		043938751AF3021F004EA4D3 /* HomeScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
@@ -184,6 +192,8 @@
 				043938831AF544A9004EA4D3 /* RecipeViewController.m */,
 				509D327F1B5FD20400388374 /* HomeScreenViewLayout.h */,
 				509D32801B5FD20400388374 /* HomeScreenViewLayout.m */,
+				0436AE751BC3585300510928 /* PurchasedViewController.h */,
+				0436AE761BC3588300510928 /* PurchasedViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -195,6 +205,8 @@
 				043938791AF53DEB004EA4D3 /* RecipeCell.m */,
 				04A16D5B1B8BF20400C41E95 /* IngredientsTableCell.h */,
 				04A16D5C1B8BF20400C41E95 /* IngredientsTableCell.m */,
+				0436AE701BC356B000510928 /* PurchasedTableViewCell.h */,
+				0436AE711BC356B000510928 /* PurchasedTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -242,6 +254,7 @@
 				0478C1011B658AC000AE4ED2 /* Utils.h */,
 				0478C0FF1B658A6900AE4ED2 /* Utils.m */,
 				04A16D591B8BF00C00C41E95 /* TableViewCell.xib */,
+				0436AE6E1BC355ED00510928 /* PurchasedTableViewCell.xib */,
 				04F5CA4B1AA3B4FB002D1069 /* Main.storyboard */,
 				043938761AF53DA1004EA4D3 /* RecipeCell.xib */,
 				04F5CA4E1AA3B4FB002D1069 /* Images.xcassets */,
@@ -416,6 +429,7 @@
 				04A16D5A1B8BF00C00C41E95 /* TableViewCell.xib in Resources */,
 				04F0A0371B7187CD0041CB33 /* Titlescreen@2x.png in Resources */,
 				04F5CA4F1AA3B4FB002D1069 /* Images.xcassets in Resources */,
+				0436AE6F1BC355ED00510928 /* PurchasedTableViewCell.xib in Resources */,
 				043938771AF53DA1004EA4D3 /* RecipeCell.xib in Resources */,
 				509D327E1B5FCE2800388374 /* HomeView.xib in Resources */,
 			);
@@ -468,6 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0436AE771BC3590800510928 /* PurchasedViewController.m in Sources */,
 				0439387D1AF5444F004EA4D3 /* InformationViewController.m in Sources */,
 				04CE743C1ACCC81800624A7F /* Information.m in Sources */,
 				04551AA41AFC384000DBEE9B /* Featured.m in Sources */,
@@ -494,6 +509,7 @@
 				04F5CA411AA3B4FB002D1069 /* main.m in Sources */,
 				509D32811B5FD20400388374 /* HomeScreenViewLayout.m in Sources */,
 				04F5CA741AAA64ED002D1069 /* Note.m in Sources */,
+				0436AE721BC356B000510928 /* PurchasedTableViewCell.m in Sources */,
 				043938901AF54C46004EA4D3 /* PopularViewController.m in Sources */,
 				0439387A1AF53DEB004EA4D3 /* RecipeCell.m in Sources */,
 				559C0E711B5FFD04002BF4E6 /* ParentCollectionViewController.m in Sources */,
