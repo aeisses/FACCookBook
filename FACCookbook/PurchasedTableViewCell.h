@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Recipe.h"
 
 @interface PurchasedTableViewCell : UITableViewCell
 
@@ -14,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *purchaseCost;
 @property (weak, nonatomic) IBOutlet UILabel *recipeTitle;
 @property (weak, nonatomic) IBOutlet UILabel *season;
+
+- (void)addRecipeImage:(Recipe*)recipe forCell:(BOOL)forCell;
 
 @end

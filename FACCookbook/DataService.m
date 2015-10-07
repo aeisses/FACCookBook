@@ -906,6 +906,23 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     return nil;
 }
 
+- (NSArray*)loadPurchasedDataFromCoreData {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Purchased" inManagedObjectContext:_managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSError *error = nil;
+    
+    NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if(error) {
+        NSLog(@"error description :%@",[error description]);
+    }
+    else {
+        return  results;
+    }
+    
+    return nil;
+}
+
 - (Information*)loadInformationDataFromCoreData{
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Information" inManagedObjectContext:_managedObjectContext];

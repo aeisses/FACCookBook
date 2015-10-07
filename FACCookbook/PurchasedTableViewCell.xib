@@ -26,7 +26,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wm0-tj-hhW">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iPhoneCell" translatesAutoresizingMaskIntoConstraints="NO" id="wm0-tj-hhW">
                     <rect key="frame" x="15" y="10" width="120" height="80"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtu-me-ags">
@@ -47,4 +47,7 @@
             <point key="canvasLocation" x="324" y="494"/>
         </view>
     </objects>
+    <resources>
+        <image name="iPhoneCell" width="150" height="100"/>
+    </resources>
 </document>
