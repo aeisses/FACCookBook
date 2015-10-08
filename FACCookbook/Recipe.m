@@ -26,7 +26,7 @@
 @dynamic ingredients;
 @dynamic notes;
 @dynamic popular;
-//@dynamic featured;
+@dynamic component;
 @dynamic information;
 @dynamic purchased;
 
@@ -85,6 +85,20 @@
     };
     
     return drawingBlock;
+}
+
+- (UIImage*)imageForSeason {
+    UIImage *image;
+    if ([self.season isEqualToString:@"Spring"] || [self.season isEqualToString:@"spring"]) {
+        image = [UIImage imageNamed:@"springBackGround"];
+    } else if ([self.season isEqualToString:@"Fall"] || [self.season isEqualToString:@"fall"]) {
+        image = [UIImage imageNamed:@"fallBackGround"];
+    } else if ([self.season isEqualToString:@"Winter"] || [self.season isEqualToString:@"winter"]) {
+        image = [UIImage imageNamed:@"winterBackGround"];
+    } else {
+        image = [UIImage imageNamed:@"summerBackGround"];
+    }
+    return image;
 }
 
 @end
