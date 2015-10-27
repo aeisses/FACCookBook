@@ -12,8 +12,9 @@
 
 @interface RecipeViewController : UIViewController <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UIScrollView *backGroundView;
+@property (strong, nonatomic) IBOutlet UIScrollView *recipeScrollView;
 @property (retain, nonatomic) Recipe *recipe;
+@property (assign, nonatomic) BOOL showNavigationBar;
 @property (retain, nonatomic) NSArray *recipes;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIImageView *recipeImage;
@@ -22,5 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *instructions;
 @property (weak, nonatomic) IBOutlet UITextView *notes;
 @property (weak, nonatomic) IBOutlet UITableView *ingredients;
+@property (weak, nonatomic) IBOutlet UIImageView *backGroundImageView;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 @end

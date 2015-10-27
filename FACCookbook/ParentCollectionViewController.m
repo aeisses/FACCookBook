@@ -8,6 +8,8 @@
 
 #import "ParentCollectionViewController.h"
 #import "RecipeViewController.h"
+#import "FavouriteViewController.h"
+#import "SearchViewController.h"
 #import "AppDelegate.h"
 #import "Recipe.h"
 #import "Utils.h"
@@ -30,6 +32,10 @@ static NSString *segueIdentifier = @"recipe";
 @synthesize recipeImages = _recipeImages;
 @synthesize collectionView = _collectionView;
 
+-(BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 }
@@ -41,16 +47,17 @@ static NSString *segueIdentifier = @"recipe";
     self.managedObjectContext = delegate.managedObjectContext;
     
     NSError *error;
-    if (![[self recipes] performFetch:&error]) {
-        NSLog(@"Unresolved error %@", error);
-        exit(-1);
+    if ([self.recipes isKindOfClass:[NSFetchedResultsController class]]) {
+        if (![[self recipes] performFetch:&error]) {
+            NSLog(@"Unresolved error %@", error);
+            exit(-1);
+        }
     }
     
     [_collectionView registerNib:[UINib nibWithNibName:nibName bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellResueIdentifier];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void)viewDidUnload {
     self.recipes = nil;
 }
 
@@ -60,9 +67,18 @@ static NSString *segueIdentifier = @"recipe";
 
 #pragma mark - Segue protocol methods
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UINavigationController *navigationController = (UINavigationController*)[UIApplication sharedApplication].keyWindow.rootViewController;
     RecipeViewController* vc = (RecipeViewController*)segue.destinationViewController;
+    if ([((UITabBarController*)[navigationController topViewController]).selectedViewController isKindOfClass:[SearchViewController class]] ||
+        [((UITabBarController*)[navigationController topViewController]).selectedViewController isKindOfClass:[FavouriteViewController class]]) {
+        [vc setShowNavigationBar:YES];
+    }
     [vc setRecipe:_selectedRecipe];
-    [vc setRecipes:[self.recipes fetchedObjects]];
+    if ([self.recipes isKindOfClass:[NSArray class]]) {
+        [vc setRecipes:self.recipes];
+    } else {
+        [vc setRecipes:[self.recipes fetchedObjects]];
+    }
 }
 
 #pragma UICollectioView Data Source
@@ -71,13 +87,21 @@ static NSString *segueIdentifier = @"recipe";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
+    if ([self.recipes isKindOfClass:[NSArray class]]) {
+        return [self.recipes count];
+    }
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.recipes sections][section];
     return [sectionInfo numberOfObjects];
 }
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSManagedObject *object = [self.recipes objectAtIndexPath:indexPath];
+    NSManagedObject *object;
+    if ([self.recipes isKindOfClass:[NSArray class]]) {
+        object = [self.recipes objectAtIndex:indexPath.row];
+    } else {
+        object = [self.recipes objectAtIndexPath:indexPath];
+    }
     if ([object isKindOfClass:[Featured class]]) {
         _selectedRecipe = (Recipe*)((Featured*)object).recipe;
     } else {
@@ -89,7 +113,12 @@ static NSString *segueIdentifier = @"recipe";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     RecipeCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
     
-    Recipe *recipe = [[self.recipes fetchedObjects] objectAtIndex:indexPath.row];
+    Recipe *recipe;
+    if ([self.recipes isKindOfClass:[NSArray class]]) {
+        recipe = [self.recipes objectAtIndex:indexPath.row];
+    } else {
+        recipe = [[self.recipes fetchedObjects] objectAtIndex:indexPath.row];
+    }
     [cell addRecipeImage:recipe forCell:YES];
     
     return cell;

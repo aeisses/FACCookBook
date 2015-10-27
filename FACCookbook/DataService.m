@@ -77,11 +77,11 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 // Once the server is up and gtg it should be sending valid content-types and we can cut out manual serialization.
 
 + (NSString *)allRecipiesEndpoint {
-    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/recipies.json", [DataService protocol], [DataService domain]];
+    return [NSString stringWithFormat:@"%@://%@/u/19713116/foundation/recipies.json", [DataService protocol], [DataService domain]];
 }
 
 + (NSString *)newRecipiesEndpointSince:(NSDate *)date {
-    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/recipies.json", [DataService protocol], [DataService domain]];
+    return [NSString stringWithFormat:@"%@://%@/u/19713116/foundation/update.json", [DataService protocol], [DataService domain]];
 }
 
 + (NSString *)allLocationsEndPoint {

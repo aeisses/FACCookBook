@@ -23,6 +23,10 @@
 
 @synthesize recipes = _recipes;
 
+-(BOOL)prefersStatusBarHidden{
+    return YES;
+}
+
 - (NSFetchedResultsController *)recipes {
     if (_recipes != nil) {
         return _recipes;
@@ -49,6 +53,7 @@
 #pragma mark - Segue protocol methods
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     RecipeViewController* vc = (RecipeViewController*)segue.destinationViewController;
+    [vc setShowNavigationBar:YES];
     [vc setRecipe:self.selectedRecipe];
     NSMutableArray *recipes = [NSMutableArray new];
     for (Featured *featured in [_recipes fetchedObjects]) {

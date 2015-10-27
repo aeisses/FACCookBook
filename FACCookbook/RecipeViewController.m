@@ -48,18 +48,27 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 
 @synthesize recipe = _recipe;
 @synthesize recipes = _recipes;
+@synthesize showNavigationBar = _showNavigationBar;
 @synthesize name = _name;
 @synthesize recipeImage = _recipeImage;
 @synthesize swipeLeftGesture = _swipeLeftGesture;
 @synthesize swipeRightGuesture = _swipeRightGuesture;
 @synthesize ingredients = _ingredients;
 @synthesize ingredientsDictionary = _ingredientsDictionary;
+@synthesize recipeScrollView = _recipeScrollView;
+@synthesize backGroundImageView = _backGroundImageView;
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
 //    [aScrollView setContentOffset: CGPointMake(0, aScrollView.contentOffset.y)];
     // or if you are sure you wanna it always on left:
     // [aScrollView setContentOffset: CGPointMake(0, aScrollView.contentOffset.y)];
+}
+
+
+- (IBAction)backButtonTouched:(id)sender {
+    UINavigationController *navigationController = (UINavigationController*)[UIApplication sharedApplication].keyWindow.rootViewController;
+    [navigationController popViewControllerAnimated:YES];
 }
 
 - (void)loadImageforRecipe {
@@ -82,6 +91,8 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
     _name.text = _recipe.title;
     [self loadImageforRecipe];
 
+    _backGroundImageView.image = [_recipe imageForSeason];
+    
     _ingredientsDictionary = [NSMutableDictionary new];
     for (Ingredient *ingredient in _recipe.ingredients) {
         NSString *item = ingredient.item;
@@ -153,7 +164,7 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 
 - (void)alignRecipeViews {
     float newHeight = _ingredients.frame.origin.y+_ingredients.frame.size.height+_instructions.frame.size.height+_instructionToNotesContraint.constant+_notesHeightContraint.constant+20;
-    [_backGroundView setContentSize:(CGSize){[UIScreen mainScreen].bounds.size.width,newHeight}];
+    [_recipeScrollView setContentSize:(CGSize){[UIScreen mainScreen].bounds.size.width,newHeight}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -169,6 +180,11 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
     _swipeRightGuesture = [[UISwipeGestureRecognizer alloc] initWithTarget:sSelf action:@selector(swipeHandler:)];
     _swipeRightGuesture.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:_swipeRightGuesture];
+    
+    if (_showNavigationBar) {
+        UINavigationController *navigationController = (UINavigationController*)[UIApplication sharedApplication].keyWindow.rootViewController;
+        navigationController.navigationBarHidden = NO;
+    }
 }
 
 - (void)viewDidAppear:(BOOL) animated {
@@ -177,6 +193,15 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
     [self alignRecipeViews];
 //    [_instructions setNeedsDisplay];
     [_ingredients setNeedsLayout];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if (_showNavigationBar) {
+        UINavigationController *navigationController = (UINavigationController*)[UIApplication sharedApplication].keyWindow.rootViewController;
+        navigationController.navigationBarHidden = YES;
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

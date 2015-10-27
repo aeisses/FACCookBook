@@ -42,7 +42,7 @@
     return season;
 }
 
-- (NSFetchedResultsController *)recipes {
+- (id)recipes {
     if (_recipes != nil) {
         return _recipes;
     }
@@ -62,7 +62,7 @@
                                         managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil
                                                    cacheName:@"Season"];
     _recipes = theFetchedResultsController;
-    _recipes.delegate = self;
+    ((NSFetchedResultsController*)_recipes).delegate = self;
     
     return _recipes;
 }
