@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0436AE6F1BC355ED00510928 /* PurchasedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0436AE6E1BC355ED00510928 /* PurchasedTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
-		0436AE721BC356B000510928 /* PurchasedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436AE711BC356B000510928 /* PurchasedTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		0436AE6F1BC355ED00510928 /* PurchasedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0436AE6E1BC355ED00510928 /* PurchasedTableViewCell.xib */; };
+		0436AE721BC356B000510928 /* PurchasedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436AE711BC356B000510928 /* PurchasedTableViewCell.m */; };
 		0436AE771BC3590800510928 /* PurchasedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436AE761BC3588300510928 /* PurchasedViewController.m */; };
 		043938711AF2FEB7004EA4D3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043938701AF2FEB7004EA4D3 /* MapKit.framework */; };
 		043938741AF30206004EA4D3 /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938731AF30206004EA4D3 /* HomeScreenViewController.m */; };
@@ -353,6 +353,7 @@
 				04F5CA381AA3B4FB002D1069 /* Frameworks */,
 				04F5CA391AA3B4FB002D1069 /* Resources */,
 				099579FAC3BFA5EE46D3CBE8 /* Copy Pods Resources */,
+				9830657C78BC04742D836C3D /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -458,6 +459,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9830657C78BC04742D836C3D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B42E341CC19A2253892B266A /* Check Pods Manifest.lock */ = {

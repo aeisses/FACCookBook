@@ -51,7 +51,7 @@ static NSString *segueIdentifier = @"recipe";
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    self.recipes = nil;
+//    self.recipes = nil;
 }
 
 - (void)didReceiveMemoryWarning {
