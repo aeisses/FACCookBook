@@ -8,6 +8,9 @@
 
 #import "ParentCollectionViewController.h"
 
-@interface SearchViewController : ParentCollectionViewController
+@interface SearchViewController : ParentCollectionViewController <UISearchBarDelegate>
+
+@property (retain, nonatomic) UISearchBar *searchBar;
+@property (retain, nonatomic) NSString *searchString;
 
 @end
