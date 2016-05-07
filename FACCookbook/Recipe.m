@@ -88,6 +88,8 @@
 }
 
 - (UIImage*)imageForSeason {
+    CIFilter *gaussianBlurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [gaussianBlurFilter setDefaults];
     UIImage *image;
     if ([self.season isEqualToString:@"Spring"] || [self.season isEqualToString:@"spring"]) {
         image = [UIImage imageNamed:@"springBackGround"];
@@ -98,7 +100,18 @@
     } else {
         image = [UIImage imageNamed:@"summerBackGround"];
     }
-    return image;
+
+    CIImage *inputImage = [CIImage imageWithCGImage:[image CGImage]];
+    [gaussianBlurFilter setValue:inputImage forKey:kCIInputImageKey];
+    [gaussianBlurFilter setValue:@4 forKey:kCIInputRadiusKey];
+
+    CIImage *outputImage = [gaussianBlurFilter outputImage];
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef cgimg = [context createCGImage:outputImage fromRect:[inputImage extent]];
+    UIImage *returnImage = [UIImage imageWithCGImage:cgimg];
+    CGImageRelease(cgimg);
+
+    return returnImage;
 }
 
 @end

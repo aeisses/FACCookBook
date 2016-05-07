@@ -60,11 +60,13 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
-//    [aScrollView setContentOffset: CGPointMake(0, aScrollView.contentOffset.y)];
-    // or if you are sure you wanna it always on left:
-    // [aScrollView setContentOffset: CGPointMake(0, aScrollView.contentOffset.y)];
+    float height = [self recipeImage].frame.size.height;
+    if (aScrollView.contentOffset.y > height) {
+        [[self titleContainerHeight] setConstant:aScrollView.contentOffset.y-height];
+    } else if (aScrollView.contentOffset.y < 0) {
+        [[self titleContainerHeight] setConstant:0];
+    }
 }
-
 
 - (IBAction)backButtonTouched:(id)sender {
     UINavigationController *navigationController = (UINavigationController*)[UIApplication sharedApplication].keyWindow.rootViewController;
@@ -88,78 +90,78 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 }
 
 - (void)loadRecipe {
-    _name.text = _recipe.title;
+//    _name.text = _recipe.title;
     [self loadImageforRecipe];
 
-    _backGroundImageView.image = [_recipe imageForSeason];
-    
-    _ingredientsDictionary = [NSMutableDictionary new];
-    for (Ingredient *ingredient in _recipe.ingredients) {
-        NSString *item = ingredient.item;
-        LocalIngredient *lIngred = [LocalIngredient new];
-        lIngred.amount = ingredient.amount;
-        lIngred.ingredient = ingredient.ingredient;
-        
-        NSMutableArray *ingredArray;
-        if (item) {
-            if ([_ingredientsDictionary objectForKey:item]) {
-                ingredArray = [_ingredientsDictionary objectForKey:item];
-            } else {
-                ingredArray = [NSMutableArray new];
-            }
-            [ingredArray addObject:lIngred];
-            [_ingredientsDictionary setObject:ingredArray forKey:item];
-        } else {
-            if (![_ingredientsDictionary objectForKey:@"One_Item"]) {
-                ingredArray = [NSMutableArray new];
-            } else {
-                ingredArray = [_ingredientsDictionary objectForKey:@"One_Item"];
-            }
-            [ingredArray addObject:lIngred];
-            [_ingredientsDictionary setObject:ingredArray forKey:@"One_Item"];
-        }
-    }
-    
-    NSArray *keys = [_ingredientsDictionary allKeys];
-    NSInteger sectionCount = [keys count];
-    if (sectionCount == 1) {
-        sectionCount = 0;
-    }
-    NSInteger rowCount = 0;
-    for (NSString *key in keys) {
-        NSArray *array = [_ingredientsDictionary objectForKey:key];
-        rowCount += [array count];
-    }
-    
-    _ingredientsHeightContraint.constant = (rowCount+sectionCount)*20;
-    _ingredients.frame = (CGRect){_ingredients.frame.origin,_ingredients.frame.size.width,(rowCount+sectionCount)*20};
-    [_ingredients layoutIfNeeded];
-    [_ingredients reloadData];
-    
-    _instructions.text = @"";
-    int counter = 1;
-    for (Direction *direction in _recipe.directions) {
-        NSString *directionString = [direction.direction stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        if ([_instructions.text isEqualToString:@""]) {
-            _instructions.text =  [NSString stringWithFormat:@"%i. %@",counter++,directionString];
-        } else {
-            _instructions.text = [NSString stringWithFormat:@"%@\r%i. %@",_instructions.text,counter++,directionString];
-        }
-    }
+//    _backGroundImageView.image = [_recipe imageForSeason];
+//    
+//    _ingredientsDictionary = [NSMutableDictionary new];
+//    for (Ingredient *ingredient in _recipe.ingredients) {
+//        NSString *item = ingredient.item;
+//        LocalIngredient *lIngred = [LocalIngredient new];
+//        lIngred.amount = ingredient.amount;
+//        lIngred.ingredient = ingredient.ingredient;
+//        
+//        NSMutableArray *ingredArray;
+//        if (item) {
+//            if ([_ingredientsDictionary objectForKey:item]) {
+//                ingredArray = [_ingredientsDictionary objectForKey:item];
+//            } else {
+//                ingredArray = [NSMutableArray new];
+//            }
+//            [ingredArray addObject:lIngred];
+//            [_ingredientsDictionary setObject:ingredArray forKey:item];
+//        } else {
+//            if (![_ingredientsDictionary objectForKey:@"One_Item"]) {
+//                ingredArray = [NSMutableArray new];
+//            } else {
+//                ingredArray = [_ingredientsDictionary objectForKey:@"One_Item"];
+//            }
+//            [ingredArray addObject:lIngred];
+//            [_ingredientsDictionary setObject:ingredArray forKey:@"One_Item"];
+//        }
+//    }
+//
+//    NSArray *keys = [_ingredientsDictionary allKeys];
+//    NSInteger sectionCount = [keys count];
+//    if (sectionCount == 1) {
+//        sectionCount = 0;
+//    }
+//    NSInteger rowCount = 0;
+//    for (NSString *key in keys) {
+//        NSArray *array = [_ingredientsDictionary objectForKey:key];
+//        rowCount += [array count];
+//    }
+//
+//    _ingredientsHeightContraint.constant = (rowCount+sectionCount)*20;
+//    _ingredients.frame = (CGRect){_ingredients.frame.origin,_ingredients.frame.size.width,(rowCount+sectionCount)*20};
+////    [_ingredients setNeedsLayout];
+//    [_ingredients reloadData];
+//
+//    _instructions.text = @"";
+//    int counter = 1;
+//    for (Direction *direction in _recipe.directions) {
+//        NSString *directionString = [direction.direction stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//        if ([_instructions.text isEqualToString:@""]) {
+//            _instructions.text =  [NSString stringWithFormat:@"%i. %@",counter++,directionString];
+//        } else {
+//            _instructions.text = [NSString stringWithFormat:@"%@\r%i. %@",_instructions.text,counter++,directionString];
+//        }
+//    }
+//
+////    [_instructions adjustHeightAndConstraintToTextSize:_instructionHeightContraint];
+//
+//    _notes.text = @"";
+//    for (Note *note in _recipe.notes) {
+//        NSString *noteString = [note.note stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//        if ([_notes.text isEqualToString:@""]) {
+//            _notes.text =  [NSString stringWithFormat:@"%@",noteString];
+//        } else {
+//            _notes.text = [NSString stringWithFormat:@"%@\r%@",_notes.text,noteString];
+//        }
+//    }
 
-    [_instructions adjustHeightAndConstraintToTextSize:_instructionHeightContraint];
-
-    _notes.text = @"";
-    for (Note *note in _recipe.notes) {
-        NSString *noteString = [note.note stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        if ([_notes.text isEqualToString:@""]) {
-            _notes.text =  [NSString stringWithFormat:@"%@",noteString];
-        } else {
-            _notes.text = [NSString stringWithFormat:@"%@\r%@",_notes.text,noteString];
-        }
-    }
-    
-    [_notes adjustHeightAndConstraintToTextSize:_notesHeightContraint];
+//    [_notes adjustHeightAndConstraintToTextSize:_notesHeightContraint];
 }
 
 - (void)alignRecipeViews {
@@ -169,7 +171,6 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self loadRecipe];
 
     __weak RecipeViewController *wSelf = self;
     RecipeViewController *sSelf = wSelf;
@@ -189,10 +190,15 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 
 - (void)viewDidAppear:(BOOL) animated {
     [super viewDidAppear:animated];
-    [_ingredients registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:nil] forCellReuseIdentifier:ingredientCellIdentifier];
-    [self alignRecipeViews];
+    [self loadRecipe];
+
+    CGRect frame = [[self titleContainerView] frame];
+    [[self titleContainerView] setBounds:(CGRect){frame.origin.x,_recipeImage.frame.size.height,frame.size}];
+//    [_ingredients registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:nil] forCellReuseIdentifier:ingredientCellIdentifier];
+//    [self alignRecipeViews];
+//    [self layoutIfNeeded];
 //    [_instructions setNeedsDisplay];
-    [_ingredients setNeedsLayout];
+//    [_ingredients setNeedsLayout];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -295,4 +301,9 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 //- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index;  // tell table which section corresponds to section title/index (e.g. "B",1))
 
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+//    float height = self.view.frame.size.height + _recipeImage.frame.size.height;
+    [[self recipeScrollView] setContentSize:(CGSize){self.view.frame.size.width,1000}];
+}
 @end
