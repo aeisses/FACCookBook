@@ -62,9 +62,9 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 {
     float height = [self recipeImage].frame.size.height;
     if (aScrollView.contentOffset.y > height) {
-        [[self titleContainerHeight] setConstant:aScrollView.contentOffset.y-height];
+        [[self titleContainerVerticalOffset] setConstant:aScrollView.contentOffset.y-height];
     } else if (aScrollView.contentOffset.y < 0) {
-        [[self titleContainerHeight] setConstant:0];
+        [[self titleContainerVerticalOffset] setConstant:0];
     }
 }
 
@@ -90,53 +90,55 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 }
 
 - (void)loadRecipe {
-//    _name.text = _recipe.title;
+    _name.text = _recipe.title;
     [self loadImageforRecipe];
 
+    CGFloat ingredientsHeight = [[[self recipe] ingredients] count] * 21 + 35 + 8;
+    [[self ingredientsHeightContraint] setConstant:ingredientsHeight];
 //    _backGroundImageView.image = [_recipe imageForSeason];
 //    
-//    _ingredientsDictionary = [NSMutableDictionary new];
-//    for (Ingredient *ingredient in _recipe.ingredients) {
-//        NSString *item = ingredient.item;
-//        LocalIngredient *lIngred = [LocalIngredient new];
-//        lIngred.amount = ingredient.amount;
-//        lIngred.ingredient = ingredient.ingredient;
-//        
-//        NSMutableArray *ingredArray;
-//        if (item) {
-//            if ([_ingredientsDictionary objectForKey:item]) {
-//                ingredArray = [_ingredientsDictionary objectForKey:item];
-//            } else {
-//                ingredArray = [NSMutableArray new];
-//            }
-//            [ingredArray addObject:lIngred];
-//            [_ingredientsDictionary setObject:ingredArray forKey:item];
-//        } else {
-//            if (![_ingredientsDictionary objectForKey:@"One_Item"]) {
-//                ingredArray = [NSMutableArray new];
-//            } else {
-//                ingredArray = [_ingredientsDictionary objectForKey:@"One_Item"];
-//            }
-//            [ingredArray addObject:lIngred];
-//            [_ingredientsDictionary setObject:ingredArray forKey:@"One_Item"];
-//        }
-//    }
-//
-//    NSArray *keys = [_ingredientsDictionary allKeys];
-//    NSInteger sectionCount = [keys count];
-//    if (sectionCount == 1) {
-//        sectionCount = 0;
-//    }
-//    NSInteger rowCount = 0;
-//    for (NSString *key in keys) {
-//        NSArray *array = [_ingredientsDictionary objectForKey:key];
-//        rowCount += [array count];
-//    }
-//
+    _ingredientsDictionary = [NSMutableDictionary new];
+    for (Ingredient *ingredient in _recipe.ingredients) {
+        NSString *item = ingredient.item;
+        LocalIngredient *lIngred = [LocalIngredient new];
+        lIngred.amount = ingredient.amount;
+        lIngred.ingredient = ingredient.ingredient;
+        
+        NSMutableArray *ingredArray;
+        if (item) {
+            if ([_ingredientsDictionary objectForKey:item]) {
+                ingredArray = [_ingredientsDictionary objectForKey:item];
+            } else {
+                ingredArray = [NSMutableArray new];
+            }
+            [ingredArray addObject:lIngred];
+            [_ingredientsDictionary setObject:ingredArray forKey:item];
+        } else {
+            if (![_ingredientsDictionary objectForKey:@"One_Item"]) {
+                ingredArray = [NSMutableArray new];
+            } else {
+                ingredArray = [_ingredientsDictionary objectForKey:@"One_Item"];
+            }
+            [ingredArray addObject:lIngred];
+            [_ingredientsDictionary setObject:ingredArray forKey:@"One_Item"];
+        }
+    }
+
+    NSArray *keys = [_ingredientsDictionary allKeys];
+    NSInteger sectionCount = [keys count];
+    if (sectionCount == 1) {
+        sectionCount = 0;
+    }
+    NSInteger rowCount = 0;
+    for (NSString *key in keys) {
+        NSArray *array = [_ingredientsDictionary objectForKey:key];
+        rowCount += [array count];
+    }
+
 //    _ingredientsHeightContraint.constant = (rowCount+sectionCount)*20;
-//    _ingredients.frame = (CGRect){_ingredients.frame.origin,_ingredients.frame.size.width,(rowCount+sectionCount)*20};
-////    [_ingredients setNeedsLayout];
-//    [_ingredients reloadData];
+    _ingredients.frame = (CGRect){_ingredients.frame.origin,_ingredients.frame.size.width,(rowCount+sectionCount)*20};
+//    [_ingredients setNeedsLayout];
+    [_ingredients reloadData];
 //
 //    _instructions.text = @"";
 //    int counter = 1;
@@ -162,6 +164,7 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 //    }
 
 //    [_notes adjustHeightAndConstraintToTextSize:_notesHeightContraint];
+    [[self view] setNeedsLayout];
 }
 
 - (void)alignRecipeViews {
@@ -192,8 +195,8 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
     [super viewDidAppear:animated];
     [self loadRecipe];
 
-    CGRect frame = [[self titleContainerView] frame];
-    [[self titleContainerView] setBounds:(CGRect){frame.origin.x,_recipeImage.frame.size.height,frame.size}];
+//    CGRect frame = [[self titleContainerView] frame];
+//    [[self titleContainerView] setBounds:(CGRect){frame.origin.x,_recipeImage.frame.size.height,frame.size}];
 //    [_ingredients registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:nil] forCellReuseIdentifier:ingredientCellIdentifier];
 //    [self alignRecipeViews];
 //    [self layoutIfNeeded];
@@ -250,12 +253,12 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 
 #pragma mark UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 20.0f;
+    return 21.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if ([[_ingredientsDictionary allKeys] count] > 1) {
-        return 20.0f;
+        return 21.0f;
     }
     return 0.0f;
 }

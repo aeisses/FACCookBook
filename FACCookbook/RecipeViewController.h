@@ -27,6 +27,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UIView *titleContainerView;
 @property (strong, nonatomic) IBOutlet UIScrollView *secondScrollView;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *titleContainerHeight;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *titleContainerVerticalOffset;
 
 @end
