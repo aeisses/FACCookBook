@@ -16,6 +16,7 @@
 #import "DataService.h"
 
 static NSString *ingredientCellIdentifier = @"IngredientCell";
+static NSInteger cellPadding = 42;
 
 @interface LocalIngredient : NSObject
 @property (retain, nonatomic) NSString *amount;
@@ -36,6 +37,7 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *instructionToNotesContraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ingredientsHeightContraint;
 @property (strong, nonatomic) NSMutableDictionary *ingredientsDictionary;
+@property (nonatomic) NSInteger contentHeight;
 
 - (void)swipeRight;
 - (void)swipeLeft;
@@ -93,7 +95,7 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
     _name.text = _recipe.title;
     [self loadImageforRecipe];
 
-    CGFloat ingredientsHeight = [[[self recipe] ingredients] count] * 21 + 35 + 8;
+    CGFloat ingredientsHeight = [[[self recipe] ingredients] count] * 21 + cellPadding;
     [[self ingredientsHeightContraint] setConstant:ingredientsHeight];
 //    _backGroundImageView.image = [_recipe imageForSeason];
 //    
@@ -135,35 +137,35 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
         rowCount += [array count];
     }
 
-//    _ingredientsHeightContraint.constant = (rowCount+sectionCount)*20;
-    _ingredients.frame = (CGRect){_ingredients.frame.origin,_ingredients.frame.size.width,(rowCount+sectionCount)*20};
-//    [_ingredients setNeedsLayout];
     [_ingredients reloadData];
-//
-//    _instructions.text = @"";
-//    int counter = 1;
-//    for (Direction *direction in _recipe.directions) {
-//        NSString *directionString = [direction.direction stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//        if ([_instructions.text isEqualToString:@""]) {
-//            _instructions.text =  [NSString stringWithFormat:@"%i. %@",counter++,directionString];
-//        } else {
-//            _instructions.text = [NSString stringWithFormat:@"%@\r%i. %@",_instructions.text,counter++,directionString];
-//        }
-//    }
-//
-////    [_instructions adjustHeightAndConstraintToTextSize:_instructionHeightContraint];
-//
-//    _notes.text = @"";
-//    for (Note *note in _recipe.notes) {
-//        NSString *noteString = [note.note stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//        if ([_notes.text isEqualToString:@""]) {
-//            _notes.text =  [NSString stringWithFormat:@"%@",noteString];
-//        } else {
-//            _notes.text = [NSString stringWithFormat:@"%@\r%@",_notes.text,noteString];
-//        }
-//    }
 
-//    [_notes adjustHeightAndConstraintToTextSize:_notesHeightContraint];
+    _instructions.text = @"";
+    int counter = 1;
+    for (Direction *direction in _recipe.directions) {
+        NSString *directionString = [direction.direction stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if ([_instructions.text isEqualToString:@""]) {
+            _instructions.text =  [NSString stringWithFormat:@"%i. %@",counter++,directionString];
+        } else {
+            _instructions.text = [NSString stringWithFormat:@"%@\r%i. %@",_instructions.text,counter++,directionString];
+        }
+    }
+
+    [[self instructions] adjustHeightAndConstraintToTextSize:_instructionHeightContraint withModifier:cellPadding];
+
+    _notes.text = @"";
+    for (Note *note in _recipe.notes) {
+        NSString *noteString = [note.note stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if ([_notes.text isEqualToString:@""]) {
+            _notes.text =  [NSString stringWithFormat:@"%@",noteString];
+        } else {
+            _notes.text = [NSString stringWithFormat:@"%@\r%@",_notes.text,noteString];
+        }
+    }
+
+    [[self notes] adjustHeightAndConstraintToTextSize:_notesHeightContraint withModifier:cellPadding];
+
+    int titleHeight = [[self titleContainerView] frame].size.height;
+    [self setContentHeight:titleHeight + _ingredientsHeightContraint.constant + _instructionHeightContraint.constant + _notesHeightContraint.constant];
     [[self view] setNeedsLayout];
 }
 
@@ -174,6 +176,7 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self loadRecipe];
 
     __weak RecipeViewController *wSelf = self;
     RecipeViewController *sSelf = wSelf;
@@ -193,7 +196,6 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 
 - (void)viewDidAppear:(BOOL) animated {
     [super viewDidAppear:animated];
-    [self loadRecipe];
 
 //    CGRect frame = [[self titleContainerView] frame];
 //    [[self titleContainerView] setBounds:(CGRect){frame.origin.x,_recipeImage.frame.size.height,frame.size}];
@@ -306,7 +308,9 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+    int recipeHeight = [[self recipeImage] frame].size.height;
+
 //    float height = self.view.frame.size.height + _recipeImage.frame.size.height;
-    [[self recipeScrollView] setContentSize:(CGSize){self.view.frame.size.width,1000}];
+    [[self recipeScrollView] setContentSize:(CGSize){self.view.frame.size.width,[self contentHeight] + recipeHeight}];
 }
 @end

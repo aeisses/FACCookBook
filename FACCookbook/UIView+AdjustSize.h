@@ -10,6 +10,6 @@
 
 @interface UIView (AdjustSize)
 
-- (void)adjustHeightAndConstraintToTextSize:(NSLayoutConstraint*)constraint;
+- (void)adjustHeightAndConstraintToTextSize:(NSLayoutConstraint*)constraint withModifier:(NSInteger)modifier;
 
 @end
