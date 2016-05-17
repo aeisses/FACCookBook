@@ -76,6 +76,7 @@ static NSInteger cellPadding = 42;
 }
 
 - (void)loadImageforRecipe {
+    [[self recipeImage] setImage:[UIImage imageNamed:@"iPhoneStandard"]];
     [[FICImageCache sharedImageCache] retrieveImageForEntity:_recipe withFormatName:[DataService imageFormat:NO] completionBlock:^(id<FICEntity> entity, NSString *formatName, UIImage *image) {
         @autoreleasepool {
             if (image) {

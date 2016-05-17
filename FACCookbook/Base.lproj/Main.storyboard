@@ -573,9 +573,11 @@
                                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="c1F-iw-38R"/>
-                                                            <constraint firstAttribute="width" constant="97" id="x5W-xy-85J"/>
+                                                            <constraint firstAttribute="width" constant="97" id="x5W-xy-85J">
+                                                                <variation key="heightClass=regular" constant="148"/>
+                                                            </constraint>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
@@ -646,7 +648,7 @@
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cAV-tN-4xp">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -657,7 +659,7 @@
                                                             <constraint firstAttribute="height" constant="21" id="Wog-RX-t1H"/>
                                                             <constraint firstAttribute="width" constant="97" id="pH5-Fl-cMZ"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
@@ -720,7 +722,7 @@
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kI8-7x-Esd">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -731,7 +733,7 @@
                                                             <constraint firstAttribute="width" constant="97" id="QJl-dg-AYK"/>
                                                             <constraint firstAttribute="height" constant="21" id="cAd-10-0eD"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
@@ -792,12 +794,14 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seP-o2-OAF">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9eb-N6-wfh">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9eb-N6-wfh">
                                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="21" id="srr-sH-dVH"/>
+                                                            <constraint firstAttribute="height" constant="21" id="srr-sH-dVH">
+                                                                <variation key="heightClass=regular" constant="104"/>
+                                                            </constraint>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                         <variation key="default">
@@ -820,7 +824,7 @@
                                                     <constraint firstAttribute="height" constant="120" id="RGN-YW-G02"/>
                                                     <constraint firstItem="9eb-N6-wfh" firstAttribute="centerX" secondItem="seP-o2-OAF" secondAttribute="centerX" id="X6e-Wo-OX3"/>
                                                     <constraint firstItem="9eb-N6-wfh" firstAttribute="centerY" secondItem="seP-o2-OAF" secondAttribute="centerY" id="hWv-sF-zPd">
-                                                        <variation key="heightClass=regular" constant="-36.5"/>
+                                                        <variation key="heightClass=regular" constant="0.0"/>
                                                     </constraint>
                                                 </constraints>
                                                 <variation key="default">
