@@ -92,4 +92,13 @@
     return retval;
 }
 
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    CGFloat cellWidth = [Utils getSmallCellSize].width;
+    CGFloat screenWidth = [[self view] frame].size.width;
+    CGFloat cellSpacing = (screenWidth - cellWidth*2)/3;
+    return cellSpacing;
+}
+
 @end

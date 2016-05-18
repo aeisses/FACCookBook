@@ -134,7 +134,10 @@ static NSString *segueIdentifier = @"recipe";
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(5, 5, 5, 5);
+    CGFloat cellWidth = [Utils getSmallCellSize].width;
+    CGFloat screenWidth = [[self view] frame].size.width;
+    CGFloat cellSpacing = (screenWidth - (cellWidth*2))/3;
+    return UIEdgeInsetsMake(5, cellSpacing, 5, cellSpacing);
 }
 
 #pragma mark FetchResultsController Delegate Methods

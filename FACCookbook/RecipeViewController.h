@@ -28,5 +28,6 @@
 @property (strong, nonatomic) IBOutlet UIView *titleContainerView;
 @property (strong, nonatomic) IBOutlet UIScrollView *secondScrollView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *titleContainerVerticalOffset;
+@property (strong, nonatomic) IBOutlet UIImageView *identifierImageView;
 
 @end

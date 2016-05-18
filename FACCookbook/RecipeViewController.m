@@ -14,6 +14,7 @@
 #import "IngredientsTableCell.h"
 #import "FICImageCache.h"
 #import "DataService.h"
+#import "Categories.h"
 
 static NSString *ingredientCellIdentifier = @"IngredientCell";
 static NSInteger cellPadding = 42;
@@ -96,6 +97,19 @@ static NSInteger cellPadding = 42;
     _name.text = _recipe.title;
     [self loadImageforRecipe];
 
+    for (Categories *category in _recipe.categories) {
+        NSLog(@"%@",category.category);
+    }
+//    UIImage *image = nil;
+//    if ([_recipe.type isEqualToString:@"vegan"]) {
+//        image = [UIImage imageNamed:@"vegan_icon"];
+//    } else if ([_recipe.type isEqualToString:@"vegetarian"]) {
+//        image = [UIImage imageNamed:@"vegetarian_icon"];
+//    } else if ([_recipe.type isEqualToString:@"glutten free"]) {
+//        image = [UIImage imageNamed:@"glutten_free_icon"];
+//    }
+//    [[self identifierImageView] setImage:image];
+
     CGFloat ingredientsHeight = [[[self recipe] ingredients] count] * 21 + cellPadding;
     [[self ingredientsHeightContraint] setConstant:ingredientsHeight];
 //    _backGroundImageView.image = [_recipe imageForSeason];
@@ -104,8 +118,8 @@ static NSInteger cellPadding = 42;
     for (Ingredient *ingredient in _recipe.ingredients) {
         NSString *item = ingredient.item;
         LocalIngredient *lIngred = [LocalIngredient new];
-        lIngred.amount = ingredient.amount;
-        lIngred.ingredient = ingredient.ingredient;
+        lIngred.amount = [ingredient.amount stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        lIngred.ingredient = [ingredient.ingredient stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         
         NSMutableArray *ingredArray;
         if (item) {
@@ -147,7 +161,7 @@ static NSInteger cellPadding = 42;
         if ([_instructions.text isEqualToString:@""]) {
             _instructions.text =  [NSString stringWithFormat:@"%i. %@",counter++,directionString];
         } else {
-            _instructions.text = [NSString stringWithFormat:@"%@\r%i. %@",_instructions.text,counter++,directionString];
+            _instructions.text = [NSString stringWithFormat:@"%@\r\r%i. %@",_instructions.text,counter++,directionString];
         }
     }
 
@@ -159,7 +173,7 @@ static NSInteger cellPadding = 42;
         if ([_notes.text isEqualToString:@""]) {
             _notes.text =  [NSString stringWithFormat:@"%@",noteString];
         } else {
-            _notes.text = [NSString stringWithFormat:@"%@\r%@",_notes.text,noteString];
+            _notes.text = [NSString stringWithFormat:@"%@\r\r%@",_notes.text,noteString];
         }
     }
 
@@ -195,18 +209,6 @@ static NSInteger cellPadding = 42;
     }
 }
 
-- (void)viewDidAppear:(BOOL) animated {
-    [super viewDidAppear:animated];
-
-//    CGRect frame = [[self titleContainerView] frame];
-//    [[self titleContainerView] setBounds:(CGRect){frame.origin.x,_recipeImage.frame.size.height,frame.size}];
-//    [_ingredients registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:nil] forCellReuseIdentifier:ingredientCellIdentifier];
-//    [self alignRecipeViews];
-//    [self layoutIfNeeded];
-//    [_instructions setNeedsDisplay];
-//    [_ingredients setNeedsLayout];
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
@@ -220,10 +222,6 @@ static NSInteger cellPadding = 42;
     [super viewDidDisappear:animated];
     [self.view removeGestureRecognizer:_swipeRightGuesture];
     [self.view removeGestureRecognizer:_swipeLeftGesture];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
 }
 
 #pragma mark local methods
@@ -265,6 +263,10 @@ static NSInteger cellPadding = 42;
     }
     return 0.0f;
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+//    return 15.0f;
+//}
 
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

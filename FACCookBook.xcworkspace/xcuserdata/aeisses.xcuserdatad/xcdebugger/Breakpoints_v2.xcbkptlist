@@ -16,16 +16,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FACCookbook/RecipeViewController.m"
-            timestampString = "485138078.420259"
+            timestampString = "485223515.467535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
-            landmarkName = "-viewDidLayoutSubviews"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "-loadRecipe"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
