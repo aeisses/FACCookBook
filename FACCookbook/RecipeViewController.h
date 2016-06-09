@@ -28,6 +28,13 @@
 @property (strong, nonatomic) IBOutlet UIView *titleContainerView;
 @property (strong, nonatomic) IBOutlet UIScrollView *secondScrollView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *titleContainerVerticalOffset;
-@property (strong, nonatomic) IBOutlet UIImageView *identifierImageView;
-
+@property (strong, nonatomic) IBOutlet UIImageView *veganImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *vegetarianImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *gluttenFreeImageView;
+@property (strong, nonatomic) IBOutlet UILabel *ingredientsTitle;
+@property (strong, nonatomic) IBOutlet UIView *ingredientsContainerView;
+@property (strong, nonatomic) IBOutlet UILabel *instructionsTitle;
+@property (strong, nonatomic) IBOutlet UIView *instructionsContainerView;
+@property (strong, nonatomic) IBOutlet UILabel *notesTitle;
+@property (strong, nonatomic) IBOutlet UIView *notesContainerView;
 @end

@@ -15,6 +15,9 @@
 #import "FICImageCache.h"
 #import "DataService.h"
 #import "Categories.h"
+#import "SeasonColors.h"
+#import "NSString+ConvertToEnum.h"
+#import "LineAnimationLayer.h"
 
 static NSString *ingredientCellIdentifier = @"IngredientCell";
 static NSInteger cellPadding = 42;
@@ -60,6 +63,12 @@ static NSInteger cellPadding = 42;
 @synthesize ingredientsDictionary = _ingredientsDictionary;
 @synthesize recipeScrollView = _recipeScrollView;
 @synthesize backGroundImageView = _backGroundImageView;
+@synthesize ingredientsTitle = _ingredientsTitle;
+@synthesize ingredientsContainerView = _ingredientsContainerView;
+@synthesize instructionsTitle = _instructionsTitle;
+@synthesize instructionsContainerView = _instructionsContainerView;
+@synthesize notesTitle = _notesTitle;
+@synthesize notesContainerView = _notesContainerView;
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
@@ -93,27 +102,68 @@ static NSInteger cellPadding = 42;
     }];
 }
 
+- (void)createAnimationForSeason:(Season)season {
+    switch (season) {
+        case Winter: {
+            // Frame is 0,80,36,36
+            LineAnimationLayer *layer = [[LineAnimationLayer alloc] init];
+            [layer setFrame:(CGRect){-36,80,36,36}];
+            UIImage *image = [UIImage imageNamed:@"snowflake"];
+            [layer setContents:(id)image.CGImage];
+            [[[self titleContainerView] layer] addSublayer:layer];
+
+            [layer addAnimations:[self titleContainerView].bounds];
+            //[layer setFrame:(CGRect){200,80,36,36}];
+
+            break;
+        }
+        deafult: {
+            break;
+        }
+    }
+}
+
 - (void)loadRecipe {
+    [[self titleContainerVerticalOffset] setConstant:0];
+    [[self recipeScrollView] setContentOffset:(CGPoint){0,0}];
+    
     _name.text = _recipe.title;
+    [self createAnimationForSeason:[[self recipe].season convertToSeasonEnum]];
+    [[self name] setTextColor:[SeasonColors titleColor:[[self recipe].season convertToSeasonEnum]]];
+
+    [[self ingredientsTitle] setTextColor:[SeasonColors titleColor:[[self recipe].season convertToSeasonEnum]]];
+    [[self instructionsTitle] setTextColor:[SeasonColors titleColor:[[self recipe].season convertToSeasonEnum]]];
+    [[self notesTitle] setTextColor:[SeasonColors titleColor:[[self recipe].season convertToSeasonEnum]]];
+
+    [[self ingredientsContainerView] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
+    [[self instructionsContainerView] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
+    [[self notesContainerView] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
+
     [self loadImageforRecipe];
 
+    [[self veganImageView] setHidden:YES];
+    [[self vegetarianImageView] setHidden:YES];
+    [[self gluttenFreeImageView] setHidden:YES];
     for (Categories *category in _recipe.categories) {
         NSLog(@"%@",category.category);
+        if ([category.category isEqualToString:@"vegan"]) {
+            [[self veganImageView] setHidden:NO];
+        }
+        if ([category.category isEqualToString:@"vegetarian"]) {
+            [[self vegetarianImageView] setHidden:NO];
+        }
+        if ([category.category isEqualToString:@"glutten free"]) {
+            [[self gluttenFreeImageView] setHidden:NO];
+        }
+
     }
-//    UIImage *image = nil;
-//    if ([_recipe.type isEqualToString:@"vegan"]) {
-//        image = [UIImage imageNamed:@"vegan_icon"];
-//    } else if ([_recipe.type isEqualToString:@"vegetarian"]) {
-//        image = [UIImage imageNamed:@"vegetarian_icon"];
-//    } else if ([_recipe.type isEqualToString:@"glutten free"]) {
-//        image = [UIImage imageNamed:@"glutten_free_icon"];
-//    }
-//    [[self identifierImageView] setImage:image];
 
     CGFloat ingredientsHeight = [[[self recipe] ingredients] count] * 21 + cellPadding;
     [[self ingredientsHeightContraint] setConstant:ingredientsHeight];
-//    _backGroundImageView.image = [_recipe imageForSeason];
-//    
+    //_backGroundImageView.image = [_recipe imageForSeason];
+    [[self backGroundImageView] setImage:nil];
+    [[self backGroundImageView] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
+
     _ingredientsDictionary = [NSMutableDictionary new];
     for (Ingredient *ingredient in _recipe.ingredients) {
         NSString *item = ingredient.item;
@@ -151,7 +201,7 @@ static NSInteger cellPadding = 42;
         NSArray *array = [_ingredientsDictionary objectForKey:key];
         rowCount += [array count];
     }
-
+    [[self ingredients] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
     [_ingredients reloadData];
 
     _instructions.text = @"";
@@ -166,6 +216,8 @@ static NSInteger cellPadding = 42;
     }
 
     [[self instructions] adjustHeightAndConstraintToTextSize:_instructionHeightContraint withModifier:cellPadding];
+    [[self instructions] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
+    [[self instructions] setTextColor:[SeasonColors textColor:[[self recipe].season convertToSeasonEnum]]];
 
     _notes.text = @"";
     for (Note *note in _recipe.notes) {
@@ -178,6 +230,8 @@ static NSInteger cellPadding = 42;
     }
 
     [[self notes] adjustHeightAndConstraintToTextSize:_notesHeightContraint withModifier:cellPadding];
+    [[self notes] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
+    [[self notes] setTextColor:[SeasonColors textColor:[[self recipe].season convertToSeasonEnum]]];
 
     int titleHeight = [[self titleContainerView] frame].size.height;
     [self setContentHeight:titleHeight + _ingredientsHeightContraint.constant + _instructionHeightContraint.constant + _notesHeightContraint.constant];
@@ -287,6 +341,8 @@ static NSInteger cellPadding = 42;
     
     cell.ingredient.text = lIngred.ingredient;
     cell.amount.text = lIngred.amount;
+    cell.ingredient.textColor = [SeasonColors textColor:[[self recipe].season convertToSeasonEnum]];
+    cell.amount.textColor = [SeasonColors textColor:[[self recipe].season convertToSeasonEnum]];
 
     return cell;
 }
