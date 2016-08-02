@@ -14,8 +14,13 @@
 #import "IngredientsTableCell.h"
 #import "FICImageCache.h"
 #import "DataService.h"
+#import "Categories.h"
+#import "SeasonColors.h"
+#import "NSString+ConvertToEnum.h"
+#import "LineAnimationLayer.h"
 
 static NSString *ingredientCellIdentifier = @"IngredientCell";
+static NSInteger cellPadding = 42;
 
 @interface LocalIngredient : NSObject
 @property (retain, nonatomic) NSString *amount;
@@ -36,6 +41,7 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *instructionToNotesContraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ingredientsHeightContraint;
 @property (strong, nonatomic) NSMutableDictionary *ingredientsDictionary;
+@property (nonatomic) NSInteger contentHeight;
 
 - (void)swipeRight;
 - (void)swipeLeft;
@@ -57,14 +63,22 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 @synthesize ingredientsDictionary = _ingredientsDictionary;
 @synthesize recipeScrollView = _recipeScrollView;
 @synthesize backGroundImageView = _backGroundImageView;
+@synthesize ingredientsTitle = _ingredientsTitle;
+@synthesize ingredientsContainerView = _ingredientsContainerView;
+@synthesize instructionsTitle = _instructionsTitle;
+@synthesize instructionsContainerView = _instructionsContainerView;
+@synthesize notesTitle = _notesTitle;
+@synthesize notesContainerView = _notesContainerView;
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
-//    [aScrollView setContentOffset: CGPointMake(0, aScrollView.contentOffset.y)];
-    // or if you are sure you wanna it always on left:
-    // [aScrollView setContentOffset: CGPointMake(0, aScrollView.contentOffset.y)];
+    float height = [self recipeImage].frame.size.height;
+    if (aScrollView.contentOffset.y > height) {
+        [[self titleContainerVerticalOffset] setConstant:aScrollView.contentOffset.y-height];
+    } else if (aScrollView.contentOffset.y < 0) {
+        [[self titleContainerVerticalOffset] setConstant:0];
+    }
 }
-
 
 - (IBAction)backButtonTouched:(id)sender {
     UINavigationController *navigationController = (UINavigationController*)[UIApplication sharedApplication].keyWindow.rootViewController;
@@ -72,6 +86,7 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 }
 
 - (void)loadImageforRecipe {
+    [[self recipeImage] setImage:[UIImage imageNamed:@"iPhoneStandard"]];
     [[FICImageCache sharedImageCache] retrieveImageForEntity:_recipe withFormatName:[DataService imageFormat:NO] completionBlock:^(id<FICEntity> entity, NSString *formatName, UIImage *image) {
         @autoreleasepool {
             if (image) {
@@ -87,18 +102,74 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
     }];
 }
 
+- (void)createAnimationForSeason:(Season)season {
+    switch (season) {
+        case Winter: {
+            // Frame is 0,80,36,36
+            LineAnimationLayer *layer = [[LineAnimationLayer alloc] init];
+            [layer setFrame:(CGRect){-36,80,36,36}];
+            UIImage *image = [UIImage imageNamed:@"snowflake"];
+            [layer setContents:(id)image.CGImage];
+            [[[self titleContainerView] layer] addSublayer:layer];
+
+            [layer addAnimations:[self titleContainerView].bounds];
+            //[layer setFrame:(CGRect){200,80,36,36}];
+
+            break;
+        }
+        deafult: {
+            break;
+        }
+    }
+}
+
 - (void)loadRecipe {
+    [[self titleContainerVerticalOffset] setConstant:0];
+    [[self recipeScrollView] setContentOffset:(CGPoint){0,0}];
+    
     _name.text = _recipe.title;
+    [self createAnimationForSeason:[[self recipe].season convertToSeasonEnum]];
+    [[self name] setTextColor:[SeasonColors titleColor:[[self recipe].season convertToSeasonEnum]]];
+
+    [[self ingredientsTitle] setTextColor:[SeasonColors titleColor:[[self recipe].season convertToSeasonEnum]]];
+    [[self instructionsTitle] setTextColor:[SeasonColors titleColor:[[self recipe].season convertToSeasonEnum]]];
+    [[self notesTitle] setTextColor:[SeasonColors titleColor:[[self recipe].season convertToSeasonEnum]]];
+
+    [[self ingredientsContainerView] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
+    [[self instructionsContainerView] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
+    [[self notesContainerView] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
+
     [self loadImageforRecipe];
 
-    _backGroundImageView.image = [_recipe imageForSeason];
-    
+    [[self veganImageView] setHidden:YES];
+    [[self vegetarianImageView] setHidden:YES];
+    [[self gluttenFreeImageView] setHidden:YES];
+    for (Categories *category in _recipe.categories) {
+        NSLog(@"%@",category.category);
+        if ([category.category isEqualToString:@"vegan"]) {
+            [[self veganImageView] setHidden:NO];
+        }
+        if ([category.category isEqualToString:@"vegetarian"]) {
+            [[self vegetarianImageView] setHidden:NO];
+        }
+        if ([category.category isEqualToString:@"glutten free"]) {
+            [[self gluttenFreeImageView] setHidden:NO];
+        }
+
+    }
+
+    CGFloat ingredientsHeight = [[[self recipe] ingredients] count] * 21 + cellPadding;
+    [[self ingredientsHeightContraint] setConstant:ingredientsHeight];
+    //_backGroundImageView.image = [_recipe imageForSeason];
+    [[self backGroundImageView] setImage:nil];
+    [[self backGroundImageView] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
+
     _ingredientsDictionary = [NSMutableDictionary new];
     for (Ingredient *ingredient in _recipe.ingredients) {
         NSString *item = ingredient.item;
         LocalIngredient *lIngred = [LocalIngredient new];
-        lIngred.amount = ingredient.amount;
-        lIngred.ingredient = ingredient.ingredient;
+        lIngred.amount = [ingredient.amount stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        lIngred.ingredient = [ingredient.ingredient stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         
         NSMutableArray *ingredArray;
         if (item) {
@@ -119,7 +190,7 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
             [_ingredientsDictionary setObject:ingredArray forKey:@"One_Item"];
         }
     }
-    
+
     NSArray *keys = [_ingredientsDictionary allKeys];
     NSInteger sectionCount = [keys count];
     if (sectionCount == 1) {
@@ -130,12 +201,9 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
         NSArray *array = [_ingredientsDictionary objectForKey:key];
         rowCount += [array count];
     }
-    
-    _ingredientsHeightContraint.constant = (rowCount+sectionCount)*20;
-    _ingredients.frame = (CGRect){_ingredients.frame.origin,_ingredients.frame.size.width,(rowCount+sectionCount)*20};
-    [_ingredients layoutIfNeeded];
+    [[self ingredients] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
     [_ingredients reloadData];
-    
+
     _instructions.text = @"";
     int counter = 1;
     for (Direction *direction in _recipe.directions) {
@@ -143,11 +211,13 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
         if ([_instructions.text isEqualToString:@""]) {
             _instructions.text =  [NSString stringWithFormat:@"%i. %@",counter++,directionString];
         } else {
-            _instructions.text = [NSString stringWithFormat:@"%@\r%i. %@",_instructions.text,counter++,directionString];
+            _instructions.text = [NSString stringWithFormat:@"%@\r\r%i. %@",_instructions.text,counter++,directionString];
         }
     }
 
-    [_instructions adjustHeightAndConstraintToTextSize:_instructionHeightContraint];
+    [[self instructions] adjustHeightAndConstraintToTextSize:_instructionHeightContraint withModifier:cellPadding];
+    [[self instructions] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
+    [[self instructions] setTextColor:[SeasonColors textColor:[[self recipe].season convertToSeasonEnum]]];
 
     _notes.text = @"";
     for (Note *note in _recipe.notes) {
@@ -155,11 +225,17 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
         if ([_notes.text isEqualToString:@""]) {
             _notes.text =  [NSString stringWithFormat:@"%@",noteString];
         } else {
-            _notes.text = [NSString stringWithFormat:@"%@\r%@",_notes.text,noteString];
+            _notes.text = [NSString stringWithFormat:@"%@\r\r%@",_notes.text,noteString];
         }
     }
-    
-    [_notes adjustHeightAndConstraintToTextSize:_notesHeightContraint];
+
+    [[self notes] adjustHeightAndConstraintToTextSize:_notesHeightContraint withModifier:cellPadding];
+    [[self notes] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
+    [[self notes] setTextColor:[SeasonColors textColor:[[self recipe].season convertToSeasonEnum]]];
+
+    int titleHeight = [[self titleContainerView] frame].size.height;
+    [self setContentHeight:titleHeight + _ingredientsHeightContraint.constant + _instructionHeightContraint.constant + _notesHeightContraint.constant];
+    [[self view] setNeedsLayout];
 }
 
 - (void)alignRecipeViews {
@@ -187,14 +263,6 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
     }
 }
 
-- (void)viewDidAppear:(BOOL) animated {
-    [super viewDidAppear:animated];
-    [_ingredients registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:nil] forCellReuseIdentifier:ingredientCellIdentifier];
-    [self alignRecipeViews];
-//    [_instructions setNeedsDisplay];
-    [_ingredients setNeedsLayout];
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
@@ -208,10 +276,6 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
     [super viewDidDisappear:animated];
     [self.view removeGestureRecognizer:_swipeRightGuesture];
     [self.view removeGestureRecognizer:_swipeLeftGesture];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
 }
 
 #pragma mark local methods
@@ -244,15 +308,19 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 
 #pragma mark UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 20.0f;
+    return 21.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if ([[_ingredientsDictionary allKeys] count] > 1) {
-        return 20.0f;
+        return 21.0f;
     }
     return 0.0f;
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+//    return 15.0f;
+//}
 
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -273,6 +341,8 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
     
     cell.ingredient.text = lIngred.ingredient;
     cell.amount.text = lIngred.amount;
+    cell.ingredient.textColor = [SeasonColors textColor:[[self recipe].season convertToSeasonEnum]];
+    cell.amount.textColor = [SeasonColors textColor:[[self recipe].season convertToSeasonEnum]];
 
     return cell;
 }
@@ -295,4 +365,11 @@ static NSString *ingredientCellIdentifier = @"IngredientCell";
 //- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index;  // tell table which section corresponds to section title/index (e.g. "B",1))
 
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    int recipeHeight = [[self recipeImage] frame].size.height;
+
+//    float height = self.view.frame.size.height + _recipeImage.frame.size.height;
+    [[self recipeScrollView] setContentSize:(CGSize){self.view.frame.size.width,[self contentHeight] + recipeHeight}];
+}
 @end

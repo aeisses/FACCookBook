@@ -25,6 +25,7 @@
 		045057631B83FA7C0032C8FF /* UIView+AdjustSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 045057621B83FA7C0032C8FF /* UIView+AdjustSize.m */; };
 		04551AA41AFC384000DBEE9B /* Featured.m in Sources */ = {isa = PBXBuildFile; fileRef = 04551AA31AFC384000DBEE9B /* Featured.m */; };
 		0478C1001B658A6900AE4ED2 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0478C0FF1B658A6900AE4ED2 /* Utils.m */; };
+		048CB9FB1D0A1D5E006132D7 /* LineAnimationLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CB9FA1D0A1D5E006132D7 /* LineAnimationLayer.m */; };
 		04A16D5A1B8BF00C00C41E95 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A16D591B8BF00C00C41E95 /* TableViewCell.xib */; };
 		04A16D5D1B8BF20400C41E95 /* IngredientsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A16D5C1B8BF20400C41E95 /* IngredientsTableCell.m */; };
 		04CE74391ACCC13200624A7F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE74381ACCC13200624A7F /* Location.m */; };
@@ -43,6 +44,8 @@
 		04F5CA721AAA64DF002D1069 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA711AAA64DF002D1069 /* Recipe.m */; };
 		04F5CA741AAA64ED002D1069 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA731AAA64ED002D1069 /* Note.m */; };
 		04F5CA761AABCBA8002D1069 /* DataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA751AABCBA8002D1069 /* DataService.m */; };
+		04F799801CF087FA00A92435 /* SeasonColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7997F1CF087FA00A92435 /* SeasonColors.m */; };
+		04F799841CF08DC600A92435 /* NSString+ConvertToEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F799831CF08DC600A92435 /* NSString+ConvertToEnum.m */; };
 		5045CCC41B5FCB370039C2D9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5045CCC31B5FCB370039C2D9 /* CoreData.framework */; };
 		509D327E1B5FCE2800388374 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509D327D1B5FCE2800388374 /* HomeView.xib */; };
 		509D32811B5FD20400388374 /* HomeScreenViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 509D32801B5FD20400388374 /* HomeScreenViewLayout.m */; };
@@ -98,6 +101,8 @@
 		04551AA31AFC384000DBEE9B /* Featured.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Featured.m; sourceTree = "<group>"; };
 		0478C0FF1B658A6900AE4ED2 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		0478C1011B658AC000AE4ED2 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		048CB9F81D0A1D29006132D7 /* LineAnimationLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineAnimationLayer.h; sourceTree = "<group>"; };
+		048CB9FA1D0A1D5E006132D7 /* LineAnimationLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineAnimationLayer.m; sourceTree = "<group>"; };
 		04A16D591B8BF00C00C41E95 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		04A16D5B1B8BF20400C41E95 /* IngredientsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IngredientsTableCell.h; sourceTree = "<group>"; };
 		04A16D5C1B8BF20400C41E95 /* IngredientsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngredientsTableCell.m; sourceTree = "<group>"; };
@@ -130,6 +135,10 @@
 		04F5CA731AAA64ED002D1069 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		04F5CA751AABCBA8002D1069 /* DataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataService.m; sourceTree = "<group>"; };
 		04F5CA771AABCBB9002D1069 /* DataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataService.h; sourceTree = "<group>"; };
+		04F7997E1CF087CC00A92435 /* SeasonColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeasonColors.h; sourceTree = "<group>"; };
+		04F7997F1CF087FA00A92435 /* SeasonColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeasonColors.m; sourceTree = "<group>"; };
+		04F799821CF08DC600A92435 /* NSString+ConvertToEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ConvertToEnum.h"; sourceTree = "<group>"; };
+		04F799831CF08DC600A92435 /* NSString+ConvertToEnum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ConvertToEnum.m"; sourceTree = "<group>"; };
 		5045CCC31B5FCB370039C2D9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		509D327D1B5FCE2800388374 /* HomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
 		509D327F1B5FD20400388374 /* HomeScreenViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewLayout.h; sourceTree = "<group>"; };
@@ -216,8 +225,19 @@
 			children = (
 				045057611B83FA7C0032C8FF /* UIView+AdjustSize.h */,
 				045057621B83FA7C0032C8FF /* UIView+AdjustSize.m */,
+				04F799821CF08DC600A92435 /* NSString+ConvertToEnum.h */,
+				04F799831CF08DC600A92435 /* NSString+ConvertToEnum.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		048CB9F71D0A1CFC006132D7 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				048CB9F81D0A1D29006132D7 /* LineAnimationLayer.h */,
+				048CB9FA1D0A1D5E006132D7 /* LineAnimationLayer.m */,
+			);
+			name = Layers;
 			sourceTree = "<group>";
 		};
 		04F5CA321AA3B4FB002D1069 = {
@@ -243,6 +263,7 @@
 		04F5CA3D1AA3B4FB002D1069 /* FACCookbook */ = {
 			isa = PBXGroup;
 			children = (
+				048CB9F71D0A1CFC006132D7 /* Layers */,
 				045057601B83FA3F0032C8FF /* Categories */,
 				043938781AF53DD6004EA4D3 /* Views */,
 				04F5CA681AAA62C9002D1069 /* Objects */,
@@ -318,6 +339,8 @@
 				F2E2A9FF1B6006F5002C8E31 /* Categories.m */,
 				A78ED9111B60373300C4DEC5 /* Purchased.m */,
 				A78ED9131B60374000C4DEC5 /* Purchased.h */,
+				04F7997E1CF087CC00A92435 /* SeasonColors.h */,
+				04F7997F1CF087FA00A92435 /* SeasonColors.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -509,6 +532,7 @@
 				04F5CA471AA3B4FB002D1069 /* FACCookbook.xcdatamodeld in Sources */,
 				F2E2A9FA1B5FFE2E002C8E31 /* SearchItems.m in Sources */,
 				0439388A1AF54C00004EA4D3 /* SearchViewController.m in Sources */,
+				04F799841CF08DC600A92435 /* NSString+ConvertToEnum.m in Sources */,
 				043938741AF30206004EA4D3 /* HomeScreenViewController.m in Sources */,
 				04F5CA6B1AAA62FD002D1069 /* Direction.m in Sources */,
 				04F5CA701AAA64CD002D1069 /* Ingredient.m in Sources */,
@@ -518,6 +542,7 @@
 				04CE74391ACCC13200624A7F /* Location.m in Sources */,
 				0439388D1AF54C23004EA4D3 /* FavouriteViewController.m in Sources */,
 				04F5CA761AABCBA8002D1069 /* DataService.m in Sources */,
+				048CB9FB1D0A1D5E006132D7 /* LineAnimationLayer.m in Sources */,
 				045057631B83FA7C0032C8FF /* UIView+AdjustSize.m in Sources */,
 				043938811AF54486004EA4D3 /* LocationViewController.m in Sources */,
 				0478C1001B658A6900AE4ED2 /* Utils.m in Sources */,
@@ -529,6 +554,7 @@
 				043938901AF54C46004EA4D3 /* PopularViewController.m in Sources */,
 				0439387A1AF53DEB004EA4D3 /* RecipeCell.m in Sources */,
 				559C0E711B5FFD04002BF4E6 /* ParentCollectionViewController.m in Sources */,
+				04F799801CF087FA00A92435 /* SeasonColors.m in Sources */,
 				043938841AF544A9004EA4D3 /* RecipeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

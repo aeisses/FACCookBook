@@ -30,7 +30,7 @@
     _locationPhoneNumber.text = _location.phone;
     _locationAddress.text = _location.address;
     _locationStory.text = _location.story;
-    [_locationStory adjustHeightAndConstraintToTextSize:_locationStoryHeightContraint];
+//    [_locationStory adjustHeightAndConstraintToTextSize:_locationStoryHeightContraint];
     [self loadImageforRecipe];
 }
 

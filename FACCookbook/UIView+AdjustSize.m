@@ -10,13 +10,12 @@
 
 @implementation UIView (AdjustSize)
 
-- (void)adjustHeightAndConstraintToTextSize:(NSLayoutConstraint*)constraint {
+- (void)adjustHeightAndConstraintToTextSize:(NSLayoutConstraint*)constraint withModifier:(NSInteger)modifier {
     CGFloat fixedWidth = self.frame.size.width;
     CGSize newSize = [self sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
     CGRect newFrame = self.frame;
     newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
-    constraint.constant = newFrame.size.height;
-    self.frame = newFrame;
+    constraint.constant = newFrame.size.height + modifier;
 }
 
 @end
