@@ -12,11 +12,15 @@
 #import "RecipeCell.h"
 #import "Utils.h"
 #import "Featured.h"
+#import "LineAnimationLayer.h"
+#import "FlightAnimationLayer.h"
+#import "FlowerAnimationLayer.h"
 
 //static NSString *cellResueIdentifier = @"Cell";
 
 @interface HomeScreenViewController ()
-
+@property (retain, nonatomic) NSMutableArray *animationArray;
+@property (retain, nonatomic) UIView *animationView;
 @end
 
 @implementation HomeScreenViewController
@@ -25,6 +29,69 @@
 
 -(BOOL)prefersStatusBarHidden{
     return YES;
+}
+
+- (void)createAnimationForSeason:(Season)season {
+    switch (season) {
+        case Winter: {
+            for (int i=0; i<20; i++) {
+                LineAnimationLayer *layer = [[LineAnimationLayer alloc] initWithWidth:[self collectionView].frame.size.width forValue:i ofValue:20 season:season opactiy:1.0f];
+                [[_animationView layer] addSublayer:layer];
+                [layer addAnimations:[self collectionView].bounds];
+                [[self animationArray] addObject:layer];
+            }
+            break;
+        }
+        case Summer: {
+            CGRect frame = [self collectionView].frame;
+            CGRect frameToUse = (CGRect){frame.origin.x,frame.origin.y+200,frame.size.width,frame.size.height-200-49};
+            for (int i=0; i<8; i++) {
+                FlightAnimationLayer *layer = [[FlightAnimationLayer alloc] initInFrame:frameToUse offSet:YES opacity:1.0f];
+                [[_animationView layer] addSublayer:layer];
+                [layer addAnimation];
+                [[self animationArray] addObject:layer];
+            }
+            break;
+        }
+        case Spring: {
+            CGRect frame = (CGRect){[self collectionView].frame.origin,{[self collectionView].frame.size.width,[self collectionView].frame.size.height-49}};
+            for (int i=0; i<10; i++) {
+                FlowerAnimationLayer *layer = [[FlowerAnimationLayer alloc] initInFrame:frame opacity:1.0f];
+                [[_animationView layer] addSublayer:layer];
+                [layer addAnimation];
+                [[self animationArray] addObject:layer];
+            }
+            break;
+        }
+        case Autumn: {
+            for (int i=0; i<15; i++) {
+                LineAnimationLayer *layer = [[LineAnimationLayer alloc] initWithWidth:[self collectionView].frame.size.width forValue:i ofValue:15 season:season opactiy:1.0f];
+                [[_animationView layer] addSublayer:layer];
+                [layer addAnimations:[self collectionView].bounds];
+                [[self animationArray] addObject:layer];
+            }
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    _animationView = [[UIView alloc] initWithFrame:self.collectionView.frame];
+    [self.collectionView insertSubview:_animationView atIndex:0];
+    _animationArray = [NSMutableArray new];
+    [self createAnimationForSeason:[Utils getCurrentSeason]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    for (CALayer *layer in _animationArray) {
+        [layer removeAllAnimations];
+        [layer removeFromSuperlayer];
+    }
 }
 
 - (NSFetchedResultsController *)recipes {

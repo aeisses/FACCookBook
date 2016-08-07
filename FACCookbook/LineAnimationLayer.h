@@ -15,7 +15,7 @@
 @property (nonatomic, assign) CGFloat yPosition;
 
 + (NSString*)kLineraAnimationKey;
-- (id)initWithWidth:(CGFloat)width forValue:(int)i ofValue:(int)max season:(Season)season;
+- (id)initWithWidth:(CGFloat)width forValue:(int)i ofValue:(int)max season:(Season)season opactiy:(CGFloat)opacity;
 - (void)addAnimations:(CGRect)bounds;
 
 @end

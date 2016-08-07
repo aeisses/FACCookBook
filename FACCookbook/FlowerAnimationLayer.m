@@ -1,19 +1,20 @@
 //
-//  FlightAnimationLayer.m
+//  FlowerAnimationLayer.m
 //  FACCookbook
 //
 //  Created by Aaron Eisses on 2016-08-07.
 //  Copyright © 2016 EAC. All rights reserved.
 //
 
-#import "FlightAnimationLayer.h"
+#import "FlowerAnimationLayer.h"
 
-@interface FlightAnimationLayer()
+@interface FlowerAnimationLayer()
 @property (assign) CGRect parentFrame;
-@property (assign) BOOL shouldOffset;
+@property (assign) CGPoint startPoisiton;
+@property (assign) CGPoint endPosition;
 @end
 
-@implementation FlightAnimationLayer
+@implementation FlowerAnimationLayer
 
 - (CGFloat)getAnimationPauseDelay {
     int randomNumber = arc4random_uniform(10);
@@ -21,7 +22,13 @@
 }
 
 - (CGFloat)getAnimationDuration {
-    int randomNumber = arc4random_uniform(10) + 15.0f;
+    int randomNumber = arc4random_uniform(5) + 5.0f;
+    return randomNumber;
+}
+
+- (CGFloat)getRandomXValue {
+    int adjuster = (_parentFrame.size.width-80);
+    int randomNumber = arc4random_uniform(adjuster) + 10;
     return randomNumber;
 }
 
@@ -35,35 +42,26 @@
     return 0.8f;
 }
 
-- (id)initInFrame:(CGRect)frame offSet:(BOOL)offset opacity:(CGFloat)opacity {
+- (id)initInFrame:(CGRect)frame opacity:(CGFloat)opacity {
     self = [super init];
     if (self) {
-        _shouldOffset = offset;
         _parentFrame = frame;
-        UIImage *image = [UIImage imageNamed:@"bee"];
+        UIImage *image = [UIImage imageNamed:@"flower"];
         CGFloat sizeMod = [self getSizeModifier];
         CGSize size = (CGSize){image.size.width*sizeMod,image.size.height*sizeMod};
-        [self setFrame:(CGRect){-40,50,size}];
+        [self setFrame:(CGRect){[self getRandomXValue],_parentFrame.size.height+size.height,size}];
         [self setContents:(id)image.CGImage];
+        _startPoisiton = self.position;
+        _endPosition = (CGPoint){_startPoisiton.x,_startPoisiton.y-size.height*2};
         self.opacity = opacity;
     }
     return self;
 }
 
 - (UIBezierPath*)createBezierPath {
-    CGFloat offset = 0.0f;
-    if(_shouldOffset) {
-        offset = _parentFrame.origin.y;
-    }
     UIBezierPath *path = [UIBezierPath bezierPath];
-    int startPoint = arc4random_uniform(_parentFrame.size.height);
-    int firstMidPoint = arc4random_uniform(_parentFrame.size.width/2);
-    int secondMidPoint = arc4random_uniform(_parentFrame.size.width/2) + _parentFrame.size.width/2;
-    int endPoint = arc4random_uniform(_parentFrame.size.height);
-    [path moveToPoint:(CGPoint){-40,startPoint+offset}];
-    [path addCurveToPoint:(CGPoint){_parentFrame.size.width+40,endPoint+offset}
-            controlPoint1:(CGPoint){firstMidPoint,offset}
-            controlPoint2:(CGPoint){secondMidPoint,_parentFrame.size.height+offset}];
+    [path moveToPoint:(CGPoint)[self startPoisiton]];
+    [path addLineToPoint:(CGPoint)[self endPosition]];
     return path;
 }
 
@@ -73,6 +71,7 @@
 }
 
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    [self setPosition:_endPosition];
     [self removeAllAnimations];
     [self addAnimationTimer];
 }
@@ -87,7 +86,7 @@
     anim.delegate = self;
     anim.repeatCount = 1;
     anim.duration = [self getAnimationDuration];
-    [self addAnimation:anim forKey:@"bee"];
+    [self addAnimation:anim forKey:@"flower"];
 }
 
 @end
