@@ -70,4 +70,40 @@
     return size;
 }
 
++ (Season)getCurrentSeason {
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    NSInteger day = [components day];
+    NSInteger month = [components month];
+    if (month < 3) {
+        return Winter;
+    } else if (month == 3) {
+        if (day < 21) {
+            return Winter;
+        } else {
+            return Spring;
+        }
+    } else if (month < 6) {
+        return Spring;
+    } else if (month == 6) {
+        if (day < 21) {
+            return Spring;
+        } else {
+            return Summer;
+        }
+    } else if (month < 10) {
+        return Summer;
+    } else if (month == 10) {
+        if (day < 21) {
+            return Summer;
+        } else {
+            return Autumn;
+        }
+    } else if (month < 12) {
+        return Autumn;
+    } else if (month == 21 && day < 21) {
+        return Autumn;
+    }
+    return Winter;
+}
+
 @end

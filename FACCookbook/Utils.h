@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "SeasonColors.h"
 
 @interface Utils : NSObject
 
@@ -17,5 +18,6 @@
 + (CGSize)getSmallStandardSize;
 + (CGSize)getMediumStandardSize;
 + (CGSize)getLargeStandardSize;
++ (Season)getCurrentSeason;
 
 @end
