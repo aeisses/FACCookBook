@@ -1,5 +1,5 @@
 //
-//  FlightAnimationLayer.h
+//  FlowerAnimationLayer.h
 //  FACCookbook
 //
 //  Created by Aaron Eisses on 2016-08-07.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FlightAnimationLayer : CALayer
-- (id)initInFrame:(CGRect)frame offSet:(BOOL)offset opacity:(CGFloat)opactiy;
+@interface FlowerAnimationLayer : CALayer
+- (id)initInFrame:(CGRect)frame opacity:(CGFloat)opactiy;
 - (void)addAnimation;
 @end

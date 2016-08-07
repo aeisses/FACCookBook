@@ -21,5 +21,6 @@ typedef NS_ENUM(NSUInteger, Season) {
 + (UIColor*)titleColor:(Season)season;
 + (UIColor*)textColor:(Season)season;
 + (UIColor*)backgroundColor:(Season)season;
++ (NSString*)convertToString:(Season)season;
 
 @end

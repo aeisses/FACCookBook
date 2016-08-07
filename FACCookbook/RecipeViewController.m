@@ -21,6 +21,7 @@
 #import "NSString+ConvertToEnum.h"
 #import "LineAnimationLayer.h"
 #import "FlightAnimationLayer.h"
+#import "FlowerAnimationLayer.h"
 
 static NSString *ingredientCellIdentifier = @"IngredientCell";
 static NSInteger cellPadding = 42;
@@ -46,6 +47,7 @@ static NSInteger cellPadding = 42;
 @property (strong, nonatomic) NSMutableDictionary *ingredientsDictionary;
 @property (nonatomic) NSInteger contentHeight;
 @property (retain, nonatomic) NSMutableArray *animationArray;
+@property (retain, nonatomic) UIView *animationView;
 
 - (void)swipeRight;
 - (void)swipeLeft;
@@ -110,8 +112,8 @@ static NSInteger cellPadding = 42;
     switch (season) {
         case Winter: {
             for (int i=0; i<7; i++) {
-                LineAnimationLayer *layer = [[LineAnimationLayer alloc] initWithWidth:_titleContainerView.frame.size.width forValue:i ofValue:7 season:season];
-                [[[self titleContainerView] layer] addSublayer:layer];
+                LineAnimationLayer *layer = [[LineAnimationLayer alloc] initWithWidth:_titleContainerView.frame.size.width forValue:i ofValue:7 season:season opactiy:0.5f];
+                [[[self animationView] layer] addSublayer:layer];
                 [layer addAnimations:[self titleContainerView].bounds];
                 [[self animationArray] addObject:layer];
             }
@@ -119,19 +121,27 @@ static NSInteger cellPadding = 42;
         }
         case Summer: {
             for (int i=0; i<4; i++) {
-                FlightAnimationLayer *layer = [[FlightAnimationLayer alloc] initInFrame:_titleContainerView.frame];
-                [[[self titleContainerView] layer] addSublayer:layer];
+                FlightAnimationLayer *layer = [[FlightAnimationLayer alloc] initInFrame:_titleContainerView.frame offSet:NO opacity:0.5f];
+                [[[self animationView] layer] addSublayer:layer];
                 [layer addAnimation];
                 [[self animationArray] addObject:layer];
             }
             break;
         }
-        case Spring:
+        case Spring: {
+            CGRect frame = (CGRect){_titleContainerView.frame.origin,{_titleContainerView.frame.size.width-100,_titleContainerView.frame.size.height}};
+            for (int i=0; i<8; i++) {
+                FlowerAnimationLayer *layer = [[FlowerAnimationLayer alloc] initInFrame:frame opacity:0.5f];
+                [[[self animationView] layer] addSublayer:layer];
+                [layer addAnimation];
+                [[self animationArray] addObject:layer];
+            }
             break;
+        }
         case Autumn: {
             for (int i=0; i<10; i++) {
-                LineAnimationLayer *layer = [[LineAnimationLayer alloc] initWithWidth:_titleContainerView.frame.size.width forValue:i ofValue:10 season:season];
-                [[[self titleContainerView] layer] addSublayer:layer];
+                LineAnimationLayer *layer = [[LineAnimationLayer alloc] initWithWidth:_titleContainerView.frame.size.width forValue:i ofValue:10 season:season opactiy:0.5f];
+                [[[self animationView] layer] addSublayer:layer];
                 [layer addAnimations:[self titleContainerView].bounds];
                 [[self animationArray] addObject:layer];
             }
@@ -290,7 +300,10 @@ static NSInteger cellPadding = 42;
     CALayer *mask = [[CALayer alloc] init];
     mask.frame = _titleContainerView.bounds;
     mask.backgroundColor = [UIColor blueColor].CGColor;
-    _titleContainerView.layer.mask = mask;
+    //_titleContainerView.layer.mask = mask;
+    _animationView = [[UIView alloc] initWithFrame:_titleContainerView.bounds];
+    _animationView.layer.mask = mask;
+    [_titleContainerView insertSubview:_animationView atIndex:0];
     
     [self createAnimationForSeason:[[self recipe].season convertToSeasonEnum]];
 }

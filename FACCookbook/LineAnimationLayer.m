@@ -53,7 +53,7 @@ static NSString *const kLineraAnimationKey = @"yPosition";
 }
 
 - (CGFloat)getAnimationPauseDelay {
-    int randomNumber = arc4random_uniform(30);
+    int randomNumber = arc4random_uniform(15);
     return randomNumber;
 }
 
@@ -67,7 +67,7 @@ static NSString *const kLineraAnimationKey = @"yPosition";
     return 0.8f;
 }
 
-- (id)initWithWidth:(CGFloat)width forValue:(int)i ofValue:(int)max season:(Season)season {
+- (id)initWithWidth:(CGFloat)width forValue:(int)i ofValue:(int)max season:(Season)season opactiy:(CGFloat)opacity {
     self = [super init];
     if (self) {
         _screenWidth = width;
@@ -77,7 +77,7 @@ static NSString *const kLineraAnimationKey = @"yPosition";
         _startingFrame = (CGRect){{[self getRandomXValue:i ofValue:max],-(size.height)},size};
         [self setFrame:_startingFrame];
         [self setContents:(id)image.CGImage];
-        self.opacity = 0.5f;
+        self.opacity = opacity;
     }
     return self;
 }
