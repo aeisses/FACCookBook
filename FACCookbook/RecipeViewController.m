@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 EAC. All rights reserved.
 //
 
+#include <stdlib.h>
+
 #import "RecipeViewController.h"
 #import "Direction.h"
 #import "Note.h"
@@ -18,6 +20,7 @@
 #import "SeasonColors.h"
 #import "NSString+ConvertToEnum.h"
 #import "LineAnimationLayer.h"
+#import "FlightAnimationLayer.h"
 
 static NSString *ingredientCellIdentifier = @"IngredientCell";
 static NSInteger cellPadding = 42;
@@ -42,6 +45,7 @@ static NSInteger cellPadding = 42;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ingredientsHeightContraint;
 @property (strong, nonatomic) NSMutableDictionary *ingredientsDictionary;
 @property (nonatomic) NSInteger contentHeight;
+@property (retain, nonatomic) NSMutableArray *animationArray;
 
 - (void)swipeRight;
 - (void)swipeLeft;
@@ -105,19 +109,35 @@ static NSInteger cellPadding = 42;
 - (void)createAnimationForSeason:(Season)season {
     switch (season) {
         case Winter: {
-            // Frame is 0,80,36,36
-            LineAnimationLayer *layer = [[LineAnimationLayer alloc] init];
-            [layer setFrame:(CGRect){-36,80,36,36}];
-            UIImage *image = [UIImage imageNamed:@"snowflake"];
-            [layer setContents:(id)image.CGImage];
-            [[[self titleContainerView] layer] addSublayer:layer];
-
-            [layer addAnimations:[self titleContainerView].bounds];
-            //[layer setFrame:(CGRect){200,80,36,36}];
-
+            for (int i=0; i<7; i++) {
+                LineAnimationLayer *layer = [[LineAnimationLayer alloc] initWithWidth:_titleContainerView.frame.size.width forValue:i ofValue:7 season:season];
+                [[[self titleContainerView] layer] addSublayer:layer];
+                [layer addAnimations:[self titleContainerView].bounds];
+                [[self animationArray] addObject:layer];
+            }
             break;
         }
-        deafult: {
+        case Summer: {
+            for (int i=0; i<4; i++) {
+                FlightAnimationLayer *layer = [[FlightAnimationLayer alloc] initInFrame:_titleContainerView.frame];
+                [[[self titleContainerView] layer] addSublayer:layer];
+                [layer addAnimation];
+                [[self animationArray] addObject:layer];
+            }
+            break;
+        }
+        case Spring:
+            break;
+        case Autumn: {
+            for (int i=0; i<10; i++) {
+                LineAnimationLayer *layer = [[LineAnimationLayer alloc] initWithWidth:_titleContainerView.frame.size.width forValue:i ofValue:10 season:season];
+                [[[self titleContainerView] layer] addSublayer:layer];
+                [layer addAnimations:[self titleContainerView].bounds];
+                [[self animationArray] addObject:layer];
+            }
+            break;
+        }
+        default: {
             break;
         }
     }
@@ -128,7 +148,6 @@ static NSInteger cellPadding = 42;
     [[self recipeScrollView] setContentOffset:(CGPoint){0,0}];
     
     _name.text = _recipe.title;
-    [self createAnimationForSeason:[[self recipe].season convertToSeasonEnum]];
     [[self name] setTextColor:[SeasonColors titleColor:[[self recipe].season convertToSeasonEnum]]];
 
     [[self ingredientsTitle] setTextColor:[SeasonColors titleColor:[[self recipe].season convertToSeasonEnum]]];
@@ -145,7 +164,6 @@ static NSInteger cellPadding = 42;
     [[self vegetarianImageView] setHidden:YES];
     [[self gluttenFreeImageView] setHidden:YES];
     for (Categories *category in _recipe.categories) {
-        NSLog(@"%@",category.category);
         if ([category.category isEqualToString:@"vegan"]) {
             [[self veganImageView] setHidden:NO];
         }
@@ -160,7 +178,6 @@ static NSInteger cellPadding = 42;
 
     CGFloat ingredientsHeight = [[[self recipe] ingredients] count] * 21 + cellPadding;
     [[self ingredientsHeightContraint] setConstant:ingredientsHeight];
-    //_backGroundImageView.image = [_recipe imageForSeason];
     [[self backGroundImageView] setImage:nil];
     [[self backGroundImageView] setBackgroundColor:[SeasonColors backgroundColor:[[self recipe].season convertToSeasonEnum]]];
 
@@ -243,6 +260,11 @@ static NSInteger cellPadding = 42;
     [_recipeScrollView setContentSize:(CGSize){[UIScreen mainScreen].bounds.size.width,newHeight}];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setAnimationArray:[NSMutableArray new]];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self loadRecipe];
@@ -263,6 +285,23 @@ static NSInteger cellPadding = 42;
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    CALayer *mask = [[CALayer alloc] init];
+    mask.frame = _titleContainerView.bounds;
+    mask.backgroundColor = [UIColor blueColor].CGColor;
+    _titleContainerView.layer.mask = mask;
+    
+    [self createAnimationForSeason:[[self recipe].season convertToSeasonEnum]];
+}
+
+- (void)removeAnimations {
+    for (CALayer *layer in _animationArray) {
+        [layer removeAllAnimations];
+        [layer removeFromSuperlayer];
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
@@ -270,6 +309,7 @@ static NSInteger cellPadding = 42;
         UINavigationController *navigationController = (UINavigationController*)[UIApplication sharedApplication].keyWindow.rootViewController;
         navigationController.navigationBarHidden = YES;
     }
+    [self removeAnimations];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -299,10 +339,15 @@ static NSInteger cellPadding = 42;
 
 - (void)swipeHandler:(id)sender {
     UISwipeGestureRecognizer *gestureRecognizer = (UISwipeGestureRecognizer*)sender;
+    Season currentSeason = [[self recipe].season convertToSeasonEnum];
     if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
         [self swipeRight];
     } if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
         [self swipeLeft];
+    }
+    if (currentSeason != [[self recipe].season convertToSeasonEnum]) {
+        [self removeAnimations];
+        [self createAnimationForSeason:[[self recipe].season convertToSeasonEnum]];
     }
 }
 
@@ -317,10 +362,6 @@ static NSInteger cellPadding = 42;
     }
     return 0.0f;
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-//    return 15.0f;
-//}
 
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -347,7 +388,6 @@ static NSInteger cellPadding = 42;
     return cell;
 }
 
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [[_ingredientsDictionary allKeys] count];
 }
@@ -361,15 +401,10 @@ static NSInteger cellPadding = 42;
     }
 }
 
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView;                                                    // return list of section titles to display in section index view (e.g. "ABCD...Z#")
-//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index;  // tell table which section corresponds to section title/index (e.g. "B",1))
-
-
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     int recipeHeight = [[self recipeImage] frame].size.height;
 
-//    float height = self.view.frame.size.height + _recipeImage.frame.size.height;
     [[self recipeScrollView] setContentSize:(CGSize){self.view.frame.size.width,[self contentHeight] + recipeHeight}];
 }
 @end

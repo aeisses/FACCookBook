@@ -14,16 +14,17 @@
     UIColor *color = nil;
     switch (season) {
         case Spring:
-            color = [UIColor colorWithRed:181.f/255.f green:252.f/255.f blue:31.f/255.f alpha:1.0f];
+            color = [UIColor colorWithRed:0.f/255.f green:120.f/255.f blue:0.f/255.f alpha:1.0f];
             break;
         case Summer:
-            color = [UIColor colorWithRed:242.f/255.f green:0.f/255.f blue:0.f/255.f alpha:1.0f];
+            color = [UIColor colorWithRed:255.f/255.f green:160.f/255.f blue:70.f/255.f alpha:1.0f];
             break;
         case Autumn:
-            color = [UIColor colorWithRed:109.f/255.f green:113.f/255.f blue:0.f/255.f alpha:1.0f];
+//            color = [UIColor colorWithRed:109.f/255.f green:113.f/255.f blue:0.f/255.f alpha:1.0f];
+            color = [UIColor colorWithRed:197.f/255.f green:55.f/255.f blue:0.f/255.f alpha:1.0f];
             break;
         case Winter:
-            color = [UIColor colorWithRed:196.f/255.f green:0.f/255.f blue:0.f/255.f alpha:1.0f];
+            color = [UIColor colorWithRed:80.f/255.f green:33.f/255.f blue:163.f/255.f alpha:1.0f];
             break;
     }
     return color;
@@ -31,20 +32,21 @@
 
 + (UIColor*)textColor:(Season)season {
     UIColor *color = nil;
-    switch (season) {
-        case Spring:
-            color = [UIColor colorWithRed:244.f/255.f green:0.f/255.f blue:0.f/255.f alpha:1.0f];
-            break;
-        case Summer:
-            color = [UIColor colorWithRed:254.f/255.f green:255.f/255.f blue:86.f/255.f alpha:1.0f];
-            break;
-        case Autumn:
+//    switch (season) {
+//        case Spring:
+//            color = [UIColor colorWithRed:244.f/255.f green:0.f/255.f blue:0.f/255.f alpha:1.0f];
+//            break;
+//        case Summer:
+//            color = [UIColor colorWithRed:255.f/255.f green:255.f/255.f blue:255.f/255.f alpha:1.0f];
+//            break;
+//        case Autumn:
+//            color = [UIColor colorWithRed:37.f/255.f green:64.f/255.f blue:92.f/255.f alpha:1.0f];
+//            break;
+//        case Winter:
+//            color = [UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:211.f/255.f alpha:1.0f];
             color = [UIColor colorWithRed:37.f/255.f green:64.f/255.f blue:92.f/255.f alpha:1.0f];
-            break;
-        case Winter:
-            color = [UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:211.f/255.f alpha:1.0f];
-            break;
-    }
+//            break;
+//    }
     return color;
 }
 
@@ -52,16 +54,16 @@
     UIColor *color = nil;
     switch (season) {
         case Spring:
-            color = [UIColor colorWithRed:7.f/255.f green:252.f/255.f blue:255.f/255.f alpha:1.0f];
+            color = [UIColor colorWithRed:120.f/255.f green:160.f/255.f blue:90.f/255.f alpha:1.0f];
             break;
         case Summer:
-            color = [UIColor colorWithRed:121.f/255.f green:255.f/255.f blue:105.f/255.f alpha:1.0f];
+            color = [UIColor colorWithRed:252.f/255.f green:252.f/255.f blue:129.f/255.f alpha:1.0f];
             break;
         case Autumn:
-            color = [UIColor colorWithRed:222.f/255.f green:98.f/255.f blue:0.f/255.f alpha:1.0f];
+            color = [UIColor colorWithRed:222.f/255.f green:140.f/255.f blue:70.f/255.f alpha:1.0f];
             break;
         case Winter:
-            color = [UIColor colorWithRed:214.f/255.f green:0.f/255.f blue:119.f/255.f alpha:1.0f];
+            color = [UIColor colorWithRed:163/255.f green:195.f/255.f blue:229.f/255.f alpha:1.0f];
             break;
     }
     return color;

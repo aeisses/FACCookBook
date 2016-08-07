@@ -28,6 +28,7 @@
 		048CB9FB1D0A1D5E006132D7 /* LineAnimationLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CB9FA1D0A1D5E006132D7 /* LineAnimationLayer.m */; };
 		04A16D5A1B8BF00C00C41E95 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A16D591B8BF00C00C41E95 /* TableViewCell.xib */; };
 		04A16D5D1B8BF20400C41E95 /* IngredientsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A16D5C1B8BF20400C41E95 /* IngredientsTableCell.m */; };
+		04CD636E1D57C37900D29E52 /* FlightAnimationLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CD636D1D57C37900D29E52 /* FlightAnimationLayer.m */; };
 		04CE74391ACCC13200624A7F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE74381ACCC13200624A7F /* Location.m */; };
 		04CE743C1ACCC81800624A7F /* Information.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743B1ACCC81800624A7F /* Information.m */; };
 		04CE74401ACCC88300624A7F /* Popular.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743F1ACCC88300624A7F /* Popular.m */; };
@@ -106,6 +107,8 @@
 		04A16D591B8BF00C00C41E95 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		04A16D5B1B8BF20400C41E95 /* IngredientsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IngredientsTableCell.h; sourceTree = "<group>"; };
 		04A16D5C1B8BF20400C41E95 /* IngredientsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IngredientsTableCell.m; sourceTree = "<group>"; };
+		04CD636C1D57C36300D29E52 /* FlightAnimationLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlightAnimationLayer.h; sourceTree = "<group>"; };
+		04CD636D1D57C37900D29E52 /* FlightAnimationLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlightAnimationLayer.m; sourceTree = "<group>"; };
 		04CE74381ACCC13200624A7F /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		04CE743A1ACCC14800624A7F /* Location.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		04CE743B1ACCC81800624A7F /* Information.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Information.m; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 			children = (
 				048CB9F81D0A1D29006132D7 /* LineAnimationLayer.h */,
 				048CB9FA1D0A1D5E006132D7 /* LineAnimationLayer.m */,
+				04CD636C1D57C36300D29E52 /* FlightAnimationLayer.h */,
+				04CD636D1D57C37900D29E52 /* FlightAnimationLayer.m */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -537,6 +542,7 @@
 				04F5CA6B1AAA62FD002D1069 /* Direction.m in Sources */,
 				04F5CA701AAA64CD002D1069 /* Ingredient.m in Sources */,
 				04A16D5D1B8BF20400C41E95 /* IngredientsTableCell.m in Sources */,
+				04CD636E1D57C37900D29E52 /* FlightAnimationLayer.m in Sources */,
 				A78ED9121B60373300C4DEC5 /* Purchased.m in Sources */,
 				F2E2AA001B6006F5002C8E31 /* Categories.m in Sources */,
 				04CE74391ACCC13200624A7F /* Location.m in Sources */,

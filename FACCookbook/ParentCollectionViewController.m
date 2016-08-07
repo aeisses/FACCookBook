@@ -55,6 +55,8 @@ static NSString *segueIdentifier = @"recipe";
     }
     
     [_collectionView registerNib:[UINib nibWithNibName:nibName bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellResueIdentifier];
+    
+    [self.collectionView setBackgroundColor:[SeasonColors backgroundColor:[Utils getCurrentSeason]]];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
