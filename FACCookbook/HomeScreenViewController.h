@@ -13,5 +13,7 @@
 
 @property (nonatomic, retain) NSFetchedResultsController *recipes;
 @property (nonatomic, retain) NSArray *featuredRecipes;
+@property (retain, nonatomic) IBOutlet UIView *animationView;
+@property (retain, nonatomic) IBOutlet UIImageView *ground;
 
 @end

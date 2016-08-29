@@ -20,12 +20,13 @@
 
 @interface HomeScreenViewController ()
 @property (retain, nonatomic) NSMutableArray *animationArray;
-@property (retain, nonatomic) UIView *animationView;
 @end
 
 @implementation HomeScreenViewController
 
 @synthesize recipes = _recipes;
+@synthesize animationView = _animationView;
+@synthesize ground = _ground;
 
 -(BOOL)prefersStatusBarHidden{
     return YES;
@@ -78,12 +79,36 @@
     }
 }
 
+- (NSString*)getGroundName:(Season)season {
+    NSString *name = @"";
+    switch (season) {
+        case Winter: {
+            name = @"winterGround";
+            break;
+        }
+        case Summer: {
+            name = @"summerGround";
+            break;
+        }
+        case Spring: {
+            name = @"springGround";
+            break;
+        }
+        case Autumn:
+        default: {
+            name = @"fallGround";
+            break;
+        }
+    }
+    return name;
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    _animationView = [[UIView alloc] initWithFrame:self.collectionView.frame];
-    [self.collectionView insertSubview:_animationView atIndex:0];
     _animationArray = [NSMutableArray new];
     [self createAnimationForSeason:[Utils getCurrentSeason]];
+    
+    [_ground setImage:[UIImage imageNamed:[self getGroundName:[Utils getCurrentSeason]]]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
