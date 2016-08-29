@@ -48,12 +48,12 @@
 		04F5CA761AABCBA8002D1069 /* DataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA751AABCBA8002D1069 /* DataService.m */; };
 		04F799801CF087FA00A92435 /* SeasonColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7997F1CF087FA00A92435 /* SeasonColors.m */; };
 		04F799841CF08DC600A92435 /* NSString+ConvertToEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F799831CF08DC600A92435 /* NSString+ConvertToEnum.m */; };
+		3C45FA076964FC82ADB79FFB /* libPods-FACCookbook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F453321A9DFB035F1CDD2D58 /* libPods-FACCookbook.a */; };
 		5045CCC41B5FCB370039C2D9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5045CCC31B5FCB370039C2D9 /* CoreData.framework */; };
 		509D327E1B5FCE2800388374 /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 509D327D1B5FCE2800388374 /* HomeView.xib */; };
 		509D32811B5FD20400388374 /* HomeScreenViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 509D32801B5FD20400388374 /* HomeScreenViewLayout.m */; };
 		559C0E711B5FFD04002BF4E6 /* ParentCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 559C0E701B5FFD04002BF4E6 /* ParentCollectionViewController.m */; };
 		A78ED9121B60373300C4DEC5 /* Purchased.m in Sources */ = {isa = PBXBuildFile; fileRef = A78ED9111B60373300C4DEC5 /* Purchased.m */; };
-		DC3D88E0AC69975EE4B0D3F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB285498520DC5955837AB35 /* libPods.a */; };
 		F2E2A9FA1B5FFE2E002C8E31 /* SearchItems.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E2A9F91B5FFE2E002C8E31 /* SearchItems.m */; };
 		F2E2AA001B6006F5002C8E31 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E2A9FF1B6006F5002C8E31 /* Categories.m */; };
 /* End PBXBuildFile section */
@@ -69,7 +69,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		042EE73AA618551F25E72F71 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		0436AE6E1BC355ED00510928 /* PurchasedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PurchasedTableViewCell.xib; sourceTree = "<group>"; };
 		0436AE701BC356B000510928 /* PurchasedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchasedTableViewCell.h; sourceTree = "<group>"; };
 		0436AE711BC356B000510928 /* PurchasedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchasedTableViewCell.m; sourceTree = "<group>"; };
@@ -151,14 +150,15 @@
 		509D32801B5FD20400388374 /* HomeScreenViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewLayout.m; sourceTree = "<group>"; };
 		559C0E6F1B5FFCD9002BF4E6 /* ParentCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentCollectionViewController.h; sourceTree = "<group>"; };
 		559C0E701B5FFD04002BF4E6 /* ParentCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentCollectionViewController.m; sourceTree = "<group>"; };
+		996E82B36CF9E40038BD069F /* Pods-FACCookbook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FACCookbook.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FACCookbook/Pods-FACCookbook.debug.xcconfig"; sourceTree = "<group>"; };
+		A03C86482B706B43C2253252 /* Pods-FACCookbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FACCookbook.release.xcconfig"; path = "Pods/Target Support Files/Pods-FACCookbook/Pods-FACCookbook.release.xcconfig"; sourceTree = "<group>"; };
 		A78ED9111B60373300C4DEC5 /* Purchased.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Purchased.m; sourceTree = "<group>"; };
 		A78ED9131B60374000C4DEC5 /* Purchased.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchased.h; sourceTree = "<group>"; };
-		C96C2504B1241A726A12F127 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		DB285498520DC5955837AB35 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2E2A9F81B5FFE2E002C8E31 /* SearchItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchItems.h; sourceTree = "<group>"; };
 		F2E2A9F91B5FFE2E002C8E31 /* SearchItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchItems.m; sourceTree = "<group>"; };
 		F2E2A9FE1B6006F5002C8E31 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		F2E2A9FF1B6006F5002C8E31 /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Categories.m; sourceTree = "<group>"; };
+		F453321A9DFB035F1CDD2D58 /* libPods-FACCookbook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FACCookbook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,7 +168,7 @@
 			files = (
 				5045CCC41B5FCB370039C2D9 /* CoreData.framework in Frameworks */,
 				043938711AF2FEB7004EA4D3 /* MapKit.framework in Frameworks */,
-				DC3D88E0AC69975EE4B0D3F5 /* libPods.a in Frameworks */,
+				3C45FA076964FC82ADB79FFB /* libPods-FACCookbook.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,8 +256,8 @@
 				04F5CA3D1AA3B4FB002D1069 /* FACCookbook */,
 				04F5CA5A1AA3B4FB002D1069 /* FACCookbookTests */,
 				04F5CA3C1AA3B4FB002D1069 /* Products */,
-				61A50FB27CEFE47AB9AF2814 /* Pods */,
 				AC4096A98AE72115300EACFE /* Frameworks */,
+				7CAB4439950CCFC567132D18 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -355,11 +355,11 @@
 			name = Objects;
 			sourceTree = "<group>";
 		};
-		61A50FB27CEFE47AB9AF2814 /* Pods */ = {
+		7CAB4439950CCFC567132D18 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C96C2504B1241A726A12F127 /* Pods.debug.xcconfig */,
-				042EE73AA618551F25E72F71 /* Pods.release.xcconfig */,
+				996E82B36CF9E40038BD069F /* Pods-FACCookbook.debug.xcconfig */,
+				A03C86482B706B43C2253252 /* Pods-FACCookbook.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -369,7 +369,7 @@
 			children = (
 				5045CCC31B5FCB370039C2D9 /* CoreData.framework */,
 				043938701AF2FEB7004EA4D3 /* MapKit.framework */,
-				DB285498520DC5955837AB35 /* libPods.a */,
+				F453321A9DFB035F1CDD2D58 /* libPods-FACCookbook.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -381,12 +381,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04F5CA611AA3B4FB002D1069 /* Build configuration list for PBXNativeTarget "FACCookbook" */;
 			buildPhases = (
-				B42E341CC19A2253892B266A /* Check Pods Manifest.lock */,
+				B714A468DDCED17923ECBBBC /* [CP] Check Pods Manifest.lock */,
 				04F5CA371AA3B4FB002D1069 /* Sources */,
 				04F5CA381AA3B4FB002D1069 /* Frameworks */,
 				04F5CA391AA3B4FB002D1069 /* Resources */,
-				099579FAC3BFA5EE46D3CBE8 /* Copy Pods Resources */,
-				9830657C78BC04742D836C3D /* Embed Pods Frameworks */,
+				A7DFEB04D7090144727735C0 /* [CP] Embed Pods Frameworks */,
+				1456A8180F2384F49293E3C0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -479,44 +479,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		099579FAC3BFA5EE46D3CBE8 /* Copy Pods Resources */ = {
+		1456A8180F2384F49293E3C0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FACCookbook/Pods-FACCookbook-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9830657C78BC04742D836C3D /* Embed Pods Frameworks */ = {
+		A7DFEB04D7090144727735C0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FACCookbook/Pods-FACCookbook-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B42E341CC19A2253892B266A /* Check Pods Manifest.lock */ = {
+		B714A468DDCED17923ECBBBC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -690,7 +690,7 @@
 		};
 		04F5CA621AA3B4FB002D1069 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C96C2504B1241A726A12F127 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 996E82B36CF9E40038BD069F /* Pods-FACCookbook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -709,7 +709,7 @@
 		};
 		04F5CA631AA3B4FB002D1069 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 042EE73AA618551F25E72F71 /* Pods.release.xcconfig */;
+			baseConfigurationReference = A03C86482B706B43C2253252 /* Pods-FACCookbook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
