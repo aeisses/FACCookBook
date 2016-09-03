@@ -69,6 +69,11 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 }
 
 + (NSString *)domain {
+//    return @"dl.dropboxusercontent.com";
+    return @"faccookbook.herokuapp.com";
+}
+
++ (NSString *)oldDomain {
     return @"dl.dropboxusercontent.com";
 }
 
@@ -77,35 +82,38 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 // Once the server is up and gtg it should be sending valid content-types and we can cut out manual serialization.
 
 + (NSString *)allRecipiesEndpoint {
-    return [NSString stringWithFormat:@"%@://%@/u/19713116/foundation/recipies.json", [DataService protocol], [DataService domain]];
+//    return [NSString stringWithFormat:@"%@://%@/u/19713116/foundation/recipies.json", [DataService protocol], [DataService domain]];
+    return [NSString stringWithFormat:@"%@://%@/recipes", [DataService protocol], [DataService domain]];
 }
 
 + (NSString *)newRecipiesEndpointSince:(NSDate *)date {
-    return [NSString stringWithFormat:@"%@://%@/u/19713116/foundation/update.json", [DataService protocol], [DataService domain]];
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.dateFormat = @"MM/dd/yyyy";
+    return [NSString stringWithFormat:@"%@://%@/recipes?since=%@", [DataService protocol], [DataService oldDomain], [formatter stringFromDate:date]];
 }
 
 + (NSString *)allLocationsEndPoint {
-    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/location.json", [DataService protocol], [DataService domain]];
+    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/location.json", [DataService protocol], [DataService oldDomain]];
 }
 
 + (NSString *)newLocationsEndPointSince:(NSDate *)date {
-    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/location.json", [DataService protocol], [DataService domain]];
+    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/location.json", [DataService protocol], [DataService oldDomain]];
 }
 
 + (NSString *)featuredEndPoint {
-    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/featured.json", [DataService protocol], [DataService domain]];
+    return [NSString stringWithFormat:@"%@://%@/recipes?featured=true", [DataService protocol], [DataService domain]];
 }
 
 + (NSString *)popularEndPoint {
-    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/popular.json", [DataService protocol], [DataService domain]];
+    return [NSString stringWithFormat:@"%@://%@/recipes?popular=true", [DataService protocol], [DataService domain]];
 }
 
 + (NSString *)purchasedEndPoint {
-    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/purchased.json", [DataService protocol], [DataService domain]];
+    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/purchased.json", [DataService protocol], [DataService oldDomain]];
 }
 
 + (NSString *)informationEndPoint {
-    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/information.json", [DataService protocol], [DataService domain]];
+    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/information.json", [DataService protocol], [DataService oldDomain]];
 }
 
 @synthesize httpManager = _httpManager;
@@ -329,7 +337,7 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
             return;
         }
 
-        [self processFeaturedData:responseData];
+        [self processFeaturedData:[(NSDictionary*)responseData objectForKey:@"recipes"]];
 
     };
 
@@ -350,7 +358,7 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
             NSLog(@"Error parsing JSON: %@",errorJson);
             return;
         }
-        [self processPopularData:responseData];
+        [self processPopularData:[(NSDictionary*)responseData objectForKey:@"recipes"]];
 
     };
 
@@ -645,10 +653,14 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     }
 
     NSMutableOrderedSet *popularSet = [NSMutableOrderedSet new];
-    for(NSNumber *number in popularData){
-        Recipe *recipe = [self loadRecipeFromCoreData:number];
-        recipe.popular = popular;
-        [popularSet addObject:recipe];
+//    for (NSNumber *number in popularData) {
+    for (NSDictionary *temp in popularData) {
+//        Recipe *recipe = [self loadRecipeFromCoreData:number];
+        Recipe *recipe = [self loadRecipeFromCoreData:[temp objectForKey:@"id"]];
+//        if (recipe) {
+            recipe.popular = popular;
+            [popularSet addObject:recipe];
+//        }
     }
 
     [popular setRecipes:popularSet];
@@ -676,7 +688,9 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     }
     
     int counter = 0;
-    for(NSNumber *number in featuredData){
+//    for(NSNumber *number in featuredData){
+    for(NSDictionary *recipeTemp in featuredData){
+        NSNumber *number = [recipeTemp objectForKey:@"id"];
         Featured *featured = (Featured*)[NSEntityDescription insertNewObjectForEntityForName:@"Featured" inManagedObjectContext:_managedObjectContext];
         featured.featuredId = number;
         featured.order = [NSNumber numberWithInt:counter];
