@@ -10,9 +10,7 @@
 
 @implementation Information
 
-@dynamic season;
+@dynamic baseMediaUrl;
 @dynamic version;
-
-@dynamic recipe;
 
 @end
