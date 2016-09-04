@@ -14,9 +14,8 @@
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="Information" representedClassName="Information" syncable="YES">
-        <attribute name="season" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="baseMediaUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="informantion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="information" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="String" syncable="YES"/>
@@ -59,7 +58,6 @@
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Categories" inverseName="recipes" inverseEntity="Categories" syncable="YES"/>
         <relationship name="directions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Direction" inverseName="recipe" inverseEntity="Direction" syncable="YES"/>
         <relationship name="featured" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Featured" syncable="YES"/>
-        <relationship name="information" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Information" inverseName="informantion" inverseEntity="Information" syncable="YES"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Ingredient" inverseName="recipe" inverseEntity="Ingredient" syncable="YES"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Note" inverseName="recipe" inverseEntity="Note" syncable="YES"/>
         <relationship name="popular" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Popular" inverseName="recipes" inverseEntity="Popular" syncable="YES"/>
@@ -71,16 +69,16 @@
         <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipe" inverseName="searchItems" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Categories" positionX="-81" positionY="0" width="128" height="75"/>
+        <element name="Categories" positionX="-92" positionY="-72" width="128" height="75"/>
         <element name="Direction" positionX="43" positionY="-48" width="128" height="75"/>
-        <element name="Featured" positionX="-81" positionY="-171" width="128" height="88"/>
-        <element name="Information" positionX="-11" positionY="45" width="128" height="90"/>
-        <element name="Ingredient" positionX="7" positionY="171" width="128" height="105"/>
+        <element name="Featured" positionX="-47" positionY="-162" width="128" height="88"/>
+        <element name="Information" positionX="160" positionY="270" width="128" height="73"/>
+        <element name="Ingredient" positionX="-207" positionY="84" width="128" height="105"/>
         <element name="Location" positionX="160" positionY="45" width="128" height="195"/>
-        <element name="Note" positionX="-83" positionY="279" width="128" height="75"/>
+        <element name="Note" positionX="7" positionY="45" width="128" height="75"/>
         <element name="Popular" positionX="-225" positionY="-168" width="128" height="75"/>
         <element name="Purchased" positionX="-315" positionY="-18" width="128" height="75"/>
-        <element name="Recipe" positionX="-308" positionY="6" width="128" height="285"/>
-        <element name="SearchItems" positionX="-524" positionY="-72" width="128" height="75"/>
+        <element name="Recipe" positionX="-641" positionY="81" width="128" height="268"/>
+        <element name="SearchItems" positionX="-468" positionY="-72" width="128" height="75"/>
     </elements>
 </model>

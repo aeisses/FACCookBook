@@ -82,7 +82,6 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 // Once the server is up and gtg it should be sending valid content-types and we can cut out manual serialization.
 
 + (NSString *)allRecipiesEndpoint {
-//    return [NSString stringWithFormat:@"%@://%@/u/19713116/foundation/recipies.json", [DataService protocol], [DataService domain]];
     return [NSString stringWithFormat:@"%@://%@/recipes", [DataService protocol], [DataService domain]];
 }
 
@@ -113,14 +112,15 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 }
 
 + (NSString *)informationEndPoint {
-    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/information.json", [DataService protocol], [DataService oldDomain]];
+    return [NSString stringWithFormat:@"%@://%@/information", [DataService protocol], [DataService domain]];
 }
 
 @synthesize httpManager = _httpManager;
 @synthesize managedObjectContext = _managedObjectContext;
 
 + (NSString*)urlForResources {
-    return [NSString stringWithFormat:@"%@://%@/u/19713116/FACApp/Images/",[DataService protocol], [DataService domain]];
+    Information *information = [[DataService sharedInstance] loadInformationDataFromCoreData];
+    return information.baseMediaUrl;
 }
 
 + (NSString*)imageFormat:(BOOL)isCell {
@@ -246,13 +246,14 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     [[[self httpManager] operationQueue] setSuspended:YES];
     [[[self httpManager] operationQueue] setMaxConcurrentOperationCount:1];
 
+    [self fetchInformationData];
+
     [self fetchRecipeData];
     [self fetchLocationData];
     [self fetchFeaturedData];
     [self fetchPopularData];
     [self fetchPurchasedData];
     // Uncomment when Information.json is uploaded.
-   // [self fetchInformationData];
 
     __weak DataService *wSelf = self;
 
@@ -399,7 +400,7 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
             NSLog(@"Error parsing JSON: %@",errorJson);
             return;
         }
-        // Add data processer here!
+        [self processInformation:responseDict];
     };
 
     void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
@@ -413,17 +414,6 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 
 
 #pragma mark - CoreData Process Methods
-
-- (void)loadInformation:(NSDictionary*)information {
-    // TODO: Check if information exists
-    Information *informationDataObject = [NSEntityDescription insertNewObjectForEntityForName:@"Information" inManagedObjectContext:_managedObjectContext];
-    informationDataObject.version = (NSString*)[information objectForKey:@"version"];
-    informationDataObject.season = (NSNumber*)[information objectForKey:@"season"];
-    NSError *error = nil;
-    if (error) {
-        NSLog(@"Error loading information: %@",error);
-    }
-}
 
 - (void)loadPopular:(NSArray*)popular {
     // TODO: Check if popular exists
@@ -751,7 +741,7 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     }
 
     [info setVersion:[informationData valueForKey:@"version"]];
-    [info setSeason:[informationData valueForKey:@"season"]];
+    [info setBaseMediaUrl:[informationData valueForKey:@"baseMediaUrl"]];
 
     NSError *error = nil;
     [_managedObjectContext save:&error];
@@ -940,7 +930,7 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     return nil;
 }
 
-- (Information*)loadInformationDataFromCoreData{
+- (Information*)loadInformationDataFromCoreData {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Information" inManagedObjectContext:_managedObjectContext];
     [fetchRequest setEntity:entity];

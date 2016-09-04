@@ -12,9 +12,7 @@
 
 @interface Information : NSManagedObject
 
-@property (retain, nonatomic) NSNumber *season;
+@property (retain, nonatomic) NSString *baseMediaUrl;
 @property (retain, nonatomic) NSString *version;
-
-@property (retain, nonatomic) Recipe *recipe;
 
 @end
