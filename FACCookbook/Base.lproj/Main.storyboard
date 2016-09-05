@@ -242,7 +242,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ePl-3e-mIL" id="wdy-Ul-Iql">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -854,8 +854,12 @@
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gluten_free_icon" translatesAutoresizingMaskIntoConstraints="NO" id="HlW-uO-5P5">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="25" id="4us-j4-reh"/>
-                                                            <constraint firstAttribute="width" constant="25" id="6If-T6-nEo"/>
+                                                            <constraint firstAttribute="height" constant="25" id="4us-j4-reh">
+                                                                <variation key="heightClass=regular" constant="30"/>
+                                                            </constraint>
+                                                            <constraint firstAttribute="width" constant="25" id="6If-T6-nEo">
+                                                                <variation key="heightClass=regular" constant="30"/>
+                                                            </constraint>
                                                         </constraints>
                                                         <variation key="default">
                                                             <mask key="constraints">
@@ -873,8 +877,12 @@
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegan_icon" translatesAutoresizingMaskIntoConstraints="NO" id="eVx-C2-Jhn">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="25" id="bNd-WT-1x6"/>
-                                                            <constraint firstAttribute="height" constant="25" id="rKd-MM-kMI"/>
+                                                            <constraint firstAttribute="width" constant="25" id="bNd-WT-1x6">
+                                                                <variation key="heightClass=regular" constant="30"/>
+                                                            </constraint>
+                                                            <constraint firstAttribute="height" constant="25" id="rKd-MM-kMI">
+                                                                <variation key="heightClass=regular" constant="30"/>
+                                                            </constraint>
                                                         </constraints>
                                                         <variation key="default">
                                                             <mask key="constraints">
@@ -886,25 +894,6 @@
                                                             <mask key="constraints">
                                                                 <include reference="bNd-WT-1x6"/>
                                                                 <include reference="rKd-MM-kMI"/>
-                                                            </mask>
-                                                        </variation>
-                                                    </imageView>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegetarian_icon" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-Na-xHJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="25" id="ILS-X2-Oo7"/>
-                                                            <constraint firstAttribute="width" constant="25" id="kf3-Ao-qcs"/>
-                                                        </constraints>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="ILS-X2-Oo7"/>
-                                                                <exclude reference="kf3-Ao-qcs"/>
-                                                            </mask>
-                                                        </variation>
-                                                        <variation key="heightClass=regular">
-                                                            <mask key="constraints">
-                                                                <include reference="ILS-X2-Oo7"/>
-                                                                <include reference="kf3-Ao-qcs"/>
                                                             </mask>
                                                         </variation>
                                                     </imageView>
@@ -929,6 +918,29 @@
                                                             </mask>
                                                         </variation>
                                                     </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegetarian_icon" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-Na-xHJ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="ILS-X2-Oo7">
+                                                                <variation key="heightClass=regular" constant="30"/>
+                                                            </constraint>
+                                                            <constraint firstAttribute="width" constant="25" id="kf3-Ao-qcs">
+                                                                <variation key="heightClass=regular" constant="30"/>
+                                                            </constraint>
+                                                        </constraints>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="ILS-X2-Oo7"/>
+                                                                <exclude reference="kf3-Ao-qcs"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <variation key="heightClass=regular">
+                                                            <mask key="constraints">
+                                                                <include reference="ILS-X2-Oo7"/>
+                                                                <include reference="kf3-Ao-qcs"/>
+                                                            </mask>
+                                                        </variation>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.90865836466165417" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -938,23 +950,29 @@
                                                     <constraint firstAttribute="trailing" secondItem="HlW-uO-5P5" secondAttribute="trailing" constant="10" id="AvU-24-qdg"/>
                                                     <constraint firstItem="eVx-C2-Jhn" firstAttribute="leading" secondItem="8dB-Na-xHJ" secondAttribute="trailing" constant="5" id="Gqh-iQ-bUj"/>
                                                     <constraint firstAttribute="height" constant="120" id="RGN-YW-G02"/>
-                                                    <constraint firstAttribute="bottom" secondItem="HlW-uO-5P5" secondAttribute="bottom" constant="5" id="TYi-Rg-nTt"/>
+                                                    <constraint firstAttribute="bottom" secondItem="HlW-uO-5P5" secondAttribute="bottom" constant="5" id="TYi-Rg-nTt">
+                                                        <variation key="heightClass=regular" constant="10"/>
+                                                    </constraint>
                                                     <constraint firstItem="9eb-N6-wfh" firstAttribute="centerX" secondItem="seP-o2-OAF" secondAttribute="centerX" id="X6e-Wo-OX3">
                                                         <variation key="heightClass=regular" constant="3.5"/>
                                                     </constraint>
-                                                    <constraint firstAttribute="bottom" secondItem="eVx-C2-Jhn" secondAttribute="bottom" constant="5" id="Xqa-0w-egz"/>
+                                                    <constraint firstAttribute="bottom" secondItem="eVx-C2-Jhn" secondAttribute="bottom" constant="5" id="Xqa-0w-egz">
+                                                        <variation key="heightClass=regular" constant="10"/>
+                                                    </constraint>
                                                     <constraint firstItem="9eb-N6-wfh" firstAttribute="centerY" secondItem="seP-o2-OAF" secondAttribute="centerY" id="hWv-sF-zPd">
                                                         <variation key="heightClass=regular" constant="-22.5"/>
                                                     </constraint>
                                                     <constraint firstItem="HlW-uO-5P5" firstAttribute="leading" secondItem="eVx-C2-Jhn" secondAttribute="trailing" constant="5" id="uYb-ij-SV2"/>
-                                                    <constraint firstAttribute="bottom" secondItem="8dB-Na-xHJ" secondAttribute="bottom" constant="5" id="urR-IW-icV"/>
+                                                    <constraint firstAttribute="bottom" secondItem="8dB-Na-xHJ" secondAttribute="bottom" constant="5" id="urR-IW-icV">
+                                                        <variation key="heightClass=regular" constant="10"/>
+                                                    </constraint>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="subviews">
                                                         <exclude reference="HlW-uO-5P5"/>
                                                         <exclude reference="eVx-C2-Jhn"/>
-                                                        <exclude reference="8dB-Na-xHJ"/>
                                                         <exclude reference="9eb-N6-wfh"/>
+                                                        <exclude reference="8dB-Na-xHJ"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="RGN-YW-G02"/>
@@ -973,8 +991,8 @@
                                                     <mask key="subviews">
                                                         <include reference="HlW-uO-5P5"/>
                                                         <include reference="eVx-C2-Jhn"/>
-                                                        <include reference="8dB-Na-xHJ"/>
                                                         <include reference="9eb-N6-wfh"/>
+                                                        <include reference="8dB-Na-xHJ"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="RGN-YW-G02"/>
@@ -1221,10 +1239,10 @@
     </scenes>
     <resources>
         <image name="fallBackGround" width="320" height="568"/>
-        <image name="gluten_free_icon" width="50" height="50"/>
+        <image name="gluten_free_icon" width="30" height="30"/>
         <image name="iPhoneStandard" width="300" height="200"/>
         <image name="locationStandard" width="300" height="200"/>
-        <image name="vegan_icon" width="50" height="50"/>
+        <image name="vegan_icon" width="30" height="30"/>
         <image name="vegetarian_icon" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
