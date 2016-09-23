@@ -600,7 +600,10 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     NSMutableOrderedSet *ingredientSet = [NSMutableOrderedSet new];
     for (NSDictionary *ingredient in ingredients) {
         Ingredient *ingredientDataObject = [NSEntityDescription insertNewObjectForEntityForName:@"Ingredient" inManagedObjectContext:_managedObjectContext];
-        ingredientDataObject.amount = (NSString*)[ingredient objectForKey:@"amount"];
+        // Should check for null here....
+        if(![[ingredient objectForKey:@"amount"] isEqual:[NSNull null]] ) {
+            ingredientDataObject.amount = (NSString*)[ingredient objectForKey:@"amount"];
+        }
         ingredientDataObject.ingredient = (NSString*)[ingredient objectForKey:@"ingredient"];
         ingredientDataObject.recipe = recipeDataObject;
         [ingredientSet addObject:ingredientDataObject];
