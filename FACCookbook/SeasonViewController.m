@@ -19,6 +19,7 @@
 }
 
 - (void)viewDidLoad {
+    _recipes = nil;
     [super viewDidLoad];
 }
 

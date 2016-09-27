@@ -22,5 +22,6 @@
 - (NSArray*)loadRecipeFromCoreData;
 - (NSArray *)loadLocationsFromCoreData;
 - (NSArray*)loadPurchasedDataFromCoreData;
+- (void)updateFavouite:(Recipe*)recipe;
 
 @end

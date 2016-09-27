@@ -115,6 +115,10 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     return [NSString stringWithFormat:@"%@://%@/information", [DataService protocol], [DataService domain]];
 }
 
++ (NSString *)voteEndPoint {
+    return [NSString stringWithFormat:@"%@://%@/recipes/vote", [DataService protocol], [DataService domain]];
+}
+
 @synthesize httpManager = _httpManager;
 @synthesize managedObjectContext = _managedObjectContext;
 
@@ -412,6 +416,20 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     [[self httpManager] GET:[DataService informationEndPoint] parameters:nil success:success failure:failure];
 }
 
+- (void)postVoteData:(NSNumber*)recipeId {
+    void(^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op ,id res) {
+        NSLog(@"Res: %@",res);
+    };
+    
+    void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
+        if (error) {
+            NSLog(@"Error making httpRequest: %@",error);
+        }
+    };
+
+    NSDictionary *json = @{ @"id" : recipeId };
+    [[self httpManager] POST:[DataService voteEndPoint] parameters:json success:success failure:failure];
+}
 
 #pragma mark - CoreData Process Methods
 
@@ -949,4 +967,17 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     }
     return nil;
 }
+
+- (void)updateFavouite:(Recipe*)recipe {
+ 
+    NSError *error = nil;
+    [_managedObjectContext save:&error];
+    if(error){
+        NSLog(@"error description :%@",[error description]);
+    }
+    
+    // Send to the server
+    [self postVoteData:recipe.recipeId];
+}
+
 @end

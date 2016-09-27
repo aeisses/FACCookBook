@@ -16,6 +16,7 @@
 @synthesize recipes = _recipes;
 
 - (void)viewDidAppear:(BOOL)animated {
+    _recipes = nil;
     [super viewDidAppear:animated];
 }
 
@@ -39,12 +40,7 @@
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"isFavourite == YES"];
     [fetchRequest setFetchBatchSize:20];
 
-    NSFetchedResultsController *theFetchedResultsController =
-    [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                        managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil
-                                                   cacheName:@"Favourite"];
-    _recipes = theFetchedResultsController;
-    ((NSFetchedResultsController*)_recipes).delegate = self;
+    _recipes = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
     return _recipes;
 }

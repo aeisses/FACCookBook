@@ -38,6 +38,7 @@ static NSString *segueIdentifier = @"recipe";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self.collectionView reloadData];
 }
 
 - (void)viewDidLoad {
