@@ -39,12 +39,13 @@
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     [fetchRequest setEntity:entity];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"season == %@ or season == %@",[SeasonColors convertToString:[Utils getCurrentSeason]],[SeasonColors convertToString:[Utils getCurrentSeason]].lowercaseString];
+
     [fetchRequest setFetchBatchSize:20];
     
     NSFetchedResultsController *theFetchedResultsController =
     [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                         managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil
-                                                   cacheName:@"Season"];
+                                                   cacheName:nil];
     _recipes = theFetchedResultsController;
     ((NSFetchedResultsController*)_recipes).delegate = self;
     

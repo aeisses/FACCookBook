@@ -63,7 +63,7 @@
             return @"Spring";
             break;
         case Autumn:
-            return @"Autumn";
+            return @"Fall";
             break;
         case Winter:
         default:

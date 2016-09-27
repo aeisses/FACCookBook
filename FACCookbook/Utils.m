@@ -90,9 +90,9 @@
         } else {
             return Summer;
         }
-    } else if (month < 10) {
+    } else if (month < 9) {
         return Summer;
-    } else if (month == 10) {
+    } else if (month == 9) {
         if (day < 21) {
             return Summer;
         } else {
