@@ -75,6 +75,7 @@ static NSInteger cellPadding = 42;
 @synthesize instructionsContainerView = _instructionsContainerView;
 @synthesize notesTitle = _notesTitle;
 @synthesize notesContainerView = _notesContainerView;
+@synthesize starButton = _starButton;
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
@@ -158,6 +159,8 @@ static NSInteger cellPadding = 42;
     [[self recipeScrollView] setContentOffset:(CGPoint){0,0}];
     
     _name.text = _recipe.title;
+    _starButton.selected = [_recipe.isFavourite boolValue];
+    
     [[self name] setTextColor:[SeasonColors titleColor:[[self recipe].season convertToSeasonEnum]]];
 
     [[self ingredientsTitle] setTextColor:[SeasonColors titleColor:[[self recipe].season convertToSeasonEnum]]];
@@ -420,4 +423,12 @@ static NSInteger cellPadding = 42;
 
     [[self recipeScrollView] setContentSize:(CGSize){self.view.frame.size.width,[self contentHeight] + recipeHeight}];
 }
+
+- (IBAction)touchStarButton:(id)sender {
+    _starButton.selected = !_starButton.selected;
+    // Update in the data service
+    _recipe.isFavourite = @(_starButton.selected);
+    [[DataService sharedInstance] updateFavouite:_recipe];
+}
+
 @end

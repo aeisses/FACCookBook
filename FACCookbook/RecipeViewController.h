@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *instructions;
 @property (weak, nonatomic) IBOutlet UITextView *notes;
 @property (weak, nonatomic) IBOutlet UITableView *ingredients;
+@property (weak, nonatomic) IBOutlet UIButton *starButton;
 @property (weak, nonatomic) IBOutlet UIImageView *backGroundImageView;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UIView *titleContainerView;
