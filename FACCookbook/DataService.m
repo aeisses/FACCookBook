@@ -22,8 +22,6 @@
 #import "Featured.h"
 #import "Purchased.h"
 
-static int kPopularId = 1001;
-
 static NSString *FCBFormaCellSmall = @"FCBCellSmall";
 static NSString *FCBFormatCellMedium = @"FCBCellMedium";
 static NSString *FCBFormatCellLarge = @"FCBCellLarge";
@@ -88,7 +86,7 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 + (NSString *)newRecipiesEndpointSince:(NSDate *)date {
     NSDateFormatter *formatter = [NSDateFormatter new];
     formatter.dateFormat = @"MM/dd/yyyy";
-    return [NSString stringWithFormat:@"%@://%@/recipes?since=%@", [DataService protocol], [DataService oldDomain], [formatter stringFromDate:date]];
+    return [NSString stringWithFormat:@"%@://%@/recipes?since=%@", [DataService protocol], [DataService domain], [formatter stringFromDate:date]];
 }
 
 + (NSString *)allLocationsEndPoint {
@@ -100,11 +98,11 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 }
 
 + (NSString *)featuredEndPoint {
-    return [NSString stringWithFormat:@"%@://%@/recipes?featured=true", [DataService protocol], [DataService domain]];
+    return [NSString stringWithFormat:@"%@://%@/recipes?featured=true&only_ids=true", [DataService protocol], [DataService domain]];
 }
 
 + (NSString *)popularEndPoint {
-    return [NSString stringWithFormat:@"%@://%@/recipes?popular=true", [DataService protocol], [DataService domain]];
+    return [NSString stringWithFormat:@"%@://%@/recipes?popular=true&only_ids=true", [DataService protocol], [DataService domain]];
 }
 
 + (NSString *)purchasedEndPoint {
@@ -433,20 +431,20 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 
 #pragma mark - CoreData Process Methods
 
-- (void)loadPopular:(NSArray*)popular {
-    // TODO: Check if popular exists
-    Popular *popularDataObject = [NSEntityDescription insertNewObjectForEntityForName:@"Popular" inManagedObjectContext:_managedObjectContext];
-    NSMutableOrderedSet *popularSet = [NSMutableOrderedSet new];
-    for (NSNumber *item in popular) {
-        Recipe *recipe = [self loadRecipeFromCoreData:item];
-        recipe.popular = popularDataObject;
-        [popularSet addObject:recipe];
-    }
-    NSError *error = nil;
-    if (error) {
-        NSLog(@"Error loading popular: %@",error);
-    }
-}
+//- (void)loadPopular:(NSArray*)popular {
+//    // TODO: Check if popular exists
+//    Popular *popularDataObject = [NSEntityDescription insertNewObjectForEntityForName:@"Popular" inManagedObjectContext:_managedObjectContext];
+//    NSMutableOrderedSet *popularSet = [NSMutableOrderedSet new];
+//    for (NSNumber *item in popular) {
+//        Recipe *recipe = [self loadRecipeFromCoreData:item];
+//        recipe.popular = popularDataObject;
+//        [popularSet addObject:recipe];
+//    }
+//    NSError *error = nil;
+//    if (error) {
+//        NSLog(@"Error loading popular: %@",error);
+//    }
+//}
 
 - (void)processLocationsData:(NSDictionary*)jsonData {
     NSArray *locations = [jsonData objectForKey:@"locations"];
@@ -502,15 +500,16 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     NSMutableSet *recipeSearchItems = [NSMutableSet setWithSet:recipe.searchItems];
     NSEntityDescription *searchItems = [NSEntityDescription entityForName:@"SearchItems" inManagedObjectContext:_managedObjectContext];
 
-    for (NSString *item in items) {
+    for (NSDictionary *item in items) {
+        NSString *keyword = [item objectForKey:@"keyword"];
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"item == %@", item];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"item == %@", keyword];
         fetchRequest.entity = searchItems;
         NSArray *fetchedObject = [_managedObjectContext executeFetchRequest:fetchRequest error:nil];
 
         if(![fetchedObject count]) {
             SearchItems *newSearchItem = [NSEntityDescription insertNewObjectForEntityForName:@"SearchItems" inManagedObjectContext:_managedObjectContext];
-            newSearchItem.item = item;
+            newSearchItem.item = keyword;
             newSearchItem.recipes = [NSSet setWithObject:recipe];
 
             [recipeSearchItems addObject:newSearchItem];
@@ -536,15 +535,16 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     NSMutableSet *recipeCategories = [NSMutableSet setWithSet:recipe.categories];
     NSEntityDescription *lookupCategories = [NSEntityDescription entityForName:@"Categories" inManagedObjectContext:_managedObjectContext];
 
-    for (NSString *category in categories) {
+    for (NSDictionary *category in categories) {
+        NSString *category_s = [category objectForKey:@"category"];
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"category == %@", category];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"category == %@", category_s];
         fetchRequest.entity = lookupCategories;
         NSArray *fetchedObject = [_managedObjectContext executeFetchRequest:fetchRequest error:nil];
 
         if(![fetchedObject count]) {
             Categories *newCategory = [NSEntityDescription insertNewObjectForEntityForName:@"Categories" inManagedObjectContext:_managedObjectContext];
-            newCategory.category = category;
+            newCategory.category = category_s;
             newCategory.recipes = [NSSet setWithObject:recipe];
 
             [recipeCategories addObject:newCategory];
@@ -654,28 +654,17 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 
     NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&err];
 
-    // Add a predicate later.
-    Popular *popular;
-    if([results count]){
-        popular = (Popular*)[results lastObject];
-    }
-    else{
-        popular = (Popular*)[NSEntityDescription insertNewObjectForEntityForName:@"Popular" inManagedObjectContext:_managedObjectContext];
+    // Delete all the featured objects
+    for (Popular *popular in results) {
+        [_managedObjectContext deleteObject:popular];
     }
 
-    NSMutableOrderedSet *popularSet = [NSMutableOrderedSet new];
-//    for (NSNumber *number in popularData) {
-    for (NSDictionary *temp in popularData) {
-//        Recipe *recipe = [self loadRecipeFromCoreData:number];
-        Recipe *recipe = [self loadRecipeFromCoreData:[temp objectForKey:@"id"]];
-//        if (recipe) {
-            recipe.popular = popular;
-            [popularSet addObject:recipe];
-//        }
+    for (NSNumber *number in popularData) {
+        Popular *popular = (Popular*)[NSEntityDescription insertNewObjectForEntityForName:@"Popular" inManagedObjectContext:_managedObjectContext];
+        popular.popularId = number;
+        Recipe *recipe = (Recipe*)[self loadRecipeFromCoreData:number];
+        popular.recipe = recipe;
     }
-
-    [popular setRecipes:popularSet];
-    [popular setPopularId:[NSNumber numberWithInt:kPopularId]];
 
     NSError *error = nil;
     [_managedObjectContext save:&error];
@@ -699,14 +688,13 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     }
     
     int counter = 0;
-//    for(NSNumber *number in featuredData){
-    for(NSDictionary *recipeTemp in featuredData){
-        NSNumber *number = [recipeTemp objectForKey:@"id"];
+    for(NSNumber *number in featuredData){
         Featured *featured = (Featured*)[NSEntityDescription insertNewObjectForEntityForName:@"Featured" inManagedObjectContext:_managedObjectContext];
         featured.featuredId = number;
         featured.order = [NSNumber numberWithInt:counter];
         Recipe *recipe = (Recipe*)[self loadRecipeFromCoreData:number];
         featured.recipe = recipe;
+//        recipe.featured = featured;
         counter++;
     }
 
@@ -977,7 +965,9 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     }
     
     // Send to the server
-    [self postVoteData:recipe.recipeId];
+    if ([recipe.isFavourite boolValue]) {
+        [self postVoteData:recipe.recipeId];
+    }
 }
 
 @end

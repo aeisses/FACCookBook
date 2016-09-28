@@ -7,6 +7,8 @@
 //
 
 #import "PopularViewController.h"
+#import "Popular.h"
+#import "RecipeCell.h"
 
 @implementation PopularViewController
 
@@ -30,9 +32,9 @@
     }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Popular" inManagedObjectContext:self.managedObjectContext];
     
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"recipeId" ascending:NO];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"popularId" ascending:NO];
     
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     [fetchRequest setEntity:entity];
@@ -41,11 +43,20 @@
     NSFetchedResultsController *theFetchedResultsController =
     [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                         managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil
-                                                   cacheName:@"Popular"];
+                                                   cacheName:nil];
     _recipes = theFetchedResultsController;
     ((NSFetchedResultsController*)_recipes).delegate = self;
     
     return _recipes;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    RecipeCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
+    
+    Popular *popular = [[_recipes fetchedObjects] objectAtIndex:indexPath.row];
+    [cell addRecipeImage:(Recipe*)popular.recipe forCell:YES];
+    
+    return cell;
 }
 
 @end
