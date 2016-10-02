@@ -10,7 +10,7 @@
 
 @implementation Popular
 
-@dynamic recipes;
+@dynamic recipe;
 @dynamic popularId;
 
 @end

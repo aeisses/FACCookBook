@@ -25,7 +25,6 @@
 @dynamic directions;
 @dynamic ingredients;
 @dynamic notes;
-@dynamic popular;
 @dynamic component;
 @dynamic information;
 @dynamic purchased;

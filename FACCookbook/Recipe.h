@@ -26,7 +26,6 @@
 @property (nonatomic, retain) NSOrderedSet *ingredients;
 @property (nonatomic, retain) NSOrderedSet *notes;
 @property (nonatomic, retain) NSOrderedSet *information;
-@property (nonatomic, retain) NSManagedObject *popular;
 @property (nonatomic, retain) NSManagedObject *component;
 @property (nonatomic, retain) NSManagedObject *purchased;
 

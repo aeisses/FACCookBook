@@ -300,10 +300,12 @@ static NSInteger cellPadding = 42;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    // This is duplicated here and in viewWillAppear: to make the scroll work in the inital load of the recipe and to make the recipe not flash
+    [self loadRecipe];
     CALayer *mask = [[CALayer alloc] init];
     mask.frame = _titleContainerView.bounds;
     mask.backgroundColor = [UIColor blueColor].CGColor;
-    //_titleContainerView.layer.mask = mask;
+    _titleContainerView.layer.mask = mask;
     _animationView = [[UIView alloc] initWithFrame:_titleContainerView.bounds];
     _animationView.layer.mask = mask;
     [_titleContainerView insertSubview:_animationView atIndex:0];

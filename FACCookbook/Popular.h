@@ -11,7 +11,7 @@
 
 @interface Popular : NSManagedObject
 
-@property (nonatomic, retain) NSOrderedSet *recipes;
+@property (nonatomic, retain) NSManagedObject *recipe;
 @property (nonatomic, retain) NSNumber *popularId;
 
 @end
