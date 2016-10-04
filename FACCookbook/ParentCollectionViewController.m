@@ -13,11 +13,11 @@
 #import "AppDelegate.h"
 #import "Recipe.h"
 #import "Utils.h"
-#import "RecipeCell.h"
+#import "RecipeViewCell.h"
 #import "Featured.h"
 
 NSString *cellResueIdentifier = @"Cell";
-static NSString *nibName = @"RecipeCell";
+static NSString *nibName = @"RecipeView";
 static NSString *segueIdentifier = @"recipe";
 
 @interface ParentCollectionViewController()
@@ -115,7 +115,7 @@ static NSString *segueIdentifier = @"recipe";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    RecipeCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
+    RecipeViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
     
     Recipe *recipe;
     if ([self.recipes isKindOfClass:[NSArray class]]) {

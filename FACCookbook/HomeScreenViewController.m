@@ -9,7 +9,8 @@
 #import "HomeScreenViewController.h"
 #import "RecipeViewController.h"
 #import "Recipe.h"
-#import "RecipeCell.h"
+#import "RecipeViewCell.h"
+#import "RecipeViewStandard.h"
 #import "Utils.h"
 #import "Featured.h"
 #import "LineAnimationLayer.h"
@@ -162,16 +163,20 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    RecipeCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
-
+    RecipeView *view;
+    
     Featured *featured = [[_recipes fetchedObjects] objectAtIndex:indexPath.row];
     if (indexPath.row == 0) {
-        [cell addRecipeImage:(Recipe*)featured.recipe forCell:NO];
+        RecipeViewStandard *standard = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
+        [standard addRecipeImage:(Recipe*)featured.recipe forCell:NO];
+        view = standard;
     } else {
+        RecipeViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
         [cell addRecipeImage:(Recipe*)featured.recipe forCell:YES];
+        view = cell;
     }
     
-    return cell;
+    return view;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
