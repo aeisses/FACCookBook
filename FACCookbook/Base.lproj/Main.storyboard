@@ -55,9 +55,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AXN-Xf-KYk">
-                            <size key="itemSize" width="134" height="140"/>
-                            <size key="headerReferenceSize" width="50" height="23"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="AXN-Xf-KYk">
+                            <size key="itemSize" width="270" height="180"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
@@ -79,11 +79,6 @@
                             </constraints>
                         </view>
                         <cells/>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipe" id="uz5-Co-Ucz" customClass="RecipeViewCell">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="23"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="gdZ-jP-QNt" id="7Xw-3y-RXP"/>
                             <outlet property="delegate" destination="gdZ-jP-QNt" id="ibr-fW-yl3"/>

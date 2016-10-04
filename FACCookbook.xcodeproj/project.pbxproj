@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		04222EC91DA332D9000CC5FE /* RecipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04222EC81DA332D9000CC5FE /* RecipeView.m */; };
 		04222ECD1DA333CB000CC5FE /* RecipeViewStandard.m in Sources */ = {isa = PBXBuildFile; fileRef = 04222ECC1DA333CB000CC5FE /* RecipeViewStandard.m */; };
+		04222ECF1DA46313000CC5FE /* RecipeViewStandard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04222ECE1DA46313000CC5FE /* RecipeViewStandard.xib */; };
 		0436AE6F1BC355ED00510928 /* PurchasedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0436AE6E1BC355ED00510928 /* PurchasedTableViewCell.xib */; };
 		0436AE721BC356B000510928 /* PurchasedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436AE711BC356B000510928 /* PurchasedTableViewCell.m */; };
 		0436AE771BC3590800510928 /* PurchasedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436AE761BC3588300510928 /* PurchasedViewController.m */; };
 		043938711AF2FEB7004EA4D3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043938701AF2FEB7004EA4D3 /* MapKit.framework */; };
 		043938741AF30206004EA4D3 /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938731AF30206004EA4D3 /* HomeScreenViewController.m */; };
-		043938771AF53DA1004EA4D3 /* RecipeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043938761AF53DA1004EA4D3 /* RecipeView.xib */; };
+		043938771AF53DA1004EA4D3 /* RecipeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043938761AF53DA1004EA4D3 /* RecipeViewCell.xib */; };
 		0439387A1AF53DEB004EA4D3 /* RecipeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938791AF53DEB004EA4D3 /* RecipeViewCell.m */; };
 		0439387D1AF5444F004EA4D3 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0439387C1AF5444F004EA4D3 /* InformationViewController.m */; };
 		043938811AF54486004EA4D3 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938801AF54486004EA4D3 /* LocationViewController.m */; };
@@ -75,6 +76,7 @@
 		04222ECA1DA332E9000CC5FE /* RecipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeView.h; sourceTree = "<group>"; };
 		04222ECB1DA33395000CC5FE /* RecipeViewStandard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipeViewStandard.h; sourceTree = "<group>"; };
 		04222ECC1DA333CB000CC5FE /* RecipeViewStandard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeViewStandard.m; sourceTree = "<group>"; };
+		04222ECE1DA46313000CC5FE /* RecipeViewStandard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeViewStandard.xib; sourceTree = "<group>"; };
 		0436AE6E1BC355ED00510928 /* PurchasedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PurchasedTableViewCell.xib; sourceTree = "<group>"; };
 		0436AE701BC356B000510928 /* PurchasedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchasedTableViewCell.h; sourceTree = "<group>"; };
 		0436AE711BC356B000510928 /* PurchasedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchasedTableViewCell.m; sourceTree = "<group>"; };
@@ -83,7 +85,7 @@
 		043938701AF2FEB7004EA4D3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		043938731AF30206004EA4D3 /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
 		043938751AF3021F004EA4D3 /* HomeScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
-		043938761AF53DA1004EA4D3 /* RecipeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeView.xib; sourceTree = "<group>"; };
+		043938761AF53DA1004EA4D3 /* RecipeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeViewCell.xib; sourceTree = "<group>"; };
 		043938791AF53DEB004EA4D3 /* RecipeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeViewCell.m; sourceTree = "<group>"; };
 		0439387B1AF53DF6004EA4D3 /* RecipeViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipeViewCell.h; sourceTree = "<group>"; };
 		0439387C1AF5444F004EA4D3 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
@@ -297,7 +299,8 @@
 				04A16D591B8BF00C00C41E95 /* TableViewCell.xib */,
 				0436AE6E1BC355ED00510928 /* PurchasedTableViewCell.xib */,
 				04F5CA4B1AA3B4FB002D1069 /* Main.storyboard */,
-				043938761AF53DA1004EA4D3 /* RecipeView.xib */,
+				043938761AF53DA1004EA4D3 /* RecipeViewCell.xib */,
+				04222ECE1DA46313000CC5FE /* RecipeViewStandard.xib */,
 				04F5CA4E1AA3B4FB002D1069 /* Images.xcassets */,
 				04F5CA501AA3B4FB002D1069 /* LaunchScreen.xib */,
 				04F0A0361B7187CD0041CB33 /* Titlescreen@2x.png */,
@@ -469,12 +472,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				04F5CA4D1AA3B4FB002D1069 /* Main.storyboard in Resources */,
+				04222ECF1DA46313000CC5FE /* RecipeViewStandard.xib in Resources */,
 				04F5CA521AA3B4FB002D1069 /* LaunchScreen.xib in Resources */,
 				04A16D5A1B8BF00C00C41E95 /* TableViewCell.xib in Resources */,
 				04F0A0371B7187CD0041CB33 /* Titlescreen@2x.png in Resources */,
 				04F5CA4F1AA3B4FB002D1069 /* Images.xcassets in Resources */,
 				0436AE6F1BC355ED00510928 /* PurchasedTableViewCell.xib in Resources */,
-				043938771AF53DA1004EA4D3 /* RecipeView.xib in Resources */,
+				043938771AF53DA1004EA4D3 /* RecipeViewCell.xib in Resources */,
 				509D327E1B5FCE2800388374 /* HomeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

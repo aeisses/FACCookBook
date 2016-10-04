@@ -15,9 +15,12 @@
 #import "Utils.h"
 #import "RecipeViewCell.h"
 #import "Featured.h"
+#import "Popular.h"
 
-NSString *cellResueIdentifier = @"Cell";
-static NSString *nibName = @"RecipeView";
+NSString *cellReuseIdentifier = @"Cell";
+NSString *standardReuseIdentifier = @"Standard";
+static NSString *cellNibName = @"RecipeViewCell";
+static NSString *standardNibName = @"RecipeViewStandard";
 static NSString *segueIdentifier = @"recipe";
 
 @interface ParentCollectionViewController()
@@ -55,7 +58,8 @@ static NSString *segueIdentifier = @"recipe";
         }
     }
     
-    [_collectionView registerNib:[UINib nibWithNibName:nibName bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellResueIdentifier];
+    [_collectionView registerNib:[UINib nibWithNibName:cellNibName bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:cellReuseIdentifier];
+    [_collectionView registerNib:[UINib nibWithNibName:standardNibName bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:standardReuseIdentifier];
     
     [self.collectionView setBackgroundColor:[SeasonColors backgroundColor:[Utils getCurrentSeason]]];
 }
@@ -108,6 +112,8 @@ static NSString *segueIdentifier = @"recipe";
     }
     if ([object isKindOfClass:[Featured class]]) {
         _selectedRecipe = (Recipe*)((Featured*)object).recipe;
+    } else if ([object isKindOfClass:[Popular class]]) {
+        _selectedRecipe = (Recipe*)((Popular*)object).recipe;
     } else {
         _selectedRecipe = (Recipe*)object;
     }
@@ -115,7 +121,7 @@ static NSString *segueIdentifier = @"recipe";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    RecipeViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
+    RecipeViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellReuseIdentifier forIndexPath:indexPath];
     
     Recipe *recipe;
     if ([self.recipes isKindOfClass:[NSArray class]]) {

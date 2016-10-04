@@ -51,7 +51,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    RecipeViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
+    RecipeViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellReuseIdentifier forIndexPath:indexPath];
     
     Popular *popular = [[_recipes fetchedObjects] objectAtIndex:indexPath.row];
     [cell addRecipeImage:(Recipe*)popular.recipe forCell:YES];
