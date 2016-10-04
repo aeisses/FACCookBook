@@ -8,7 +8,7 @@
 
 #import "PopularViewController.h"
 #import "Popular.h"
-#import "RecipeCell.h"
+#import "RecipeViewCell.h"
 
 @implementation PopularViewController
 
@@ -51,7 +51,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    RecipeCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
+    RecipeViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
     
     Popular *popular = [[_recipes fetchedObjects] objectAtIndex:indexPath.row];
     [cell addRecipeImage:(Recipe*)popular.recipe forCell:YES];
