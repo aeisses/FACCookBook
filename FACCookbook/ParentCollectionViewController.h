@@ -10,7 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "Recipe.h"
 
-extern NSString       *cellResueIdentifier;
+extern NSString *cellReuseIdentifier;
+extern NSString *standardReuseIdentifier;
 
 @interface ParentCollectionViewController : UICollectionViewController <UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
 

@@ -113,8 +113,8 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     return [NSString stringWithFormat:@"%@://%@/information", [DataService protocol], [DataService domain]];
 }
 
-+ (NSString *)voteEndPoint {
-    return [NSString stringWithFormat:@"%@://%@/recipes/vote", [DataService protocol], [DataService domain]];
++ (NSString *)voteEndPoint:(NSNumber*)recipeId {
+    return [NSString stringWithFormat:@"%@://%@/recipes/%i/vote", [DataService protocol], [DataService domain], [recipeId intValue]];
 }
 
 @synthesize httpManager = _httpManager;
@@ -414,7 +414,7 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     [[self httpManager] GET:[DataService informationEndPoint] parameters:nil success:success failure:failure];
 }
 
-- (void)postVoteData:(NSNumber*)recipeId {
+- (void)postVoteData:(NSNumber*)recipeId direction:(NSString*)direction {
     void(^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op ,id res) {
         NSLog(@"Res: %@",res);
     };
@@ -425,8 +425,8 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
         }
     };
 
-    NSDictionary *json = @{ @"id" : recipeId };
-    [[self httpManager] POST:[DataService voteEndPoint] parameters:json success:success failure:failure];
+    NSDictionary *json = @{ @"direction" : direction };
+    [[self httpManager] POST:[DataService voteEndPoint:recipeId] parameters:json success:success failure:failure];
 }
 
 #pragma mark - CoreData Process Methods
@@ -966,7 +966,9 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     
     // Send to the server
     if ([recipe.isFavourite boolValue]) {
-        [self postVoteData:recipe.recipeId];
+        [self postVoteData:recipe.recipeId direction:@"up"];
+    } else {
+        [self postVoteData:recipe.recipeId direction:@"down"];
     }
 }
 

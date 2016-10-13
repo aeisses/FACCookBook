@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FlightAnimationLayer : CALayer
+@interface FlightAnimationLayer : CALayer <CAAnimationDelegate>
 - (id)initInFrame:(CGRect)frame offSet:(BOOL)offset opacity:(CGFloat)opactiy;
 - (void)addAnimation;
 @end

@@ -10,7 +10,7 @@
 
 #import "SeasonColors.h"
 
-@interface LineAnimationLayer : CALayer
+@interface LineAnimationLayer : CALayer <CAAnimationDelegate>
 
 @property (nonatomic, assign) CGFloat yPosition;
 

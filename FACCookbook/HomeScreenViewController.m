@@ -163,29 +163,28 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    RecipeView *view;
+    RecipeViewStandard *view;
     
     Featured *featured = [[_recipes fetchedObjects] objectAtIndex:indexPath.row];
-    if (indexPath.row == 0) {
-        RecipeViewStandard *standard = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
-        [standard addRecipeImage:(Recipe*)featured.recipe forCell:NO];
-        view = standard;
-    } else {
-        RecipeViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
-        [cell addRecipeImage:(Recipe*)featured.recipe forCell:YES];
-        view = cell;
-    }
+//    if (indexPath.row == 0) {
+        view = [cv dequeueReusableCellWithReuseIdentifier:standardReuseIdentifier forIndexPath:indexPath];
+        [view addRecipeImage:(Recipe*)featured.recipe forCell:NO];
+//    } else {
+//        RecipeViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
+//        [cell addRecipeImage:(Recipe*)featured.recipe forCell:YES];
+//        view = cell;
+//    }
     
     return view;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGSize retval;
-    if (indexPath.row == 0) {
-        retval = [Utils getSmallStandardSize];
-    } else {
-        retval = [Utils getSmallCellSize];
-    }
+//    if (indexPath.row == 0) {
+    retval = (CGSize){270,180};//[Utils getSmallStandardSize];
+//    } else {
+//        retval = [Utils getSmallCellSize];
+//    }
     
     return retval;
 }

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FlowerAnimationLayer : CALayer
+@interface FlowerAnimationLayer : CALayer <CAAnimationDelegate>
 - (id)initInFrame:(CGRect)frame opacity:(CGFloat)opactiy;
 - (void)addAnimation;
 @end
