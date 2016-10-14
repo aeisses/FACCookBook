@@ -35,7 +35,7 @@ static NSString *segueIdentifier = @"recipe";
 @synthesize recipeImages = _recipeImages;
 @synthesize collectionView = _collectionView;
 
--(BOOL)prefersStatusBarHidden{
+-(BOOL)prefersStatusBarHidden {
     return YES;
 }
 
@@ -66,7 +66,6 @@ static NSString *segueIdentifier = @"recipe";
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-//    self.recipes = nil;
 }
 
 - (void)didReceiveMemoryWarning {

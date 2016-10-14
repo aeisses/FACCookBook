@@ -16,7 +16,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.collectionView setContentOffset:CGPointMake(0, 0)];
 }
 
 - (void)viewDidLoad {
@@ -24,10 +23,10 @@
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.collectionView.frame), 44)];
     self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     self.searchBar.delegate = self;
-
+    self.searchBar.showsCancelButton = YES;
     self.searchString = @"";
     
-    [self.collectionView addSubview:self.searchBar];
+    [self.view addSubview:self.searchBar];
     [self.collectionView setContentOffset:CGPointMake(0, 44)];
     [self.collectionView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
 }
@@ -66,6 +65,18 @@
     _searchString = searchText;
     _recipes = nil;
     [self.collectionView reloadData];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [self.searchBar resignFirstResponder];
+    _searchString = @"";
+    self.searchBar.text = @"";
+    _recipes = nil;
+    [self.collectionView reloadData];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self.searchBar resignFirstResponder];
 }
 
 @end
