@@ -24,14 +24,13 @@
 @property (weak, nonatomic) IBOutlet UITextView *notes;
 @property (weak, nonatomic) IBOutlet UITableView *ingredients;
 @property (weak, nonatomic) IBOutlet UIButton *starButton;
+@property (weak, nonatomic) IBOutlet UIButton *infoButton;
+@property (weak, nonatomic) IBOutlet UIButton *infoButton2;
 @property (weak, nonatomic) IBOutlet UIImageView *backGroundImageView;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UIView *titleContainerView;
 @property (strong, nonatomic) IBOutlet UIScrollView *secondScrollView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *titleContainerVerticalOffset;
-@property (strong, nonatomic) IBOutlet UIImageView *veganImageView;
-@property (strong, nonatomic) IBOutlet UIImageView *vegetarianImageView;
-@property (strong, nonatomic) IBOutlet UIImageView *gluttenFreeImageView;
 @property (strong, nonatomic) IBOutlet UILabel *ingredientsTitle;
 @property (strong, nonatomic) IBOutlet UIView *ingredientsContainerView;
 @property (strong, nonatomic) IBOutlet UILabel *instructionsTitle;

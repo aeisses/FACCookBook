@@ -102,7 +102,7 @@
         <scene sceneID="cjF-ib-Ycy">
             <objects>
                 <collectionViewController id="4FO-2v-otC" customClass="SearchViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="OgH-ce-end">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="OgH-ce-end">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dRi-jv-tiR">
@@ -227,7 +227,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ePl-3e-mIL" id="wdy-Ul-Iql">
-                                    <frame key="frameInset" width="414" height="44"/>
+                                    <frame key="frameInset" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -810,50 +810,6 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seP-o2-OAF">
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gluten_free_icon" translatesAutoresizingMaskIntoConstraints="NO" id="HlW-uO-5P5">
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="25" id="4us-j4-reh">
-                                                                <variation key="heightClass=regular" constant="30"/>
-                                                            </constraint>
-                                                            <constraint firstAttribute="width" constant="25" id="6If-T6-nEo">
-                                                                <variation key="heightClass=regular" constant="30"/>
-                                                            </constraint>
-                                                        </constraints>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="4us-j4-reh"/>
-                                                                <exclude reference="6If-T6-nEo"/>
-                                                            </mask>
-                                                        </variation>
-                                                        <variation key="heightClass=regular">
-                                                            <mask key="constraints">
-                                                                <include reference="4us-j4-reh"/>
-                                                                <include reference="6If-T6-nEo"/>
-                                                            </mask>
-                                                        </variation>
-                                                    </imageView>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegan_icon" translatesAutoresizingMaskIntoConstraints="NO" id="eVx-C2-Jhn">
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="25" id="bNd-WT-1x6">
-                                                                <variation key="heightClass=regular" constant="30"/>
-                                                            </constraint>
-                                                            <constraint firstAttribute="height" constant="25" id="rKd-MM-kMI">
-                                                                <variation key="heightClass=regular" constant="30"/>
-                                                            </constraint>
-                                                        </constraints>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="bNd-WT-1x6"/>
-                                                                <exclude reference="rKd-MM-kMI"/>
-                                                            </mask>
-                                                        </variation>
-                                                        <variation key="heightClass=regular">
-                                                            <mask key="constraints">
-                                                                <include reference="bNd-WT-1x6"/>
-                                                                <include reference="rKd-MM-kMI"/>
-                                                            </mask>
-                                                        </variation>
-                                                    </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9eb-N6-wfh">
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="srr-sH-dVH">
@@ -874,101 +830,71 @@
                                                             </mask>
                                                         </variation>
                                                     </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegetarian_icon" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-Na-xHJ">
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="25" id="ILS-X2-Oo7">
-                                                                <variation key="heightClass=regular" constant="30"/>
-                                                            </constraint>
-                                                            <constraint firstAttribute="width" constant="25" id="kf3-Ao-qcs">
-                                                                <variation key="heightClass=regular" constant="30"/>
-                                                            </constraint>
-                                                        </constraints>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="ILS-X2-Oo7"/>
-                                                                <exclude reference="kf3-Ao-qcs"/>
-                                                            </mask>
-                                                        </variation>
-                                                        <variation key="heightClass=regular">
-                                                            <mask key="constraints">
-                                                                <include reference="ILS-X2-Oo7"/>
-                                                                <include reference="kf3-Ao-qcs"/>
-                                                            </mask>
-                                                        </variation>
-                                                    </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="av3-0F-Vmx">
-                                                        <frame key="frameInset" minX="15" minY="80" width="30" height="30"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="av3-0F-Vmx">
                                                         <state key="normal" image="starImage"/>
                                                         <state key="selected" image="starImageSelected"/>
                                                         <connections>
                                                             <action selector="touchStarButton:" destination="TzS-GA-PMA" eventType="touchUpInside" id="NCv-DL-Nbh"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9K-36-Pqr">
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="30" id="cGv-ao-hxA"/>
+                                                            <constraint firstAttribute="height" constant="30" id="tlQ-Ns-cGu"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <action selector="touchInfoButton:" destination="TzS-GA-PMA" eventType="touchUpInside" id="8Ib-45-tbE"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFO-3S-AGf">
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="Rqt-IH-N02"/>
+                                                            <constraint firstAttribute="width" constant="30" id="Wb6-Yo-Qos"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <action selector="touchInfoButton:" destination="TzS-GA-PMA" eventType="touchUpInside" id="slP-qP-grP"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.90865838527679443" green="0.90865838527679443" blue="0.90865838527679443" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="fFO-3S-AGf" secondAttribute="bottom" constant="8" id="03Q-Kd-auK"/>
                                                     <constraint firstItem="9eb-N6-wfh" firstAttribute="leading" secondItem="seP-o2-OAF" secondAttribute="leading" constant="30" id="4MV-6b-4iU">
                                                         <variation key="heightClass=regular" constant="15"/>
                                                     </constraint>
-                                                    <constraint firstAttribute="trailing" secondItem="HlW-uO-5P5" secondAttribute="trailing" constant="10" id="AvU-24-qdg"/>
-                                                    <constraint firstItem="eVx-C2-Jhn" firstAttribute="leading" secondItem="8dB-Na-xHJ" secondAttribute="trailing" constant="5" id="Gqh-iQ-bUj"/>
+                                                    <constraint firstItem="av3-0F-Vmx" firstAttribute="trailing" secondItem="9eb-N6-wfh" secondAttribute="trailing" id="M3U-PT-pDh"/>
                                                     <constraint firstAttribute="height" constant="120" id="RGN-YW-G02"/>
-                                                    <constraint firstAttribute="bottom" secondItem="HlW-uO-5P5" secondAttribute="bottom" constant="5" id="TYi-Rg-nTt">
-                                                        <variation key="heightClass=regular" constant="10"/>
-                                                    </constraint>
+                                                    <constraint firstAttribute="bottom" secondItem="D9K-36-Pqr" secondAttribute="bottom" constant="8" id="UlC-sa-uo7"/>
                                                     <constraint firstItem="9eb-N6-wfh" firstAttribute="centerX" secondItem="seP-o2-OAF" secondAttribute="centerX" id="X6e-Wo-OX3">
                                                         <variation key="heightClass=regular" constant="3.5"/>
-                                                    </constraint>
-                                                    <constraint firstAttribute="bottom" secondItem="eVx-C2-Jhn" secondAttribute="bottom" constant="5" id="Xqa-0w-egz">
-                                                        <variation key="heightClass=regular" constant="10"/>
                                                     </constraint>
                                                     <constraint firstItem="9eb-N6-wfh" firstAttribute="centerY" secondItem="seP-o2-OAF" secondAttribute="centerY" id="hWv-sF-zPd">
                                                         <variation key="heightClass=regular" constant="-22.5"/>
                                                     </constraint>
-                                                    <constraint firstItem="HlW-uO-5P5" firstAttribute="leading" secondItem="eVx-C2-Jhn" secondAttribute="trailing" constant="5" id="uYb-ij-SV2"/>
-                                                    <constraint firstAttribute="bottom" secondItem="8dB-Na-xHJ" secondAttribute="bottom" constant="5" id="urR-IW-icV">
-                                                        <variation key="heightClass=regular" constant="10"/>
-                                                    </constraint>
+                                                    <constraint firstItem="av3-0F-Vmx" firstAttribute="leading" secondItem="D9K-36-Pqr" secondAttribute="trailing" constant="5" id="iKH-TW-ET2"/>
+                                                    <constraint firstItem="av3-0F-Vmx" firstAttribute="top" secondItem="D9K-36-Pqr" secondAttribute="top" id="kjP-o1-mrO"/>
+                                                    <constraint firstItem="D9K-36-Pqr" firstAttribute="leading" secondItem="fFO-3S-AGf" secondAttribute="trailing" constant="5" id="kwO-4w-9A2"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="subviews">
-                                                        <exclude reference="HlW-uO-5P5"/>
-                                                        <exclude reference="eVx-C2-Jhn"/>
                                                         <exclude reference="9eb-N6-wfh"/>
-                                                        <exclude reference="8dB-Na-xHJ"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="RGN-YW-G02"/>
-                                                        <exclude reference="urR-IW-icV"/>
                                                         <exclude reference="4MV-6b-4iU"/>
                                                         <exclude reference="X6e-Wo-OX3"/>
                                                         <exclude reference="hWv-sF-zPd"/>
-                                                        <exclude reference="AvU-24-qdg"/>
-                                                        <exclude reference="TYi-Rg-nTt"/>
-                                                        <exclude reference="uYb-ij-SV2"/>
-                                                        <exclude reference="Gqh-iQ-bUj"/>
-                                                        <exclude reference="Xqa-0w-egz"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular">
                                                     <mask key="subviews">
-                                                        <include reference="HlW-uO-5P5"/>
-                                                        <include reference="eVx-C2-Jhn"/>
                                                         <include reference="9eb-N6-wfh"/>
-                                                        <include reference="8dB-Na-xHJ"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="RGN-YW-G02"/>
-                                                        <include reference="urR-IW-icV"/>
                                                         <include reference="4MV-6b-4iU"/>
                                                         <include reference="X6e-Wo-OX3"/>
                                                         <include reference="hWv-sF-zPd"/>
-                                                        <include reference="AvU-24-qdg"/>
-                                                        <include reference="TYi-Rg-nTt"/>
-                                                        <include reference="uYb-ij-SV2"/>
-                                                        <include reference="Gqh-iQ-bUj"/>
-                                                        <include reference="Xqa-0w-egz"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -1130,7 +1056,8 @@
                     </view>
                     <connections>
                         <outlet property="backGroundImageView" destination="K8P-7F-6Wu" id="s1g-px-j16"/>
-                        <outlet property="gluttenFreeImageView" destination="HlW-uO-5P5" id="Trb-p8-4ga"/>
+                        <outlet property="infoButton" destination="D9K-36-Pqr" id="yOi-GK-Cqy"/>
+                        <outlet property="infoButton2" destination="fFO-3S-AGf" id="1uH-yQ-spY"/>
                         <outlet property="ingredients" destination="ofJ-5U-bxV" id="6nY-LK-XL3"/>
                         <outlet property="ingredientsContainerView" destination="gGs-lL-7Je" id="WlY-zp-N7n"/>
                         <outlet property="ingredientsHeightContraint" destination="jgx-lx-YOA" id="Jrc-S4-nlT"/>
@@ -1149,8 +1076,6 @@
                         <outlet property="starButton" destination="av3-0F-Vmx" id="ucf-Up-GLx"/>
                         <outlet property="titleContainerVerticalOffset" destination="TmN-xd-RwQ" id="sJm-pl-EWa"/>
                         <outlet property="titleContainerView" destination="seP-o2-OAF" id="0VV-y3-6H8"/>
-                        <outlet property="veganImageView" destination="eVx-C2-Jhn" id="wL5-V8-1cR"/>
-                        <outlet property="vegetarianImageView" destination="8dB-Na-xHJ" id="Yft-Aq-HS9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecZ-xj-xe9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1203,13 +1128,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gluten_free_icon" width="30" height="30"/>
         <image name="iPhoneStandard" width="300" height="200"/>
         <image name="locationStandard" width="300" height="200"/>
         <image name="starImage" width="30" height="30"/>
         <image name="starImageSelected" width="30" height="30"/>
-        <image name="vegan_icon" width="30" height="30"/>
-        <image name="vegetarian_icon" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="hly-Wi-plr"/>

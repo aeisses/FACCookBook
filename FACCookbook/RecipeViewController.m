@@ -173,20 +173,44 @@ static NSInteger cellPadding = 42;
 
     [self loadImageforRecipe];
 
-    [[self veganImageView] setHidden:YES];
-    [[self vegetarianImageView] setHidden:YES];
-    [[self gluttenFreeImageView] setHidden:YES];
-    for (Categories *category in _recipe.categories) {
-        if ([category.category isEqualToString:@"vegan"]) {
-            [[self veganImageView] setHidden:NO];
+    [[self infoButton] setHidden:YES];
+    [[self infoButton2] setHidden:YES];
+    if ([_recipe.categories count] > 1) {
+        for (Categories *category in _recipe.categories) {
+            if ([category.category isEqualToString:@"vegan"]) {
+                [[self infoButton2] setHidden:NO];
+                [[self infoButton2] setImage:[UIImage imageNamed:@"vegan_icon"] forState:UIControlStateNormal];
+                [[self infoButton2] setTag:0];
+            }
+            if ([category.category isEqualToString:@"vegetarian"]) {
+                [[self infoButton2] setHidden:NO];
+                [[self infoButton2] setImage:[UIImage imageNamed:@"vegetarian_icon"] forState:UIControlStateNormal];
+                [[self infoButton2] setTag:1];
+            }
+            if ([category.category isEqualToString:@"gluten free"]) {
+                [[self infoButton] setHidden:NO];
+                [[self infoButton] setImage:[UIImage imageNamed:@"gluten_free_icon"] forState:UIControlStateNormal];
+                [[self infoButton] setTag:2];
+            }
         }
-        if ([category.category isEqualToString:@"vegetarian"]) {
-            [[self vegetarianImageView] setHidden:NO];
+    } else {
+        for (Categories *category in _recipe.categories) {
+            if ([category.category isEqualToString:@"vegan"]) {
+                [[self infoButton] setHidden:NO];
+                [[self infoButton] setImage:[UIImage imageNamed:@"vegan_icon"] forState:UIControlStateNormal];
+                [[self infoButton] setTag:0];
+            }
+            if ([category.category isEqualToString:@"vegetarian"]) {
+                [[self infoButton] setHidden:NO];
+                [[self infoButton] setImage:[UIImage imageNamed:@"vegetarian_icon"] forState:UIControlStateNormal];
+                [[self infoButton] setTag:1];
+            }
+            if ([category.category isEqualToString:@"gluten free"]) {
+                [[self infoButton] setHidden:NO];
+                [[self infoButton] setImage:[UIImage imageNamed:@"gluten_free_icon"] forState:UIControlStateNormal];
+                [[self infoButton] setTag:2];
+            }
         }
-        if ([category.category isEqualToString:@"glutten free"]) {
-            [[self gluttenFreeImageView] setHidden:NO];
-        }
-
     }
 
     CGFloat ingredientsHeight = [[[self recipe] ingredients] count] * 21 + cellPadding;
@@ -431,6 +455,25 @@ static NSInteger cellPadding = 42;
     // Update in the data service
     _recipe.isFavourite = @(_starButton.selected);
     [[DataService sharedInstance] updateFavouite:_recipe];
+}
+
+- (IBAction)touchInfoButton:(id)sender {
+    NSString *message = @"";
+    switch (((UIButton*)sender).tag) {
+        case 0:
+            message = @"This recipe is vegan!";
+            break;
+        case 1:
+            message = @"This recipe is vegetarian!";
+            break;
+        case 2:
+        default:
+            message = @"This recipe is gluten free!";
+            break;
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:message delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+    [alert show];
+    
 }
 
 @end
