@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "Recipe.h"
+#import "Utils.h"
 
 @interface RecipeView : UICollectionViewCell
 

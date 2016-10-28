@@ -14,18 +14,6 @@
 
 @synthesize recipes = _recipes;
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 - (id)recipes {
     if (_recipes != nil) {
         return _recipes;
@@ -38,14 +26,8 @@
     
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     [fetchRequest setEntity:entity];
-    [fetchRequest setFetchBatchSize:20];
-    
-    NSFetchedResultsController *theFetchedResultsController =
-    [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                        managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil
-                                                   cacheName:nil];
-    _recipes = theFetchedResultsController;
-    ((NSFetchedResultsController*)_recipes).delegate = self;
+
+    _recipes = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
     return _recipes;
 }
@@ -53,7 +35,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     RecipeViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellReuseIdentifier forIndexPath:indexPath];
     
-    Popular *popular = [[_recipes fetchedObjects] objectAtIndex:indexPath.row];
+    Popular *popular = [_recipes objectAtIndex:indexPath.row];
     [cell addRecipeImage:(Recipe*)popular.recipe forCell:YES];
     
     return cell;

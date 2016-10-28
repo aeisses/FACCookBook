@@ -179,12 +179,7 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize retval;
-//    if (indexPath.row == 0) {
-    retval = (CGSize){270,180};//[Utils getSmallStandardSize];
-//    } else {
-//        retval = [Utils getSmallCellSize];
-//    }
+    CGSize retval = [Utils getHomeScreenSize];
     
     return retval;
 }
