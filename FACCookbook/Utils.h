@@ -18,6 +18,7 @@
 + (CGSize)getSmallStandardSize;
 + (CGSize)getMediumStandardSize;
 + (CGSize)getLargeStandardSize;
++ (CGSize)getHomeScreenSize;
 + (Season)getCurrentSeason;
 
 @end

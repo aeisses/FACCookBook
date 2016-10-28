@@ -14,20 +14,11 @@
 
 @synthesize recipeImage = _recipeImage;
 
-- (id) initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.backgroundColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
-    }
-    
-    return self;
-}
-
 - (void)addRecipeImage:(Recipe*)recipe forCell:(BOOL)forCell {
     [[FICImageCache sharedImageCache] retrieveImageForEntity:recipe withFormatName:[DataService imageFormat:forCell] completionBlock:^(id<FICEntity> entity, NSString *formatName, UIImage *image) {
         @autoreleasepool {
             if (image) {
-                [_recipeImage setImage:image];
+                [[self recipeImage] setImage:image];
             }
         }
     }];

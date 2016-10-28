@@ -70,6 +70,11 @@
     return size;
 }
 
++ (CGSize)getHomeScreenSize {
+    CGSize size = (CGSize){270,180};
+    return size;
+}
+
 + (Season)getCurrentSeason {
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     NSInteger day = [components day];

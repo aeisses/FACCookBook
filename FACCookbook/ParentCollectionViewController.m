@@ -41,7 +41,6 @@ static NSString *segueIdentifier = @"recipe";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.collectionView reloadData];
 }
 
 - (void)viewDidLoad {
@@ -220,7 +219,6 @@ static NSString *segueIdentifier = @"recipe";
             }];
         }
     } completion:^(BOOL finished) {
-        [_collectionView reloadData];
         _sectionChanges = nil;
         _itemChanges = nil;
     }];
