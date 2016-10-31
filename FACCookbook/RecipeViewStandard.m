@@ -13,7 +13,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:(CGRect){{0,0},[Utils getHomeScreenSize]}];
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:(CGRect){{0,0},[Utils getHomeScreenSize]}
+                                ];
     self.layer.masksToBounds = NO;
     self.layer.shadowColor = [UIColor blackColor].CGColor;
     self.layer.shadowOffset = CGSizeMake(0.0f, 5.0f);
