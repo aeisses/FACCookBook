@@ -10,7 +10,7 @@
 
 @interface SearchViewController : ParentCollectionViewController <UISearchBarDelegate>
 
-@property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (retain, nonatomic) UISearchBar *searchBar;
 @property (retain, nonatomic) NSString *searchString;
 
 @end
