@@ -14,6 +14,12 @@
 
 @synthesize recipes = _recipes;
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [self.collectionView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
+}
+
 - (id)recipes {
     if (_recipes != nil) {
         return _recipes;

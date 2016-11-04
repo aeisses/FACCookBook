@@ -30,11 +30,6 @@
     [self.mapView addAnnotations:locations];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
-}
-
 #pragma mark MKMapViewDelegate Methods
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
 //    NSLog(@"MapView: %f, %f",mapView.centerCoordinate.latitude,mapView.centerCoordinate.longitude);

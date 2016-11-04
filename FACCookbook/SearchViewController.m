@@ -47,6 +47,7 @@
     
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     [fetchRequest setEntity:entity];
+    
     if (_searchString && ![_searchString isEqualToString:@""]) {
         fetchRequest.predicate = [NSPredicate predicateWithFormat:@"ANY searchItems.item CONTAINS[cd] %@",_searchString];
     }
