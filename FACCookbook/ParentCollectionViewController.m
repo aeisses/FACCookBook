@@ -9,6 +9,7 @@
 #import "ParentCollectionViewController.h"
 #import "RecipeViewController.h"
 #import "FavouriteViewController.h"
+#import "SeasonViewController.h"
 #import "SearchViewController.h"
 #import "AppDelegate.h"
 #import "Recipe.h"
@@ -73,12 +74,13 @@ static NSString *segueIdentifier = @"recipe";
 
 #pragma mark - Segue protocol methods
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    UINavigationController *navigationController = (UINavigationController*)[UIApplication sharedApplication].keyWindow.rootViewController;
+    UINavigationController *navigationController = (UINavigationController*)[UIApplication sharedApplication].keyWindow.rootViewController;
     RecipeViewController* vc = (RecipeViewController*)segue.destinationViewController;
-//    if ([((UITabBarController*)[navigationController topViewController]).selectedViewController isKindOfClass:[SearchViewController class]] ||
-//        [((UITabBarController*)[navigationController topViewController]).selectedViewController isKindOfClass:[FavouriteViewController class]]) {
-//        [vc setShowNavigationBar:YES];
-//    }
+    if ([((UITabBarController*)[navigationController topViewController]).selectedViewController isKindOfClass:[SearchViewController class]] ||
+        [((UITabBarController*)[navigationController topViewController]).selectedViewController isKindOfClass:[FavouriteViewController class]] ||
+        [((UITabBarController*)[navigationController topViewController]).selectedViewController isKindOfClass:[SeasonViewController class]]) {
+        [vc setShowNavigationBar:YES];
+    }
     [vc setRecipe:_selectedRecipe];
     if ([self.recipes isKindOfClass:[NSArray class]]) {
         [vc setRecipes:self.recipes];
