@@ -32,7 +32,6 @@
     _locationStory.text = _location.story;
 //    [_locationStory adjustHeightAndConstraintToTextSize:_locationStoryHeightContraint];
     [self loadImageforRecipe];
-//    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)loadImageforRecipe {
