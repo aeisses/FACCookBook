@@ -17,8 +17,6 @@
 #import "FlightAnimationLayer.h"
 #import "FlowerAnimationLayer.h"
 
-//static NSString *cellResueIdentifier = @"Cell";
-
 @interface HomeScreenViewController ()
 @property (retain, nonatomic) NSMutableArray *animationArray;
 @end
@@ -135,7 +133,6 @@
     [fetchRequest setFetchBatchSize:20];
     
     NSFetchedResultsController *theFetchedResultsController =
-//    [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
     [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
 
     _recipes = theFetchedResultsController;
@@ -166,14 +163,8 @@
     RecipeViewStandard *view;
     
     Featured *featured = [[_recipes fetchedObjects] objectAtIndex:indexPath.row];
-//    if (indexPath.row == 0) {
-        view = [cv dequeueReusableCellWithReuseIdentifier:standardReuseIdentifier forIndexPath:indexPath];
-        [view addRecipeImage:(Recipe*)featured.recipe forCell:NO];
-//    } else {
-//        RecipeViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:cellResueIdentifier forIndexPath:indexPath];
-//        [cell addRecipeImage:(Recipe*)featured.recipe forCell:YES];
-//        view = cell;
-//    }
+    view = [cv dequeueReusableCellWithReuseIdentifier:standardReuseIdentifier forIndexPath:indexPath];
+    [view addRecipeImage:(Recipe*)featured.recipe forCell:NO];
     
     return view;
 }

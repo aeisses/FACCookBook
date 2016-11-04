@@ -72,4 +72,12 @@
     }
 }
 
++ (UIColor*)neturalColorBackground {
+    return [UIColor colorWithRed:186.f/255.f green:189.f/255.f blue:144.f/255.f alpha:1.0f];
+}
+
++ (UIColor*)neturalColorText {
+    return [UIColor colorWithRed:130.f/255.f green:110.f/255.f blue:62.f/255.f alpha:1.0f];
+}
+
 @end

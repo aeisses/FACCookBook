@@ -22,5 +22,7 @@ typedef NS_ENUM(NSUInteger, Season) {
 + (UIColor*)textColor:(Season)season;
 + (UIColor*)backgroundColor:(Season)season;
 + (NSString*)convertToString:(Season)season;
++ (UIColor*)neturalColorBackground;
++ (UIColor*)neturalColorText;
 
 @end
