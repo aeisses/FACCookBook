@@ -10,6 +10,8 @@
 #import "UIView+AdjustSize.h"
 #import "FICImageCache.h"
 #import "DataService.h"
+#import "SeasonColors.h"
+#import "Utils.h"
 
 @implementation LocationViewController
 
@@ -25,12 +27,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     _locationTitle.text = _location.name;
     _locationEmail.text = _location.email;
     _locationPhoneNumber.text = _location.phone;
     _locationAddress.text = _location.address;
     _locationStory.text = _location.story;
-//    [_locationStory adjustHeightAndConstraintToTextSize:_locationStoryHeightContraint];
+    
+    _locationTitle.textColor = _locationEmail.textColor = _locationPhoneNumber.textColor = _locationAddress.textColor = _locationStory.textColor = [SeasonColors neturalColorText];
+    [[self backGroundView] setBackgroundColor:[SeasonColors neturalColorBackground]];
+    
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:(CGRect){{0,0},self.locationImage.frame.size}
+                                ];
+    self.locationImage.layer.masksToBounds = NO;
+    self.locationImage.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.locationImage.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
+    self.locationImage.layer.shadowOpacity = 0.5f;
+    self.locationImage.layer.shadowPath = shadowPath.CGPath;
+    
     [self loadImageforRecipe];
 }
 
