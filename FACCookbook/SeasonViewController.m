@@ -23,12 +23,45 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.collectionView.frame), 44)];
+
     self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     self.searchBar.delegate = self;
     self.searchBar.showsCancelButton = YES;
     self.searchString = @"";
+    self.searchBar.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.view addSubview:self.searchBar];
+    
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar
+                                                                        attribute:NSLayoutAttributeHeight
+                                                                        relatedBy:NSLayoutRelationEqual
+                                                                           toItem:nil
+                                                                        attribute:NSLayoutAttributeNotAnAttribute
+                                                                       multiplier:1.0
+                                                                         constant:44];
+    NSLayoutConstraint *topAnchorConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar
+                                                                           attribute:NSLayoutAttributeTop
+                                                                           relatedBy:NSLayoutRelationEqual
+                                                                              toItem:self.view
+                                                                           attribute:NSLayoutAttributeTop
+                                                                          multiplier:1.0
+                                                                            constant:0];
+    NSLayoutConstraint *leftAnchorConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar
+                                                                             attribute:NSLayoutAttributeLeft
+                                                                             relatedBy:NSLayoutRelationEqual
+                                                                                toItem:self.view
+                                                                             attribute:NSLayoutAttributeLeft
+                                                                            multiplier:1.0
+                                                                              constant:0];
+    NSLayoutConstraint *rightAnchorConstraint = [NSLayoutConstraint constraintWithItem:self.searchBar
+                                                                            attribute:NSLayoutAttributeRight
+                                                                            relatedBy:NSLayoutRelationEqual
+                                                                               toItem:self.view
+                                                                            attribute:NSLayoutAttributeRight
+                                                                           multiplier:1.0
+                                                                             constant:0];
+    [self.view addConstraints:@[topAnchorConstraint, rightAnchorConstraint, leftAnchorConstraint, heightConstraint]];
+    
     [self.collectionView setContentOffset:CGPointMake(0, 44)];
     [self.collectionView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
 }
