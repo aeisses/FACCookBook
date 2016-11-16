@@ -20,9 +20,11 @@
 
 NSString *cellReuseIdentifier = @"Cell";
 NSString *standardReuseIdentifier = @"Standard";
-static NSString *cellNibName = @"RecipeViewCell";
-static NSString *standardNibName = @"RecipeViewStandard";
-static NSString *segueIdentifier = @"recipe";
+static NSString * const cellNibName = @"RecipeViewCell";
+static NSString * const standardNibName = @"RecipeViewStandard";
+static NSString * const segueIdentifier = @"recipe";
+static NSInteger const kCellSpacingX = 5;
+static NSInteger const kCellSpacingY = 25;
 
 @interface ParentCollectionViewController()
 @property NSMutableArray *sectionChanges;
@@ -143,10 +145,7 @@ static NSString *segueIdentifier = @"recipe";
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    CGFloat cellWidth = [Utils getSmallCellSize].width;
-    CGFloat screenWidth = [[self view] frame].size.width;
-    CGFloat cellSpacing = (screenWidth - (cellWidth*2))/3;
-    return UIEdgeInsetsMake(5, cellSpacing, 5, cellSpacing);
+    return UIEdgeInsetsMake(kCellSpacingX, kCellSpacingY, kCellSpacingX, kCellSpacingY);
 }
 
 #pragma mark FetchResultsController Delegate Methods

@@ -476,4 +476,13 @@ static NSInteger cellPadding = 42;
     
 }
 
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 @end

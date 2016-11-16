@@ -131,8 +131,6 @@
                         </connections>
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Search" image="searchIcon" id="EgT-66-n5b"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="collectionView" destination="OgH-ce-end" id="G1Z-y6-Uxc"/>
                         <segue destination="TzS-GA-PMA" kind="show" identifier="recipe" id="hly-Wi-plr"/>
@@ -140,7 +138,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4x-ml-M2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1472.8" y="700.29985007496259"/>
+            <point key="canvasLocation" x="1494" y="700"/>
         </scene>
         <!--Popular-->
         <scene sceneID="gAb-xd-P9F">
@@ -231,7 +229,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ePl-3e-mIL" id="wdy-Ul-Iql">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1122,7 +1120,7 @@
         <!--Navigation Controller-->
         <scene sceneID="paY-rj-EHk">
             <objects>
-                <navigationController navigationBarHidden="YES" id="PEz-vB-l6j" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="PEz-vB-l6j" customClass="FACUINavigationController" sceneMemberID="viewController">
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ig5-G5-0Og">
