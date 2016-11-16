@@ -1120,7 +1120,7 @@
         <!--Navigation Controller-->
         <scene sceneID="paY-rj-EHk">
             <objects>
-                <navigationController navigationBarHidden="YES" id="PEz-vB-l6j" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="PEz-vB-l6j" customClass="FACUINavigationController" sceneMemberID="viewController">
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ig5-G5-0Og">

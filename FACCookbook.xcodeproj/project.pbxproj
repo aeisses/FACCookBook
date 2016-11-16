@@ -36,6 +36,7 @@
 		04CE74391ACCC13200624A7F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE74381ACCC13200624A7F /* Location.m */; };
 		04CE743C1ACCC81800624A7F /* Information.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743B1ACCC81800624A7F /* Information.m */; };
 		04CE74401ACCC88300624A7F /* Popular.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CE743F1ACCC88300624A7F /* Popular.m */; };
+		04E9761C1DDD244000699E49 /* FACUINavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E9761A1DDD238F00699E49 /* FACUINavigationController.m */; };
 		04F0A0371B7187CD0041CB33 /* Titlescreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04F0A0361B7187CD0041CB33 /* Titlescreen@2x.png */; };
 		04F5CA411AA3B4FB002D1069 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA401AA3B4FB002D1069 /* main.m */; };
 		04F5CA441AA3B4FB002D1069 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5CA431AA3B4FB002D1069 /* AppDelegate.m */; };
@@ -125,6 +126,8 @@
 		04CE743D1ACCC82600624A7F /* Information.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Information.h; sourceTree = "<group>"; };
 		04CE743E1ACCC87500624A7F /* Popular.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Popular.h; sourceTree = "<group>"; };
 		04CE743F1ACCC88300624A7F /* Popular.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Popular.m; sourceTree = "<group>"; };
+		04E9761A1DDD238F00699E49 /* FACUINavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FACUINavigationController.m; sourceTree = "<group>"; };
+		04E9761B1DDD23B000699E49 /* FACUINavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FACUINavigationController.h; sourceTree = "<group>"; };
 		04F0A0361B7187CD0041CB33 /* Titlescreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Titlescreen@2x.png"; sourceTree = "<group>"; };
 		04F5CA3B1AA3B4FB002D1069 /* FACCookbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FACCookbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F5CA3F1AA3B4FB002D1069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -217,6 +220,8 @@
 				509D32801B5FD20400388374 /* HomeScreenViewLayout.m */,
 				0436AE751BC3585300510928 /* PurchasedViewController.h */,
 				0436AE761BC3588300510928 /* PurchasedViewController.m */,
+				04E9761A1DDD238F00699E49 /* FACUINavigationController.m */,
+				04E9761B1DDD23B000699E49 /* FACUINavigationController.h */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -564,6 +569,7 @@
 				04F5CA6B1AAA62FD002D1069 /* Direction.m in Sources */,
 				04F5CA701AAA64CD002D1069 /* Ingredient.m in Sources */,
 				04A16D5D1B8BF20400C41E95 /* IngredientsTableCell.m in Sources */,
+				04E9761C1DDD244000699E49 /* FACUINavigationController.m in Sources */,
 				04CD636E1D57C37900D29E52 /* FlightAnimationLayer.m in Sources */,
 				A78ED9121B60373300C4DEC5 /* Purchased.m in Sources */,
 				04222ECD1DA333CB000CC5FE /* RecipeViewStandard.m in Sources */,
