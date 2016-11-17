@@ -220,8 +220,8 @@
 				509D32801B5FD20400388374 /* HomeScreenViewLayout.m */,
 				0436AE751BC3585300510928 /* PurchasedViewController.h */,
 				0436AE761BC3588300510928 /* PurchasedViewController.m */,
-				04E9761A1DDD238F00699E49 /* FACUINavigationController.m */,
 				04E9761B1DDD23B000699E49 /* FACUINavigationController.h */,
+				04E9761A1DDD238F00699E49 /* FACUINavigationController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

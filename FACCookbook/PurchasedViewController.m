@@ -11,6 +11,8 @@
 #import "Purchased.h"
 #import "Recipe.h"
 #import "DataService.h"
+#import "SeasonColors.h"
+#import "NSString+ConvertToEnum.h"
 
 @interface PurchasedViewController ()
 
@@ -21,6 +23,11 @@
 @implementation PurchasedViewController
 
 @synthesize purchasedReciped = _purchasedReciped;
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[self view] setBackgroundColor:[SeasonColors neturalColorBackground]];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,13 +60,16 @@
     Recipe *recipe = (Recipe*)purchased.recipe;
     
     cell.recipeTitle.text = recipe.title;
-    cell.season.text = recipe.season;
+    cell.season.text = [recipe.season capitalizedString];
     cell.purchaseCost.text = @"$0.99";
+
+    cell.recipeTitle.textColor = cell.purchaseCost.textColor = [SeasonColors neturalColorText];
+    cell.season.textColor = [SeasonColors titleColor:[recipe.season convertToSeasonEnum]];
+    cell.backgroundColor = [SeasonColors neturalColorBackground];
     [cell addRecipeImage:recipe forCell:YES];
     
     return cell;
 }
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
