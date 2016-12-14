@@ -105,7 +105,7 @@
         }
     } else if (month < 12) {
         return Autumn;
-    } else if (month == 21 && day < 21) {
+    } else if (month == 12 && day < 21) {
         return Autumn;
     }
     return Winter;

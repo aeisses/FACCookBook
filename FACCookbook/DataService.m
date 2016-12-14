@@ -416,7 +416,7 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 
 - (void)postVoteData:(NSNumber*)recipeId direction:(NSString*)direction {
     void(^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op ,id res) {
-        NSLog(@"Res: %@",res);
+
     };
     
     void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {

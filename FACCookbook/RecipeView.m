@@ -15,6 +15,12 @@
 @synthesize recipeImage = _recipeImage;
 
 - (void)addRecipeImage:(Recipe*)recipe forCell:(BOOL)forCell {
+    if ([recipe purchased] != nil) {
+        if (YES) { // Check if the recipe is purchased
+            self.purchaseScreen.hidden = NO;
+            self.purchasePrice.hidden = NO;
+        }
+    }
     [[FICImageCache sharedImageCache] retrieveImageForEntity:recipe withFormatName:[DataService imageFormat:forCell] completionBlock:^(id<FICEntity> entity, NSString *formatName, UIImage *image) {
         @autoreleasepool {
             if (image) {

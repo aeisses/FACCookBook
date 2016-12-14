@@ -1,26 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RecipeViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iPhoneCell" translatesAutoresizingMaskIntoConstraints="NO" id="hdX-K7-rWs">
-                    <frame key="frameInset" width="600" height="600"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iPhoneCell" translatesAutoresizingMaskIntoConstraints="NO" id="hdX-K7-rWs">
+                    <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
                 </imageView>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52T-mc-AjT">
+                    <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CK-yd-5qm">
+                    <rect key="frame" x="39" y="39" width="72" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="gF3-hr-roc"/>
+                        <constraint firstAttribute="width" constant="72" id="o3a-jN-obd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="21"/>
+                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="52T-mc-AjT" secondAttribute="trailing" id="2uk-3e-FEV"/>
+                <constraint firstItem="8CK-yd-5qm" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="80g-c6-ibd"/>
+                <constraint firstAttribute="bottom" secondItem="hdX-K7-rWs" secondAttribute="bottom" id="DaO-WE-JIg"/>
+                <constraint firstItem="hdX-K7-rWs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Fei-JQ-QVv"/>
+                <constraint firstAttribute="trailing" secondItem="hdX-K7-rWs" secondAttribute="trailing" id="Lab-Xr-WOB"/>
+                <constraint firstItem="52T-mc-AjT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="P6o-Tz-2Q1"/>
+                <constraint firstItem="8CK-yd-5qm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ZSS-h5-9Iq"/>
+                <constraint firstItem="52T-mc-AjT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eFS-ja-x2h"/>
+                <constraint firstAttribute="bottom" secondItem="52T-mc-AjT" secondAttribute="bottom" id="jhr-X6-iF0"/>
+                <constraint firstItem="hdX-K7-rWs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="olk-dJ-vxT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="purchasePrice" destination="8CK-yd-5qm" id="PE7-xl-kOx"/>
+                <outlet property="purchaseScreen" destination="52T-mc-AjT" id="iDp-uE-DXb"/>
                 <outlet property="recipeImage" destination="hdX-K7-rWs" id="euX-tO-6u4"/>
             </connections>
+            <point key="canvasLocation" x="31" y="51.5"/>
         </view>
     </objects>
     <resources>
