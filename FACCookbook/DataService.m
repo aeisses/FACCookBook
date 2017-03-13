@@ -121,8 +121,9 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 @synthesize managedObjectContext = _managedObjectContext;
 
 + (NSString*)urlForResources {
-    Information *information = [[DataService sharedInstance] loadInformationDataFromCoreData];
-    return information.baseMediaUrl;
+//    Information *information = [[DataService sharedInstance] loadInformationDataFromCoreData];
+    //return information.baseMediaUrl;
+    return @"https://s3.ca-central-1.amazonaws.com/facccokbook/Images/";
 }
 
 + (NSString*)imageFormat:(BOOL)isCell {
