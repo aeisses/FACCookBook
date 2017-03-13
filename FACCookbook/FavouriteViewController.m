@@ -16,8 +16,9 @@
 @synthesize recipes = _recipes;
 
 - (void)viewDidAppear:(BOOL)animated {
-    _recipes = nil;
     [super viewDidAppear:animated];
+    _recipes = nil;
+    [self.collectionView reloadData];
 }
 
 - (void)viewDidLoad {

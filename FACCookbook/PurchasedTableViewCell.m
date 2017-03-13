@@ -16,6 +16,17 @@
     return @"PurchasedCell";
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:(CGRect){{0,0},{120,80}}];
+    self.recipeImage.layer.masksToBounds = NO;
+    self.recipeImage.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.recipeImage.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
+    self.recipeImage.layer.shadowOpacity = 0.5f;
+    self.recipeImage.layer.shadowPath = shadowPath.CGPath;
+}
+
 - (void)addRecipeImage:(Recipe*)recipe forCell:(BOOL)forCell {
     [[FICImageCache sharedImageCache] retrieveImageForEntity:recipe withFormatName:[DataService imageFormat:forCell] completionBlock:^(id<FICEntity> entity, NSString *formatName, UIImage *image) {
         @autoreleasepool {

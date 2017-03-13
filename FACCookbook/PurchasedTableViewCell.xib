@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,30 +17,57 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9H-Pj-2gn">
                     <rect key="frame" x="15" y="10" width="120" height="80"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qN-1u-JNn">
-                    <rect key="frame" x="160" y="39" width="230" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ec-Cd-2cG">
+                    <rect key="frame" x="160" y="76" width="420" height="17"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="17" id="s4h-2B-XQV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ec-Cd-2cG">
-                    <rect key="frame" x="160" y="69" width="108" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iPhoneCell" translatesAutoresizingMaskIntoConstraints="NO" id="wm0-tj-hhW">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iPhoneCell" translatesAutoresizingMaskIntoConstraints="NO" id="wm0-tj-hhW">
                     <rect key="frame" x="15" y="10" width="120" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="Tb2-zg-ejy"/>
+                        <constraint firstAttribute="height" constant="80" id="sVD-HM-ggr"/>
+                    </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtu-me-ags">
-                    <rect key="frame" x="160" y="10" width="79" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtu-me-ags">
+                    <rect key="frame" x="160" y="54" width="420" height="17"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="17" id="o9U-BH-8Oq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qN-1u-JNn">
+                    <rect key="frame" x="160" y="2" width="420" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="y7v-3n-XAc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="18"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="qtu-me-ags" secondAttribute="trailing" constant="20" id="2o2-L4-Ift"/>
+                <constraint firstItem="wm0-tj-hhW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="74q-Uj-fvR"/>
+                <constraint firstItem="0Ec-Cd-2cG" firstAttribute="leading" secondItem="wm0-tj-hhW" secondAttribute="trailing" constant="25" id="CCr-6S-Qsq"/>
+                <constraint firstItem="qtu-me-ags" firstAttribute="top" secondItem="0qN-1u-JNn" secondAttribute="bottom" constant="8" id="E0b-PA-7pa"/>
+                <constraint firstItem="wm0-tj-hhW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Lw8-vf-viI"/>
+                <constraint firstAttribute="trailing" secondItem="0qN-1u-JNn" secondAttribute="trailing" constant="20" id="PTg-Uj-Ge6"/>
+                <constraint firstAttribute="trailing" secondItem="0Ec-Cd-2cG" secondAttribute="trailing" constant="20" id="aH0-MB-2LM"/>
+                <constraint firstItem="qtu-me-ags" firstAttribute="leading" secondItem="wm0-tj-hhW" secondAttribute="trailing" constant="25" id="flR-2U-Bt3"/>
+                <constraint firstItem="0qN-1u-JNn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="iGA-MQ-Ui0"/>
+                <constraint firstItem="0qN-1u-JNn" firstAttribute="leading" secondItem="wm0-tj-hhW" secondAttribute="trailing" constant="25" id="wTb-wH-dx3"/>
+                <constraint firstAttribute="bottom" secondItem="0Ec-Cd-2cG" secondAttribute="bottom" constant="7" id="yYL-bW-9rp"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="purchaseCost" destination="qtu-me-ags" id="aDK-cU-S3z"/>

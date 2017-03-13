@@ -20,9 +20,14 @@
     self.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
     self.layer.shadowOpacity = 0.5f;
     self.layer.shadowPath = shadowPath.CGPath;
+    
+    self.purchaseScreen.hidden = YES;
+    self.purchasePrice.hidden = YES;
 }
 
 - (void)prepareForReuse {
+    self.purchaseScreen.hidden = YES;
+    self.purchasePrice.hidden = YES;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.recipeImage.image = [UIImage imageNamed:@"iPadStandard"];
     } else {

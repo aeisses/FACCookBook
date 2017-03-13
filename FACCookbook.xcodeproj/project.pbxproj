@@ -10,6 +10,8 @@
 		04222EC91DA332D9000CC5FE /* RecipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04222EC81DA332D9000CC5FE /* RecipeView.m */; };
 		04222ECD1DA333CB000CC5FE /* RecipeViewStandard.m in Sources */ = {isa = PBXBuildFile; fileRef = 04222ECC1DA333CB000CC5FE /* RecipeViewStandard.m */; };
 		04222ECF1DA46313000CC5FE /* RecipeViewStandard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04222ECE1DA46313000CC5FE /* RecipeViewStandard.xib */; };
+		0427460B1DDE7C5B00CB0211 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0427460A1DDE7C5B00CB0211 /* StoreKit.framework */; };
+		0427460E1DDE7FDA00CB0211 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0427460D1DDE7FDA00CB0211 /* InAppPurchaseManager.m */; };
 		0436AE6F1BC355ED00510928 /* PurchasedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0436AE6E1BC355ED00510928 /* PurchasedTableViewCell.xib */; };
 		0436AE721BC356B000510928 /* PurchasedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436AE711BC356B000510928 /* PurchasedTableViewCell.m */; };
 		0436AE771BC3590800510928 /* PurchasedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436AE761BC3588300510928 /* PurchasedViewController.m */; };
@@ -78,6 +80,9 @@
 		04222ECB1DA33395000CC5FE /* RecipeViewStandard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecipeViewStandard.h; sourceTree = "<group>"; };
 		04222ECC1DA333CB000CC5FE /* RecipeViewStandard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeViewStandard.m; sourceTree = "<group>"; };
 		04222ECE1DA46313000CC5FE /* RecipeViewStandard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipeViewStandard.xib; sourceTree = "<group>"; };
+		0427460A1DDE7C5B00CB0211 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		0427460C1DDE7FDA00CB0211 /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
+		0427460D1DDE7FDA00CB0211 /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
 		0436AE6E1BC355ED00510928 /* PurchasedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PurchasedTableViewCell.xib; sourceTree = "<group>"; };
 		0436AE701BC356B000510928 /* PurchasedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchasedTableViewCell.h; sourceTree = "<group>"; };
 		0436AE711BC356B000510928 /* PurchasedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchasedTableViewCell.m; sourceTree = "<group>"; };
@@ -180,6 +185,7 @@
 				5045CCC41B5FCB370039C2D9 /* CoreData.framework in Frameworks */,
 				043938711AF2FEB7004EA4D3 /* MapKit.framework in Frameworks */,
 				3C45FA076964FC82ADB79FFB /* libPods-FACCookbook.a in Frameworks */,
+				0427460B1DDE7C5B00CB0211 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,8 +226,8 @@
 				509D32801B5FD20400388374 /* HomeScreenViewLayout.m */,
 				0436AE751BC3585300510928 /* PurchasedViewController.h */,
 				0436AE761BC3588300510928 /* PurchasedViewController.m */,
-				04E9761A1DDD238F00699E49 /* FACUINavigationController.m */,
 				04E9761B1DDD23B000699E49 /* FACUINavigationController.h */,
+				04E9761A1DDD238F00699E49 /* FACUINavigationController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -299,6 +305,8 @@
 				04F5CA431AA3B4FB002D1069 /* AppDelegate.m */,
 				04F5CA771AABCBB9002D1069 /* DataService.h */,
 				04F5CA751AABCBA8002D1069 /* DataService.m */,
+				0427460C1DDE7FDA00CB0211 /* InAppPurchaseManager.h */,
+				0427460D1DDE7FDA00CB0211 /* InAppPurchaseManager.m */,
 				0478C1011B658AC000AE4ED2 /* Utils.h */,
 				0478C0FF1B658A6900AE4ED2 /* Utils.m */,
 				04A16D591B8BF00C00C41E95 /* TableViewCell.xib */,
@@ -385,6 +393,7 @@
 		AC4096A98AE72115300EACFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0427460A1DDE7C5B00CB0211 /* StoreKit.framework */,
 				5045CCC31B5FCB370039C2D9 /* CoreData.framework */,
 				043938701AF2FEB7004EA4D3 /* MapKit.framework */,
 				F453321A9DFB035F1CDD2D58 /* libPods-FACCookbook.a */,
@@ -445,6 +454,11 @@
 					04F5CA3A1AA3B4FB002D1069 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = LK2576GXKT;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					04F5CA561AA3B4FB002D1069 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -559,6 +573,7 @@
 				043938871AF54BE0004EA4D3 /* MapViewController.m in Sources */,
 				04F5CA721AAA64DF002D1069 /* Recipe.m in Sources */,
 				043938931AF54C68004EA4D3 /* SeasonViewController.m in Sources */,
+				0427460E1DDE7FDA00CB0211 /* InAppPurchaseManager.m in Sources */,
 				04F5CA471AA3B4FB002D1069 /* FACCookbook.xcdatamodeld in Sources */,
 				04CD63701D57DEB300D29E52 /* FlowerAnimationLayer.m in Sources */,
 				04222EC91DA332D9000CC5FE /* RecipeView.m in Sources */,
@@ -727,7 +742,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = LK2576GXKT;
 				INFOPLIST_FILE = FACCookbook/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.eac.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -748,7 +763,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = LK2576GXKT;
 				INFOPLIST_FILE = FACCookbook/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.eac.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

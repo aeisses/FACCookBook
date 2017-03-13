@@ -14,6 +14,8 @@
 @interface RecipeView : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *recipeImage;
+@property (weak, nonatomic) IBOutlet UIView *purchaseScreen;
+@property (weak, nonatomic) IBOutlet UILabel *purchasePrice;
 
 - (void)addRecipeImage:(Recipe*)recipe forCell:(BOOL)forCell;
 

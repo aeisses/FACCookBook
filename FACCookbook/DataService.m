@@ -121,8 +121,9 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 @synthesize managedObjectContext = _managedObjectContext;
 
 + (NSString*)urlForResources {
-    Information *information = [[DataService sharedInstance] loadInformationDataFromCoreData];
-    return information.baseMediaUrl;
+//    Information *information = [[DataService sharedInstance] loadInformationDataFromCoreData];
+    //return information.baseMediaUrl;
+    return @"https://s3.ca-central-1.amazonaws.com/facccokbook/Images/";
 }
 
 + (NSString*)imageFormat:(BOOL)isCell {
@@ -416,7 +417,7 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 
 - (void)postVoteData:(NSNumber*)recipeId direction:(NSString*)direction {
     void(^success)(AFHTTPRequestOperation *, id) = ^(AFHTTPRequestOperation *op ,id res) {
-        NSLog(@"Res: %@",res);
+
     };
     
     void (^failure)(AFHTTPRequestOperation *, NSError *) = ^(AFHTTPRequestOperation *op, NSError *error) {
