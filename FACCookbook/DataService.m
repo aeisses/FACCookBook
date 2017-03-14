@@ -248,14 +248,25 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
     // update the last response.
     [[[self httpManager] operationQueue] setSuspended:YES];
     [[[self httpManager] operationQueue] setMaxConcurrentOperationCount:1];
-
-    [self fetchInformationData];
-
-    [self fetchRecipeData];
-    [self fetchLocationData];
-    [self fetchFeaturedData];
-    [self fetchPopularData];
-    [self fetchPurchasedData];
+    
+    [[[self httpManager] operationQueue] addOperationWithBlock:^{
+        [self fetchInformationData];
+    }];
+    [[[self httpManager] operationQueue] addOperationWithBlock:^{
+        [self fetchRecipeData];
+    }];
+    [[[self httpManager] operationQueue] addOperationWithBlock:^{
+        [self fetchFeaturedData];
+    }];
+    [[[self httpManager] operationQueue] addOperationWithBlock:^{
+        [self fetchPopularData];
+    }];
+    [[[self httpManager] operationQueue] addOperationWithBlock:^{
+        [self fetchPurchasedData];
+    }];
+    [[[self httpManager] operationQueue] addOperationWithBlock:^{
+        [self fetchLocationData];
+    }];
     // Uncomment when Information.json is uploaded.
 
     __weak DataService *wSelf = self;
@@ -638,11 +649,17 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
         [noteSet addObject:noteDataObject];
     }
     recipeDataObject.notes = noteSet;
-    NSError *error = nil;
-    [_managedObjectContext save:&error];
-    if(error){
-        NSLog(@"error description :%@",[error description]);
-    }
+
+    [_managedObjectContext performBlock:^{
+        //make changes
+        NSError* error = nil;
+        [_managedObjectContext save:&error];
+        //remember to remove observer after the save (in mergeChanges: and dealloc)
+        if(error){
+            NSLog(@"error description :%@",[error description]);
+        }
+    }];
+
     // TODO: Handle error
 }
 

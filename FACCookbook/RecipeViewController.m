@@ -48,6 +48,8 @@ static NSInteger cellPadding = 42;
 @property (nonatomic) NSInteger contentHeight;
 @property (retain, nonatomic) NSMutableArray *animationArray;
 @property (retain, nonatomic) UIView *animationView;
+@property (assign, nonatomic) CGFloat defaultImageHeight;
+@property (assign, nonatomic) CGFloat defaultImageWidth;
 
 - (void)swipeRight;
 - (void)swipeLeft;
@@ -76,14 +78,19 @@ static NSInteger cellPadding = 42;
 @synthesize notesTitle = _notesTitle;
 @synthesize notesContainerView = _notesContainerView;
 @synthesize starButton = _starButton;
+@synthesize defaultImageHeight = _defaultImageHeight;
+@synthesize defaultImageWidth = _defaultImageWidth;
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
-    float height = [self recipeImage].frame.size.height;
-    if (aScrollView.contentOffset.y > height) {
-        [[self titleContainerVerticalOffset] setConstant:aScrollView.contentOffset.y-height];
+    if (aScrollView.contentOffset.y > _defaultImageHeight) {
+        [[self titleContainerVerticalOffset] setConstant:aScrollView.contentOffset.y-_defaultImageHeight];
     } else if (aScrollView.contentOffset.y < 0) {
         [[self titleContainerVerticalOffset] setConstant:0];
+        CGRect frame = [self recipeImage].frame;
+        CGFloat contentOffset = aScrollView.contentOffset.y;
+        CGRect newFrame = (CGRect){{0-fabs(contentOffset/2),frame.origin.y},{_defaultImageWidth+fabs(contentOffset),_defaultImageHeight+fabs(contentOffset)}};
+        [[self recipeImage] setFrame:newFrame];
     }
 }
 
@@ -300,6 +307,8 @@ static NSInteger cellPadding = 42;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setAnimationArray:[NSMutableArray new]];
+    _defaultImageHeight = [self recipeImage].frame.size.height;
+    _defaultImageWidth = [self recipeImage].frame.size.width;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
