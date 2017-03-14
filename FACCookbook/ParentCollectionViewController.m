@@ -116,6 +116,9 @@ static NSInteger const kCellSpacingY = 25;
         _selectedRecipe = (Recipe*)((Featured*)object).recipe;
     } else if ([object isKindOfClass:[Popular class]]) {
         _selectedRecipe = (Recipe*)((Popular*)object).recipe;
+    } else if ([(Recipe*)object purchased] != nil) {
+        // TODO: add in a segue to the info screen.
+        return;
     } else {
         _selectedRecipe = (Recipe*)object;
     }
