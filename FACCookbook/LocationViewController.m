@@ -48,6 +48,16 @@
     [self loadImageforRecipe];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    UINavigationController *navigationController = (UINavigationController*)[UIApplication sharedApplication].keyWindow.rootViewController;
+    navigationController.navigationBarHidden = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    UINavigationController *navigationController = (UINavigationController*)[UIApplication sharedApplication].keyWindow.rootViewController;
+    navigationController.navigationBarHidden = YES;
+}
+
 - (void)loadImageforRecipe {
     [[FICImageCache sharedImageCache] retrieveImageForEntity:_location withFormatName:[DataService imageFormat:NO] completionBlock:^(id<FICEntity> entity, NSString *formatName, UIImage *image) {
         @autoreleasepool {
