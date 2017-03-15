@@ -37,4 +37,6 @@
 @property (strong, nonatomic) IBOutlet UIView *instructionsContainerView;
 @property (strong, nonatomic) IBOutlet UILabel *notesTitle;
 @property (strong, nonatomic) IBOutlet UIView *notesContainerView;
+@property (strong, nonatomic) IBOutlet UIImageView *popularRibbonImage;
+
 @end

@@ -28,6 +28,7 @@
 @dynamic component;
 @dynamic information;
 @dynamic purchased;
+@dynamic popular;
 
 - (NSString *)UUID {
     CFUUIDBytes UUIDBytes = FICUUIDBytesFromMD5HashOfString([self.objectID.URIRepresentation absoluteString]);

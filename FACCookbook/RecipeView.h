@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *recipeImage;
 @property (weak, nonatomic) IBOutlet UIView *purchaseScreen;
 @property (weak, nonatomic) IBOutlet UILabel *purchasePrice;
+@property (weak, nonatomic) IBOutlet UIImageView *popularImage;
 
 - (void)addRecipeImage:(Recipe*)recipe forCell:(BOOL)forCell;
 

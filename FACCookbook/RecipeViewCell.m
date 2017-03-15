@@ -22,11 +22,13 @@
     
     self.purchaseScreen.hidden = YES;
     self.purchasePrice.hidden = YES;
+    self.popularImage.hidden = YES;
 }
 
 - (void)prepareForReuse {
     self.purchaseScreen.hidden = YES;
     self.purchasePrice.hidden = YES;
+    self.popularImage.hidden = YES;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.recipeImage.image = [UIImage imageNamed:@"iPadCell"];
     } else {

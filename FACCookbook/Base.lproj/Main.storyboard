@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -139,44 +138,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4x-ml-M2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1494" y="700"/>
-        </scene>
-        <!--Popular-->
-        <scene sceneID="gAb-xd-P9F">
-            <objects>
-                <collectionViewController id="zSK-pL-RRH" userLabel="Popular" customClass="PopularViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="9VK-cY-7qm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jF6-rk-Dds">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recipe" id="44n-2w-Yzq" userLabel="recipe" customClass="RecipeViewCell">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="zSK-pL-RRH" id="br1-7Q-kzA"/>
-                            <outlet property="delegate" destination="zSK-pL-RRH" id="ZLd-nC-FTo"/>
-                        </connections>
-                    </collectionView>
-                    <tabBarItem key="tabBarItem" title="Popular" image="popularIcon" id="YaR-hL-m3x" userLabel="Popular"/>
-                    <connections>
-                        <outlet property="collectionView" destination="9VK-cY-7qm" id="sm7-ET-bpR"/>
-                        <segue destination="TzS-GA-PMA" kind="show" identifier="recipe" id="Ndg-Vz-ndr"/>
-                    </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Oz4-1E-aUU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="747" y="700.5"/>
         </scene>
         <!--Season-->
         <scene sceneID="Gs8-0W-AsK">
@@ -488,7 +449,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iPhoneStandard" translatesAutoresizingMaskIntoConstraints="NO" id="dTX-4M-kUu">
-                                <rect key="frame" x="-4" y="0.0" width="383" height="255.5"/>
+                                <rect key="frame" x="-4" y="0.0" width="383" height="255"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dTX-4M-kUu" secondAttribute="height" multiplier="3:2" id="K7J-YP-SZh"/>
                                 </constraints>
@@ -510,7 +471,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="383" height="618"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OM5-Vc-f0v" userLabel="Spacer View">
-                                                <rect key="frame" x="0.0" y="0.0" width="383" height="255.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="383" height="255"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="OM5-Vc-f0v" secondAttribute="height" multiplier="3:2" id="OFu-OR-Uaq"/>
@@ -532,7 +493,7 @@
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGs-lL-7Je" userLabel="Ingredients Container View">
-                                                <rect key="frame" x="0.0" y="375.5" width="383" height="80"/>
+                                                <rect key="frame" x="0.0" y="375" width="383" height="80"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ofJ-5U-bxV">
                                                         <rect key="frame" x="15" y="35" width="360" height="37"/>
@@ -619,7 +580,7 @@
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rGh-IZ-toC" userLabel="Instructions Container View">
-                                                <rect key="frame" x="0.0" y="455.5" width="383" height="80"/>
+                                                <rect key="frame" x="0.0" y="455" width="383" height="80"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAV-tN-4xp">
                                                         <rect key="frame" x="15" y="35" width="360" height="37"/>
@@ -702,7 +663,7 @@
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQ0-z9-06r" userLabel="Notes Container View">
-                                                <rect key="frame" x="0.0" y="535.5" width="383" height="80"/>
+                                                <rect key="frame" x="0.0" y="535" width="383" height="80"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kI8-7x-Esd">
                                                         <rect key="frame" x="15" y="35" width="360" height="37"/>
@@ -781,7 +742,7 @@
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seP-o2-OAF">
-                                                <rect key="frame" x="0.0" y="255.5" width="383" height="120"/>
+                                                <rect key="frame" x="0.0" y="255" width="383" height="120"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9eb-N6-wfh">
                                                         <rect key="frame" x="15" y="0.0" width="360" height="75"/>
@@ -832,6 +793,10 @@
                                                             <action selector="touchInfoButton:" destination="TzS-GA-PMA" eventType="touchUpInside" id="slP-qP-grP"/>
                                                         </connections>
                                                     </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ribbon" translatesAutoresizingMaskIntoConstraints="NO" id="3jI-C4-vB9">
+                                                        <rect key="frame" x="301" y="0.0" width="79" height="72"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.90865838527679443" green="0.90865838527679443" blue="0.90865838527679443" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -1076,7 +1041,6 @@
                         <segue destination="4FO-2v-otC" kind="relationship" relationship="viewControllers" id="r1w-Sp-WGC"/>
                         <segue destination="tEQ-3B-eN3" kind="relationship" relationship="viewControllers" id="5ne-Ad-LGY"/>
                         <segue destination="wxk-9m-zAl" kind="relationship" relationship="viewControllers" id="SCs-Si-qZn"/>
-                        <segue destination="zSK-pL-RRH" kind="relationship" relationship="viewControllers" id="a84-sc-wii"/>
                         <segue destination="Q7E-60-5GO" kind="relationship" relationship="viewControllers" id="tZB-Ni-MEa"/>
                     </connections>
                 </tabBarController>
@@ -1108,7 +1072,7 @@
         <image name="iPhoneStandard" width="300" height="200"/>
         <image name="locationIcon" width="25" height="25"/>
         <image name="locationStandard" width="300" height="200"/>
-        <image name="popularIcon" width="25" height="25"/>
+        <image name="ribbon" width="79" height="72"/>
         <image name="searchIcon" width="25" height="25"/>
         <image name="seasonIcon" width="25" height="25"/>
         <image name="starIcon" width="25" height="25"/>

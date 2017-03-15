@@ -80,6 +80,7 @@ static NSInteger cellPadding = 42;
 @synthesize starButton = _starButton;
 @synthesize defaultImageHeight = _defaultImageHeight;
 @synthesize defaultImageWidth = _defaultImageWidth;
+@synthesize popularRibbonImage = _popularRibbonImage;
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
@@ -182,6 +183,12 @@ static NSInteger cellPadding = 42;
 
     [[self infoButton] setHidden:YES];
     [[self infoButton2] setHidden:YES];
+    if ([_recipe popular] != nil) {
+        self.popularRibbonImage.hidden = NO;
+    } else {
+        self.popularRibbonImage.hidden = YES;
+    }
+    
     if ([_recipe.categories count] > 1) {
         for (Categories *category in _recipe.categories) {
             if ([category.category isEqualToString:@"vegan"]) {
