@@ -286,7 +286,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BWy-N7-4Y8">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BWy-N7-4Y8">
                                 <rect key="frame" x="37.5" y="471" width="300" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="jqb-qP-ivU"/>
@@ -794,7 +794,7 @@
                                                         </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ribbon" translatesAutoresizingMaskIntoConstraints="NO" id="3jI-C4-vB9">
-                                                        <rect key="frame" x="301" y="0.0" width="79" height="72"/>
+                                                        <rect key="frame" x="300" y="0.0" width="79" height="72"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                 </subviews>
