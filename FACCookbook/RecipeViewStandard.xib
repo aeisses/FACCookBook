@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,8 +21,12 @@
                     <rect key="frame" x="0.0" y="0.0" width="270" height="180"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ribbon" translatesAutoresizingMaskIntoConstraints="NO" id="bzx-nx-8ZO">
+                    <rect key="frame" x="192" y="0.0" width="79" height="72"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOA-Jx-pxc">
-                    <rect key="frame" x="96.5" y="74" width="77" height="32"/>
+                    <rect key="frame" x="97" y="74" width="77" height="32"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="beo-s8-ctB"/>
                         <constraint firstAttribute="width" constant="77" id="rZv-33-37e"/>
@@ -48,6 +51,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="popularImage" destination="bzx-nx-8ZO" id="0lL-pu-iqx"/>
                 <outlet property="purchasePrice" destination="SOA-Jx-pxc" id="2cv-8p-Spa"/>
                 <outlet property="purchaseScreen" destination="LXq-2d-S2o" id="pwx-C3-ysT"/>
                 <outlet property="recipeImage" destination="hdX-K7-rWs" id="euX-tO-6u4"/>
@@ -57,5 +61,6 @@
     </objects>
     <resources>
         <image name="iPhoneStandard" width="300" height="200"/>
+        <image name="ribbon" width="79" height="72"/>
     </resources>
 </document>

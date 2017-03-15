@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G1004" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Categories" representedClassName="Categories" syncable="YES">
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipe" inverseName="categories" inverseEntity="Recipe" syncable="YES"/>
@@ -41,7 +41,7 @@
     </entity>
     <entity name="Popular" representedClassName="Popular" syncable="YES">
         <attribute name="popularId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="Recipe" syncable="YES"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="popular" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="Purchased" syncable="YES">
         <attribute name="purchasedId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
@@ -60,7 +60,7 @@
         <relationship name="featured" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Featured" syncable="YES"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Ingredient" inverseName="recipe" inverseEntity="Ingredient" syncable="YES"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Note" inverseName="recipe" inverseEntity="Note" syncable="YES"/>
-        <relationship name="popular" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Popular" syncable="YES"/>
+        <relationship name="popular" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Popular" inverseName="recipe" inverseEntity="Popular" syncable="YES"/>
         <relationship name="purchased" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Purchased" inverseName="recipe" inverseEntity="Purchased" syncable="YES"/>
         <relationship name="searchItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SearchItems" inverseName="recipes" inverseEntity="SearchItems" syncable="YES"/>
     </entity>
@@ -76,9 +76,9 @@
         <element name="Ingredient" positionX="-207" positionY="84" width="128" height="105"/>
         <element name="Location" positionX="160" positionY="45" width="128" height="195"/>
         <element name="Note" positionX="7" positionY="45" width="128" height="75"/>
-        <element name="Popular" positionX="-225" positionY="-168" width="128" height="75"/>
+        <element name="Popular" positionX="-72" positionY="285" width="128" height="73"/>
         <element name="Purchased" positionX="-315" positionY="-18" width="128" height="75"/>
-        <element name="Recipe" positionX="-641" positionY="81" width="128" height="270"/>
+        <element name="Recipe" positionX="-641" positionY="81" width="128" height="268"/>
         <element name="SearchItems" positionX="-468" positionY="-72" width="128" height="75"/>
     </elements>
 </model>

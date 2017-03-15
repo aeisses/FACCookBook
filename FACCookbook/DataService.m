@@ -682,6 +682,7 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
         popular.popularId = number;
         Recipe *recipe = (Recipe*)[self loadRecipeFromCoreData:number];
         popular.recipe = recipe;
+        recipe.popular = popular;
     }
 
     NSError *error = nil;
