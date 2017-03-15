@@ -121,9 +121,8 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 @synthesize managedObjectContext = _managedObjectContext;
 
 + (NSString*)urlForResources {
-//    Information *information = [[DataService sharedInstance] loadInformationDataFromCoreData];
-    //return information.baseMediaUrl;
-    return @"https://s3.ca-central-1.amazonaws.com/facccokbook/Images/";
+    Information *information = [[DataService sharedInstance] loadInformationDataFromCoreData];
+    return information.baseMediaUrl;
 }
 
 + (NSString*)imageFormat:(BOOL)isCell {
@@ -256,13 +255,13 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
         [self fetchRecipeData];
     }];
     [[[self httpManager] operationQueue] addOperationWithBlock:^{
-        [self fetchFeaturedData];
-    }];
-    [[[self httpManager] operationQueue] addOperationWithBlock:^{
         [self fetchPopularData];
     }];
     [[[self httpManager] operationQueue] addOperationWithBlock:^{
         [self fetchPurchasedData];
+    }];
+    [[[self httpManager] operationQueue] addOperationWithBlock:^{
+        [self fetchFeaturedData];
     }];
     [[[self httpManager] operationQueue] addOperationWithBlock:^{
         [self fetchLocationData];
