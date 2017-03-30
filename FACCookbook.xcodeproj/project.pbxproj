@@ -14,7 +14,7 @@
 		0427460E1DDE7FDA00CB0211 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0427460D1DDE7FDA00CB0211 /* InAppPurchaseManager.m */; };
 		0436AE6F1BC355ED00510928 /* PurchasedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0436AE6E1BC355ED00510928 /* PurchasedTableViewCell.xib */; };
 		0436AE721BC356B000510928 /* PurchasedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436AE711BC356B000510928 /* PurchasedTableViewCell.m */; };
-		0436AE771BC3590800510928 /* PurchasedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436AE761BC3588300510928 /* PurchasedViewController.m */; };
+		0436AE771BC3590800510928 /* PurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436AE761BC3588300510928 /* PurchaseViewController.m */; };
 		043938711AF2FEB7004EA4D3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043938701AF2FEB7004EA4D3 /* MapKit.framework */; };
 		043938741AF30206004EA4D3 /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043938731AF30206004EA4D3 /* HomeScreenViewController.m */; };
 		043938771AF53DA1004EA4D3 /* RecipeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 043938761AF53DA1004EA4D3 /* RecipeViewCell.xib */; };
@@ -86,8 +86,8 @@
 		0436AE6E1BC355ED00510928 /* PurchasedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PurchasedTableViewCell.xib; sourceTree = "<group>"; };
 		0436AE701BC356B000510928 /* PurchasedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchasedTableViewCell.h; sourceTree = "<group>"; };
 		0436AE711BC356B000510928 /* PurchasedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchasedTableViewCell.m; sourceTree = "<group>"; };
-		0436AE751BC3585300510928 /* PurchasedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchasedViewController.h; sourceTree = "<group>"; };
-		0436AE761BC3588300510928 /* PurchasedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchasedViewController.m; sourceTree = "<group>"; };
+		0436AE751BC3585300510928 /* PurchaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PurchaseViewController.h; sourceTree = "<group>"; };
+		0436AE761BC3588300510928 /* PurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PurchaseViewController.m; sourceTree = "<group>"; };
 		043938701AF2FEB7004EA4D3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		043938731AF30206004EA4D3 /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
 		043938751AF3021F004EA4D3 /* HomeScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
@@ -224,8 +224,8 @@
 				043938831AF544A9004EA4D3 /* RecipeViewController.m */,
 				509D327F1B5FD20400388374 /* HomeScreenViewLayout.h */,
 				509D32801B5FD20400388374 /* HomeScreenViewLayout.m */,
-				0436AE751BC3585300510928 /* PurchasedViewController.h */,
-				0436AE761BC3588300510928 /* PurchasedViewController.m */,
+				0436AE751BC3585300510928 /* PurchaseViewController.h */,
+				0436AE761BC3588300510928 /* PurchaseViewController.m */,
 				04E9761B1DDD23B000699E49 /* FACUINavigationController.h */,
 				04E9761A1DDD238F00699E49 /* FACUINavigationController.m */,
 			);
@@ -565,7 +565,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0436AE771BC3590800510928 /* PurchasedViewController.m in Sources */,
+				0436AE771BC3590800510928 /* PurchaseViewController.m in Sources */,
 				0439387D1AF5444F004EA4D3 /* InformationViewController.m in Sources */,
 				04CE743C1ACCC81800624A7F /* Information.m in Sources */,
 				04551AA41AFC384000DBEE9B /* Featured.m in Sources */,

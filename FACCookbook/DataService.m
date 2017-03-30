@@ -67,12 +67,11 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 }
 
 + (NSString *)domain {
-//    return @"dl.dropboxusercontent.com";
     return @"faccookbook.herokuapp.com";
 }
 
 + (NSString *)oldDomain {
-    return @"dl.dropboxusercontent.com";
+    return @"s3.ca-central-1.amazonaws.com";
 }
 
 // XXX: For querying testdata dropbox does not set the content-type header properly so we can't use
@@ -106,7 +105,7 @@ static NSString *FCBFormatFamilyStandard = @"FCBFamilyStandard";
 }
 
 + (NSString *)purchasedEndPoint {
-    return [NSString stringWithFormat:@"%@://%@/u/95002502/foundation/purchased.json", [DataService protocol], [DataService oldDomain]];
+    return [NSString stringWithFormat:@"%@://%@/facccokbook/purchased.json", [DataService protocol], [DataService oldDomain]];
 }
 
 + (NSString *)informationEndPoint {

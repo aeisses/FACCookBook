@@ -22,7 +22,8 @@ NSString *cellReuseIdentifier = @"Cell";
 NSString *standardReuseIdentifier = @"Standard";
 static NSString * const cellNibName = @"RecipeViewCell";
 static NSString * const standardNibName = @"RecipeViewStandard";
-static NSString * const segueIdentifier = @"recipe";
+static NSString * const segueRecipeIdentifier = @"recipe";
+static NSString * const seguePurchaseIdentifier = @"purchase";
 static NSInteger const kCellSpacingX = 5;
 static NSInteger const kCellSpacingY = 25;
 
@@ -116,13 +117,14 @@ static NSInteger const kCellSpacingY = 25;
         _selectedRecipe = (Recipe*)((Featured*)object).recipe;
     } else if ([object isKindOfClass:[Popular class]]) {
         _selectedRecipe = (Recipe*)((Popular*)object).recipe;
-    } else if ([(Recipe*)object purchased] != nil) {
-        // TODO: add in a segue to the info screen.
-        return;
     } else {
         _selectedRecipe = (Recipe*)object;
     }
-    [self performSegueWithIdentifier:segueIdentifier sender:self];
+    if ([_selectedRecipe purchased] != nil) {
+        [self performSegueWithIdentifier:seguePurchaseIdentifier sender:self];
+    } else {
+        [self performSegueWithIdentifier:segueRecipeIdentifier sender:self];
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
